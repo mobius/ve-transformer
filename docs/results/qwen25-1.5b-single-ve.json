@@ -1,0 +1,114 @@
+{
+  "model": "Qwen2.5-1.5B-Instruct-Q4_K_M",
+  "model_sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+  "context": 2048,
+  "accuracy": {
+    "quant": [
+      {
+        "max_abs_error": 2.968813419342041,
+        "rmse": 0.3352675736081674,
+        "argmax_agreement": 8,
+        "steps": 8,
+        "passed": false
+      },
+      {
+        "max_abs_error": 1.7294960021972656,
+        "rmse": 0.23032673041476165,
+        "argmax_agreement": 8,
+        "steps": 8,
+        "passed": false
+      },
+      {
+        "max_abs_error": 0.9762763977050781,
+        "rmse": 0.17236933173780286,
+        "argmax_agreement": 8,
+        "steps": 8,
+        "passed": false
+      }
+    ],
+    "accurate": [
+      {
+        "max_abs_error": 0.02583599090576172,
+        "rmse": 0.0036281010672753506,
+        "argmax_agreement": 8,
+        "steps": 8,
+        "passed": true
+      },
+      {
+        "max_abs_error": 0.02586841583251953,
+        "rmse": 0.002696846970667246,
+        "argmax_agreement": 8,
+        "steps": 8,
+        "passed": true
+      },
+      {
+        "max_abs_error": 0.007068634033203125,
+        "rmse": 0.0012513399852137925,
+        "argmax_agreement": 8,
+        "steps": 8,
+        "passed": true
+      }
+    ]
+  },
+  "threads": {
+    "1": {
+      "warm_decode_tokens_per_second": 2.1558155,
+      "cold_prefill_seconds": 76.928674,
+      "warm_prefill_seconds": 7.9695365,
+      "prompt_tokens": 17
+    },
+    "2": {
+      "warm_decode_tokens_per_second": 2.9925805,
+      "cold_prefill_seconds": 39.601813,
+      "warm_prefill_seconds": 4.303272,
+      "prompt_tokens": 17
+    },
+    "4": {
+      "warm_decode_tokens_per_second": 3.7762335,
+      "cold_prefill_seconds": 30.467301,
+      "warm_prefill_seconds": 2.5515855,
+      "prompt_tokens": 17
+    },
+    "8": {
+      "warm_decode_tokens_per_second": 3.044252,
+      "cold_prefill_seconds": 32.82866,
+      "warm_prefill_seconds": 2.5032370000000004,
+      "prompt_tokens": 17
+    }
+  },
+  "completed": true,
+  "binary_sha256": {
+    "cpu_quant": "ee352bd941acc669ecf116e40b4422d70139c0800fc7bdc410c0d626cdf3b940",
+    "cpu_accurate": "26999857bdeb3da399e3b5d66b9a8f101bafb1aa955c5414acf90e181dc6328b",
+    "quant": "96513c55b59a2a34aceb1d9db2d86dcfecdab046983bb9844f9c7c03d43c8216",
+    "accurate": "137e8723d99121114485879a2ec29850e3c71f96c578c776b2d31dc39c7d8180"
+  },
+  "selected_backend": "accurate",
+  "accepted_backend_speeds": {
+    "accurate": 3.0540754999999997
+  },
+  "selected_threads": 4,
+  "long_input": {
+    "prompt_tokens": 117,
+    "prefill_seconds": 14.990034,
+    "decode_tokens_per_second": 3.832781
+  },
+  "model_parameters_official": 1543714304,
+  "gguf_tensor_parameter_sum": 1777088000,
+  "parameter_count_note": "GGUF separately stores 233373696-element embedding and output tensors; official model ties these weights.",
+  "thermal_peaks_c": {
+    "cpu": 82,
+    "ve0": 56.25,
+    "ve1": 45,
+    "ve2": 47.25
+  },
+  "cpu_warning_observed": true,
+  "stop_threshold_reached": false,
+  "bmc_fans_available": false,
+  "native_fan_channels": 97,
+  "native_fan_changes": 0,
+  "cache_payload_bytes": 12348555264,
+  "cache_budget_bytes": 17179869184,
+  "repeat_checks": "3x32 generated tokens equal CPU reference and all four thread configurations; long input 2x16 tokens equal",
+  "tested_ve_slot": 1
+}

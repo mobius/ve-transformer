@@ -154,3 +154,15 @@ bash scripts/validate_qwen.sh correctness --backend accurate
 ```
 
 该测试固定运行槽1、4096上下文、16384MiB缓存，自动扫描线程并测长输入；需要当前终端具备读取BMC风扇的sudo授权。结果只覆盖本文列出的文本模型和测试输入。
+
+## Qwen2.5-1.5B量化单卡测试
+
+官方Qwen2.5-1.5B-Instruct Q4_K_M，文件约1.12GB。高精度路径通过三提示共24步完整词表对照及三次32步输出检查；原量化路径分数误差超标，不作为通过精度验收的性能。1/2/4/8线程热态生成分别约2.16/2.99/3.78/3.04词元/秒，四线程本次最快。采用FP64累加/FP32激活、有界稠密缓存；缓存有效载荷约11.50GiB，不能用量化文件大小代表运行内存。完整数据见[公开摘要](docs/results/qwen25-1.5b-single-ve.json)。
+
+```bash
+.venv/bin/python scripts/download_qwen15.py
+bash scripts/build_qwen15.sh
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- .venv/bin/python tests/check_qwen15.py
+```
+
+构建入口复用此前Qwen框架构建及高精度对象，需先按上文完成对应构建；创建适配器限定固定上游ABI和qwen2架构。所有产物独立放在build/qwen15-ve，不替换35B执行器。此次测试仅运行槽1、上下文配置2048、固定生成步数；不覆盖其他卡或全部模型输入。测试CPU峰值82°C、运行卡56.25°C，BMC读取不可用，原生可读风扇通道留档。
