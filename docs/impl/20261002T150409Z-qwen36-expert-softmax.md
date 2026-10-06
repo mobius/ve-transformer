@@ -1,0 +1,9 @@
+# 专家概率一致性迭代
+
+新增precise_unmasked_softmax仅用于显式FP64实验路径，其余Softmax回退原实现。已有状态修复诊断退出0，CPU峰值80°C、ve0峰值51.12°C；104风扇通道4项有中间变化，起终转速相同。新增Softmax待构建检查。
+
+首次构建测试在CPU测试夹具创建阶段触发上游Softmax连续输入断言，尚未调用新算子。修正为先创建合法图，再设置步长仅用于直接hook边界检查；不宣称公开API支持非连续输入。保留失败日志build/qwen-accurate-softmax-build-check.log。
+
+第二次检查在width31、scale1的独立参考比较失败：初步怀疑纯绝对2e-8未计入F32较大概率的舍入间距，待重新检查确认。单算子阈值改为2e-8+6e-8*abs(reference)，计入约半个F32相对舍入单位，并增加错误定位输出。真实模型最终阈值未改变。失败日志保留为build/qwen-accurate-softmax-build-check-retry.log。
+
+修正单精度舍入容差后，CPU/VE共206项检查通过，9个Softmax案例各执行两遍。受保护构建退出0，CPU峰值77°C、ve0峰值48.50°C，104风扇通道无观察到变化。启动三提示12步完整分数比较与重复请求缓存重置验证，结果尚待完成。

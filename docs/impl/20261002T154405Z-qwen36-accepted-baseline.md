@@ -1,0 +1,3 @@
+# 正确性验收基线与缓存优化阶段
+
+固定已验收CPU、VE执行器与构建manifest到build/qwen-accurate-baseline，分别重新计算SHA256并与manifest原执行器条目核对一致。完整正确性结果目录build/results/20261002T151124Z-qwen36，日志build/qwen-final-correctness-delta-softmax.log，numerical-progress.json已标记correctness_complete而非最终优化完成。

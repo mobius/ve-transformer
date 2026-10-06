@@ -1,0 +1,3 @@
+# 迭代034：高精度累加实验
+
+新增QWEN_ACCUM_FP64编译模式，原模式数学不变。src/qwen_nlc_hook.cpp新增有界double矩阵临时缓冲、双精度投影、F32内积链接替换、跨跨度RMS/SiLU/Sigmoid/Softplus处理；所有激活存储仍float32。src/qwen_infer.cpp仅新模式强制GGML_CPU_DISABLE_FUSION=1，使RMS由共同高精度实现处理，并在JSON明确math_mode。新增独立long-double跨跨度原语oracle及CPU目标，scripts/build_qwen_accurate.sh独立构建与CPU/VE检查正在进行。

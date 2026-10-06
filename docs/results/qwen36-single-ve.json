@@ -1,0 +1,74 @@
+{
+  "baseline": {
+    "prompt_tokens": 21,
+    "cold_prefill_seconds": 17.628471,
+    "warm_prefill_seconds": 17.176866,
+    "warm_decode_tokens_per_second": 0.10347500000000001
+  },
+  "threads": {
+    "1": {
+      "prompt_tokens": 21,
+      "cold_prefill_seconds": 113.777306,
+      "warm_prefill_seconds": 28.590035999999998,
+      "warm_decode_tokens_per_second": 0.361515,
+      "speedup": 3.493742449867117
+    },
+    "2": {
+      "prompt_tokens": 21,
+      "cold_prefill_seconds": 59.927445,
+      "warm_prefill_seconds": 16.3222755,
+      "warm_decode_tokens_per_second": 0.48521400000000003,
+      "speedup": 4.689190625755013
+    },
+    "4": {
+      "prompt_tokens": 21,
+      "cold_prefill_seconds": 44.678854,
+      "warm_prefill_seconds": 10.753568999999999,
+      "warm_decode_tokens_per_second": 0.4709295,
+      "speedup": 4.55114278811307
+    },
+    "8": {
+      "prompt_tokens": 21,
+      "cold_prefill_seconds": 45.445821,
+      "warm_prefill_seconds": 9.8960585,
+      "warm_decode_tokens_per_second": 0.5096355,
+      "speedup": 4.925204155593138
+    }
+  },
+  "long_inputs": {
+    "16": {
+      "prompt_tokens": 260,
+      "cold_prefill_seconds": 129.870469,
+      "warm_prefill_seconds": 99.093178,
+      "warm_decode_tokens_per_second": 0.494542
+    },
+    "64": {
+      "prompt_tokens": 980,
+      "cold_prefill_seconds": 455.72034,
+      "warm_prefill_seconds": 424.361415,
+      "warm_decode_tokens_per_second": 0.470626
+    },
+    "128": {
+      "prompt_tokens": 1940,
+      "cold_prefill_seconds": 1061.780509,
+      "warm_prefill_seconds": 1031.422392,
+      "warm_decode_tokens_per_second": 0.426516
+    }
+  },
+  "selected_threads": 8,
+  "performance_scan_completed": true,
+  "model": "Qwen3.6-35B-A3B-UD-Q4_K_M",
+  "scope": "single NEC VE, text only, context configured to 4096",
+  "measurement_utc": "2026-10-02",
+  "thermal_peaks_c": {
+    "cpu": 81,
+    "ve0": 62.875,
+    "ve1": 48.625,
+    "ve2": 50.875
+  },
+  "cpu_warning_observed": true,
+  "stop_threshold_reached": false,
+  "precision_scope": "Three prompts, 12 full-vocabulary steps each; long inputs checked for repeat consistency only",
+  "cache_payload_bytes": 15508439040,
+  "cache_budget_bytes": 17179869184
+}

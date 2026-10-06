@@ -1,0 +1,19 @@
+build/
+.venv/
+__pycache__/
+*.pyc
+.env
+*.pem
+*.key
+.git-local/
+
+# Local credentials, reports and editor state
+.env.*
+!.env.example
+*.p12
+*.pfx
+*.kdbx
+*.log
+.vscode/
+.idea/
+.DS_Store
