@@ -166,3 +166,62 @@ bash scripts/build_qwen15.sh
 ```
 
 构建入口复用此前Qwen框架构建及高精度对象，需先按上文完成对应构建；创建适配器限定固定上游ABI和qwen2架构。所有产物独立放在build/qwen15-ve，不替换35B执行器。此次测试仅运行槽1、上下文配置2048、固定生成步数；不覆盖其他卡或全部模型输入。测试CPU峰值82°C、运行卡56.25°C，BMC读取不可用，原生可读风扇通道留档。
+
+### Qwen 1.5B 连续请求入口
+
+以下为常驻基线的验收结果；计算优化后的当前入口见下节。
+
+单VE四线程、17输入/固定32输出词元：独立进程总耗时中位数49.63秒，常驻热态请求10.88秒，生成3.84词元/秒，分词2.61毫秒。请求耗时差约4.56倍主要来自模型/缓存复用；首次请求仍需启动和建立缓存。完整数值与精度、温度范围见[常驻验收摘要](docs/results/qwen25-1.5b-session.json)。
+
+独立构建保留原有通过验收的执行器。常驻进程复用模型及权重缓存，每条请求清空上下文；分词仍在VE。首次请求包含缓存建立，后续请求复用缓存。请求数量与文本长度有上限，接口采用stdin/stdout，没有网络服务。计时口径见[架构说明](docs/architecture/20261006T044000Z-qwen15-session-protocol.md)。
+
+```bash
+bash scripts/build_qwen15_session.sh
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- \
+  .venv/bin/python python/qwen_session.py \
+  --model build/models/qwen25-1.5b/qwen2.5-1.5b-instruct-q4_k_m.gguf \
+  --prompt 'Write a Python function that adds two integers.' \
+  --prompt '请用一句话说明二分查找的原理。' --tokens 32
+```
+
+验收脚本使用已保存的CPU完整词表参考文件，默认位置为先前1.5B验收的本地结果目录；这些大文件不进入Git。性能请求禁用trace和算子采样；单独的profile请求用于定位计算热点，不作为正常速度。
+
+```bash
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- \
+  .venv/bin/python tests/check_qwen15_session.py \
+  --reference-dir build/results/20261006T031326Z-qwen15
+```
+
+可用`--reference-dir`指定对应模型的既有1.5B验收目录。模型哈希、旧执行器哈希、完整词表误差、生成序列、缓存上限和错误帧均进入检查。
+
+## Qwen 1.5B 输入与投影计算优化
+
+单VE四线程，ABBA同轮对照，各路径六条热态请求的中位数：
+
+| 指标 | 常驻基线 | 当前组合优化 |
+|---|---:|---:|
+| 生成速度 | 3.81词元/秒 | 4.50词元/秒（+18.2%） |
+| 17词元输入计算 | 2.55秒 | 1.29秒 |
+| 17输入/固定32输出请求 | 10.95秒 | 8.41秒（耗时−23.3%） |
+| 117输入/固定16输出请求 | 19.22秒 | 9.38秒（耗时−51.2%） |
+
+输入注意力仅多列矩阵使用NLC，逐词注意力使用原路径；投影BLAS/缓存行块从128增至1024，反量化子块仍最多128行。FP64投影/精细元素计算、FP32激活和原注意力F16输入舍入保留。缓存有效载荷仍11.50GiB，首次请求仍需加载和建立缓存；以上为热态结果。完整精度、构建哈希和性能数据见[优化验收摘要](docs/results/qwen25-1.5b-optimized.json)。
+
+在已有常驻基线与固定框架归档的环境中：
+
+```bash
+bash scripts/build_qwen15_prefill.sh
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- \
+  .venv/bin/python python/qwen_session.py \
+  --model build/models/qwen25-1.5b/qwen2.5-1.5b-instruct-q4_k_m.gguf \
+  --prompt 'Write a Python function that adds two integers.' --tokens 32
+```
+
+入口默认优先使用已构建的`build/qwen15-projection/qwen-infer-ve`，不存在时使用原常驻基线；`--executor`可明确选择执行器。构建会运行108例多列注意力矩阵参考、108例单列回退检查，以及四例大投影尾块/缓存契约。模型验收需另行运行：
+
+```bash
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- \
+  .venv/bin/python tests/check_qwen15_attention.py --candidate-dir build/qwen15-projection
+```
+
+验收依赖既有CPU参考文件及此前已验证、哈希匹配的常驻基线。全注意力NLC实验的生成速度回退，以及大块初版触发128行反量化断言的失败，均已留档；没有将失败运行计入性能数据。

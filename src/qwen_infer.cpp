@@ -106,6 +106,19 @@ static void report_profile(const Profile &profile,const char *phase,int repeat) 
         std::fprintf(stderr,"PROFILE {\"repeat\":%d,\"phase\":%s,\"operator\":%s,\"calls\":%zu,\"seconds\":%.9f}\n",
                      repeat,json_string(phase).c_str(),json_string(item.first).c_str(),item.second.calls,item.second.seconds);
 }
+// Length-delimited stdin protocol; EOF between frames closes the session cleanly.
+static bool read_request(std::string &prompt,int &count) {
+    unsigned char header[8];
+    size_t n=std::fread(header,1,8,stdin);
+    if(n==0 && std::feof(stdin)) return false;
+    if(n!=8) throw std::runtime_error("incomplete request header");
+    auto u32=[&](int i) {return (uint32_t)header[i]|((uint32_t)header[i+1]<<8)|((uint32_t)header[i+2]<<16)|((uint32_t)header[i+3]<<24);};
+    uint32_t bytes=u32(0),tokens=u32(4);
+    if(bytes>1024*1024 || tokens<1 || tokens>1024) throw std::runtime_error("request bounds exceeded");
+    prompt.resize(bytes);
+    if(bytes && std::fread(&prompt[0],1,bytes,stdin)!=bytes) throw std::runtime_error("incomplete request body");
+    count=(int)tokens;return true;
+}
 int main(int argc,char **argv) {
     try {
         std::string model_path,prompt="Hello",trace,forced_path,node_trace;
@@ -113,10 +126,11 @@ int main(int argc,char **argv) {
 #ifdef QWEN_ACCUM_FP64
         int dense_cache_mib=0;
 #endif
-        bool force_count=false,use_mmap=true,profiling=false,fresh_threads=false,test_abort=false;
+        bool force_count=false,use_mmap=true,profiling=false,fresh_threads=false,test_abort=false,serve=false;
         Profile profile;
         for(int i=1;i<argc;++i) {
             std::string a=argv[i];
+            if(a=="--serve") {serve=true;continue;}
             if(a=="--test-abort") {test_abort=true;continue;}
             if(a=="--fresh-threads") {fresh_threads=true;continue;}
             if(a=="--profile") {profiling=true;continue;}
@@ -139,6 +153,7 @@ int main(int argc,char **argv) {
             else throw std::runtime_error("unknown argument");
         }
         if(model_path.empty() || prompt.size()>1024*1024) throw std::runtime_error("model required or prompt too large");
+        if(serve && (repeats!=1 || !forced_path.empty() || test_abort)) throw std::runtime_error("serve does not support repeats, forced tokens or abort smoke");
         std::vector<llama_token> forced;
         if(!forced_path.empty()) {
             std::ifstream f(forced_path); int64_t id;
@@ -165,11 +180,15 @@ int main(int argc,char **argv) {
         const auto *vocab=llama_model_get_vocab(model.get());
         int nv=llama_vocab_n_tokens(vocab);
         for(auto id:forced) if(id>=nv) throw std::runtime_error("forced token exceeds vocabulary");
-        int np=-llama_tokenize(vocab,prompt.data(),prompt.size(),nullptr,0,true,true);
-        if(np<=0 || np+count>context) throw std::runtime_error("prompt exceeds requested context");
-        std::vector<llama_token> ids(np);
-        if(llama_tokenize(vocab,prompt.data(),prompt.size(),ids.data(),np,true,true)!=np)
-            throw std::runtime_error("tokenization failed");
+        int np=0;
+        std::vector<llama_token> ids;
+        auto tokenize=[&]() {
+            np=-llama_tokenize(vocab,prompt.data(),prompt.size(),nullptr,0,true,true);
+            if(np<=0 || np+count>context) throw std::runtime_error("prompt exceeds requested context");
+            ids.resize(np);
+            if(llama_tokenize(vocab,prompt.data(),prompt.size(),ids.data(),np,true,true)!=np)
+                throw std::runtime_error("tokenization failed");
+        };
         auto cp=llama_context_default_params();
         cp.n_ctx=context;cp.n_batch=512;cp.n_ubatch=128;cp.n_seq_max=1;
         cp.n_threads=threads;cp.n_threads_batch=threads;
@@ -193,6 +212,7 @@ int main(int argc,char **argv) {
         std::unique_ptr<llama_batch_ext,decltype(&llama_batch_ext_free)> batch(llama_batch_ext_init(ctx.get()),llama_batch_ext_free);
         if(!batch) throw std::runtime_error("batch allocation failed");
         if(test_abort) {
+            tokenize();
             std::atomic<unsigned> calls{0};
             llama_set_abort_callback(ctx.get(),qwen_test_abort,&calls);
             set_batch(batch.get(),ids.data(),1,0);
@@ -203,8 +223,15 @@ int main(int argc,char **argv) {
             std::fprintf(stderr,"ABORT_CALLBACK_PASS status=%d calls=%u; callback cleared before normal inference\n",
                          status,calls.load(std::memory_order_relaxed));
         }
-        for(int r=0;r<repeats;++r) {
-            llama_memory_clear(llama_get_memory(ctx.get()),true);
+        if(serve) {std::printf("{\"event\":\"ready\",\"protocol\":1,\"load_seconds\":%.9f,\"context_init_seconds\":%.9f}\n",load,init);std::fflush(stdout);}
+        for(int r=0;serve || r<repeats;++r) {
+            if(serve && !read_request(prompt,count)) break;
+            auto request_start=Clock::now();
+            t=Clock::now();tokenize();double tokenize_seconds=elapsed(t);
+            t=Clock::now();llama_memory_clear(llama_get_memory(ctx.get()),true);double reset_seconds=elapsed(t);
+#ifdef QWEN_TIMING
+            auto cache_before=qwen_dense_cache_stats();
+#endif
             std::ofstream log;
             if(!trace.empty()) {
                 log.open(trace+"-"+std::to_string(r)+".f32",std::ios::binary);
@@ -223,35 +250,48 @@ int main(int argc,char **argv) {
             profile.phase="decode";
             std::vector<llama_token> chosen,greedy;
             std::string text;
+            double select_seconds=0,piece_seconds=0,model_decode_seconds=0;
             t=Clock::now();
             for(int step=0;step<count;++step) {
+                auto step_start=Clock::now();
                 float *scores=llama_get_logits_ith(ctx.get(),-1);
                 if(!scores) throw std::runtime_error("missing logits");
                 for(int k=0;k<nv;++k) if(!std::isfinite(scores[k])) throw std::runtime_error("nonfinite logits");
                 if(log.is_open()) {log.write(reinterpret_cast<char*>(scores),nv*sizeof(float));if(!log) throw std::runtime_error("trace write failed");}
                 llama_token predicted=std::max_element(scores,scores+nv)-scores;
                 llama_token next=forced.empty()?predicted:forced[step];
+                select_seconds+=elapsed(step_start);
                 if(!force_count && forced.empty() && llama_vocab_is_eog(vocab,next)) break;
                 greedy.push_back(predicted);chosen.push_back(next);
+                auto piece_start=Clock::now();
                 std::vector<char> piece(256);
                 int n=llama_token_to_piece(vocab,next,piece.data(),piece.size(),0,true);
                 if(n<0) {piece.resize(-n);n=llama_token_to_piece(vocab,next,piece.data(),piece.size(),0,true);}
                 if(n<0) throw std::runtime_error("token piece failed");
                 text.append(piece.data(),n);
+                piece_seconds+=elapsed(piece_start);
+                auto model_start=Clock::now();
                 set_batch(batch.get(),&next,1,np+step);
                 if(llama_process(ctx.get(),LLAMA_PROCESS_TYPE_DECODE,batch.get())) throw std::runtime_error("incremental decode failed");
+                model_decode_seconds+=elapsed(model_start);
             }
             double decode=elapsed(t);
+            if(log.is_open()) {log.flush();if(!log) throw std::runtime_error("trace flush failed");}
             if(profiling) report_profile(profile,"decode",r);
+            const double request_seconds=elapsed(request_start);
             std::printf("{\"repeat\":%d,\"threads\":%d,\"context\":%d,\"vocab\":%d,\"prompt_tokens\":%d,\"generated_tokens\":%zu,\"model_bytes\":%llu,\"model_parameters\":%llu,\"load_seconds\":%.6f,\"context_init_seconds\":%.6f,\"prefill_seconds\":%.6f,\"decode_seconds\":%.6f,\"decode_tokens_per_second\":%.6f,\"tokens\":[",
                 r,threads,context,nv,np,chosen.size(),(unsigned long long)llama_model_size(model.get()),(unsigned long long)llama_model_n_params(model.get()),load,init,pp,decode,chosen.size()/decode);
             for(size_t k=0;k<chosen.size();++k) std::printf("%s%d",k?",":"",chosen[k]);
             std::printf("],\"greedy_tokens\":[");
             for(size_t k=0;k<greedy.size();++k) std::printf("%s%d",k?",":"",greedy[k]);
             std::printf("],\"text\":%s",json_string(text).c_str());
+            std::printf(",\"tokenize_seconds\":%.9f,\"reset_seconds\":%.9f,\"selection_seconds\":%.9f,\"text_conversion_seconds\":%.9f,\"model_decode_seconds\":%.9f,\"request_seconds\":%.9f",tokenize_seconds,reset_seconds,select_seconds,piece_seconds,model_decode_seconds,request_seconds);
 #ifdef QWEN_ACCUM_FP64
             std::printf(",\"math_mode\":\"fp64_accumulation\",\"activation_storage\":\"float32\"");
             auto cache=qwen_dense_cache_stats();
+#ifdef QWEN_TIMING
+            std::printf(",\"cache_fill_thread_seconds\":%.9f,\"cache_new_entries\":%llu",cache.fill_thread_seconds-cache_before.fill_thread_seconds,(unsigned long long)(cache.entries-cache_before.entries));
+#endif
             std::printf(",\"dense_cache_budget_bytes\":%llu,\"dense_cache_retained_bytes\":%llu,\"dense_cache_entries\":%llu,\"dense_cache_hits\":%llu,\"dense_cache_misses\":%llu,\"dense_cache_rejected\":%llu",
                 (unsigned long long)cache.budget_bytes,(unsigned long long)cache.retained_bytes,
                 (unsigned long long)cache.entries,(unsigned long long)cache.hits,

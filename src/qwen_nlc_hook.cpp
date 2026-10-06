@@ -7,6 +7,9 @@
 #include <cstdint>
 #include <cstring>
 #include <vector>
+#ifdef QWEN_TIMING
+#include <chrono>
+#endif
 #ifdef QWEN_ACCUM_FP64
 #include "qwen_dense_cache.h"
 #include <map>
@@ -51,6 +54,9 @@ DenseTile retain_dense(const DenseKey &key,const float *matrix,size_t count) {
     dense_cache.stats.reserved_bytes+=bytes;
     lock.unlock();
     DenseTile tile;
+#ifdef QWEN_TIMING
+    auto fill_start=std::chrono::steady_clock::now();
+#endif
     try {
         auto filled=std::make_shared<std::vector<double>>(count);
         for(size_t k=0;k<count;++k)(*filled)[k]=matrix[k];
@@ -60,6 +66,9 @@ DenseTile retain_dense(const DenseKey &key,const float *matrix,size_t count) {
         ++dense_cache.stats.rejected;return {};
     }
     lock.lock();
+#ifdef QWEN_TIMING
+    dense_cache.stats.fill_thread_seconds+=std::chrono::duration<double>(std::chrono::steady_clock::now()-fill_start).count();
+#endif
     found=dense_cache.tiles.find(key);
     if(found!=dense_cache.tiles.end()) {
         tile.reset();dense_cache.stats.reserved_bytes-=bytes;return found->second;
@@ -127,6 +136,50 @@ void multiply(int rows,int cols,int width,const float *a,const float *b,float *c
         dot(width,c+r*cols+col,0,a+r*width,0,b+col*width,0,1);
 #endif
 }
+
+#ifdef QWEN_ATTENTION_NLC
+// Match GGML's F16 dot input rounding, including grouped head/batch broadcasting.
+bool attention_multiply(ggml_compute_params *params,ggml_tensor *dst) {
+    if(dst->op!=GGML_OP_MUL_MAT)return false;
+    const auto *a=dst->src[0],*b=dst->src[1];
+    if(!a || !b || a->type!=GGML_TYPE_F16 || b->type!=GGML_TYPE_F32 || dst->type!=GGML_TYPE_F32 ||
+       a->ne[0]!=b->ne[0] || a->ne[2]<1 || a->ne[3]<1 || b->ne[2]%a->ne[2] || b->ne[3]%a->ne[3] ||
+       dst->ne[0]!=a->ne[1] || dst->ne[1]!=b->ne[1] || dst->ne[2]!=b->ne[2] || dst->ne[3]!=b->ne[3] ||
+       dst->nb[0]!=sizeof(float))return false;
+#ifdef QWEN_ATTENTION_PREFILL_ONLY
+    if(b->ne[1]==1)return false;
+#endif
+    const int64_t width=a->ne[0],rows=a->ne[1],cols=b->ne[1];
+    if(width<1 || width>32768 || rows<1 || rows>32768 || cols<1 || cols>512 ||
+       rows*width>8*1024*1024 || rows*cols>8*1024*1024)return false;
+    auto &w=workspace;
+    const int64_t r2=b->ne[2]/a->ne[2],r3=b->ne[3]/a->ne[3];
+    for(int64_t batch=params->ith;batch<b->ne[2]*b->ne[3];batch+=params->nth) {
+        int64_t h=batch%b->ne[2],n=batch/b->ne[2];
+        const char *ap=(const char*)a->data+(h/r2)*a->nb[2]+(n/r3)*a->nb[3];
+        const char *bp=(const char*)b->data+h*b->nb[2]+n*b->nb[3];
+        w.a.resize(rows*width);w.b.resize(cols*width);w.c.resize(rows*cols);
+        for(int64_t row=0;row<rows;++row) {
+            if(a->nb[0]==sizeof(ggml_fp16_t))ggml_fp16_to_fp32_row((const ggml_fp16_t*)(ap+row*a->nb[1]),w.a.data()+row*width,width);
+            else for(int64_t k=0;k<width;++k) {
+                ggml_fp16_t value;std::memcpy(&value,ap+row*a->nb[1]+k*a->nb[0],sizeof(value));
+                w.a[row*width+k]=ggml_fp16_to_fp32(value);
+            }
+        }
+        for(int64_t col=0;col<cols;++col)for(int64_t k=0;k<width;++k) {
+            float value;std::memcpy(&value,bp+col*b->nb[1]+k*b->nb[0],sizeof(value));
+            w.b[col*width+k]=ggml_fp16_to_fp32(ggml_fp32_to_fp16(value));
+        }
+        multiply(rows,cols,width,w.a.data(),w.b.data(),w.c.data());
+        char *out=(char*)dst->data+h*dst->nb[2]+n*dst->nb[3];
+        for(int64_t col=0;col<cols;++col)for(int64_t row=0;row<rows;++row) {
+            float value=w.c[row*cols+col];
+            std::memcpy(out+col*dst->nb[1]+row*dst->nb[0],&value,sizeof(value));
+        }
+    }
+    return true;
+}
+#endif
 
 #ifdef QWEN_ACCUM_FP64
 bool precise_unmasked_softmax(ggml_compute_params *params,ggml_tensor *dst) {
@@ -258,6 +311,12 @@ bool precise_elementwise(ggml_compute_params *params,ggml_tensor *dst) {
 #endif
 void execute(ggml_compute_params *params,ggml_tensor *dst) {
     const auto *a=dst->src[0],*b=dst->src[1];
+#ifdef QWEN_PROJECTION_TILE_ROWS
+    constexpr int tile_rows=QWEN_PROJECTION_TILE_ROWS;
+    static_assert(tile_rows>0 && tile_rows<=4096,"invalid projection tile rows");
+#else
+    constexpr int tile_rows=128;
+#endif
     int width=a->ne[0],m=a->ne[1];
     int begin=m*params->ith/params->nth,end=m*(params->ith+1)/params->nth;
     if(begin==end)return;
@@ -275,8 +334,8 @@ void execute(ggml_compute_params *params,ggml_tensor *dst) {
             if(chosen==expert) columns.push_back({route,t});
         }
         if(columns.empty())continue;
-        for(int row=begin;row<end;row+=128) {
-            int rows=std::min(128,end-row);
+        for(int row=begin;row<end;row+=tile_rows) {
+            int rows=std::min(tile_rows,end-row);
             const char *raw=(const char*)a->data+expert*a->nb[2]+row*a->nb[1];
             const float *matrix=nullptr;
             const double *cached_matrix=nullptr;
@@ -290,8 +349,14 @@ void execute(ggml_compute_params *params,ggml_tensor *dst) {
             if(!cached_matrix) {
             if(a->type==GGML_TYPE_F32)matrix=(const float*)raw;
             else {
-                w.a.resize(rows*width);w.packed.resize((rows*a->nb[1]+3)/4);
-                ve_dequant_rows(a->type,raw,w.a.data(),rows,width,w.packed.data());matrix=w.a.data();
+                w.a.resize(rows*width);
+                const int decode_rows=std::min(rows,128);
+                w.packed.resize((decode_rows*a->nb[1]+3)/4);
+                for(int decoded=0;decoded<rows;decoded+=128) {
+                    const int chunk=std::min(128,rows-decoded);
+                    ve_dequant_rows(a->type,raw+decoded*a->nb[1],w.a.data()+decoded*width,chunk,width,w.packed.data());
+                }
+                matrix=w.a.data();
             }
 #ifdef QWEN_ACCUM_FP64
             if(cacheable) {
@@ -321,6 +386,9 @@ void execute(ggml_compute_params *params,ggml_tensor *dst) {
 }
 }
 extern "C" bool __wrap_ggml_cpu_extra_compute_forward(ggml_compute_params *params,ggml_tensor *dst) {
+#ifdef QWEN_ATTENTION_NLC
+    if(attention_multiply(params,dst))return true;
+#endif
 #ifdef QWEN_ACCUM_FP64
     if(precise_unmasked_softmax(params,dst))return true;
     if(precise_delta_net(params,dst))return true;

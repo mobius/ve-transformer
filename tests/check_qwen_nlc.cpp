@@ -32,11 +32,11 @@ static int check_decode_bounds(ggml_type type,int rows,int width) {
                 ggml_type_name(type),rows,width,maximum);
     return 0;
 }
-static int check(ggml_type type,int width,bool moe,int tokens,int expanded,bool cache_checks=false) {
+static int check(ggml_type type,int width,bool moe,int tokens,int expanded,bool cache_checks=false,int m=257) {
 #ifdef QWEN_ACCUM_FP64
     qwen_dense_cache_configure(0);
 #endif
-    int m=257,experts=moe?6:1,used=moe?4:1,input_routes=expanded?used:1;
+    int experts=moe?6:1,used=moe?4:1,input_routes=expanded?used:1;
     auto *ctx=ggml_init({4*1024*1024,nullptr,true});if(!ctx)return 1;
     auto *a=ggml_new_tensor_3d(ctx,type,width,m,experts);
     auto *b=moe?ggml_new_tensor_3d(ctx,GGML_TYPE_F32,width,input_routes,tokens):ggml_new_tensor_2d(ctx,GGML_TYPE_F32,width,tokens);
@@ -81,6 +81,13 @@ static int check(ggml_type type,int width,bool moe,int tokens,int expanded,bool 
             return errors;
         };
         const uint64_t required=(uint64_t)width*m*sizeof(double);
+#ifdef QWEN_PROJECTION_TILE_ROWS
+        constexpr int block_rows=QWEN_PROJECTION_TILE_ROWS;
+#else
+        constexpr int block_rows=128;
+#endif
+        uint64_t expected_entries=0;
+        for(int worker=0;worker<3;++worker)expected_entries+=(m*(worker+1)/3-m*worker/3+block_rows-1)/block_rows;
         for(uint64_t budget:{uint64_t(1),required/2,required}) {
             qwen_dense_cache_configure(budget);
             if(compute() || output!=baseline)return 1;
@@ -89,11 +96,11 @@ static int check(ggml_type type,int width,bool moe,int tokens,int expanded,bool 
             if(moe && (cold.entries || cold.hits || cold.misses))return 1;
             if(!moe && budget==1 && (cold.retained_bytes || !cold.rejected))return 1;
             if(!moe && budget==required/2 && (!cold.retained_bytes || !cold.rejected))return 1;
-            if(!moe && budget==required && (cold.retained_bytes!=required || cold.entries!=3))return 1;
+            if(!moe && budget==required && (cold.retained_bytes!=required || cold.entries!=expected_entries))return 1;
             if(compute() || output!=baseline)return 1;
             auto warm=qwen_dense_cache_stats();
             if(warm.reserved_bytes)return 1;
-            if(!moe && budget==required && warm.hits<cold.hits+3)return 1;
+            if(!moe && budget==required && warm.hits<cold.hits+expected_entries)return 1;
         }
         // A new model may reuse addresses; its boundary must invalidate old tiles.
         qwen_dense_cache_configure(0);
@@ -115,6 +122,14 @@ static int check(ggml_type type,int width,bool moe,int tokens,int expanded,bool 
 }
 int main() {
     ggml_cpu_init();
+#ifdef QWEN_PROJECTION_SMOKE
+    if(check(GGML_TYPE_Q4_K,256,false,3,0,true,4103))return 1;
+    if(check(GGML_TYPE_Q6_K,512,false,1,0,true,4103))return 1;
+    if(check(GGML_TYPE_Q8_0,256,false,17,0,true,4103))return 1;
+    if(check(GGML_TYPE_F32,512,false,3,0,true,4103))return 1;
+    std::printf("PROJECTION_LARGE_TILE_PASS cases=4; bounded decode and cache contracts\n");
+    return 0;
+#endif
     for(auto type:{GGML_TYPE_Q4_K,GGML_TYPE_Q5_K,GGML_TYPE_Q6_K,GGML_TYPE_Q8_0})
         for(int rows:{1,128})for(int width:{256,16384})
             if(check_decode_bounds(type,rows,width))return 1;
