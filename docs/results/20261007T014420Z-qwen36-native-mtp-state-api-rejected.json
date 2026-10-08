@@ -1,0 +1,13 @@
+{
+  "status": "rejected",
+  "reason": "pinned llama_batch_ext_set_embd_state is unimplemented; reference MTP uses set_embd_token",
+  "ordinary_greedy_cpu_agreement": 8,
+  "ordinary_reset_repeats": 2,
+  "native_mtp_compute_completed": false,
+  "native_mtp_speedup_measured": false,
+  "cpu_peak_c": 80,
+  "ve_peak_c": 65.62,
+  "fan_readable_channels": 97,
+  "fan_observed_changes": 0,
+  "binary_sha256": "0b9ce49eb0888083d817db6a851ed1545d0d1a3adf0e6e62bd907ea7e8ce0fa2"
+}

@@ -194,11 +194,11 @@ bash scripts/build_qwen15_session.sh
 
 可用`--reference-dir`指定对应模型的既有1.5B验收目录。模型哈希、旧执行器哈希、完整词表误差、生成序列、缓存上限和错误帧均进入检查。
 
-## Qwen 1.5B 输入与投影计算优化
+## Qwen 1.5B 第一轮输入与投影计算优化
 
 单VE四线程，ABBA同轮对照，各路径六条热态请求的中位数：
 
-| 指标 | 常驻基线 | 当前组合优化 |
+| 指标 | 常驻基线 | 第一轮组合优化 |
 |---|---:|---:|
 | 生成速度 | 3.81词元/秒 | 4.50词元/秒（+18.2%） |
 | 17词元输入计算 | 2.55秒 | 1.29秒 |
@@ -217,7 +217,7 @@ bash scripts/build_qwen15_prefill.sh
   --prompt 'Write a Python function that adds two integers.' --tokens 32
 ```
 
-入口默认优先使用已构建的`build/qwen15-projection/qwen-infer-ve`，不存在时使用原常驻基线；`--executor`可明确选择执行器。构建会运行108例多列注意力矩阵参考、108例单列回退检查，以及四例大投影尾块/缓存契约。模型验收需另行运行：
+第一轮执行器为`build/qwen15-projection/qwen-infer-ve`，不存在时使用原常驻基线；`--executor`可明确选择执行器。构建会运行108例多列注意力矩阵参考、108例单列回退检查，以及四例大投影尾块/缓存契约。模型验收需另行运行：
 
 ```bash
 .venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- \
@@ -225,3 +225,75 @@ bash scripts/build_qwen15_prefill.sh
 ```
 
 验收依赖既有CPU参考文件及此前已验证、哈希匹配的常驻基线。全注意力NLC实验的生成速度回退，以及大块初版触发128行反量化断言的失败，均已留档；没有将失败运行计入性能数据。
+
+
+## Qwen 1.5B 输入整理复用
+
+新执行器在当前算子内一次准备 FP64 输入供各矩阵行块复用，仍保持 FP64 累加、原权重缓存预算、1024 行分块及 128 行解码子块。MoE 保持原路径；不跨算子或请求复用激活值。
+
+| 指标 | 上一轮执行器 | 输入整理复用 |
+| --- | ---: | ---: |
+| 生成速度 | 4.505 词元/秒 | 4.896 词元/秒（+8.69%） |
+| 17 输入/32 输出请求 | 8.395 秒 | 7.537 秒（−10.23%） |
+| 117 输入/16 输出请求 | 9.422 秒 | 7.240 秒（−23.16%） |
+
+数据来自运行槽 1、四线程的同轮 ABBA 六条 warm 短请求中位数；长请求每种执行器两条。首次加载/缓存填充不计入热态请求指标。新增输入有效载荷每线程最多 64 MiB，容器容量和分配器额外空间另计；未测量 RSS。完整精度、边界、构建哈希及逐样本数据见[输入复用验收](docs/results/qwen25-1.5b-input-reuse.json)。
+
+```bash
+bash scripts/build_qwen15_input_reuse.sh
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- \
+  .venv/bin/python tests/check_qwen15_attention.py \
+  --baseline-dir build/qwen15-projection --candidate-dir build/qwen15-input-reuse --order abba
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- \
+  .venv/bin/python tests/check_qwen15_boundaries.py --candidate-dir build/qwen15-input-reuse
+```
+
+需要已有固定框架、基线对象及对应 CPU 参考。默认客户端优先选择与已采用验收报告哈希匹配的输入复用执行器；不匹配时回退上一轮执行器，再回退常驻基线。可用 `--executor` 显式指定候选。构建、推理、性能验证均须温度守护。
+
+
+### Qwen3.6 原生 MTP 实验入口
+
+原生 MTP 使用官方训练的单层预测模块，最多连续提出两个草稿词元，再由完整目标模型批量验证。实验使用本地 Qwen3.6-35B-A3B UD-Q4_K_M 目标与独立 MTP GGUF；共享词嵌入/输出层采用目标的量化张量并逐字节校验，运行时共用张量引用和 FP64 缓存。MTP 主体为 F32。官方来源固定提交、量化目标来源提交和兼容检查留档；目标全部原始张量的官方提交身份尚未确立。
+
+构建与模型准备使用项目环境，并内置 CPU/VE 温度守护。构建采用 25% 编译任务占空比，不影响推理运行；首次不限载编译触发温度停止，详情保留在迭代文档。先按前文完成固定框架、高精度库和输入复用 hook 构建，再运行：
+
+```bash
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- .venv/bin/python scripts/prepare_qwen36_mtp_weights.py
+bash scripts/convert_qwen36_mtp.sh
+bash scripts/build_qwen36_mtp.sh
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- .venv/bin/python tests/check_qwen36_mtp.py --boundaries
+```
+
+模型准备下载约 3.47 GiB 的选定 BF16 权重，并保留分段来源/哈希；转换中间文件约 7.45 GB，最终 MTP GGUF 约 4.35 GB，不下载完整官方主干。脚本产物与模型均保存在 build，Git 不收录权重和运行日志。
+
+运行单条请求需要限定运行槽与 NLC 环境；结果 JSON 包含文本和诊断数据，实际生成内容留在本地：
+
+```bash
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- env OMP_NUM_THREADS=1 OMP_DYNAMIC=FALSE VE_LD_LIBRARY_PATH=/opt/nec/ve/ncc/5.4.1/lib:/opt/nec/ve/nfort/5.4.1/lib:/opt/nec/ve/nlc/3.1.0/lib ve_exec -N 1 build/qwen36-mtp/qwen-mtp-ve --model build/models/qwen36-35b-a3b/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf --mtp-model build/models/qwen36-mtp/mtp-shared-q4km.gguf --threads 8 --draft-tokens 2 --prompt 'Hello' --tokens 32
+```
+
+删除 --mtp-model 可用同一执行器做普通贪心对照；--draft-tokens 1 可只提出一个草稿。上一轮验收对应独立 CLI，可在同一进程使用 --repeats 重置并重复请求；新增常驻协议见下节及对应验收。验证覆盖贪心文本生成，不覆盖采样生成、视觉输入、其他运行槽或训练最大上下文。首次模型加载成本也须考虑，生成阶段提速不等同于冷启动端到端提速。
+
+已通过三个提示的独立 CPU 已保存贪心序列比较、同进程重置、全部拒绝回退、自然结束和 129 词元跨预填充批次边界。单 VE、八线程的性能结果如下：
+
+| 测试 | 普通生成（词元/秒） | MTP（词元/秒） | 变化 |
+| --- | ---: | ---: | ---: |
+| 代码提示，两草稿，正式 ABBA | 0.585 | 0.932 | +59.4% |
+| 中文提示，两草稿，短测 | 0.598 | 0.534 | −10.8% |
+| 中文提示，一草稿，短测 | 0.598 | 0.516 | −13.7% |
+
+代码测试每请求输出 16 词元，按普通/MTP/MTP/普通顺序测试，每种模式四个热态样本；序列一致。中文是 12 词元筛选测试，一草稿与此前普通生成对照，未做正式 ABBA，不能将不同测试的速度直接比较。中文建议继续普通生成，MTP 实验入口未设为默认路径。
+
+代码测试热态预填充中位数为 7.938→8.116 秒，加载中位数约 18.009→32.075 秒；生成提速不代表冷启动整体提速。完整逐样本数据、温度、兼容性限制见[原生 MTP 验收结果](docs/results/20261007T011801Z-qwen36-native-mtp.json)。四类迭代文档均为 20261007T011801Z-qwen36-mtp-resume.md。下一步优先按实测收益选择是否启用 MTP，并接入常驻会话以摊薄加载成本。
+
+### Qwen3.6 常驻 MTP 实验
+
+原生执行器新增 `--serve`，兼容既有长度前缀请求协议；每条请求清理上下文状态，但模型及不可变权重缓存常驻。`--auto-mtp` 是实验性收益回退选项：先测普通解码，至少观察三轮草稿成本，收益不足就对本请求停用草稿。它不会改变贪心目标序列，本轮仅做功能与性能筛选，默认采用需后续交替基准。
+
+```bash
+.venv/bin/python scripts/temperature_guard.py --bmc-fans --post-seconds 5 -- .venv/bin/python python/qwen_session.py --engine qwen36 --executor build/qwen36-mtp/qwen-mtp-ve --model build/models/qwen36-35b-a3b/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf --mtp-model build/models/qwen36-mtp/mtp-shared-q4km.gguf --auto-mtp --threads 8 --context 512 --tokens 32 --prompt 'Write a Python function that adds two integers.' --prompt '请用一句话说明二分查找的原理。'
+```
+
+客户端将文本提示转换成 Qwen3.6 非思考聊天格式。省略 `--auto-mtp` 为固定 MTP；同时省略 `--mtp-model` 为普通常驻生成。输出包含生成文本，保留在本地。实验入口需要显式执行器，未变更 Qwen 1.5B 默认选择。旧原生 MTP 验收对应二进制已保留在 build/qwen36-mtp-accepted；新二进制须以常驻迭代验收为准。
+
+常驻三模式的 12 个请求 CPU 贪心序列、跨请求重置及三类异常帧拒绝均通过；自动策略在中文样本触发回退，仍未优于普通生成，故未设为默认。测试最高 CPU 76°C、VE 57.12°C。完整数据见 [常驻验收](docs/results/20261008T020107Z-qwen36-mtp-session.json)。下阶段 [SD-Turbo 图像实施方案](docs/plan/20261008T021318Z-sd-turbo-ve-stage.md) 已制定，尚未实施。

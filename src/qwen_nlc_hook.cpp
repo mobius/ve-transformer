@@ -1,3 +1,6 @@
+#if defined(QWEN_REUSE_INPUT) && (!defined(QWEN_ACCUM_FP64) || !defined(QWEN_NLC))
+#error "Input reuse requires the FP64 NLC path"
+#endif
 // A bounded float32 execution path for ggml dense and selected-expert projections.
 #include "ggml.h"
 #include "ggml-cpu.h"
@@ -7,7 +10,10 @@
 #include <cstdint>
 #include <cstring>
 #include <vector>
-#ifdef QWEN_TIMING
+#ifdef QWEN_PROFILE
+#include <cstdio>
+#endif
+#if defined(QWEN_TIMING) || defined(QWEN_PROFILE)
 #include <chrono>
 #endif
 #ifdef QWEN_ACCUM_FP64
@@ -25,6 +31,44 @@ void ve_dequant_rows(ggml_type,const void *,float *,int,int,uint32_t *);
 bool __real_ggml_cpu_extra_compute_forward(ggml_compute_params *,ggml_tensor *);
 }
 namespace {
+#ifdef QWEN_PROFILE
+// Diagnostic-only: each GGML worker owns its slot. Snapshots require quiescence.
+struct ProfileCounts { uint64_t lock_wait=0,lookup=0,pack=0,blas=0,cast=0,scatter=0,weight=0; };
+struct Profile {
+    ProfileCounts timers;
+    double lock_wait=0,lookup=0,pack=0,blas=0,cast=0,scatter=0,weight=0;
+    uint64_t lookups=0,multiplies=0,sampled_lookups=0,sampled_multiplies=0,cursor=0;
+};
+struct alignas(128) ProfileSlot { Profile bins[2]; };
+ProfileSlot profile_slots[256];
+thread_local Profile *active_profile=nullptr;
+thread_local bool profile_sample=false;
+#ifndef QWEN_PROFILE_SAMPLE_BITS
+#define QWEN_PROFILE_SAMPLE_BITS 6
+#endif
+static_assert(QWEN_PROFILE_SAMPLE_BITS>=0 && QWEN_PROFILE_SAMPLE_BITS<=12,"invalid sample rate");
+void profile_draw() {
+    if(!active_profile) {profile_sample=false;return;}
+    // Deterministic dispersed sampling; separate counters per worker and column bin.
+    auto hash=++active_profile->cursor*UINT64_C(11400714819323198485);
+    profile_sample=QWEN_PROFILE_SAMPLE_BITS==0 || (hash>>(64-(QWEN_PROFILE_SAMPLE_BITS?QWEN_PROFILE_SAMPLE_BITS:1)))==0;
+}
+using ProfileClock=std::chrono::steady_clock;
+struct ProfileTimer {
+    double *counter;
+    ProfileClock::time_point start;
+    explicit ProfileTimer(double *value,uint64_t *count):counter(value),start(value?ProfileClock::now():ProfileClock::time_point{}) {if(count)++*count;}
+    ~ProfileTimer() {if(counter)*counter+=std::chrono::duration<double>(ProfileClock::now()-start).count();}
+};
+void profile_worker(const ggml_compute_params *params,int cols) {
+    GGML_ASSERT(params->ith>=0 && params->ith<256 && params->nth<=256);
+    active_profile=&profile_slots[params->ith].bins[cols==1?0:1];
+    if(!active_profile->cursor)active_profile->cursor=UINT64_C(0xd1b54a32d192ed03)*(params->ith+1);
+}
+#define PROFILE_SCOPE(field) ProfileTimer profile_timer(active_profile && profile_sample?&active_profile->field:nullptr,active_profile && profile_sample?&active_profile->timers.field:nullptr)
+#else
+#define PROFILE_SCOPE(field) ((void)0)
+#endif
 #ifdef QWEN_ACCUM_FP64
 using DenseKey=std::tuple<uintptr_t,int,int,int>;
 using DenseTile=std::shared_ptr<const std::vector<double>>;
@@ -35,7 +79,21 @@ struct DenseCache {
 };
 DenseCache dense_cache;
 DenseTile find_dense(const DenseKey &key) {
+#ifdef QWEN_PROFILE
+    auto wait_start=profile_sample?ProfileClock::now():ProfileClock::time_point{};
+#endif
     std::lock_guard<std::mutex> lock(dense_cache.mutex);
+#ifdef QWEN_PROFILE
+    if(active_profile) {
+        ++active_profile->lookups;
+        if(profile_sample) {
+            active_profile->lock_wait+=std::chrono::duration<double>(ProfileClock::now()-wait_start).count();
+            ++active_profile->sampled_lookups;
+            ++active_profile->timers.lock_wait;
+        }
+    }
+    PROFILE_SCOPE(lookup);
+#endif
     if(!dense_cache.stats.budget_bytes)return {};
     auto it=dense_cache.tiles.find(key);
     if(it==dense_cache.tiles.end()) {++dense_cache.stats.misses;return {};}
@@ -87,6 +145,9 @@ DenseTile retain_dense(const DenseKey &key,const float *matrix,size_t count) {
 struct Workspace {std::vector<float> a,b,c;std::vector<uint32_t> packed;
 #ifdef QWEN_ACCUM_FP64
     std::vector<double> da,db,dc;
+#ifdef QWEN_REUSE_INPUT
+    std::vector<double> input_double;
+#endif
 #endif
 };
 thread_local Workspace workspace;
@@ -106,20 +167,49 @@ bool supported(const ggml_tensor *dst) {
         ids->ne[1]>0 && ids->ne[1]<=512 && a->ne[2]<=256 && b->ne[2]==ids->ne[1] &&
         (b->ne[1]==1 || b->ne[1]==ids->ne[0]) && ids->nb[0]==sizeof(int32_t);
 }
-void multiply(int rows,int cols,int width,const float *a,const float *b,float *c,const double *cached=nullptr) {
+void multiply(int rows,int cols,int width,const float *a,const float *b,float *c,const double *cached=nullptr
+#ifdef QWEN_REUSE_INPUT
+,const double *prepared_b=nullptr
+#endif
+) {
 #ifdef QWEN_ACCUM_FP64
 #ifdef QWEN_NLC
     auto &w=workspace;
+    {
+    PROFILE_SCOPE(pack);
     if(!cached) {
         w.da.resize((size_t)rows*width);
         for(size_t k=0;k<w.da.size();++k)w.da[k]=a[k];
     }
+#ifdef QWEN_REUSE_INPUT
+    w.dc.resize((size_t)rows*cols);
+    if(!prepared_b) {
+        w.db.resize((size_t)cols*width);
+        for(size_t k=0;k<w.db.size();++k)w.db[k]=b[k];
+    }
+#else
     w.db.resize((size_t)cols*width);w.dc.resize((size_t)rows*cols);
-    const double *matrix=cached?cached:w.da.data();
     for(size_t k=0;k<w.db.size();++k)w.db[k]=b[k];
-    if(cols==1)cblas_dgemv(CblasRowMajor,CblasNoTrans,rows,width,1,matrix,width,w.db.data(),1,0,w.dc.data(),1);
-    else cblas_dgemm(CblasRowMajor,CblasNoTrans,CblasTrans,rows,cols,width,1,matrix,width,w.db.data(),width,0,w.dc.data(),cols);
+#endif
+    }
+    const double *matrix=cached?cached:w.da.data();
+    {
+    PROFILE_SCOPE(blas);
+#ifdef QWEN_PROFILE
+    if(active_profile) {++active_profile->multiplies;if(profile_sample)++active_profile->sampled_multiplies;}
+#endif
+#ifdef QWEN_REUSE_INPUT
+    const double *input=prepared_b?prepared_b:w.db.data();
+#else
+    const double *input=w.db.data();
+#endif
+    if(cols==1)cblas_dgemv(CblasRowMajor,CblasNoTrans,rows,width,1,matrix,width,input,1,0,w.dc.data(),1);
+    else cblas_dgemm(CblasRowMajor,CblasNoTrans,CblasTrans,rows,cols,width,1,matrix,width,input,width,0,w.dc.data(),cols);
+    }
+    {
+    PROFILE_SCOPE(cast);
     for(size_t k=0;k<w.dc.size();++k)c[k]=(float)w.dc[k];
+    }
 #else
     for(int r=0;r<rows;++r)for(int col=0;col<cols;++col) {
         double sum=0;
@@ -150,11 +240,17 @@ bool attention_multiply(ggml_compute_params *params,ggml_tensor *dst) {
     if(b->ne[1]==1)return false;
 #endif
     const int64_t width=a->ne[0],rows=a->ne[1],cols=b->ne[1];
+#ifdef QWEN_PROFILE
+    profile_worker(params,cols);
+#endif
     if(width<1 || width>32768 || rows<1 || rows>32768 || cols<1 || cols>512 ||
        rows*width>8*1024*1024 || rows*cols>8*1024*1024)return false;
     auto &w=workspace;
     const int64_t r2=b->ne[2]/a->ne[2],r3=b->ne[3]/a->ne[3];
     for(int64_t batch=params->ith;batch<b->ne[2]*b->ne[3];batch+=params->nth) {
+#ifdef QWEN_PROFILE
+        profile_draw();
+#endif
         int64_t h=batch%b->ne[2],n=batch/b->ne[2];
         const char *ap=(const char*)a->data+(h/r2)*a->nb[2]+(n/r3)*a->nb[3];
         const char *bp=(const char*)b->data+h*b->nb[2]+n*b->nb[3];
@@ -325,6 +421,9 @@ void execute(ggml_compute_params *params,ggml_tensor *dst) {
     int experts=moe?a->ne[2]:1,used=moe?ids->ne[0]:1,tokens=moe?ids->ne[1]:b->ne[1];
     std::vector<Column> columns;columns.reserve(tokens*used);
     auto &w=workspace;
+#ifdef QWEN_PROFILE
+    profile_worker(params,tokens);
+#endif
     for(int expert=0;expert<experts;++expert) {
         columns.clear();
         for(int t=0;t<tokens;++t) for(int route=0;route<used;++route) {
@@ -334,7 +433,28 @@ void execute(ggml_compute_params *params,ggml_tensor *dst) {
             if(chosen==expert) columns.push_back({route,t});
         }
         if(columns.empty())continue;
+#ifdef QWEN_REUSE_INPUT
+        const double *prepared_input=nullptr;
+        if(!moe) {
+            // Operator-local values, overwritten on every invocation; no activation cache.
+            // Supported dense shapes cap this workspace at 64 MiB per worker.
+            GGML_ASSERT(columns.size()<=512 && width<=16384);
+#ifdef QWEN_PROFILE
+            profile_draw();
+#endif
+            PROFILE_SCOPE(pack);
+            w.input_double.resize((size_t)width*columns.size());
+            for(size_t col=0;col<columns.size();++col) {
+                const float *input=(const float*)((const char*)b->data+columns[col].token*b->nb[1]);
+                for(int k=0;k<width;++k)w.input_double[col*width+k]=(double)input[k];
+            }
+            prepared_input=w.input_double.data();
+        }
+#endif
         for(int row=begin;row<end;row+=tile_rows) {
+#ifdef QWEN_PROFILE
+            profile_draw();
+#endif
             int rows=std::min(tile_rows,end-row);
             const char *raw=(const char*)a->data+expert*a->nb[2]+row*a->nb[1];
             const float *matrix=nullptr;
@@ -347,6 +467,7 @@ void execute(ggml_compute_params *params,ggml_tensor *dst) {
             if(tile)cached_matrix=tile->data();
 #endif
             if(!cached_matrix) {
+            PROFILE_SCOPE(weight);
             if(a->type==GGML_TYPE_F32)matrix=(const float*)raw;
             else {
                 w.a.resize(rows*width);
@@ -367,18 +488,35 @@ void execute(ggml_compute_params *params,ggml_tensor *dst) {
             }
             for(size_t first=0;first<columns.size();first+=128) {
                 int nc=std::min<size_t>(128,columns.size()-first);
-                w.b.resize(width*nc);w.c.resize(rows*nc);
+                {
+                PROFILE_SCOPE(pack);
+                w.c.resize(rows*nc);
+#ifdef QWEN_REUSE_INPUT
+                if(!prepared_input) {
+#endif
+                w.b.resize(width*nc);
                 for(int col=0;col<nc;++col) {
                     auto position=columns[first+col];
                     size_t offset=moe?(position.route%b->ne[1])*b->nb[1]+position.token*b->nb[2]:position.token*b->nb[1];
                     std::memcpy(w.b.data()+col*width,(const char*)b->data+offset,width*sizeof(float));
                 }
-                multiply(rows,nc,width,matrix,w.b.data(),w.c.data(),cached_matrix);
+#ifdef QWEN_REUSE_INPUT
+                }
+#endif
+                }
+                multiply(rows,nc,width,matrix,w.b.data(),w.c.data(),cached_matrix
+#ifdef QWEN_REUSE_INPUT
+                    ,prepared_input?prepared_input+first*width:nullptr
+#endif
+                );
+                {
+                PROFILE_SCOPE(scatter);
                 for(int col=0;col<nc;++col) {
                     auto position=columns[first+col];
                     size_t offset=moe?position.route*dst->nb[1]+position.token*dst->nb[2]:position.token*dst->nb[1];
                     float *output=(float*)((char*)dst->data+offset)+row;
                     for(int r=0;r<rows;++r)output[r]=w.c[r*nc+col];
+                }
                 }
             }
         }
@@ -403,9 +541,37 @@ extern "C" void qwen_dense_cache_configure(uint64_t bytes) {
     std::lock_guard<std::mutex> lock(dense_cache.mutex);
     GGML_ASSERT(dense_cache.stats.reserved_bytes==0);
     dense_cache.tiles.clear();dense_cache.stats={};dense_cache.stats.budget_bytes=bytes;
+#ifdef QWEN_PROFILE
+    for(auto &slot:profile_slots)for(auto &bin:slot.bins)bin=Profile{};
+#endif
 }
 extern "C" QwenDenseCacheStats qwen_dense_cache_stats() {
-    std::lock_guard<std::mutex> lock(dense_cache.mutex);return dense_cache.stats;
+    std::lock_guard<std::mutex> lock(dense_cache.mutex);
+#ifdef QWEN_PROFILE
+    // Called by the main thread only after processing has synchronized workers.
+    double clock_samples[64];
+    for(auto &sample:clock_samples) {
+        auto a=ProfileClock::now();auto b=ProfileClock::now();
+        sample=std::chrono::duration<double>(b-a).count();
+    }
+    std::sort(clock_samples,clock_samples+64);
+    std::fprintf(stderr,"QWEN_CLOCK {\"min_seconds\":%.9f,\"median_seconds\":%.9f,\"max_seconds\":%.9f}\n",clock_samples[0],(clock_samples[31]+clock_samples[32])/2,clock_samples[63]);
+    for(int bin=0;bin<2;++bin) {
+        Profile sum;
+        for(const auto &slot:profile_slots) {
+            const auto &p=slot.bins[bin];
+            sum.lock_wait+=p.lock_wait;sum.lookup+=p.lookup;sum.pack+=p.pack;
+            sum.blas+=p.blas;sum.cast+=p.cast;sum.scatter+=p.scatter;sum.weight+=p.weight;
+            sum.lookups+=p.lookups;sum.multiplies+=p.multiplies;
+            sum.timers.lock_wait+=p.timers.lock_wait;sum.timers.lookup+=p.timers.lookup;
+            sum.timers.pack+=p.timers.pack;sum.timers.blas+=p.timers.blas;
+            sum.timers.cast+=p.timers.cast;sum.timers.scatter+=p.timers.scatter;sum.timers.weight+=p.timers.weight;
+            sum.sampled_lookups+=p.sampled_lookups;sum.sampled_multiplies+=p.sampled_multiplies;
+        }
+        std::fprintf(stderr,"QWEN_PROFILE {\"columns\":%d,\"lock_wait\":%.9f,\"lookup\":%.9f,\"pack\":%.9f,\"blas\":%.9f,\"cast\":%.9f,\"scatter\":%.9f,\"weight\":%.9f,\"lookups\":%llu,\"multiplies\":%llu,\"sample_bits\":%d,\"sampled_lookups\":%llu,\"sampled_multiplies\":%llu,\"timer_counts\":{\"lock_wait\":%llu,\"lookup\":%llu,\"pack\":%llu,\"blas\":%llu,\"cast\":%llu,\"scatter\":%llu,\"weight\":%llu}}\n",bin==0?1:2,sum.lock_wait,sum.lookup,sum.pack,sum.blas,sum.cast,sum.scatter,sum.weight,(unsigned long long)sum.lookups,(unsigned long long)sum.multiplies,QWEN_PROFILE_SAMPLE_BITS,(unsigned long long)sum.sampled_lookups,(unsigned long long)sum.sampled_multiplies,(unsigned long long)sum.timers.lock_wait,(unsigned long long)sum.timers.lookup,(unsigned long long)sum.timers.pack,(unsigned long long)sum.timers.blas,(unsigned long long)sum.timers.cast,(unsigned long long)sum.timers.scatter,(unsigned long long)sum.timers.weight);
+    }
+#endif
+    return dense_cache.stats;
 }
 extern "C" void __wrap_ggml_vec_dot_f32(int n,float *s,size_t bs,const float *x,size_t bx,const float *y,size_t by,int nrc) {
     GGML_ASSERT(nrc==1);(void)bs;(void)bx;(void)by;

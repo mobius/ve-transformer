@@ -18,18 +18,22 @@ def main():
     env=dict(os.environ,OMP_NUM_THREADS='1',OMP_DYNAMIC='FALSE',VE_LD_LIBRARY_PATH='/opt/nec/ve/ncc/5.4.1/lib:/opt/nec/ve/nfort/5.4.1/lib:/opt/nec/ve/nlc/3.1.0/lib')
     parser=argparse.ArgumentParser()
     parser.add_argument('--candidate-dir',type=Path,default=ROOT/'build/qwen15-attention')
+    parser.add_argument('--baseline-dir',type=Path,default=ROOT/'build/qwen15-session')
+    parser.add_argument('--threads',type=int,choices=(1,2,4,8),default=4)
+    parser.add_argument('--baseline-threads',type=int,choices=(1,2,4,8),default=4)
     parser.add_argument('--order',choices=('ab','abba'),default='abba')
     args=parser.parse_args()
-    binaries={'baseline':ROOT/'build/qwen15-session/qwen-infer-ve','attention':args.candidate_dir/'qwen-infer-ve'}
-    baseline_manifest=json.loads((ROOT/'docs/results/qwen25-1.5b-session.json').read_text())
-    assert hashlib.sha256(binaries['baseline'].read_bytes()).hexdigest()==baseline_manifest['binary_sha256']
-    report={'completed':False,'model_sha256':digest.hexdigest(),'binary_sha256':{k:hashlib.sha256(v.read_bytes()).hexdigest() for k,v in binaries.items()},'accuracy':[],'benchmarks':[],'candidate_directory':str(args.candidate_dir.resolve().relative_to(ROOT))}
+    binaries={'baseline':args.baseline_dir/'qwen-infer-ve','attention':args.candidate_dir/'qwen-infer-ve'}
+    baseline_manifest=json.loads((args.baseline_dir/'manifest.json').read_text())
+    baseline_key=str(binaries['baseline'].resolve().relative_to(ROOT))
+    assert hashlib.sha256(binaries['baseline'].read_bytes()).hexdigest()==baseline_manifest['sha256'][baseline_key]
+    report={'completed':False,'model_sha256':digest.hexdigest(),'binary_sha256':{k:hashlib.sha256(v.read_bytes()).hexdigest() for k,v in binaries.items()},'threads':args.threads,'baseline_threads':args.baseline_threads,'accuracy':[],'benchmarks':[],'candidate_directory':str(args.candidate_dir.resolve().relative_to(ROOT))}
     def save():(folder/'summary.json').write_text(json.dumps(report,indent=2)+'\n')
     def close_session(session):
         code=session.close()
         if code and sys.exc_info()[0] is None:
             raise RuntimeError('native executor exited unsuccessfully; inspect local stderr log')
-    def command(kind,threads=4):return ['ve_exec','-N','1',str(binaries[kind]),'--model',str(model),'--threads',str(threads),'--context','2048','--no-mmap','--dense-cache-mib','16384','--force-count','--serve']
+    def command(kind):return ['ve_exec','-N','1',str(binaries[kind]),'--model',str(model),'--threads',str(args.baseline_threads if kind=='baseline' else args.threads),'--context','2048','--no-mmap','--dense-cache-mib','16384','--force-count','--serve']
     prompts=['Compute 17 * 23. Give only the numeric answer.','Write a Python function that adds two integers.','请用一句话说明二分查找的原理。']
     with (folder/'accuracy.stderr.log').open('w') as err:
         session=QwenSession(command('attention')+['--trace',str(folder/'trace')],err,env)
@@ -60,6 +64,7 @@ def main():
                     assert row['dense_cache_reserved_bytes']==0 and row['dense_cache_retained_bytes']<=row['dense_cache_budget_bytes']
                     if i:assert row['cache_new_entries']==0
                     rows.append({k:v for k,v in row.items() if k not in ('tokens','greedy_tokens','text')})
+                    print('request',run,i,'tps',row['decode_tokens_per_second'],flush=True)
                 long_row=session.request(long_prompt,16);assert long_row['tokens']==expected_long
                 back=session.request(prompts[1],32);assert back['tokens']==expected32 and back['cache_new_entries']==0
             finally:close_session(session)

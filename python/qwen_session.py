@@ -81,35 +81,68 @@ class QwenSession:
         return code
 
 
+def accepted_executor(root):
+    """Prefer the input-reuse candidate only when its validated hash matches."""
+    import hashlib
+    fallback = root/'build/qwen15-projection/qwen-infer-ve'
+    if not fallback.is_file():
+        fallback = root/'build/qwen15-session/qwen-infer-ve'
+    candidate = root/'build/qwen15-input-reuse/qwen-infer-ve'
+    report = root/'docs/results/qwen25-1.5b-input-reuse.json'
+    if not candidate.is_file() or not report.is_file():
+        return fallback
+    try:
+        validation = json.loads(report.read_text())
+        if (isinstance(validation, dict) and validation.get('adopted') is True and
+                hashlib.sha256(candidate.read_bytes()).hexdigest() == validation['candidate_binary_sha256']):
+            return candidate
+    except (OSError, ValueError, KeyError):
+        pass
+    return fallback
+
+
 def main():
     import argparse
     import os
     from pathlib import Path
     parser = argparse.ArgumentParser(description='Sequential resident VE requests; launch under temperature_guard.py')
     parser.add_argument('--model', required=True)
+    parser.add_argument('--engine', choices=('qwen15','qwen36'), default='qwen15')
+    parser.add_argument('--mtp-model', help='Experimental native Qwen3.6 MTP head')
+    parser.add_argument('--auto-mtp', action='store_true', help='Fall back when measured speculative cost exceeds scalar decoding')
+    parser.add_argument('--context', type=int)
+
     parser.add_argument('--prompt', action='append', required=True)
     parser.add_argument('--tokens', type=int, default=32)
     parser.add_argument('--threads', type=int, default=4)
     parser.add_argument('--slot', type=int, default=1)
     parser.add_argument('--stderr-log', default='build/qwen15-session/client.stderr.log')
-    parser.add_argument('--executor', help='Native VE executable; defaults to built optimized projection, otherwise session baseline')
+    parser.add_argument('--executor', help='Native VE executable; defaults to a hash-matched accepted candidate, otherwise projection/session baseline')
     args = parser.parse_args()
+    if args.engine=='qwen36' and not args.executor:
+        parser.error('experimental qwen36 requires an explicit --executor')
+    if (args.mtp_model or args.auto_mtp) and args.engine!='qwen36':
+        parser.error('MTP options require --engine qwen36')
+    if args.auto_mtp and not args.mtp_model:
+        parser.error('--auto-mtp requires --mtp-model')
     root = Path(__file__).resolve().parents[1]
     env = dict(os.environ, OMP_NUM_THREADS='1', OMP_DYNAMIC='FALSE',
                VE_LD_LIBRARY_PATH='/opt/nec/ve/ncc/5.4.1/lib:/opt/nec/ve/nfort/5.4.1/lib:/opt/nec/ve/nlc/3.1.0/lib')
-    default_executor = root/'build/qwen15-projection/qwen-infer-ve'
-    if not default_executor.is_file():
-        default_executor = root/'build/qwen15-session/qwen-infer-ve'
-    executor = args.executor or str(default_executor)
+    executor = args.executor or str(accepted_executor(root))
     command = ['ve_exec','-N',str(args.slot),executor,
-               '--model',args.model,'--threads',str(args.threads),'--context','2048',
-               '--no-mmap','--dense-cache-mib','16384','--serve']
+               '--model',args.model,'--threads',str(args.threads),'--context',
+               str(args.context or (512 if args.engine=='qwen36' else 2048)),
+               '--dense-cache-mib','16384','--serve']
+    if args.engine=='qwen15':command+=['--no-mmap']
+    if args.mtp_model:command+=['--mtp-model',args.mtp_model]
+    if args.auto_mtp:command+=['--auto-mtp']
     with open(args.stderr_log,'w') as err:
         session = QwenSession(command,err,env)
         try:
             print(json.dumps(dict(session.ready, host_startup_seconds=session.startup_seconds)), flush=True)
             for prompt in args.prompt:
-                print(json.dumps(session.request(prompt,args.tokens), ensure_ascii=False), flush=True)
+                payload=chat(prompt)+'<think>\n\n</think>\n\n' if args.engine=='qwen36' else prompt
+                print(json.dumps(session.request(payload,args.tokens,raw=args.engine=='qwen36'), ensure_ascii=False), flush=True)
         finally:
             if session.close():
                 raise RuntimeError('native executor exited unsuccessfully; inspect local stderr log')
