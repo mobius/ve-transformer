@@ -1,0 +1,88 @@
+{
+  "status": "tokenizer_abba_verified_after_metric_recovery_pending_extended_validation",
+  "recommended_for_validated_workload": false,
+  "default_enabled": false,
+  "binary_sha256": "79830c691160ac55fc76445aecc550e29570d85717d91a0c74b7ac832c67b86f",
+  "checker_sha256": "66805ca424233717f4f2be12a2a383d9c3305e4d447d88cb93ff2edd84f38fbe",
+  "benchmark_sha256": "a91276535ff9e6f9c1505bce9918570326bae8096f22cf6be8f386009a5741d4",
+  "aggregation_recovery": {
+    "reason": "tuple assignment omitted second mean; hardware runs completed before failure",
+    "original_summary_sha256": "b5a204373928cac2b2e2d21b59efeb29133b2e28150b92148f4fec739625bd41",
+    "recovery_sha256": "56f394bfad90fd94467a9999013d7ab322ec6b740fda14dcbe6c4267ac14be4a"
+  },
+  "metrics": {
+    "process": {
+      "request_seconds": 126.04645383218303,
+      "resident_seconds": 115.86124670924619,
+      "latency_reduction_percent": 8.080518581266338
+    },
+    "request0": {
+      "request_seconds": 92.9807715,
+      "resident_seconds": 92.6785995,
+      "latency_reduction_percent": 0.3249833219549081
+    },
+    "request1": {
+      "request_seconds": 32.539365000000004,
+      "resident_seconds": 22.4073075,
+      "latency_reduction_percent": 31.137846420789096
+    }
+  },
+  "checks_passed": 40,
+  "all_trace_and_png_bytes_identical": true,
+  "scope": "same native VE binary, shared8 pool and resident weights fixed, only tokenizer construction/reuse varies; two processes per arm, two one-step requests per process, diagnostics included, filesystem cache uncontrolled; six prompts and four steps pending",
+  "artifacts": "build/results/20261009T074439Z-sd-tokenizer-abba",
+  "temperatures": {
+    "peaks_c": {
+      "cpu": 77.0,
+      "ve0": 51.88,
+      "ve1": 40.88,
+      "ve2": 43.25
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_observation": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "memory": [
+    {
+      "mode": "request",
+      "baseline_used_kib": 131072,
+      "final_used_kib": 131072,
+      "sampled_highest_used_kib": 10299392,
+      "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage"
+    },
+    {
+      "mode": "resident",
+      "baseline_used_kib": 131072,
+      "final_used_kib": 131072,
+      "sampled_highest_used_kib": 10299392,
+      "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage"
+    },
+    {
+      "mode": "resident",
+      "baseline_used_kib": 131072,
+      "final_used_kib": 131072,
+      "sampled_highest_used_kib": 10299392,
+      "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage"
+    },
+    {
+      "mode": "request",
+      "baseline_used_kib": 131072,
+      "final_used_kib": 131072,
+      "sampled_highest_used_kib": 10299392,
+      "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage"
+    }
+  ]
+}

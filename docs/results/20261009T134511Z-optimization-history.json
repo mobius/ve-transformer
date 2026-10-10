@@ -1,0 +1,1925 @@
+{
+  "current_report": "docs/impl/20261009T134511Z-sd-turbo-im2col-256.md",
+  "next_direction": "扩大默认关闭rows模式到已测256形状，核验VAE15候选/25原派发，完成模型CPU参考后与512范围做同新二进制整图对照。",
+  "milestones": [
+    {
+      "report": "docs/impl/20261002T062015Z-optimization-progress.md",
+      "title": "最小Transformer：NLC线性",
+      "data": "相对基础VE，三档约3.2–3.6倍",
+      "summary": "三卡独立float64对照通过，线性计算先获得收益。",
+      "report_sha256": "9809a81faef3911cc3c471b864d4c596a509f418532e9435ff2f124b027eb454"
+    },
+    {
+      "report": "docs/impl/20261002T064702Z-attention-progress.md",
+      "title": "最小Transformer：注意力NLC",
+      "data": "128×256约14.457→0.921ms；三档约3.3/15.8/22.2倍",
+      "summary": "注意力矩阵化有效，完整三卡验证通过。",
+      "report_sha256": "69c382badf1c7ab1c04d41b65339ad2484abc7db8092dfbbb4053ba45e971b2f"
+    },
+    {
+      "report": "docs/impl/20261002T071128Z-workspace-progress.md",
+      "title": "最小Transformer：工作区",
+      "data": "槽1三档延迟降低10.37/22.04/28.28%",
+      "summary": "主要收益来自移除整体清零，不能全部归因于缓冲复用。",
+      "report_sha256": "236763c247aca1ee82d5a4a5f624011cb2c234bc5deb91879d73e9da733661cd"
+    },
+    {
+      "report": "docs/impl/20261002T072334Z-trained-lm-progress.md",
+      "title": "TinyStories训练权重基线",
+      "data": "VE生成0.55–0.60词元/s",
+      "summary": "真实模型正确性通过，但旧逐次启动桥接没有端到端优势。",
+      "report_sha256": "ab3166e46cd9f1b984a40ad72e7452ce45a63ae940a07484020ae162ece39735"
+    },
+    {
+      "report": "docs/impl/20261002T075034Z-resident-progress.md",
+      "title": "TinyStories常驻worker",
+      "data": "0.5758→309–318词元/s",
+      "summary": "常驻消除了反复启动代价；此路径嵌入和输出头仍在主机。",
+      "report_sha256": "5c1bd81e360f76f7268dda24a1eee57cbe160da8bc2708c4df7438c8325d9d4c"
+    },
+    {
+      "report": "docs/impl/20261002T132803Z-qwen36-route-measured.md",
+      "title": "Qwen3.6直接量化候选（后来拒绝）",
+      "data": "短测约1.464词元/s；后续完整词表套件退出1",
+      "summary": "短测速度较高，但后续精度失败，不能采用为合格基线。",
+      "report_sha256": "fefc59e81cdf64e6424108170340d815f914d84c31555ac1bc52c0747ee333cf"
+    },
+    {
+      "report": "docs/impl/20261002T154644Z-qwen36-dense-cache.md",
+      "title": "Qwen3.6首次稠密缓存",
+      "data": "单提示0.103386→0.506802词元/s；首次输入19.743→100.621s",
+      "summary": "热生成获益但冷填充代价明显，后续需要并行填充。",
+      "report_sha256": "d97fa649d257196c3bcf980c7b33e8ae4930361a06df02e0c6c13b2bb7287e9f"
+    },
+    {
+      "report": "docs/impl/20261002T175953Z-qwen36-final-acceptance.md",
+      "title": "Qwen3.6：稠密缓存/并行填充",
+      "data": "同精度生成0.1035→0.5096词元/s；首次输入约99→45s",
+      "summary": "固定35B-A3B单VE文本负载通过，缓存改善带宽与冷态填充。",
+      "report_sha256": "91d8aa9f90e5e92abd1e0a859c5404df3951ff007f974133f643d4039a12ce17"
+    },
+    {
+      "report": "docs/impl/20261006T033737Z-qwen15-results.md",
+      "title": "Qwen2.5-1.5B量化基线",
+      "data": "最佳实测3.7762词元/s；24步CPU分数检查",
+      "summary": "高精度路径通过，原量化路径精度不合格不能采用其速度。",
+      "report_sha256": "92785b52f1472c17585f3d978f52e1224451dab93f76d7c421001fcc8d60cfa7"
+    },
+    {
+      "report": "docs/impl/20261006T045223Z-qwen15-session-results.md",
+      "title": "Qwen1.5B常驻请求",
+      "data": "热请求49.627→10.883s；热生成3.840词元/s",
+      "summary": "请求复用降低启动/加载成本，不等同于生成算子加速。",
+      "report_sha256": "71f8adb404c4fbd3ee2438defd9f04bdb061c3715e2dfbec9facf1841b590649"
+    },
+    {
+      "report": "docs/impl/20261006T052515Z-qwen15-attention-nlc.md",
+      "title": "Qwen1.5B全注意力候选",
+      "data": "输入约2.55→1.23s；生成约3.79→3.60词元/s",
+      "summary": "输入改善但生成回退，改为只优化多列预填充。",
+      "report_sha256": "bb250a0f0afaf5167b95da2c30d96f07bac5050a31c0a55799dea1ab52ee38ab"
+    },
+    {
+      "report": "docs/impl/20261006T055403Z-qwen15-compute-optimization-results.md",
+      "title": "Qwen1.5B选择式注意力+1024行投影",
+      "data": "生成3.810→4.502词元/s（+18.16%）；请求10.955→8.406s",
+      "summary": "只加速预填充注意力并扩大投影块，保持原精度。",
+      "report_sha256": "07f780edd176819d207d11a1d92ef12912663fd476cc62f10b0a7374b1a10379"
+    },
+    {
+      "report": "docs/impl/20261006T095108Z-qwen15-tile-sweep.md",
+      "title": "Qwen1.5B分块/线程筛选",
+      "data": "512/2048行生成−1.48/−0.58%；2/8线程−25.55/−22.91%",
+      "summary": "四个候选未胜过1024行、4线程，全部拒绝。",
+      "report_sha256": "1a11c9f4ab4cd763dc937c4526d306245569b07ee9bb5a4a6e81f7959069cf55"
+    },
+    {
+      "report": "docs/impl/20261006T103723Z-qwen15-diagnostic.md",
+      "title": "Qwen1.5B诊断开销",
+      "data": "首次逐次计时约4.495→3.311词元/s（−26.35%）",
+      "summary": "全量计时扰动过大，改为稀疏采样，失败测量不作瓶颈依据。",
+      "report_sha256": "e8d9175271a511b82d0ab09b9c825acf106cba7898e40e36cf4bb0fa2e236890"
+    },
+    {
+      "report": "docs/impl/20261006T110253Z-qwen15-input-reuse.md",
+      "title": "Qwen1.5B输入整理复用",
+      "data": "生成4.5047→4.8963词元/s（+8.69%）；请求8.395→7.537s",
+      "summary": "保持精度并复用算子内输入转换，正式对照通过。",
+      "report_sha256": "9790ed4d51ca54ad4a18fd324db075e3264846e008c30231d2ccdf517864ab4e"
+    },
+    {
+      "report": "docs/impl/20261007T011801Z-qwen36-mtp-resume.md",
+      "title": "Qwen3.6原生MTP",
+      "data": "代码提示0.58481→0.93227词元/s（+59.42%）；中文短测−10.8/−13.7%",
+      "summary": "MTP收益依赖提示；代码对照有效，中文保留普通生成。",
+      "report_sha256": "9117a0d0e4fe2752810f984a41b248da85c42b6cf47db97df68fe1c6ba5168d2"
+    },
+    {
+      "report": "docs/impl/20261008T020107Z-qwen36-mtp-session.md",
+      "title": "MTP常驻/自动回退",
+      "data": "12请求功能通过；代码普通/固定/自动0.593/0.880/0.783词元/s（单样本）",
+      "summary": "会话与回退功能通过，自动策略未证明额外收益且不默认采用。",
+      "report_sha256": "abb1f05a7a26e0b6885f2fc3ccf5c1cf537120fc2f72c2b3a9f8a0a63166ef30"
+    },
+    {
+      "report": "docs/impl/20261008T091957Z-sd-turbo-final-validation.md",
+      "title": "SD-Turbo完整模型验证",
+      "data": "单VE、FP32、512×512；六提示/四步CPU参考通过",
+      "summary": "完整图像链路可用，随后开始分项优化。",
+      "report_sha256": "9ad0dd8d49b71ed4f3cddddb6dee5283ffc0011f28a57207125cc9cfd87de3e1"
+    },
+    {
+      "report": "docs/impl/20261008T102317Z-sd-turbo-pool-verified.md",
+      "title": "SD-Turbo持久线程池",
+      "data": "图191.826→139.215s（−27.43%）；进程264.240→212.289s",
+      "summary": "复用图计算线程降低通用阶段开销，含加载的进程指标另列。",
+      "report_sha256": "c48dc30b85cdc254b53d1a4ec212054c91145d7339023e7eadaf650400f032c0"
+    },
+    {
+      "report": "docs/impl/20261008T111611Z-sd-turbo-silu.md",
+      "title": "SD-Turbo首个SiLU候选（拒绝）",
+      "data": "极端输入−1000错误返回−1000；VAE出现非有限值",
+      "summary": "未经范围检查的向量数学不合格，失败耗时不作为收益。",
+      "report_sha256": "f24262948c937e394b8a84375ba8bc017b0f366e2c3435fd3aa038ce45ca86b4"
+    },
+    {
+      "report": "docs/impl/20261008T114450Z-sd-turbo-silu-verified.md",
+      "title": "SD-Turbo受检查SiLU",
+      "data": "图145.630→96.387s（−33.81%）；进程216.835→167.596s",
+      "summary": "修正范围/除法编译选项后通过完整验证。",
+      "report_sha256": "46f38aadbb4ec9d90f439ef18904a5d3eff02b8b70486cbc11f221f9a0efbb8e"
+    },
+    {
+      "report": "docs/impl/20261009T031452Z-sd-turbo-softmax-verified.md",
+      "title": "SD-Turbo Softmax",
+      "data": "图96.638→51.655s（−46.55%）；进程169.065→125.915s",
+      "summary": "仅向量化exp并保持累加顺序，模型参考通过。",
+      "report_sha256": "aac123cbef126bb7fde1b9b3d1693aaab0b30156ad298f44e5571436b080495c"
+    },
+    {
+      "report": "docs/impl/20261009T053046Z-sd-turbo-im2col-verified.md",
+      "title": "SD-Turbo im2col",
+      "data": "图59.277→20.512s（−65.40%）；进程131.625→92.942s",
+      "summary": "卷积输入整理循环优化有效，数据布局和数学结果保持。",
+      "report_sha256": "98d00566cff9e60b4083b632c09b82cf054962e1b98e0520327aff03dd95f97e"
+    },
+    {
+      "report": "docs/impl/20261009T053636Z-sd-turbo-resident-report.md",
+      "title": "SD-Turbo初版权重常驻（未采用）",
+      "data": "多组件独立池下请求长期未完成，未形成有效速度",
+      "summary": "停顿候选不作为收益，后续改为共享池。",
+      "report_sha256": "41dd80a3fad266874a4eecbd444b759b41d41357a46fe3de79e97e8f3c10d125"
+    },
+    {
+      "report": "docs/impl/20261009T071320Z-sd-turbo-resident-verified.md",
+      "title": "SD-Turbo共享池+权重常驻",
+      "data": "热请求92.701→32.042s（−65.43%）；两请求进程185.970→124.917s",
+      "summary": "保留权重减少后续加载，增加节点内存占用。",
+      "report_sha256": "ef6d08dac4b0fdcdafc70569eaedf43403be3ea4544e162ec6b0bef17cbafd03"
+    },
+    {
+      "report": "docs/impl/20261009T080313Z-sd-turbo-tokenizer-verified.md",
+      "title": "SD-Turbo分词器复用",
+      "data": "热请求32.539→22.407s（−31.14%）",
+      "summary": "复用初始化词表，后续编码仍执行并核验输出。",
+      "report_sha256": "d1c4dbce407f3caefa46128cbc353f851ee7b344019ac4fe2ff28b87a64f8895"
+    },
+    {
+      "report": "docs/impl/20261009T084121Z-nlc-gemm-verified.md",
+      "title": "NLC矩阵独立线程筛选",
+      "data": "40个矩阵/线程配置；VAE代表形状4线程更快",
+      "summary": "仅为独立矩阵证据，不能外推整模型加速。",
+      "report_sha256": "637620ba94291efffb283626428c92416ad2a9f15cbd4e7e5932c60e33507478"
+    },
+    {
+      "report": "docs/impl/20261009T085621Z-sd-turbo-nlc-staged.md",
+      "title": "混合pthread/NLC分阶段线程（拒绝）",
+      "data": "重试180s仅完成3个UNet图；准备82.36s",
+      "summary": "独立运行时切换导致严重停顿，未采用。",
+      "report_sha256": "6d0786a43f30c091139f2bc2aa7d6186016970021df25e1c08072ae5f6b474a8"
+    },
+    {
+      "report": "docs/impl/20261009T094430Z-sd-turbo-nlc-abba.md",
+      "title": "统一OpenMP 8线程",
+      "data": "热请求22.384→18.194s（−18.72%）",
+      "summary": "统一运行时解除停顿，双构建固定源对照通过。",
+      "report_sha256": "e720ac38d3204ff662946a44d3665c22d4a60d8726fef241da6fcc28d983e9cf"
+    },
+    {
+      "report": "docs/impl/20261009T104156Z-sd-turbo-binary-abba.md",
+      "title": "空间平面广播加乘",
+      "data": "热请求18.157→13.943s（−23.21%）",
+      "summary": "长连续循环减少广播开销，输出字节一致。",
+      "report_sha256": "c466a9af701e82d10f663d5aed5f3226400a057930fd63c4b095175fd34b0c4f"
+    },
+    {
+      "report": "docs/impl/20261009T105426Z-ve-omp-switch.md",
+      "title": "统一线程切换探针",
+      "data": "8→4约0.352ms，4→8约8.142ms",
+      "summary": "恢复8线程存在成本，必须在整图中验证取舍。",
+      "report_sha256": "a0ef0e67c8f6b44e880ff96f79e66aeb1325b1e9e7ac9f77b22eedb824e0a21b"
+    },
+    {
+      "report": "docs/impl/20261009T111710Z-sd-turbo-vae-abba.md",
+      "title": "全VAE 4线程",
+      "data": "热请求13.976→13.059s（−6.56%）",
+      "summary": "矩阵获益超过通用算子损失，显式配置通过。",
+      "report_sha256": "4a540bbc6db0a169bd839a2a67499713ba430aeced35bafbf57c9d5451e3da1a"
+    },
+    {
+      "report": "docs/impl/20261009T113726Z-sd-turbo-vae-selective-abba.md",
+      "title": "通用8/VAE矩阵4",
+      "data": "热请求13.081→12.292s（−6.03%）",
+      "summary": "恢复通用8线程的收益超过每图切换成本。",
+      "report_sha256": "74df082ad4daedcc3b70cff743d84ae0a9fd85e2abfc61af71d51149a96b4e5f"
+    },
+    {
+      "report": "docs/impl/20261009T114825Z-sd-turbo-selective-op-profile.md",
+      "title": "新配置瓶颈诊断",
+      "data": "CLIP/UNet GELU0.761/0.733s；VAE im2col0.810s",
+      "summary": "GELU成为下一目标，诊断耗时不混入正式收益。",
+      "report_sha256": "f2a86f52ad8733ab69d257f15c3037802658cbc860caff8e4fcf650c0ee66374"
+    },
+    {
+      "report": "docs/impl/20261009T115234Z-sd-turbo-gelu.md",
+      "title": "GELU独立向量核",
+      "data": "102用例通过，最大误差4.45e-7；此前两次退出132",
+      "summary": "标量参考测试下相同向量核通过，失败根因尚未确定。",
+      "report_sha256": "68b70afcb3d55feda6f1ad54ff8f60900f40fa2e1cf9f9dac2895066b2b40ee5"
+    },
+    {
+      "report": "docs/impl/20261009T115851Z-sd-turbo-gelu-model.md",
+      "title": "GELU模型接入（正确性轮）",
+      "data": "62项模型检查、102项对象检查；一步热10.782–10.959s；四步热19.441s；正确性轮未单独测收益，正式对照见后续轮",
+      "summary": "多样正确性通过，正式性能结果另列。",
+      "report_sha256": "ef690d6153e0be847c7685f94b83b75cba621786db503376a88788549cbc8d5a"
+    },
+    {
+      "report": "docs/impl/20261009T121339Z-sd-turbo-gelu-abba.md",
+      "title": "GELU正式对照",
+      "data": "一步热12.442→11.046s（延迟降低11.22%）；102项CPU检查",
+      "summary": "同二进制对照确认收益，仍限所测单VE一步提示。",
+      "report_sha256": "eedcab861e70a65a031fdfe349aac5484f906c9e2c686063f08d9fc54e690bdf"
+    },
+    {
+      "report": "docs/impl/20261009T123247Z-sd-turbo-im2col-shapes.md",
+      "title": "VAE im2col真实形状诊断",
+      "data": "10项CPU检查；40次/请求、11种VAE形状；逻辑输出19.391GiB/请求",
+      "summary": "512×512两种形状占约58%写入量；诊断轮不宣称性能收益。",
+      "report_sha256": "a2369a9a578d779a31449132e264acb43cef0343d757052e03ed7b29f029f226"
+    },
+    {
+      "report": "docs/impl/20261009T123747Z-sd-turbo-im2col-rows.md",
+      "title": "im2col输出行划分候选",
+      "data": "16个VE按位边界用例通过；并发和性能待验证",
+      "summary": "输出行所有权顺序组合正确，尚未接入模型或证明提速。",
+      "report_sha256": "b276a768a58ea147d882ddbc4a1261ba2017dc4081a05c6ca3c724bdf40aa2ac"
+    },
+    {
+      "report": "docs/impl/20261009T123938Z-sd-turbo-im2col-micro.md",
+      "title": "im2col串行参考套件（超时）",
+      "data": "128通道26.400→10.111ms；23项通过后600秒超时124",
+      "summary": "128通道部分完整对照有收益，256通道未完成，不作为完整套件通过。",
+      "report_sha256": "c04228949c0f78d1cffb639a5b4dff227c8b5a7954777dc656f065dd21f485d4"
+    },
+    {
+      "report": "docs/impl/20261009T125100Z-sd-turbo-im2col-parallel-reference.md",
+      "title": "im2col输出行划分并发微基准",
+      "data": "128通道27.214→10.160ms（−62.66%）；256通道103.179→38.873ms（−62.32%）；32次全元素检查通过",
+      "summary": "两种真实形状内核均受益，仍未接入模型或测量整图收益。",
+      "report_sha256": "346ee218b3071f8efd86067d23384e820937e2e9a275e38005d53736233f547c"
+    },
+    {
+      "report": "docs/impl/20261009T125611Z-sd-turbo-im2col-concurrent.md",
+      "title": "im2col并发与分区所有权验证",
+      "data": "40组所有权检查、32种实际并发组合通过；本轮未测性能",
+      "summary": "支持1/2/4/8实际线程；16分区仅顺序所有权验证，整图接入待执行。",
+      "report_sha256": "89f3b41ed639d2178c387d0ce295a9273c60524c3a52ccb9268ea3cf0642b465"
+    },
+    {
+      "report": "docs/impl/20261009T130018Z-sd-turbo-im2col-model.md",
+      "title": "im2col输出行模型接入（正确性轮）",
+      "data": "双请求冷/热86.083/11.453s；62项CPU检查；同二进制收益未测",
+      "summary": "VAE派发8候选/32原节点通过；已完成double,six,four，正式对照见后续结果。",
+      "report_sha256": "4b5ac9560f7b1e5e14441e7f97e1e8eee62ed6b959f00d7688437b6f09567083"
+    },
+    {
+      "report": "docs/impl/20261009T131230Z-sd-turbo-im2col-abba.md",
+      "title": "im2col输出行整图对照（-O1接入）",
+      "data": "热10.834→11.389s（延迟变化+5.12%）；102项CPU检查，字节一致",
+      "summary": "当前构建退化不采用；发现候选遗漏O2，修正后需重新验证。",
+      "report_sha256": "75c7a4297e89e5db49f92d1258c03348608866ecd835afbc7316b99fb4b9f856"
+    },
+    {
+      "report": "docs/impl/20261009T133351Z-sd-turbo-im2col-abba.md",
+      "title": "im2col输出行整图对照（-O2接入）",
+      "data": "热10.914→10.654s（延迟变化-2.38%）；102项CPU检查，字节一致",
+      "summary": "同二进制对照确认收益，仍限固定单VE一步提示。",
+      "report_sha256": "d2d8d72b6bd2a53b38e5580df2c02452975df030c721788fd1823a6f77ece832"
+    },
+    {
+      "report": "docs/impl/20261009T132236Z-sd-turbo-im2col-o2-model.md",
+      "title": "im2col O2模型构建与实际对象验证",
+      "data": "冷/热84.781/10.670s；62项模型CPU检查；实际对象40组所有权/32种并发通过；收益未测；六提示一步热10.508–10.684s；四步热19.017s",
+      "summary": "实际对象一致；已完成double,six,four；正确性轮不单独计算收益，正式对照另列。",
+      "report_sha256": "ec67f1b40463f55edbe51f0ca2f7566281b1ffa6cc8308d54bd26f87030c7b10"
+    },
+    {
+      "report": "docs/impl/20261009T134511Z-sd-turbo-im2col-256.md",
+      "title": "im2col 256形状实际对象微基准",
+      "data": "256通道20.705→9.646ms（−53.41%）；512通道67.349→37.068ms（−44.96%）；32次完整按位检查通过",
+      "summary": "两种剩余真实形状内核受益，扩大派发后的整图收益待验证。",
+      "report_sha256": "72ae29dbbaf2f18297588579d64499234e4e39b02f15ebb6061811d8358e02a9"
+    }
+  ],
+  "all_iterations": [
+    {
+      "timestamp": "20261002T055813Z",
+      "report": "docs/impl/20261002T055813Z-baseline-validation.md",
+      "related_reports": [
+        "docs/impl/20261002T055813Z-baseline-validation.md"
+      ],
+      "title": "实现与验证",
+      "data_excerpt": "- 建立 AGENTS.md，注明 OpenAI Codex /root 开发，记录用户要求。 - 标准 git init 因只读 .git 失败；通过 --git-dir=.git-local --work-tree=. init 建立本地仓库，分支设为 main，scripts/git.sh 提供操作入口。没有修改全局 Git 配置或伪造用户提交身份。 - 新增 C11 推理 API、固定参数示例、层内基准、只读环境检查、独立 Python 标准库参考…（原文摘录）",
+      "summary": "- 标准 git init 因只读 .git 失败；通过 --git-dir=.git-local --work-tree=. init 建立本地仓库，分支设为 main，scripts/git.sh 提供操作入口。（原文结论摘录）",
+      "report_sha256": "3fb60f8223de11c1d6bc2d1901d47cf914d792fa9c985933dfdc1f9ac76600fe"
+    },
+    {
+      "timestamp": "20261002T060726Z",
+      "report": "docs/impl/20261002T060726Z-device-detection-fix.md",
+      "related_reports": [
+        "docs/impl/20261002T060726Z-device-detection-fix.md"
+      ],
+      "title": "设备检测修正与主机验证脚本",
+      "data_excerpt": "- 按用户提供的本机代码核实运行节点 1、2、3 与 VE_LD_LIBRARY_PATH 用法。 - 修正环境检查，明确区分 sysfs 硬件编号与 veslot 运行编号，检测实际启动入口和 VEOS socket。 - 增加 scripts/validate_ve.sh：环境不支持则在编译、执行前退出；支持时顺序执行三卡检查。支持显式槽位参数及自动发现，不自动使用旧项目的硬编码回退。 - Python 独立参考支持执行命令前缀；README 更新为正…（原文摘录）",
+      "summary": "- bash -n 检查通过；make test 再次通过，双向误差 2.88e-08、因果误差 6.4e-08。（原文结论摘录）",
+      "report_sha256": "9471c080879527f7dd0fad48f768dadcd3cdf0597a8cd962b003313aaf4ba1b2"
+    },
+    {
+      "timestamp": "20261002T061339Z",
+      "report": "docs/impl/20261002T061339Z-benchmark-sweep.md",
+      "related_reports": [
+        "docs/impl/20261002T061339Z-benchmark-sweep.md"
+      ],
+      "title": "规模扫描实现",
+      "data_excerpt": "- 已核对用户主机执行输出与现有结果文件，确认三卡最小推理通过。 - benchmark.c 新增有界参数和最近秩 P50/P95；原有默认形状不变。 - 新增 benchmark_sweep.sh，支持仅 CPU 或主机 CPU+多槽位顺序对照。 - CPU 独立参考测试再次通过；脚本语法检查通过；VE 新版基准编译成功，运行库链接警告仍出现。本会话不能在卡上执行新版基准。 - 本会话 CPU 扫描结果（未绑核）：32×64 平均 0.678231 ms…（原文摘录）",
+      "summary": "- CPU 独立参考测试再次通过；脚本语法检查通过；VE 新版基准编译成功，运行库链接警告仍出现。（原文结论摘录）",
+      "report_sha256": "dfc8adc5d195fd092546e2b715c797d8267351074fe1f1a8e25c762062df926d"
+    },
+    {
+      "timestamp": "20261002T061718Z",
+      "report": "docs/impl/20261002T061718Z-permission-guidance.md",
+      "related_reports": [
+        "docs/impl/20261002T061718Z-permission-guidance.md"
+      ],
+      "title": "执行权限说明",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "该轮记录“执行权限说明”的实施状态，未新增可独立使用的性能结论。",
+      "report_sha256": "ad40de00b0459aaa7ac182bacca79c1fc48138faa4a67493c1fbeedb6328d940"
+    },
+    {
+      "timestamp": "20261002T062015Z",
+      "report": "docs/impl/20261002T062015Z-optimization-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T062015Z-optimization-progress.md"
+      ],
+      "title": "首次优化进行中",
+      "data_excerpt": "新增可选 VT_USE_NLC 矩阵乘法后端、五种形状逐元素对比和双向/因果覆盖。NLC 小示例的 Python float64 独立对比通过。（原文摘录）",
+      "summary": "三卡独立float64对照通过，线性计算先获得收益。",
+      "report_sha256": "9809a81faef3911cc3c471b864d4c596a509f418532e9435ff2f124b027eb454"
+    },
+    {
+      "timestamp": "20261002T063120Z",
+      "report": "docs/impl/20261002T063120Z-framework-validation.md",
+      "related_reports": [
+        "docs/impl/20261002T063120Z-framework-validation.md"
+      ],
+      "title": "框架与最小模型验证",
+      "data_excerpt": "- 新增 src/infer.c、PyTorch 导出/执行桥接、两层未训练模型示例及格式/语义校验测试。 - 三种形状×双向/因果×CPU及三卡两个后端，共 42 个框架权重案例，均满足相对 PyTorch float64 的 atol=2e-5、rtol=1e-4；最大绝对误差 9.46e-07。 - 两层模型在三卡分别执行，每卡最大 logits 误差 3.26e-07，所有位置 argmax 与高精度参考相同。 - 原生载荷有效/截断/多余字节/非…（原文摘录）",
+      "summary": "- 原生载荷有效/截断/多余字节/非法维度/非有限数检查通过；不支持的框架配置拒绝检查通过。（原文结论摘录）",
+      "report_sha256": "65de7607e9f97d3895bd9c9cd857006f4bd0c508659a89c7a622534583b1c64c"
+    },
+    {
+      "timestamp": "20261002T063519Z",
+      "report": "docs/impl/20261002T063519Z-temperature-validation.md",
+      "related_reports": [
+        "docs/impl/20261002T063519Z-temperature-validation.md"
+      ],
+      "title": "温度监督实现与验证",
+      "data_excerpt": "- 新增标准库温度监督器，并自动接入 validate_ve.sh、validate_nlc.sh、benchmark_sweep.sh；更新 AGENTS.md 强制后续硬件测试遵守。 - 首次实时只读检查成功：CPU 峰值 61°C；VE0 41.25°C、VE1 39.12°C、VE2 41.38°C。 - 使用临时假传感器验证：启动前高温拒绝、运行中高温终止、传感器删除后终止、命令退出码保持、单位换算均通过。没有加热真实硬件。 - CSV 记录存于…（原文摘录）",
+      "summary": "- 最终脚本语法、Git 待提交空白检查通过；对全部源码、脚本、框架代码、例子和文档扫描常见私钥/访问密钥/令牌/密码赋值及账户私有目录，没有发现匹配。（原文结论摘录）",
+      "report_sha256": "2f16b3fb2111f8800862c30b4337380dbd227c211c64a81ef7a31e9c7951043c"
+    },
+    {
+      "timestamp": "20261002T064702Z",
+      "report": "docs/impl/20261002T064702Z-attention-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T064702Z-attention-progress.md"
+      ],
+      "title": "分项计时与注意力后端进展",
+      "data_excerpt": "中止前槽位 1 的独立参考验证全部通过，128×256 平均由线性 NLC 14.456820 ms 降至 fast 0.920600 ms；256×512 由 63.656500 降至 2.874700 ms。完整三卡结论尚未取得，不能把部分结果当成全部验证。（原文摘录）",
+      "summary": "注意力矩阵化有效，完整三卡验证通过。",
+      "report_sha256": "69c382badf1c7ab1c04d41b65339ad2484abc7db8092dfbbb4053ba45e971b2f"
+    },
+    {
+      "timestamp": "20261002T065531Z",
+      "report": "docs/impl/20261002T065531Z-fan-observation-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T065531Z-fan-observation-progress.md"
+      ],
+      "title": "策略修改与观察进展",
+      "data_excerpt": "实际框架负载及5秒冷却观察：CPU峰值73°C，三卡峰值42.75/39/41.25°C；96个已有风扇/控制/服务通道未观察到变化。随后获得用户授权，以交互认证读取BMC风扇，七个前置风扇为3800–4000 RPM。认证信息未保存。增加 --bmc-fans 可选只读查询，使用sudo -n，不会提示或保存凭据；最多3秒超时，每约5秒一次。BMC不可用记录状态，不影响既有温度停止保护。（原文摘录）",
+      "summary": "模拟保护测试再次通过，新增 CPU/VE 不同默认阈值和 RPM/PWM/不可用风扇读取检查。（原文结论摘录）",
+      "report_sha256": "6106f6e3b62854795ea16115bbd73d375ef2c5dd761fd03c375aee9fcced732a"
+    },
+    {
+      "timestamp": "20261002T071128Z",
+      "report": "docs/impl/20261002T071128Z-workspace-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T071128Z-workspace-progress.md"
+      ],
+      "title": "workspace-progress",
+      "data_excerpt": "最终回归完成：原CPU/基础VE/NLC PyTorch共42项通过，协议非法输入和桥接语义拒绝测试通过。Valgrind（主机动态内存检查）运行工作缓冲区回归：0错误，13次分配/13次释放，退出时0字节残留。此工具检查仅覆盖CPU实现，不等同于VE库内部内存检查。主机及旧后端回归CPU峰值69°C，VE峰值42°C。（原文摘录）",
+      "summary": "主要收益来自移除整体清零，不能全部归因于缓冲复用。",
+      "report_sha256": "236763c247aca1ee82d5a4a5f624011cb2c234bc5deb91879d73e9da733661cd"
+    },
+    {
+      "timestamp": "20261002T072334Z",
+      "report": "docs/impl/20261002T072334Z-trained-lm-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T072334Z-trained-lm-progress.md"
+      ],
+      "title": "trained-lm-progress",
+      "data_excerpt": "训练权重三卡验证完成：随机32项、两段真实输入逐层及全部输出分数对照、259位置局部窗口边界、CPU及三卡16词元连续生成均通过。三卡生成IDs完全相同，VE完整吞吐0.55–0.60词元/s，优化CPU参考约162词元/s，未获得端到端加速。最大温度CPU70°C/VE41.75°C，104风扇信号无观察到变化。（原文摘录）",
+      "summary": "真实模型正确性通过，但旧逐次启动桥接没有端到端优势。",
+      "report_sha256": "ab3166e46cd9f1b984a40ad72e7452ce45a63ae940a07484020ae162ece39735"
+    },
+    {
+      "timestamp": "20261002T075034Z",
+      "report": "docs/impl/20261002T075034Z-resident-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T075034Z-resident-progress.md"
+      ],
+      "title": "resident-progress",
+      "data_excerpt": "常驻CPU和VE1全输出、最后位置输出、9/6/259/1/9连续请求通过；3轮16词元生成各线程设置都与参考一致。旧桥接0.5758词元/s→常驻约309–318词元/s，主批次CPU69°C/VE42.62°C，104风扇信号无观察到变化。（原文摘录）",
+      "summary": "常驻消除了反复启动代价；此路径嵌入和输出头仍在主机。",
+      "report_sha256": "5c1bd81e360f76f7268dda24a1eee57cbe160da8bc2708c4df7438c8325d9d4c"
+    },
+    {
+      "timestamp": "20261002T093214Z",
+      "report": "docs/impl/20261002T093214Z-qwen36-estimate.md",
+      "related_reports": [
+        "docs/impl/20261002T093214Z-qwen36-estimate.md"
+      ],
+      "title": "实施记录",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "检查数值公式与文档空白错误；速度范围标注为未验证工程预算。（原文结论摘录）",
+      "report_sha256": "3355d52f73e7571c971ec329214543b3c8c5ca505121e293b430adc232b46900"
+    },
+    {
+      "timestamp": "20261002T093527Z",
+      "report": "docs/impl/20261002T093527Z-qwen36-route.md",
+      "related_reports": [
+        "docs/impl/20261002T093527Z-qwen36-route.md"
+      ],
+      "title": "35B-A3B实现路线",
+      "data_excerpt": "VE量化探针512×2048、8线程、3次：原始Q4_K约1.148ms，Q5_K约1.700ms，Q6_K约1.653ms；最终长向量候选分别约0.228ms、0.259ms、0.201ms（约5.0/6.6/8.2倍）。独立double累加解码数值检查通过。Q8_0未优化，约0.367ms。探针权重不足以测量HBM持续带宽，吞吐字段仅是该点积有效读取率，不能称为真实模型token/s。（原文摘录）",
+      "summary": "VE量化探针512×2048、8线程、3次：原始Q4_K约1.148ms，Q5_K约1.700ms，Q6_K约1.653ms；最终长向量候选分别约0.228ms、0.259ms、0.201ms（约5.0/6.6/8.2倍）。（原文结论摘录）",
+      "report_sha256": "6180b9bd2488f992206f98b4d8a93b0ae84143286d10f3ecea4cd74d872a1448"
+    },
+    {
+      "timestamp": "20261002T104255Z",
+      "report": "docs/impl/20261002T104255Z-qwen36-nlc.md",
+      "related_reports": [
+        "docs/impl/20261002T104255Z-qwen36-nlc.md"
+      ],
+      "title": "分块解码与NLC数学路径",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "尚未实现NLC图钩子、尚未证明整模型性能提升。（原文结论摘录）",
+      "report_sha256": "9c3a04cbbde1fafbecad8225aac43d3925ddbb245f0197d7076d5cc0bdd5a201"
+    },
+    {
+      "timestamp": "20261002T110602Z",
+      "report": "docs/impl/20261002T110602Z-qwen36-budget-revision.md",
+      "related_reports": [
+        "docs/impl/20261002T110602Z-qwen36-budget-revision.md"
+      ],
+      "title": "分析与现有验证记录",
+      "data_excerpt": "补充迭代015已完成证据：CPU float32激活数学参考4词元输出391及结束标记，1线程生成0.053985 token/s，预填充95.412889秒，生成74.094523秒；仅作数学正确性参考，不是CPU优化性能对比。温度保护正常退出：CPU80°C、VE最高40.50°C，97通道没有实际BMC风扇证据。（原文摘录）",
+      "summary": "新NLC图钩子60组算子在CPU和VE上均通过独立反量化及双精度累计参考，含重复专家ID、路由输入布局及批量。（原文结论摘录）",
+      "report_sha256": "3356f006f3d32ecf4fa1a198226ef1d222ec0dfaad952c393f5b2efb2c067a19"
+    },
+    {
+      "timestamp": "20261002T111242Z",
+      "report": "docs/impl/20261002T111242Z-qwen36-smoke-pipeline.md",
+      "related_reports": [
+        "docs/impl/20261002T111242Z-qwen36-smoke-pipeline.md"
+      ],
+      "title": "构建至整模型烟测",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "库编译已推进模型加载器，依然未完成、未宣称硬件整模型通过。（原文结论摘录）",
+      "report_sha256": "e0361da0f96975a06e19ac13be0c9a9c5a36c08ca50447ce4697b03b2a37a6b8"
+    },
+    {
+      "timestamp": "20261002T112354Z",
+      "report": "docs/impl/20261002T112354Z-qwen36-node-profile.md",
+      "related_reports": [
+        "docs/impl/20261002T112354Z-qwen36-node-profile.md"
+      ],
+      "title": "节点耗时采样",
+      "data_excerpt": "真实CPU 35B模型采样验证正常退出：同提示词、4096上下文、1线程、4步生成，采样开/关词元一致（391及结束标记），248320维×4步logit最大绝对误差0，得到204组分阶段算子报告。温度保护CPU72°C、VE最高40°C，96通道无实际BMC转速证据。CPU未采样生成2.532239 token/s，单次短测不作为最终CPU基准。采样中Q8投影和Q6输出头较明显；这不是VE瓶颈证明，需硬件模型测量后决定优化。（原文摘录）",
+      "summary": "CPU未采样生成2.532239 token/s，单次短测不作为最终CPU基准。（原文结论摘录）",
+      "report_sha256": "8b091bfb67a1d04ea9772d4591a8fe9b4d4c23848040153d872d5dd38fb10813"
+    },
+    {
+      "timestamp": "20261002T113712Z",
+      "report": "docs/impl/20261002T113712Z-qwen36-loader-build.md",
+      "related_reports": [
+        "docs/impl/20261002T113712Z-qwen36-loader-build.md"
+      ],
+      "title": "模型管理文件编译方案",
+      "data_excerpt": "启动单设备候选副本的-O1/-fno-inline独立编译；没有改动原正在编译源文件、对象或上游仓库。原-O1和独立-O0对象均仍活跃，不能据此宣布失败；候选尚未成功，后续方案选择以实际编译和模型证据决定。（原文摘录）",
+      "summary": "原-O1和独立-O0对象均仍活跃，不能据此宣布失败；候选尚未成功，后续方案选择以实际编译和模型证据决定。（原文结论摘录）",
+      "report_sha256": "0f21254d559e8dbf3a8b3f13ac55b934164f21119f9a30c6bb35eac64c96a91e"
+    },
+    {
+      "timestamp": "20261002T120405Z",
+      "report": "docs/impl/20261002T120405Z-qwen36-aggregate-init.md",
+      "related_reports": [
+        "docs/impl/20261002T120405Z-qwen36-aggregate-init.md"
+      ],
+      "title": "最新内核验证与模型初始化候选",
+      "data_excerpt": "状态更新：完整原生成模型文件的-O0候选已实际正常退出0（不是暂停或失败），完整42对象静态库已组装并保存成员哈希。暂停尝试时进程已经终结，未实际暂停它。选择完整O0候选进行下一步链接/模型验证，取消不采用的单设备削减和inline-attribute独立实验；原-O1任务暂保留。新链接辅助脚本复用相同构建配方、校验上游版本且始终温度保护；原等待-O1完成的串联任务已主动取消，替换为完整O0库链接和真实模型烟测。尚未宣称硬件模型通过。（原文摘录）",
+      "summary": "尚未宣称硬件模型通过。（原文结论摘录）",
+      "report_sha256": "bf452335d4ee5219fe51eb50e6fa7713db35580bd6629ebd3cacfacb5d45ac4c"
+    },
+    {
+      "timestamp": "20261002T122117Z",
+      "report": "docs/impl/20261002T122117Z-qwen36-callback-linkage.md",
+      "related_reports": [
+        "docs/impl/20261002T122117Z-qwen36-callback-linkage.md"
+      ],
+      "title": "NEC回调语言链接兼容",
+      "data_excerpt": "新增nec_llama_compat.cpp提供公共C符号并转发已有context方法，显式转换等价调用约定的回调指针类型。链接辅助脚本编译并纳入该对象。初次链接温度保护正常退出但链接失败：CPU79°C、VE39.25°C，104通道无观测到风扇变化；该失败没有启动任何整模型执行。（原文摘录）",
+      "summary": "初次链接温度保护正常退出但链接失败：CPU79°C、VE39.25°C，104通道无观测到风扇变化；该失败没有启动任何整模型执行。（原文结论摘录）",
+      "report_sha256": "368ace8e9bc641ad3561fcfce51d1048e4daa17b853d63a496182314b0146e43"
+    },
+    {
+      "timestamp": "20261002T124103Z",
+      "report": "docs/impl/20261002T124103Z-qwen36-ve-file-loading.md",
+      "related_reports": [
+        "docs/impl/20261002T124103Z-qwen36-ve-file-loading.md"
+      ],
+      "title": "VE完整权重读取",
+      "data_excerpt": "首个真实单VE35B-A3B非映射烟测已完成模型执行：参数34,660,610,688，模型数据22,123,538,944字节，4096上下文、8线程、27输入词元、4生成词元，输出391及结束标记，词元18/24/16/248046。加载18.809837秒、context初始化0.635471秒、预填充15.493804秒、生成21.958692秒、0.182160 token/s。只是一次短测，未证明稳定性能或完整数值对齐。整个烟测任务仍在进行CP…（原文摘录）",
+      "summary": "整个烟测任务仍在进行CPU参考和原VE基线，温度保护及风扇最终摘要待任务结束。（原文结论摘录）",
+      "report_sha256": "fb483b9998aeac9bf936888272129b1faa1b0dfa48bbc7601b3d7f63d0d77947"
+    },
+    {
+      "timestamp": "20261002T125904Z",
+      "report": "docs/impl/20261002T125904Z-qwen36-persistent-threads.md",
+      "related_reports": [
+        "docs/impl/20261002T125904Z-qwen36-persistent-threads.md"
+      ],
+      "title": "常驻线程池",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "已保存初始三个VE执行器；重新编译及实际验证待补。（原文结论摘录）",
+      "report_sha256": "4a6fa33595c9e5f77f2d77b9eb13e0dbb43d84c2ca1f107072ae834d9867d987"
+    },
+    {
+      "timestamp": "20261002T131257Z",
+      "report": "docs/impl/20261002T131257Z-qwen36-block-scales.md",
+      "related_reports": [
+        "docs/impl/20261002T131257Z-qwen36-block-scales.md"
+      ],
+      "title": "块缩放预解码",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "实现已写入，编译/硬件验证待补。（原文结论摘录）",
+      "report_sha256": "ebb075f68f8d34fef66c5ef9c968e2dfb9a2ff3c779ef0c235789683ee417ebe"
+    },
+    {
+      "timestamp": "20261002T131744Z",
+      "report": "docs/impl/20261002T131744Z-qwen36-current-estimate.md",
+      "related_reports": [
+        "docs/impl/20261002T131744Z-qwen36-current-estimate.md"
+      ],
+      "title": "Qwen3.6 性能估计留档",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "完整精度与稳态性能仍待验证。（原文结论摘录）",
+      "report_sha256": "2e12457933134a71814080101e4dbf82fd639ac503a80e31b57dd283d74c8d11"
+    },
+    {
+      "timestamp": "20261002T132056Z",
+      "report": "docs/impl/20261002T132056Z-qwen36-block-validation.md",
+      "related_reports": [
+        "docs/impl/20261002T132056Z-qwen36-block-validation.md"
+      ],
+      "title": "块解码独立验证",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "新增scripts/validate_qwen_math.sh提供可复现数学验证入口，含编译、独立CPU/VE检查和温度风扇监控。（原文结论摘录）",
+      "report_sha256": "6e72ce40f549bea7b00db012b1c33d2c17555c4af1fa15bd0620bbdfa50df044"
+    },
+    {
+      "timestamp": "20261002T132244Z",
+      "report": "docs/impl/20261002T132244Z-qwen36-final-boundaries.md",
+      "related_reports": [
+        "docs/impl/20261002T132244Z-qwen36-final-boundaries.md"
+      ],
+      "title": "最终边界与回调验证",
+      "data_excerpt": "tests/check_qwen_nlc.cpp新增16个直接块解码测试，与上游独立解码结果逐元素比较，含128×16384最大临时栈使用。src/qwen_infer.cpp新增--test-abort，设置非空C链接回调，要求process返回2且回调有调用，清除后恢复正常推理；测试步骤位于计时范围外。当前仅源码实施，未宣称测试通过。（原文摘录）",
+      "summary": "当前仅源码实施，未宣称测试通过。（原文结论摘录）",
+      "report_sha256": "4aee9890271b5f8a41e4af2ec853b8ffc1ae8e0160811e645d0d926dbbb6b6d3"
+    },
+    {
+      "timestamp": "20261002T132803Z",
+      "report": "docs/impl/20261002T132803Z-qwen36-route-measured.md",
+      "related_reports": [
+        "docs/impl/20261002T132803Z-qwen36-route-measured.md"
+      ],
+      "title": "真实模型路线对照",
+      "data_excerpt": "已完成旧/新NLC与直接量化整模型对照，明确选用1.464词元/秒的直接量化候选进行最终验证。本轮仅更新结果与待办，最终回调和最大块测试正在重编译；当前数值门限保持不变，不因表现不同而放松。（原文摘录）",
+      "summary": "短测速度较高，但后续精度失败，不能采用为合格基线。",
+      "report_sha256": "fefc59e81cdf64e6424108170340d815f914d84c31555ac1bc52c0747ee333cf"
+    },
+    {
+      "timestamp": "20261002T133108Z",
+      "report": "docs/impl/20261002T133108Z-qwen36-final-suite.md",
+      "related_reports": [
+        "docs/impl/20261002T133108Z-qwen36-final-suite.md"
+      ],
+      "title": "最终验证套件",
+      "data_excerpt": "默认验证候选切换quant，README同步实际短请求结果及路径参考差异。tests/check_qwen_model.py新增每5秒ve-ps指定PID的RSS原始采样，超时和进程退出竞态容忍，最终写memory.json；峰值只称采样峰值，不换算为卡级物理内存。增加128段长输入覆盖约2K词元，实际长度以输出为准。Python语法和shell语法、git diff --check通过。（原文摘录）",
+      "summary": "tests/check_qwen_model.py新增每5秒ve-ps指定PID的RSS原始采样，超时和进程退出竞态容忍，最终写memory.json；峰值只称采样峰值，不换算为卡级物理内存。（原文结论摘录）",
+      "report_sha256": "93790a55099c8e8aa79f26e042f43521484ef06212a3d7fd408eaccf4ba4bac9"
+    },
+    {
+      "timestamp": "20261002T133558Z",
+      "report": "docs/impl/20261002T133558Z-qwen36-numerical-investigation.md",
+      "related_reports": [
+        "docs/impl/20261002T133558Z-qwen36-numerical-investigation.md"
+      ],
+      "title": "完整词表失败调查",
+      "data_excerpt": "最终套件退出1，证据build/qwen-final-full-quant.log及build/results/20261002T133204Z-qwen36。已启动受温度保护的原始VE12步诊断，沿用相同CPU轨迹、模型、线程、上下文和强制token；没有降低阈值或缩短失败测试。RSS采样有效peak_raw=23734272，仍保留原始单位字段，不直接称严格物理峰值。（原文摘录）",
+      "summary": "最终套件退出1，证据build/qwen-final-full-quant.log及build/results/20261002T133204Z-qwen36。（原文结论摘录）",
+      "report_sha256": "268d0bbc2521b41720eba63e46bed7d2676b4d19d3f257e76b6796b803038ee0"
+    },
+    {
+      "timestamp": "20261002T133859Z",
+      "report": "docs/impl/20261002T133859Z-qwen36-node-numerics.md",
+      "related_reports": [
+        "docs/impl/20261002T133859Z-qwen36-node-numerics.md"
+      ],
+      "title": "中间节点数值定位",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "tests/trace_qwen_nodes.py三路线顺序执行并对齐节点名、算子、类型、形状及重复出现次数，输出完整差异清单和前30个显著差异；保持已有最终门限不变。（原文结论摘录）",
+      "report_sha256": "653962836caf5fe023e79aaded4b3390b51a83b30a6936090041fd974e4eb086"
+    },
+    {
+      "timestamp": "20261002T134616Z",
+      "report": "docs/impl/20261002T134616Z-qwen36-routing-divergence.md",
+      "related_reports": [
+        "docs/impl/20261002T134616Z-qwen36-routing-divergence.md"
+      ],
+      "title": "专家路由分叉证据",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "该轮记录“专家路由分叉证据”的实施状态，未新增可独立使用的性能结论。",
+      "report_sha256": "6e261d3a8f0bdd613fd7c5fe6a5f821ece822915f45446e26d4555d5e7d80d62"
+    },
+    {
+      "timestamp": "20261002T135931Z",
+      "report": "docs/impl/20261002T135931Z-qwen36-compiler-precision.md",
+      "related_reports": [
+        "docs/impl/20261002T135931Z-qwen36-compiler-precision.md"
+      ],
+      "title": "编译器精度控制实验",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "该轮记录“编译器精度控制实验”的实施状态，未新增可独立使用的性能结论。",
+      "report_sha256": "3ce781e2c0a1fb3f3293261410eedbd0673432c4152ce264133401a81671940b"
+    },
+    {
+      "timestamp": "20261002T140135Z",
+      "report": "docs/impl/20261002T140135Z-qwen36-precision-executors.md",
+      "related_reports": [
+        "docs/impl/20261002T140135Z-qwen36-precision-executors.md"
+      ],
+      "title": "精度控制执行器",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "新增tests/check_qwen_precision.py复用已存CPU轨迹、验证模型SHA，执行独立严格版本并应用原全词表门限；当前--backend nlc任务运行中。（原文结论摘录）",
+      "report_sha256": "be5720b14db76bb85f7003c3a5be4119ce71fd5148b89e929a8038dc86243f48"
+    },
+    {
+      "timestamp": "20261002T141240Z",
+      "report": "docs/impl/20261002T141240Z-qwen36-fp64-accumulation.md",
+      "related_reports": [
+        "docs/impl/20261002T141240Z-qwen36-fp64-accumulation.md"
+      ],
+      "title": "高精度累加实验",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "该轮记录“高精度累加实验”的实施状态，未新增可独立使用的性能结论。",
+      "report_sha256": "1b68134bc822a68edf76e47a7b066459ee1609e16a821f18f4263d9bd6e401d8"
+    },
+    {
+      "timestamp": "20261002T141555Z",
+      "report": "docs/impl/20261002T141555Z-qwen36-accurate-validation.md",
+      "related_reports": [
+        "docs/impl/20261002T141555Z-qwen36-accurate-validation.md"
+      ],
+      "title": "高精度独立验证",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "原quant/nlc接口与失败结果保留。（原文结论摘录）",
+      "report_sha256": "9f6fd93e41b8010da17f1e0d5072075858a7aa880f3d884a2b2f9127d56c91df"
+    },
+    {
+      "timestamp": "20261002T142845Z",
+      "report": "docs/impl/20261002T142845Z-qwen36-accurate-node-investigation.md",
+      "related_reports": [
+        "docs/impl/20261002T142845Z-qwen36-accurate-node-investigation.md"
+      ],
+      "title": "高精度节点路径调查",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "所有旧硬件检查均已终止，未自动重跑失败完整套件。（原文结论摘录）",
+      "report_sha256": "84386d88c14fb7775576dd56cab154693379cce2606cd4487dc42c17f03dce23"
+    },
+    {
+      "timestamp": "20261002T143857Z",
+      "report": "docs/impl/20261002T143857Z-qwen36-state-convolution.md",
+      "related_reports": [
+        "docs/impl/20261002T143857Z-qwen36-state-convolution.md"
+      ],
+      "title": "状态短卷积精度",
+      "data_excerpt": "补充：新增卷积与其余数学检查实际全部通过，CPU/VE各86项，共172项PASS；构建检查退出0。CPU峰74°C、VE47.12°C，104风扇通道3中间变化、首尾相同。下一步已安排真实模型高精度节点重新采集，尚无整模型验收结论。（原文摘录）",
+      "summary": "补充：新增卷积与其余数学检查实际全部通过，CPU/VE各86项，共172项PASS；构建检查退出0。（原文结论摘录）",
+      "report_sha256": "7ffb4d5337641aca418f13ece4ec393ff4631d34161e9926d7c5810cbcb75db6"
+    },
+    {
+      "timestamp": "20261002T144622Z",
+      "report": "docs/impl/20261002T144622Z-qwen36-benchmark-runtime.md",
+      "related_reports": [
+        "docs/impl/20261002T144622Z-qwen36-benchmark-runtime.md"
+      ],
+      "title": "最终基准运行预算",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "该轮记录“最终基准运行预算”的实施状态，未新增可独立使用的性能结论。",
+      "report_sha256": "8aac27e54af01fbee491fa43fe618112a420d368b27f52b14efc130c3abf23c6"
+    },
+    {
+      "timestamp": "20261002T145511Z",
+      "report": "docs/impl/20261002T145511Z-qwen36-performance-forecast.md",
+      "related_reports": [
+        "docs/impl/20261002T145511Z-qwen36-performance-forecast.md"
+      ],
+      "title": "Qwen3.6 性能答复记录",
+      "data_excerpt": "本轮没有修改实现，也没有启动硬件负载。按已有端到端结果答复：实际已运行现代模型；当前最快实验路径约0.68秒/token，输出200token约137秒，不含输入处理。高精度诊断约8.5秒/token。数值验收未通过，不称可用性能。新增文档未记录凭据、设备序列号或私人路径。（原文摘录）",
+      "summary": "数值验收未通过，不称可用性能。（原文结论摘录）",
+      "report_sha256": "17fa569a69e9328ceac2c7810814dabc6c2e8e6cc24dea476a7ca39d8e341d55"
+    },
+    {
+      "timestamp": "20261002T145729Z",
+      "report": "docs/impl/20261002T145729Z-qwen36-delta-state.md",
+      "related_reports": [
+        "docs/impl/20261002T145729Z-qwen36-delta-state.md"
+      ],
+      "title": "GatedDeltaNet 状态一致性迭代",
+      "data_excerpt": "CPU与VE真实运行合计188项检查通过，包括16项状态更新检查。受保护构建退出0；CPU峰值74°C，ve0峰值48.12°C，读取104风扇通道，3项观察到变化，部分风扇4500→4600 RPM。日志build/qwen-accurate-delta-build-check.log。随后启动新真实模型节点采集。（原文摘录）",
+      "summary": "CPU与VE真实运行合计188项检查通过，包括16项状态更新检查。（原文结论摘录）",
+      "report_sha256": "88d5572f7c79c5eeeb77af588852b0a1363e9f398551cd51d7d12a92f1e6f1f1"
+    },
+    {
+      "timestamp": "20261002T150409Z",
+      "report": "docs/impl/20261002T150409Z-qwen36-expert-softmax.md",
+      "related_reports": [
+        "docs/impl/20261002T150409Z-qwen36-expert-softmax.md"
+      ],
+      "title": "专家概率一致性迭代",
+      "data_excerpt": "第二次检查在width31、scale1的独立参考比较失败：初步怀疑纯绝对2e-8未计入F32较大概率的舍入间距，待重新检查确认。单算子阈值改为2e-8+6e-8*abs(reference)，计入约半个F32相对舍入单位，并增加错误定位输出。真实模型最终阈值未改变。失败日志保留为build/qwen-accurate-softmax-build-check-retry.log。（原文摘录）",
+      "summary": "真实模型最终阈值未改变。（原文结论摘录）",
+      "report_sha256": "4d88e78c9436ee3c3a590918a57bc49cceff4fa23b9fe4827ea5eeb7b7662dd7"
+    },
+    {
+      "timestamp": "20261002T151344Z",
+      "report": "docs/impl/20261002T151344Z-qwen36-final-gate-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T151344Z-qwen36-final-gate-progress.md"
+      ],
+      "title": "完整数值验收与优化次序",
+      "data_excerpt": "第一个提示case0完整12步已通过：max_abs_error=0.004188567399978638、RMSE=0.00047690944386541146、argmax一致12/12。CPU参考约0.069110 token/s，VE高精度路径0.103386 token/s，VE预填充19.742624秒。实际RSS peak_raw=24061952，仍保留原始单位，不等同卡总内存。证据build/results/20261002T151124…（原文摘录）",
+      "summary": "case1-cpu正在运行，最终套件尚未完成；未开始性能扫描。（原文结论摘录）",
+      "report_sha256": "b09b2c92f2f086dd6712077e2342e6888774962d866bfd0f03a69eb62013ce1e"
+    },
+    {
+      "timestamp": "20261002T152542Z",
+      "report": "docs/impl/20261002T152542Z-qwen36-build-fingerprint.md",
+      "related_reports": [
+        "docs/impl/20261002T152542Z-qwen36-build-fingerprint.md"
+      ],
+      "title": "构建指纹与验证对应关系",
+      "data_excerpt": "case1第二提示完整12步已通过：max_abs_error=0.0017375946044921875、RMSE=0.00022057890591277966、argmax一致12/12。第三个中文提示case2-cpu正在运行。最终性能扫描和缓存重置尚未完成。（原文摘录）",
+      "summary": "最终性能扫描和缓存重置尚未完成。（原文结论摘录）",
+      "report_sha256": "a2f3aaf41b150ae958ede33a45c90e45fbd641fd312720b20681f06674db3996"
+    },
+    {
+      "timestamp": "20261002T153007Z",
+      "report": "docs/impl/20261002T153007Z-qwen36-cache-capacity.md",
+      "related_reports": [
+        "docs/impl/20261002T153007Z-qwen36-cache-capacity.md"
+      ],
+      "title": "稠密权重缓存容量核算",
+      "data_excerpt": "本轮三个提示共36步完整词表全部通过原门限，最大误差依次0.0041885674/0.0017375946/0.0013858080，最高分词元全部一致。部分套件报告numerical-progress.json明确缓存重置及性能扫描未完成。当前reset-ve正进行三次16步重复请求，工具句柄92723仍运行；不启动竞争硬件任务。（原文摘录）",
+      "summary": "本轮三个提示共36步完整词表全部通过原门限，最大误差依次0.0041885674/0.0017375946/0.0013858080，最高分词元全部一致。（原文结论摘录）",
+      "report_sha256": "bad336c51980204d750414d3a94489f7cbd5d775f232a2af8f59e4b4a543f91b"
+    },
+    {
+      "timestamp": "20261002T153643Z",
+      "report": "docs/impl/20261002T153643Z-qwen36-durable-results.md",
+      "related_reports": [
+        "docs/impl/20261002T153643Z-qwen36-durable-results.md"
+      ],
+      "title": "长测试结果持续留存",
+      "data_excerpt": "当前完整正确性进程已终止且退出0，三个提示及三次缓存重置全部通过。先前“仍运行”描述为当时状态，最新验收证据见accepted-baseline迭代。（原文摘录）",
+      "summary": "Python语法检查通过。（原文结论摘录）",
+      "report_sha256": "f1c800c8480d416530289b2cdd5d07a9c605293d14a1e266f03a824f0f138c5e"
+    },
+    {
+      "timestamp": "20261002T154405Z",
+      "report": "docs/impl/20261002T154405Z-qwen36-accepted-baseline.md",
+      "related_reports": [
+        "docs/impl/20261002T154405Z-qwen36-accepted-baseline.md"
+      ],
+      "title": "正确性验收基线与缓存优化阶段",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "完整正确性结果目录build/results/20261002T151124Z-qwen36，日志build/qwen-final-correctness-delta-softmax.log，numerical-progress.json已标记correctness_complete而非最终优化完成。（原文结论摘录）",
+      "report_sha256": "6b9053e5e9ab28dd2461d525dff69e81f86fc3fd3675bae1143894d2484b5a44"
+    },
+    {
+      "timestamp": "20261002T154644Z",
+      "report": "docs/impl/20261002T154644Z-qwen36-dense-cache.md",
+      "related_reports": [
+        "docs/impl/20261002T154644Z-qwen36-dense-cache.md"
+      ],
+      "title": "有界稠密权重缓存实现",
+      "data_excerpt": "第一个真实提示的缓存路径12步通过：CPU参考最大误差0.0041885674/RMSE0.0004769094，生成0.506802 token/s（旧同数学基线0.103386，约4.90倍）。实际保留15508439040字节、8344条目，100128命中、0拒绝。首次预填充100.620650秒，旧19.742624秒，首次缓存填充成本明显；需分别比较冷启动和稳态。与已验收VE的12步全部分数逐位一致。后续提示与缓存重置仍运行。（原文摘录）",
+      "summary": "热生成获益但冷填充代价明显，后续需要并行填充。",
+      "report_sha256": "d97fa649d257196c3bcf980c7b33e8ae4930361a06df02e0c6c13b2bb7287e9f"
+    },
+    {
+      "timestamp": "20261002T160150Z",
+      "report": "docs/impl/20261002T160150Z-qwen36-parallel-cache-fill.md",
+      "related_reports": [
+        "docs/impl/20261002T160150Z-qwen36-parallel-cache-fill.md"
+      ],
+      "title": "并行建立权重缓存",
+      "data_excerpt": "串行填充缓存版本完整验证已退出0：三提示36步及3次16步重置通过。稳态生成0.506925 token/s左右、约4.90倍同数学基线，稳态预填充9.885842/9.913212秒，冷填充98.919885秒。当前开始构建并行填充版本；最终线程/长输入扫描未完成。（原文摘录）",
+      "summary": "新增最终专项benchmark_qwen_dense_cache.py：要求完整缓存验收且当前执行器哈希一致；使用已验收同数学关闭缓存基线32步3重复，扫描1/2/4/8线程并核对32步输出一致，选择实测最快线程，再完成16/64/128段输入各16步2重复。（原文结论摘录）",
+      "report_sha256": "39f3a2b997c5d5c8dfa8543b6b03155d3f8a43b7cb3d83486849a5da257c89c3"
+    },
+    {
+      "timestamp": "20261002T162200Z",
+      "report": "docs/impl/20261002T162200Z-qwen36-final-scan-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T162200Z-qwen36-final-scan-progress.md"
+      ],
+      "title": "最终扫描进度核对",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "阶段输出会及时写入jsonl；完整summary尚未生成。（原文结论摘录）",
+      "report_sha256": "ba97defc01ec05831e4ffd7a0ffc6f14a469cdc93a4f4102e6bd9cde7e25733d"
+    },
+    {
+      "timestamp": "20261002T162842Z",
+      "report": "docs/impl/20261002T162842Z-qwen36-baseline-repeat-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T162842Z-qwen36-baseline-repeat-progress.md"
+      ],
+      "title": "最终基线首轮及内存统计口径",
+      "data_excerpt": "首两轮32词元结果已完成，速度0.103485/0.103482 token/s、预填充17.628471/17.183827秒；32词元序列完全一致。第三轮仍运行，未开始线程扫描，不将两轮代替要求的三轮。（原文摘录）",
+      "summary": "该轮记录“最终基线首轮及内存统计口径”的实施状态，未新增可独立使用的性能结论。",
+      "report_sha256": "2a8a8fb81b32839bd99ffa419616c8b94756cfe9876d1582148532d6f6e85137"
+    },
+    {
+      "timestamp": "20261002T163553Z",
+      "report": "docs/impl/20261002T163553Z-qwen36-final-audit-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T163553Z-qwen36-final-audit-progress.md"
+      ],
+      "title": "最终扫描与敏感信息预审",
+      "data_excerpt": "三轮关闭缓存8线程32词元基线已完成，三轮输出完全一致，稳态生成0.103475 token/s，冷预填充17.628471秒、稳态预填充17.176866秒。baseline-progress.json明确不是完整扫描结论。当前正在缓存版1线程32步3重复，之后继续2/4/8线程及长输入。（原文摘录）",
+      "summary": "凭据赋值、Authorization、HF令牌和私人路径规则未命中；这是规则预审，不替代最终代码/文档审核。（原文结论摘录）",
+      "report_sha256": "b8d3d998225880ec50761e634a33e49a4b53eb25e499230840ff5f3cf05fa702"
+    },
+    {
+      "timestamp": "20261002T165020Z",
+      "report": "docs/impl/20261002T165020Z-qwen36-thread-scan-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T165020Z-qwen36-thread-scan-progress.md"
+      ],
+      "title": "线程扫描继续验证",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "该轮记录“线程扫描继续验证”的实施状态，未新增可独立使用的性能结论。",
+      "report_sha256": "28e54ee0adaa12e1e8bd3b7202f8e289beeba5c7e330ab466534bc0732d5c46c"
+    },
+    {
+      "timestamp": "20261002T170548Z",
+      "report": "docs/impl/20261002T170548Z-qwen36-measured-forecast.md",
+      "related_reports": [
+        "docs/impl/20261002T170548Z-qwen36-measured-forecast.md"
+      ],
+      "title": "Qwen3.6 单卡性能判断",
+      "data_excerpt": "曾测约1.46词元/秒的快速路径未通过精度门槛，不作为可用性能。不能从早期小型Transformer或三张卡数量线性外推该模型吞吐，也不能承诺优化后达到某个未测速度。（原文摘录）",
+      "summary": "当前精度通过的路径使用 FP64 累加；三组提示共36步完整词表误差检查及重复运行检查通过。（原文结论摘录）",
+      "report_sha256": "ab5a6e6fa034b0128e2b71d92d3cc02a35ed4b252e89cce92f922b325cf3bce3"
+    },
+    {
+      "timestamp": "20261002T170659Z",
+      "report": "docs/impl/20261002T170659Z-qwen36-final-verification-progress.md",
+      "related_reports": [
+        "docs/impl/20261002T170659Z-qwen36-final-verification-progress.md"
+      ],
+      "title": "最终优化验收进度",
+      "data_excerpt": "只读审计完成：298份待提交候选文本未发现所检查的私人绝对路径或凭据模式。产物哈希核验通过；没有编译或修改正在运行的执行器。审计模式不是所有敏感信息的完整证明，最终仍需人工复核变更。（原文摘录）",
+      "summary": "审计模式不是所有敏感信息的完整证明，最终仍需人工复核变更。（原文结论摘录）",
+      "report_sha256": "5b0d3b9386aa6db1916be8312309f7f7c2dd7fbf37e2cd60dbbd06d6b2384134"
+    },
+    {
+      "timestamp": "20261002T170811Z",
+      "report": "docs/impl/20261002T170811Z-qwen36-performance-table.md",
+      "related_reports": [
+        "docs/impl/20261002T170811Z-qwen36-performance-table.md"
+      ],
+      "title": "正式线程性能表更新",
+      "data_excerpt": "当前CPU/VE温度守护和模型进程持续运行，未启动新硬件负载。README已同步正式1/2/4/8线程结果及260词元输入结果，保留更长输入尚未验收的边界。（原文摘录）",
+      "summary": "最终仍需等待64/128段测试及完整温度总结；不标记目标完成。（原文结论摘录）",
+      "report_sha256": "12ce21c098c94c64853907a9a5f3bfff1f2c9323bf5c380ce12de80cba8ca388"
+    },
+    {
+      "timestamp": "20261002T171453Z",
+      "report": "docs/impl/20261002T171453Z-qwen36-long980-first-pass.md",
+      "related_reports": [
+        "docs/impl/20261002T171453Z-qwen36-long980-first-pass.md"
+      ],
+      "title": "980词元输入首次测量",
+      "data_excerpt": "正式长输入64段的首次请求已完成：980输入词元，预填充455.720340秒，生成16词元，速度0.469985词元/秒。此为首次请求，包含缓存建立；不能当作热态预填充结果。第二次请求仍运行，尚未完成重复一致性检查。128段测试尚未完成。（原文摘录）",
+      "summary": "第二次请求仍运行，尚未完成重复一致性检查。（原文结论摘录）",
+      "report_sha256": "a82d448f9ce510bf4b0e4526a7f6abeeb20dfed668ddb51d3b07a7397f29e02d"
+    },
+    {
+      "timestamp": "20261002T172242Z",
+      "report": "docs/impl/20261002T172242Z-qwen36-long980-complete.md",
+      "related_reports": [
+        "docs/impl/20261002T172242Z-qwen36-long980-complete.md"
+      ],
+      "title": "980词元长输入完整测量",
+      "data_excerpt": "同一温度守护任务继续执行。980词元输入两次16词元输出完全一致，缓存保留容量未超预算，reserved清零。首次预填充455.720340秒，热态424.361415秒；热态生成0.470626词元/秒。证据为build/results/20261002T162100Z-qwen-final-bench/long-64.jsonl及progress.json。（原文摘录）",
+      "summary": "长输入的重复输出一致性检查不替代完整词表参考精度验证。（原文结论摘录）",
+      "report_sha256": "6b6cf868086d64454f836be966e04df5a44dc38f75326dd5b4fd45244e0f1c6c"
+    },
+    {
+      "timestamp": "20261002T172630Z",
+      "report": "docs/impl/20261002T172630Z-qwen36-final-thermal-warning.md",
+      "related_reports": [
+        "docs/impl/20261002T172630Z-qwen36-final-thermal-warning.md"
+      ],
+      "title": "最后一档测试温度观察",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "继续由温度守护执行停止条件，最终报告需包括此次CPU警告，不能宣称全程没有越过警告线。（原文结论摘录）",
+      "report_sha256": "fc1f9105b25a65500af384545c3419c54f8b6e76f227689bb70aaaf2d7b8ad44"
+    },
+    {
+      "timestamp": "20261002T174040Z",
+      "report": "docs/impl/20261002T174040Z-qwen36-long1940-first-pass.md",
+      "related_reports": [
+        "docs/impl/20261002T174040Z-qwen36-long1940-first-pass.md"
+      ],
+      "title": "1940词元输入首次结果",
+      "data_excerpt": "同一温度监督任务继续执行；最后一档128段输入首次测量完成。实际输入1940词元，首次预填充1061.780509秒（约17.7分钟），生成16词元，速度0.425593词元/秒。此为首次请求，不能标为热态结果。（原文摘录）",
+      "summary": "第二次测量正在运行；重复输出一致性尚未验收，performance_scan_completed最终summary尚未生成。（原文结论摘录）",
+      "report_sha256": "44fcbc0b2710282e91735511bfa8a55ee5403839c9bdfe5e6d2a16df87c966b4"
+    },
+    {
+      "timestamp": "20261002T175953Z",
+      "report": "docs/impl/20261002T175953Z-qwen36-final-acceptance.md",
+      "related_reports": [
+        "docs/impl/20261002T175953Z-qwen36-final-acceptance.md"
+      ],
+      "title": "最终优化实现及验收证据",
+      "data_excerpt": "实现包括复用工作线程、量化块解码、精度一致的状态更新/专家Softmax、NLC矩阵计算，以及16384MiB预算的不可变稠密权重缓存。并行填充在锁内预留预算、锁外转换、锁内发布；保留原回退数学，专家权重不整量缓存。与串行填充测量相比，首次短输入处理由约99秒降到约45秒；同精度未缓存生成由约0.1035到0.5096词元/秒。（原文摘录）",
+      "summary": "固定35B-A3B单VE文本负载通过，缓存改善带宽与冷态填充。",
+      "report_sha256": "91d8aa9f90e5e92abd1e0a859c5404df3951ff007f974133f643d4039a12ce17"
+    },
+    {
+      "timestamp": "20261006T024932Z",
+      "report": "docs/impl/20261006T024932Z-publication-audit.md",
+      "related_reports": [
+        "docs/impl/20261006T024932Z-publication-audit.md"
+      ],
+      "title": "目录整理与发布审计",
+      "data_excerpt": "发布前验证：实际暂存334文件隐私扫描通过；32个Python文件AST语法、17个Shell脚本语法、公开结果JSON格式、暂存空白检查通过。待提交文件均为普通文本文件，无模型、二进制、原始日志或本地环境。未运行新硬件测试。用户已明确授权提交并推送指定GitHub仓库；不用个人邮箱作为提交身份。（原文摘录）",
+      "summary": "发布前验证：实际暂存334文件隐私扫描通过；32个Python文件AST语法、17个Shell脚本语法、公开结果JSON格式、暂存空白检查通过。（原文结论摘录）",
+      "report_sha256": "333041be081c1405db332c7e33994645962a81dc5ef74ed721bbf3dede908627"
+    },
+    {
+      "timestamp": "20261006T025951Z",
+      "report": "docs/impl/20261006T025951Z-qwen15-validation.md",
+      "related_reports": [
+        "docs/impl/20261006T025951Z-qwen15-validation.md"
+      ],
+      "title": "Qwen约1B量化模型验证",
+      "data_excerpt": "模型文件已通过SHA256与大小校验。完整加载器编译耗时较长，改用固定上游ABI的小型创建适配器，以extern C明确链接符号，复用已有Qwen2实现；两个独立执行器已链接成功，35B产物未改动。原量化路径三提示最高分词元均8/8一致，但全词表最大误差0.976–2.969、RMSE0.172–0.335，均未过预先设定的0.1/0.01门槛，不能作为通过精度验收的速度。高精度路径前两提示通过，第三提示仍运行。构建CPU峰值81°C达到警告但低于停止线；…（原文摘录）",
+      "summary": "模型文件已通过SHA256与大小校验。（原文结论摘录）",
+      "report_sha256": "756011aab9692792bd279817ac5e7d2dd6e202d5f646c8ff961040a31c6c8c36"
+    },
+    {
+      "timestamp": "20261006T033737Z",
+      "report": "docs/impl/20261006T033737Z-qwen15-results.md",
+      "related_reports": [
+        "docs/impl/20261006T033737Z-qwen15-results.md"
+      ],
+      "title": "Qwen2.5-1.5B量化单卡实测",
+      "data_excerpt": "短提示17词元，固定生成32步，热态为后两次中位数。四线程本次最快，首次输入处理30.467301秒，另有模型加载；缓存实际有效载荷11.500GiB，元数据/工作缓冲另计，新进程仍需建立缓存。较长输入117词元，第二次输入处理14.990034秒，生成3.832781词元/秒。固定步数包含结束标记后的继续计算，不能当自然回答长度。（原文摘录）",
+      "summary": "高精度路径通过，原量化路径精度不合格不能采用其速度。",
+      "report_sha256": "92785b52f1472c17585f3d978f52e1224451dab93f76d7c421001fcc8d60cfa7"
+    },
+    {
+      "timestamp": "20261006T041929Z",
+      "report": "docs/impl/20261006T041929Z-qwen15-publication.md",
+      "related_reports": [
+        "docs/impl/20261006T041929Z-qwen15-publication.md"
+      ],
+      "title": "Qwen1.5B进展提交",
+      "data_excerpt": "整理独立模型创建适配器、固定修订下载器、构建和精度/性能脚本，保留三提示24步验收、线程扫描、重复生成及温度记录的公开摘要。失败的原量化路径保留明确标注；最高性能3.7762335词元/秒来自FP64累加路径，不推广到其他模型。（原文摘录）",
+      "summary": "失败的原量化路径保留明确标注；最高性能3.7762335词元/秒来自FP64累加路径，不推广到其他模型。（原文结论摘录）",
+      "report_sha256": "6a5fca41856a494adaf7faa534589def65e6bbaf4d40fb1e5f201530ebeda3b1"
+    },
+    {
+      "timestamp": "20261006T042236Z",
+      "report": "docs/impl/20261006T042236Z-glossary-table-format.md",
+      "related_reports": [
+        "docs/impl/20261006T042236Z-glossary-table-format.md"
+      ],
+      "title": "术语表渲染修复",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "验证表头与分隔行、所有行两列、术语文本逐行不变及git diff --check；不安装软件。（原文结论摘录）",
+      "report_sha256": "4a1517a9bd0da14e635094692e657c9af22c84d566b3cd68b0250e95e419fbe5"
+    },
+    {
+      "timestamp": "20261006T043503Z",
+      "report": "docs/impl/20261006T043503Z-qwen15-session-plan.md",
+      "related_reports": [
+        "docs/impl/20261006T043503Z-qwen15-session-plan.md"
+      ],
+      "title": "Qwen1.5B计时与连续请求",
+      "data_excerpt": "独立构建session执行器，保留已验收1.5B和35B二进制。验收：三提示完整词表对照，变长请求与旧执行器输出一致，重复请求缓存复用，截断/超容量失败，首次与热态时间/分词占比，独立算子采样运行。无新增全局依赖。（原文摘录）",
+      "summary": "验收：三提示完整词表对照，变长请求与旧执行器输出一致，重复请求缓存复用，截断/超容量失败，首次与热态时间/分词占比，独立算子采样运行。（原文结论摘录）",
+      "report_sha256": "ca3a9c90db7c60798a1b17c0c39974c59c6faf1181d2f052f83842d61613c242"
+    },
+    {
+      "timestamp": "20261006T045223Z",
+      "report": "docs/impl/20261006T045223Z-qwen15-session-results.md",
+      "related_reports": [
+        "docs/impl/20261006T045223Z-qwen15-session-results.md"
+      ],
+      "title": "Qwen 1.5B 常驻入口实施与验证",
+      "data_excerpt": "模型Qwen2.5-1.5B-Instruct Q4_K_M，单VE运行槽1，4线程，上下文2048；原FP64计算路径与FP32激活保持。性能请求为17输入词元、固定生成32词元，关闭trace/profile。独立进程两次总耗时中位数49.627秒；常驻热态三次中位数10.883秒，约4.56倍的请求耗时差。此差值来自进程/模型/缓存复用，不是生成算子提速。首次ready前启动9.191秒，首请求38.853秒，不能套用热态数字。热态生成3.840词元…（原文摘录）",
+      "summary": "请求复用降低启动/加载成本，不等同于生成算子加速。",
+      "report_sha256": "71f8adb404c4fbd3ee2438defd9f04bdb061c3715e2dfbec9facf1841b590649"
+    },
+    {
+      "timestamp": "20261006T052515Z",
+      "report": "docs/impl/20261006T052515Z-qwen15-attention-nlc.md",
+      "related_reports": [
+        "docs/impl/20261006T052515Z-qwen15-attention-nlc.md"
+      ],
+      "title": "单VE注意力矩阵乘法优化迭代",
+      "data_excerpt": "当前硬件证据：build/qwen15-attention/check-attention在运行槽1通过216例，覆盖1/3/4/8线程，结果见本地build/qwen15-attention-build.log；最大独立标量误差小于6e-8。真实模型三个提示24步完整词表对照通过，最大误差0.02586842、RMSE最高0.00362810，24/24词元一致。固定负载ABBA性能测试仍在进行，尚不作速度提升结论。（原文摘录）",
+      "summary": "输入改善但生成回退，改为只优化多列预填充。",
+      "report_sha256": "bb250a0f0afaf5167b95da2c30d96f07bac5050a31c0a55799dea1ab52ee38ab"
+    },
+    {
+      "timestamp": "20261006T053504Z",
+      "report": "docs/impl/20261006T053504Z-qwen15-prefill-projection.md",
+      "related_reports": [
+        "docs/impl/20261006T053504Z-qwen15-prefill-projection.md"
+      ],
+      "title": "注意力选择路径与投影分块迭代",
+      "data_excerpt": "当前CPU/VE温度监控正常，前一轮实际VE矩阵与模型对照已确认运行槽1可执行；无计算GPU，继续使用本地NCC/NLC工具链与温度守护，不安装全局软件。前一轮全注意力候选的首轮实测输入2.55→1.23秒，生成3.79→3.60词元/秒，说明逐词路径的打包代价不能忽略，候选尚未采纳。（原文摘录）",
+      "summary": "先筛选，再对最终路径进行同轮ABBA性能对照；任何生成性能回退都必须记录，不能只报告输入改善。（原文结论摘录）",
+      "report_sha256": "d43f349770dc8959c1c77d40589c4b9ecb95ba06422b5472a42e04274486897f"
+    },
+    {
+      "timestamp": "20261006T055403Z",
+      "report": "docs/impl/20261006T055403Z-qwen15-compute-optimization-results.md",
+      "related_reports": [
+        "docs/impl/20261006T055403Z-qwen15-compute-optimization-results.md"
+      ],
+      "title": "Qwen 1.5B 单VE计算优化验收",
+      "data_excerpt": "单VE运行槽1，四线程，上下文2048，关闭trace/profile。基线/候选/候选/基线顺序，各进程一次冷请求、三次热请求，再长输入和返回短输入。每条固定17输入/32输出；每后端六条热态样本的中位数：生成3.810→4.502词元/秒，提高18.16%；输入计算2.550→1.293秒；请求往返10.955→8.406秒，缩短23.26%。117输入/16输出的请求中位数19.216→9.375秒。（原文摘录）",
+      "summary": "只加速预填充注意力并扩大投影块，保持原精度。",
+      "report_sha256": "07f780edd176819d207d11a1d92ef12912663fd476cc62f10b0a7374b1a10379"
+    },
+    {
+      "timestamp": "20261006T092910Z",
+      "report": "docs/impl/20261006T092910Z-qwen15-publication-next-plan.md",
+      "related_reports": [
+        "docs/impl/20261006T092910Z-qwen15-publication-next-plan.md"
+      ],
+      "title": "当前进展发布与下一轮准备",
+      "data_excerpt": "当前验收基线：Qwen2.5-1.5B-Instruct Q4_K_M，单VE运行槽1、4线程、上下文2048。生成4.5019词元/秒；17输入/32输出热态往返8.4064秒；117输入/16输出9.3750秒。保持FP64投影/精细元素计算、FP32激活与原注意力F16舍入，缓存载荷11.50GiB、预算16GiB。只有本机单卡这些负载有证据，不将结果扩展到其他模型或三卡。（原文摘录）",
+      "summary": "提交前复核完成：对确切Git暂存内容393个文件运行publication audit，未发现配置检查中的隐私项；44个变更文件通过差异空白检查，Python和Shell语法检查通过。（原文结论摘录）",
+      "report_sha256": "66a8c3498c19b4c53ae74cb041862dcb08393d35b38e019d075a135234017aad"
+    },
+    {
+      "timestamp": "20261006T095108Z",
+      "report": "docs/impl/20261006T095108Z-qwen15-tile-sweep.md",
+      "related_reports": [
+        "docs/impl/20261006T095108Z-qwen15-tile-sweep.md"
+      ],
+      "title": "Qwen 1.5B 分块迭代",
+      "data_excerpt": "| 分块行数 | 候选线程 | 同轮基线 token/s | 候选 token/s | 生成速度变化 | 短请求耗时变化 | 长请求耗时变化 | | --- | --- | --- | --- | --- | --- | --- | | 512 | 4 | 4.548 | 4.481 | -1.48% | +0.41% | -4.28% | | 2048 | 4 | 4.517 | 4.490 | -0.58% | +2.12% | +8.78% | | …（原文摘录）",
+      "summary": "四个候选未胜过1024行、4线程，全部拒绝。",
+      "report_sha256": "1a11c9f4ab4cd763dc937c4526d306245569b07ee9bb5a4a6e81f7959069cf55"
+    },
+    {
+      "timestamp": "20261006T103723Z",
+      "report": "docs/impl/20261006T103723Z-qwen15-diagnostic.md",
+      "related_reports": [
+        "docs/impl/20261006T103723Z-qwen15-diagnostic.md"
+      ],
+      "title": "Qwen 1.5B 诊断计时",
+      "data_excerpt": "最终验证：ABBA 完成，每个进程一次冷请求、三次短 warm 请求、一次长请求、一次返回短请求。无计时对照 4.524158 token/s，抽样 4.521149 token/s，生成速度变化 -0.0665%；短请求总耗时变化 -0.1363%。这些是诊断开销对比，不是推理优化收益。三组共 24 步 CPU 全分数门槛通过，32 步 CPU 序列与长请求既有 VE 序列一致。缓存预算、归零的预留容量、warm 无新增缓存条目均通过。（原文摘录）",
+      "summary": "全量计时扰动过大，改为稀疏采样，失败测量不作瓶颈依据。",
+      "report_sha256": "e8d9175271a511b82d0ab09b9c825acf106cba7898e40e36cf4bb0fa2e236890"
+    },
+    {
+      "timestamp": "20261006T110253Z",
+      "report": "docs/impl/20261006T110253Z-qwen15-input-reuse.md",
+      "related_reports": [
+        "docs/impl/20261006T110253Z-qwen15-input-reuse.md"
+      ],
+      "title": "Qwen 1.5B 输入整理复用",
+      "data_excerpt": "最终验收并采用：同轮 ABBA 六条 warm 请求中位数，生成 4.5046685→4.8963165 token/s（+8.69%）；17 输入/32 输出请求 8.39514→7.53660s（−10.23%）；117 输入/16 输出请求 9.42220→7.24019s（−23.16%）；输入计算 1.29118→0.996741s（−22.80%）。各次运行样本与波动见 `docs/results/qwen25-1.5b-input-reuse…（原文摘录）",
+      "summary": "保持精度并复用算子内输入转换，正式对照通过。",
+      "report_sha256": "9790ed4d51ca54ad4a18fd324db075e3264846e008c30231d2ccdf517864ab4e"
+    },
+    {
+      "timestamp": "20261006T112447Z",
+      "report": "docs/impl/20261006T112447Z-qwen36-native-mtp.md",
+      "related_reports": [
+        "docs/impl/20261006T112447Z-qwen36-native-mtp.md"
+      ],
+      "title": "Qwen3.6 原生 MTP 移植",
+      "data_excerpt": "已开始按固定官方提交获取 19 个 MTP 张量与 3 个共享张量，首个共享输出权重已下载并计算哈希；完整源文件尚未就绪。下载器改为 32 MiB HTTP Range 请求，验证 206 与 Content-Range，保留逐张量来源、偏移和哈希；禁止服务器返回全量分片。语法检查通过，分段下载尚未实际完成验证。（原文摘录）",
+      "summary": "现有输入复用优化的默认选择契约检查仍通过，git diff --check 通过；新增文件与现有待提交文本扫描未发现私人路径、令牌或凭据模式。（原文结论摘录）",
+      "report_sha256": "b00d27306e06409593145c6c51a82723d53ba4e1d141515b6deaec6c6823957c"
+    },
+    {
+      "timestamp": "20261007T011801Z",
+      "report": "docs/impl/20261007T011801Z-qwen36-mtp-resume.md",
+      "related_reports": [
+        "docs/impl/20261007T011801Z-qwen36-mtp-resume.md"
+      ],
+      "title": "Qwen3.6 原生 MTP 继续实施",
+      "data_excerpt": "热态预填充 7.937953→8.1162865 秒，加载中位数 18.0088945→32.0746205 秒。MTP 有额外加载成本，生成提速不能外推为冷启动整体提速。中文两草稿短测下降约 10.8%，一草稿下降约 13.7%；中文维持普通生成。短测与正式 ABBA 的请求长度和样本数不同，不能混合推导平均收益。独立实验 CLI 未成为默认执行器，尚未接入外部常驻会话。（原文摘录）",
+      "summary": "MTP收益依赖提示；代码对照有效，中文保留普通生成。",
+      "report_sha256": "9117a0d0e4fe2752810f984a41b248da85c42b6cf47db97df68fe1c6ba5168d2"
+    },
+    {
+      "timestamp": "20261008T020107Z",
+      "report": "docs/impl/20261008T020107Z-qwen36-mtp-session.md",
+      "related_reports": [
+        "docs/impl/20261008T020107Z-qwen36-mtp-session.md"
+      ],
+      "title": "原生 MTP 常驻会话与收益回退",
+      "data_excerpt": "常驻普通模型启动约 18.114 秒、固定/自动 MTP 约 34.101/34.330 秒；该成本在进程内只付一次。代码首次与重复请求的主机往返时间普通 75.274→28.202 秒、固定 MTP 69.554→21.780 秒；首次还包含权重缓存填充，不能把差值全部归因于会话协议。原生行内 load_seconds 是进程共享的加载统计，不能每请求再次累计。（原文摘录）",
+      "summary": "会话与回退功能通过，自动策略未证明额外收益且不默认采用。",
+      "report_sha256": "abb1f05a7a26e0b6885f2fc3ccf5c1cf537120fc2f72c2b3a9f8a0a63166ef30"
+    },
+    {
+      "timestamp": "20261008T021318Z",
+      "report": "docs/impl/20261008T021318Z-sd-turbo-ve-stage.md",
+      "related_reports": [
+        "docs/impl/20261008T021318Z-sd-turbo-ve-stage.md"
+      ],
+      "title": "图像模型实施状态与拟定产物",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "拟定产物为模型准备/哈希清单、独立 NCC 构建脚本、CPU 参考导出器、VE 算子与单步验证器、完整图像 CLI/常驻入口、温度守护下的交替基准脚本和公开汇总。（原文结论摘录）",
+      "report_sha256": "7a1bc703f828e38c8d1c7cb03ce01fb10bed8be98bb4965a77cca78e05ead74f"
+    },
+    {
+      "timestamp": "20261008T021839Z",
+      "report": "docs/impl/20261008T021839Z-sd-turbo-port.md",
+      "related_reports": [
+        "docs/impl/20261008T021839Z-sd-turbo-port.md"
+      ],
+      "title": "SD-Turbo 移植迭代",
+      "data_excerpt": "原始 NCC 构建在 GGUF 模板读取器的 O1 优化阶段发生编译器 SIGSEGV，构建失败，最高 CPU72°C，VE45.38°C，未触发温度停止。局部构建配置将读取器设为 O0；不降低图像算子的数值标准。首次生成补丁范围断言发现同名分支不唯一，已将替换限制到卷积函数及普通生成分支，避免修改不相关路径。（原文摘录）",
+      "summary": "另为测试增加固定初始噪声输入及嵌入/最终潜在数组导出，精确尺寸、非有限值和读写失败均拒绝；开关默认关闭。（原文结论摘录）",
+      "report_sha256": "8a9b35a315f6d34bd2fd9caa7bcbd2401a4450c292c91eee90b1fa46fee005d7"
+    },
+    {
+      "timestamp": "20261008T025806Z",
+      "report": "docs/impl/20261008T025806Z-sd-turbo-operators.md",
+      "related_reports": [
+        "docs/impl/20261008T025806Z-sd-turbo-operators.md"
+      ],
+      "title": "VE 图像基础算子实现与验证",
+      "data_excerpt": "11 项通过，矩阵、卷积、上采样用例当前最大绝对误差为 0；其他算子最大绝对误差不超过 2.084e-7。该确定性输入的零误差不是任意真实输入精确相等的保证。温度最高 CPU69°C、VE46.88°C；97 个风扇观测通道零变化，可读通道不覆盖所有真实策略。原始日志 `build/sd-ve-operators.log` 仅本地保存。（原文摘录）",
+      "summary": "算子脚本显式统一框架结构布局宏 GGML_MAX_NAME=160；已有测试只通过 API 访问张量，最终构建后仍重跑确认。（原文结论摘录）",
+      "report_sha256": "db4add0559feaa640fe39042513a757a963a00a2397d1ee0df55f42fed9c7c7c"
+    },
+    {
+      "timestamp": "20261008T032306Z",
+      "report": "docs/impl/20261008T032306Z-readme-navigation.md",
+      "related_reports": [
+        "docs/impl/20261008T032306Z-readme-navigation.md"
+      ],
+      "title": "README 精简实施",
+      "data_excerpt": "最终对37个待提交文件执行工作区隐私检查，未命中配置的私人路径、凭据、令牌、邮箱、私钥以及大文件或二进制检查；49个本地Markdown链接均存在。`git diff --check`通过。这是当前工作区检查，提交时仍需审计准确的暂存内容。（原文摘录）",
+      "summary": "最终对37个待提交文件执行工作区隐私检查，未命中配置的私人路径、凭据、令牌、邮箱、私钥以及大文件或二进制检查；49个本地Markdown链接均存在。（原文结论摘录）",
+      "report_sha256": "33729df2cda7f1a4639cc15348baa65c22302bf8cad590b63f0088b83902b1f4"
+    },
+    {
+      "timestamp": "20261008T042433Z",
+      "report": "docs/impl/20261008T042433Z-sd-turbo-full-validation.md",
+      "related_reports": [
+        "docs/impl/20261008T042433Z-sd-turbo-full-validation.md"
+      ],
+      "title": "SD-Turbo 验证续轮实施记录",
+      "data_excerpt": "本轮重新执行11项VE基础算子，全部通过；CPU74°C、VE46.75°C，97个风扇可读通道未观察到变化。证据见docs/results/20261008T042750Z-sd-turbo-validation.json。（原文摘录）",
+      "summary": "本轮重新执行11项VE基础算子，全部通过；CPU74°C、VE46.75°C，97个风扇可读通道未观察到变化。（原文结论摘录）",
+      "report_sha256": "f2733e70dceaec61ed671fe0d4e521f825e948ff774650c3d3c95b550ed9d5cd"
+    },
+    {
+      "timestamp": "20261008T054515Z",
+      "report": "docs/impl/20261008T054515Z-sd-turbo-compact-baseline.md",
+      "related_reports": [
+        "docs/impl/20261008T054515Z-sd-turbo-compact-baseline.md"
+      ],
+      "title": "紧凑框架实施",
+      "data_excerpt": "新基线11项VE算子全部通过，最大绝对误差2.08354936e-7；两项矩阵分配到NLC。CPU75°C、VE45.88°C，97个风扇通道未观察到变化。公开证据docs/results/20261008T055924Z-sd-turbo-validation.json，明确framework_variant=compact，完整图像仍待验收。测试适配旧版上采样三参数接口，标准不变。（原文摘录）",
+      "summary": "新基线11项VE算子全部通过，最大绝对误差2.08354936e-7；两项矩阵分配到NLC。（原文结论摘录）",
+      "report_sha256": "3d2807f91d3446138236e1ff1df65412f24d17c41f6e7876ec6fa5b65091ba96"
+    },
+    {
+      "timestamp": "20261008T062011Z",
+      "report": "docs/impl/20261008T062011Z-sd-turbo-vocabulary-split.md",
+      "related_reports": [
+        "docs/impl/20261008T062011Z-sd-turbo-vocabulary-split.md"
+      ],
+      "title": "SD-Turbo 词表编译拆分",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "该轮记录“SD-Turbo 词表编译拆分”的实施状态，未新增可独立使用的性能结论。",
+      "report_sha256": "083b582e9bb0ea972421a5f97d6153568635c6733329c7be4c87ccc0a70abfca"
+    },
+    {
+      "timestamp": "20261008T062816Z",
+      "report": "docs/impl/20261008T062816Z-sd-turbo-weight-index.md",
+      "related_reports": [
+        "docs/impl/20261008T062816Z-sd-turbo-weight-index.md"
+      ],
+      "title": "SD-Turbo 权重索引兼容路径",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "新增prepare_sd_weight_index.py：验证官方LFS SHA256、张量F32类型、维度、尺寸、偏移、无间隙无重叠覆盖。（原文结论摘录）",
+      "report_sha256": "fe913911162e93940a831c9a63510ff196b8982900cc381cbf784005e8d79430"
+    },
+    {
+      "timestamp": "20261008T063416Z",
+      "report": "docs/impl/20261008T063416Z-sd-turbo-cxx11.md",
+      "related_reports": [
+        "docs/impl/20261008T063416Z-sd-turbo-cxx11.md"
+      ],
+      "title": "SD-Turbo C++11 兼容重试",
+      "data_excerpt": "模型执行文件仍编译时，实时CPU最高66°C、VE44°C，启动六提示独立CPU参考导出（25%占空比）；编译保持50%，两个任务分别使用0.2秒温度守护。早期过热失败曾是不限速CPU参考与编译并发；本次采用低总负载，停止线不变。参考计时含限速，不作CPU性能基线。（原文摘录）",
+      "summary": "早期过热失败曾是不限速CPU参考与编译并发；本次采用低总负载，停止线不变。（原文结论摘录）",
+      "report_sha256": "47e7b1ab8da7a8de01bea41035e9a0fdce244f95a477360c7f4c070dbe597bfb"
+    },
+    {
+      "timestamp": "20261008T070356Z",
+      "report": "docs/impl/20261008T070356Z-sd-turbo-thermal-serial.md",
+      "related_reports": [
+        "docs/impl/20261008T070356Z-sd-turbo-thermal-serial.md"
+      ],
+      "title": "SD-Turbo 温度停止与串行重试",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "已有model.cpp实际完成编译；主模型文件曾持续生成汇编，但因温度守护停止未完成对象。（原文结论摘录）",
+      "report_sha256": "a5884d0aa9394adcc2ece725e37a0713160d182e895c39fa289e0b76f0b82000"
+    },
+    {
+      "timestamp": "20261008T071945Z",
+      "report": "docs/impl/20261008T071945Z-sd-turbo-split-stages.md",
+      "related_reports": [
+        "docs/impl/20261008T071945Z-sd-turbo-split-stages.md"
+      ],
+      "title": "SD-Turbo 三组件拆分验证入口",
+      "data_excerpt": "三组件和固定入口实际编译链接完成，manifest生成。成功构建CPU峰值73°C、VE最高43.50°C；最终11项VE算子复查全部通过，CPU峰值71°C、VE45°C。开始独立单步CPU参考对应的真实VE整图验证，尚无运行结论。（原文摘录）",
+      "summary": "成功构建CPU峰值73°C、VE最高43.50°C；最终11项VE算子复查全部通过，CPU峰值71°C、VE45°C。（原文结论摘录）",
+      "report_sha256": "1b2f8514bfc36936ddf727aeaf7101a3aca414a1bbb917ef8f2ab717b1361fbf"
+    },
+    {
+      "timestamp": "20261008T075930Z",
+      "report": "docs/impl/20261008T075930Z-sd-turbo-input-scheduler.md",
+      "related_reports": [
+        "docs/impl/20261008T075930Z-sd-turbo-input-scheduler.md"
+      ],
+      "title": "SD-Turbo 输入张量调度兼容",
+      "data_excerpt": "新增既存外部数据矩阵场景后，12项VE算子全部实际通过，包含真实NLC矩阵分配断言；CPU峰值64°C、VE44.88°C。开始修复后的完整单图复验，尚未确认整图通过。（原文摘录）",
+      "summary": "开始修复后的完整单图复验，尚未确认整图通过。（原文结论摘录）",
+      "report_sha256": "8655e2a3dc31cfa657116ea6788120448760d350b67ce8fa877fe13a2d26ac61"
+    },
+    {
+      "timestamp": "20261008T081632Z",
+      "report": "docs/impl/20261008T081632Z-sd-turbo-first-image.md",
+      "related_reports": [
+        "docs/impl/20261008T081632Z-sd-turbo-first-image.md"
+      ],
+      "title": "SD-Turbo 首例真实整图验收",
+      "data_excerpt": "完整进程返回0，CLIP/UNet/VAE分配到NLC的图节点分别230/1169/257（包含视图，不当作SGEMM调用次数）。首次评估因进度条与UNet标记同处一行漏读，修复解析并使用严格校验原二进制、参考来源、原检查器快照的recheck模式复核既有原始数组，没有重跑模型或改数值阈值。12项算子亦通过。公开结果见docs/results/20261008T081632Z-sd-turbo-validation.json。（原文摘录）",
+      "summary": "12项算子亦通过。（原文结论摘录）",
+      "report_sha256": "e2b75703a16a49dc73e220155ff740894cfb85010daa28f6ed7ac20841f4e984"
+    },
+    {
+      "timestamp": "20261008T082719Z",
+      "report": "docs/impl/20261008T082719Z-sd-turbo-next-performance.md",
+      "related_reports": [
+        "docs/impl/20261008T082719Z-sd-turbo-next-performance.md"
+      ],
+      "title": "SD-Turbo 下一阶段性能定位",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "该轮记录“SD-Turbo 下一阶段性能定位”的实施状态，未新增可独立使用的性能结论。",
+      "report_sha256": "e9fbb69ac986389b784b478313953de86b88207e81559ccbc045435d0bf09022"
+    },
+    {
+      "timestamp": "20261008T084233Z",
+      "report": "docs/impl/20261008T084233Z-sd-turbo-multi-validation.md",
+      "related_reports": [
+        "docs/impl/20261008T084233Z-sd-turbo-multi-validation.md"
+      ],
+      "title": "扩展验证实施",
+      "data_excerpt": "无独立性能数字；该轮记录实现、环境或待验证事项。",
+      "summary": "当前尚未宣布多提示验收完成。（原文结论摘录）",
+      "report_sha256": "240b1b2be71d8963a2bac698aa65269958ab2e85dafc403ea490cafec6a3b141"
+    },
+    {
+      "timestamp": "20261008T091001Z",
+      "report": "docs/impl/20261008T091001Z-sd-turbo-six-prompts.md",
+      "related_reports": [
+        "docs/impl/20261008T091001Z-sd-turbo-six-prompts.md"
+      ],
+      "title": "六提示实施结果",
+      "data_excerpt": "六个VE进程均返回0，30项数组比较通过，初始噪声SHA完全匹配，每步时间步匹配。各提示CLIP、UNet、VAE分别记录184、337、40个分配到NLC BLAS的MUL_MAT图节点。总图节点230/1169/257含视图，已与矩阵节点区分；不声称测量底层库调用次数。（原文摘录）",
+      "summary": "六个VE进程均返回0，30项数组比较通过，初始噪声SHA完全匹配，每步时间步匹配。（原文结论摘录）",
+      "report_sha256": "2d12a58681ba0ed4e02d38eda1d85a59a2fcb0b7b7a32d428171b121dd72b029"
+    },
+    {
+      "timestamp": "20261008T091957Z",
+      "report": "docs/impl/20261008T091957Z-sd-turbo-final-validation.md",
+      "related_reports": [
+        "docs/impl/20261008T091957Z-sd-turbo-final-validation.md"
+      ],
+      "title": "四步验证与最终实现状态",
+      "data_excerpt": "公开结果由scripts/record_sd_result.py提取安全字段；不发布模型权重、原始日志、私人路径或设备序列信息。新增Python/Shell语法与git diff --check通过；最终收尾审计检查109个待提交文件、58个本地Markdown链接和201行术语表，未发现敏感字段或失效链接；术语表保持连续双列表格。公开六提示/四步摘要的完成状态、返回码、41项数值检查及案例数量均复核通过。根README保持31行。尚未提交本轮改动。（原文摘录）",
+      "summary": "完整图像链路可用，随后开始分项优化。",
+      "report_sha256": "9ad0dd8d49b71ed4f3cddddb6dee5283ffc0011f28a57207125cc9cfd87de3e1"
+    },
+    {
+      "timestamp": "20261008T092604Z",
+      "report": "docs/impl/20261008T092604Z-sd-turbo-profiling-pool.md",
+      "related_reports": [
+        "docs/impl/20261008T092604Z-sd-turbo-profiling-pool.md"
+      ],
+      "title": "计时改动实施记录",
+      "data_excerpt": "ABBA四次单步均完成并通过五项数组对照，案例顺序disposable/persistent/persistent/disposable。全进程均值264.240→212.289秒，延迟下降19.661%；图执行191.826→139.215秒，下降27.427%。通用VE分段下降29.110%，NLC耗时变化约+0.481%，未宣称NLC优化。两次候选均快于两次基线。首候选七个F32诊断数组与首基线逐字节一致。最高CPU77°C、VE52.25°C。候选…（原文摘录）",
+      "summary": "候选四步最终通过11项比较，最大阶段归一化L2为2.1410763×10⁻⁶，解码1.0930311×10⁻⁶。（原文结论摘录）",
+      "report_sha256": "c975499ecfd157c9d3eb0673fc1a67bbf86b5225aba76ffb30725be1225a87d1"
+    },
+    {
+      "timestamp": "20261008T100245Z",
+      "report": "docs/impl/20261008T100245Z-sd-turbo-baseline-profile.md",
+      "related_reports": [
+        "docs/impl/20261008T100245Z-sd-turbo-baseline-profile.md"
+      ],
+      "title": "基线硬件验证",
+      "data_excerpt": "头文件显式依赖重建完成，新鲜度检查通过，CPU峰值73°C。新构建12项算子回归通过，CPU峰值73°C、VE43.62°C。首基线完整整图与新增全部阶段计时均通过，CPU最高71°C、VE50.25°C；风扇可读通道无观测变化。原始基线为build/results/20261008T095623Z-sd-ve。（原文摘录）",
+      "summary": "头文件显式依赖重建完成，新鲜度检查通过，CPU峰值73°C。（原文结论摘录）",
+      "report_sha256": "e35f208aef1f9e4e2d708c2668b397169ddf82825749928c90789d5f05df46c2"
+    },
+    {
+      "timestamp": "20261008T102317Z",
+      "report": "docs/impl/20261008T102317Z-sd-turbo-pool-verified.md",
+      "related_reports": [
+        "docs/impl/20261008T102317Z-sd-turbo-pool-verified.md"
+      ],
+      "title": "线程池与构建修复验收",
+      "data_excerpt": "收尾审计：125个待提交文件、61个本地Markdown链接、208行连续双列术语表均通过隐私/格式检查；新增Python/Shell语法、JSON解析和git diff --check通过。52个构建manifest文件的源代码/生成物/索引/二进制哈希全部匹配；公开摘要31项数值比较、ABBA顺序、四步状态与温度边界复核通过。根README仍为31行。（原文摘录）",
+      "summary": "复用图计算线程降低通用阶段开销，含加载的进程指标另列。",
+      "report_sha256": "c48dc30b85cdc254b53d1a4ec212054c91145d7339023e7eadaf650400f032c0"
+    },
+    {
+      "timestamp": "20261008T110130Z",
+      "report": "docs/impl/20261008T110130Z-sd-turbo-operator-profile.md",
+      "related_reports": [
+        "docs/impl/20261008T110130Z-sd-turbo-operator-profile.md"
+      ],
+      "title": "算子计时实施",
+      "data_excerpt": "整图五项CPU参考比较通过；算子计时为原生VE通用图主工作线程到节点结束屏障的经过时间，不包含NLC图执行、不将线程CPU时间相加，计时开销未单独测量。公开数据见算子计时结果。SiLU候选与失败修正另见后续迭代。（原文摘录）",
+      "summary": "编译器本机帮助确认 O2 和向量诊断参数；最终效果必须以实际运行决定，不能从编译选项推断。（原文结论摘录）",
+      "report_sha256": "59b1fe79b08b78af56f8efb937f960357d8091f0abae4bef2a41e0bc434f2306"
+    },
+    {
+      "timestamp": "20261008T111611Z",
+      "report": "docs/impl/20261008T111611Z-sd-turbo-silu.md",
+      "related_reports": [
+        "docs/impl/20261008T111611Z-sd-turbo-silu.md"
+      ],
+      "title": "SiLU 候选实施",
+      "data_excerpt": "同二进制8线程常驻池，关闭算子级计时：全进程216.835→167.596秒，延迟下降22.708%；图执行145.630→96.387秒，下降33.814%；VAE图执行90.688→44.506秒，下降50.924%。权重加载57.773→57.792秒，无收益。四次各五项独立CPU比较均通过，候选最大归一化L2误差3.726329e-6。CPU最高80°C，触发警告但未达85°C停止线，VE最高52.125°C；97可读风扇通道无变化，未建立完整策略…（原文摘录）",
+      "summary": "未经范围检查的向量数学不合格，失败耗时不作为收益。",
+      "report_sha256": "f24262948c937e394b8a84375ba8bc017b0f366e2c3435fd3aa038ce45ca86b4"
+    },
+    {
+      "timestamp": "20261008T114450Z",
+      "report": "docs/impl/20261008T114450Z-sd-turbo-silu-verified.md",
+      "related_reports": [
+        "docs/impl/20261008T114450Z-sd-turbo-silu-verified.md"
+      ],
+      "title": "SD-Turbo SiLU 优化验收",
+      "data_excerpt": "单VE运行槽1，官方SD-Turbo固定修订，FP32、512×512、8线程常驻池、单提示单步ABBA：全进程均值216.835→167.596秒，延迟下降22.708%；图执行145.630→96.387秒，下降33.814%；VAE图执行90.688→44.506秒，下降50.924%。权重加载约57.8秒基本不变。各组两次，包含权重加载与诊断输出，文件缓存未控制，不是常驻稳态秒/图。见公开结果。（原文摘录）",
+      "summary": "修正范围/除法编译选项后通过完整验证。",
+      "report_sha256": "46f38aadbb4ec9d90f439ef18904a5d3eff02b8b70486cbc11f221f9a0efbb8e"
+    },
+    {
+      "timestamp": "20261009T025631Z",
+      "report": "docs/impl/20261009T025631Z-sd-turbo-softmax.md",
+      "related_reports": [
+        "docs/impl/20261009T025631Z-sd-turbo-softmax.md"
+      ],
+      "title": "Softmax 实施记录",
+      "data_excerpt": "同二进制、单提示、两次每组，始终开启SiLU ve与8线程常驻池，仅切换Softmax：整进程169.065010→125.914727秒，延迟下降25.5229%；三网络图执行96.6383095→51.6553605秒，下降46.5477%；UNet图执行50.311681→6.994924秒，下降86.0968%。VAE图执行44.678581→43.136004秒，仍为主要计算耗时。权重加载58.993309→60.805360秒，未获收益且缓存未…（原文摘录）",
+      "summary": "四步正在验证，尚不标为最终通过。（原文结论摘录）",
+      "report_sha256": "23b366f2e549d436660809f9c9b30d21de146f5031eb9781f25c89fd14e6cac2"
+    },
+    {
+      "timestamp": "20261009T031452Z",
+      "report": "docs/impl/20261009T031452Z-sd-turbo-softmax-verified.md",
+      "related_reports": [
+        "docs/impl/20261009T031452Z-sd-turbo-softmax-verified.md"
+      ],
+      "title": "SD-Turbo Softmax 向量优化验收",
+      "data_excerpt": "四次各五项CPU对照通过；额外四步11项及时间步检查通过，整进程148.966190秒，解码归一化L2误差1.451162e-6。四步没有ABBA，不报告其提速百分比。24组独立FP64、极端差值、负无穷掩码、顺序求和精确比较、原地及尾部哨兵通过，最大概率绝对误差7.52731016e-9。12算子回归通过。浮点舍入有细微差异，不声称逐字节相同；未建立图像质量基准。（原文摘录）",
+      "summary": "仅向量化exp并保持累加顺序，模型参考通过。",
+      "report_sha256": "aac123cbef126bb7fde1b9b3d1693aaab0b30156ad298f44e5571436b080495c"
+    },
+    {
+      "timestamp": "20261009T045457Z",
+      "report": "docs/impl/20261009T045457Z-sd-turbo-im2col.md",
+      "related_reports": [
+        "docs/impl/20261009T045457Z-sd-turbo-im2col.md"
+      ],
+      "title": "im2col 循环优化迭代",
+      "data_excerpt": "同二进制固定两项激活优化及8线程常驻池，仅切换im2col：整进程131.625418→92.941631秒，延迟下降29.3893%；三网络图执行59.276854→20.511851秒，下降65.3965%；VAE图执行50.818844→13.678242秒，下降73.0843%。权重加载58.920226→59.005753秒，无收益。四次各五项CPU比较通过，首个候选与控制的所有原生F32诊断数组逐字节一致。CPU峰值82°C触发警告未达85°C…（原文摘录）",
+      "summary": "16组数据复制独立按位/尾部测试通过，CPU60°C；三组ggml图按位对照和输入不变检查通过，实际分派记录优化1、回退2（一维、批量带间隔布局），CPU64°C；上述VE峰值均43°C。（原文结论摘录）",
+      "report_sha256": "fe324340bbf066a46229440fa527060c92d2d7826301994c885075ab49143679"
+    },
+    {
+      "timestamp": "20261009T052155Z",
+      "report": "docs/impl/20261009T052155Z-ve-memory-calibration.md",
+      "related_reports": [
+        "docs/impl/20261009T052155Z-ve-memory-calibration.md"
+      ],
+      "title": "VE 内存统计受控验证计划",
+      "data_excerpt": "首次malloc申请512MiB后，节点计数准确增加524288 KiB；free后未下降，因此释放门禁失败，不能把该运行标成完整校准通过。原生sysconf报告64MiB页（768页组成48GiB），说明先前假定额外32MiB对齐窗口不适合本机。改用匿名mmap/munmap明确控制映射释放，允许至多一个实测页的辅助分配/对齐差，但仍要求大块映射解除后回落；不把保留512MiB的失败运行直接放宽为通过。同步交叉验证原生页数×页大小等于VEOS报告总量。C…（原文摘录）",
+      "summary": "改用匿名mmap/munmap明确控制映射释放，允许至多一个实测页的辅助分配/对齐差，但仍要求大块映射解除后回落；不把保留512MiB的失败运行直接放宽为通过。（原文结论摘录）",
+      "report_sha256": "3d2f62073de8d810de5a5e854601c0fd69fb53e41c0e408a43792b26d1ca2fd8"
+    },
+    {
+      "timestamp": "20261009T053046Z",
+      "report": "docs/impl/20261009T053046Z-sd-turbo-im2col-verified.md",
+      "related_reports": [
+        "docs/impl/20261009T053046Z-sd-turbo-im2col-verified.md"
+      ],
+      "title": "SD-Turbo im2col 优化验收",
+      "data_excerpt": "183个修改或新增文件通过敏感信息、二进制/体积检查；20个Python文件语法、118个本地文档链接、217行术语表及56项当前构建哈希通过核对。新增shell脚本语法及git diff --check通过。已在忽略目录保存本轮源码与二进制快照；本轮未提交或推送。（原文摘录）",
+      "summary": "卷积输入整理循环优化有效，数据布局和数学结果保持。",
+      "report_sha256": "98d00566cff9e60b4083b632c09b82cf054962e1b98e0520327aff03dd95f97e"
+    },
+    {
+      "timestamp": "20261009T053237Z",
+      "report": "docs/impl/20261009T053237Z-sd-turbo-memory-sampling.md",
+      "related_reports": [
+        "docs/impl/20261009T053237Z-sd-turbo-memory-sampling.md"
+      ],
+      "title": "SD-Turbo 连续节点内存测量",
+      "data_excerpt": "非硬件模拟验证：计数查询失败后，采样器终止命令进程组并保存completed=false，测试通过。新术语RAII（对象生命周期管理资源）及离散采样最高值已记录术语表。189个修改/新增文件检查隐私、源码/shell语法、文档链接、术语表列数与56项构建哈希通过；没有修改模型二进制或原推理检查器，未提交/推送。（原文摘录）",
+      "summary": "采样失败或超时停止子进程组，失败记录保留。（原文结论摘录）",
+      "report_sha256": "79ff1122f8fda2f2bad9f0649d1a940df5d46b0aee581e87e79de96d34a4e7b5"
+    },
+    {
+      "timestamp": "20261009T053636Z",
+      "report": "docs/impl/20261009T053636Z-sd-turbo-resident-report.md",
+      "related_reports": [
+        "docs/impl/20261009T053636Z-sd-turbo-resident-report.md",
+        "docs/impl/20261009T053636Z-sd-turbo-resident.md"
+      ],
+      "title": "SD-Turbo 权重常驻优化验收报告",
+      "data_excerpt": "| 指标 | 重载权重 | 常驻权重 | 结论 | | --- | --- | --- | --- | | 两请求全进程均值 | 185.970 秒 | 124.917 秒 | 延迟下降 32.83% | | 第一次请求均值 | 92.875 秒 | 92.353 秒 | 无明显收益 | | 后续请求均值 | 92.701 秒 | 32.042 秒 | 延迟下降 65.43% | | 全节点离散采样最高内存 | 5.3223 GiB | 9.8223 Gi…（原文摘录）",
+      "summary": "停顿候选不作为收益，后续改为共享池。",
+      "report_sha256": "41dd80a3fad266874a4eecbd444b759b41d41357a46fe3de79e97e8f3c10d125"
+    },
+    {
+      "timestamp": "20261009T061739Z",
+      "report": "docs/impl/20261009T061739Z-sd-turbo-shared-pool-report.md",
+      "related_reports": [
+        "docs/impl/20261009T061739Z-sd-turbo-shared-pool-report.md",
+        "docs/impl/20261009T061739Z-sd-turbo-shared-pool.md"
+      ],
+      "title": "SD-Turbo 权重常驻优化验收报告",
+      "data_excerpt": "| 报告项目 | 当前结果 | | --- | --- | | 问题 | 前版常驻保留多个组件池，首请求在UNet图执行长期未完成；调度原因仍待验证 | | 实施 | 流水线统一持有一个阻塞8线程池，三组件权重/后端分别保留，顺序附着 | | 对照条件 | 重载与常驻固定同一个共享池配置、同一二进制和数值候选 | | 性能前后 | 两请求进程185.970→124.917秒（−32.83%）；后续92.701→32.042秒（−65.43%）；首次无明显收…（原文摘录）",
+      "summary": "四次尚未完成，不能给最终均值/收益百分比；仍保持来源与检查器冻结，串行温度保护。（原文结论摘录）",
+      "report_sha256": "f395e10dff807d276a9eec6d543bb8d3226d38cb395f66a1c00fc91e198a18fb"
+    },
+    {
+      "timestamp": "20261009T071320Z",
+      "report": "docs/impl/20261009T071320Z-sd-turbo-resident-verified.md",
+      "related_reports": [
+        "docs/impl/20261009T071320Z-sd-turbo-resident-verified.md"
+      ],
+      "title": "SD-Turbo 权重常驻优化验收报告",
+      "data_excerpt": "| 指标 | 重载权重 | 常驻权重 | 结论 | | --- | --- | --- | --- | | 两请求全进程均值 | 185.970 秒 | 124.917 秒 | 延迟下降 32.83% | | 第一次请求均值 | 92.875 秒 | 92.353 秒 | 无明显收益 | | 后续请求均值 | 92.701 秒 | 32.042 秒 | 延迟下降 65.43% | | 全节点离散采样最高内存 | 5.3223 GiB | 9.8223 Gi…（原文摘录）",
+      "summary": "保留权重减少后续加载，增加节点内存占用。",
+      "report_sha256": "ef6d08dac4b0fdcdafc70569eaedf43403be3ea4544e162ec6b0bef17cbafd03"
+    },
+    {
+      "timestamp": "20261009T071910Z",
+      "report": "docs/impl/20261009T071910Z-sd-turbo-tokenizer-profile.md",
+      "related_reports": [
+        "docs/impl/20261009T071910Z-sd-turbo-tokenizer-profile.md"
+      ],
+      "title": "CLIP 分词器开销定位：本轮过程与报告",
+      "data_excerpt": "三请求15项CPU对照通过，重复原提示词的全部数组和PNG逐字节相同。首次92.871秒，后续32.078/32.060秒。每次分词器构造9.483/9.441/9.434秒，编码0.022/0.040/0.022秒；未实施复用，尚无优化收益。构建最高CPU73°C、VE43.25°C；测试74°C/51.5°C，97个风扇状态通道无变化，实际物理策略未确认。完整结果：分项计时。下一轮复用组件分词器，以开关进行同二进制对照。（原文摘录）",
+      "summary": "最终温度/风扇汇总须等待守护脚本结束，不能提前作为最终峰值发布。（原文结论摘录）",
+      "report_sha256": "fbf86e864feccbcc2148d5bf9e50a4fad97e675070a9a6fcfebe4ed0d4d02574"
+    },
+    {
+      "timestamp": "20261009T073224Z",
+      "report": "docs/impl/20261009T073224Z-sd-turbo-tokenizer-reuse.md",
+      "related_reports": [
+        "docs/impl/20261009T073224Z-sd-turbo-tokenizer-reuse.md"
+      ],
+      "title": "SD-Turbo 分词器复用优化最终报告",
+      "data_excerpt": "固定权重常驻，仅切换分词器复用，两个进程/臂：两请求进程均值126.046→115.861秒（延迟下降8.08%）；后续32.539→22.407秒（下降31.14%）；首次92.981→92.679秒，无明显收益。缓存未控制且含诊断，不推广生产服务。CPU77°C、VE51.875°C；97风扇状态通道无变化，物理策略未确认；四臂退出均回到128MiB。公开初步结果：ABBA指标恢复。（原文摘录）",
+      "summary": "| 项目 | 实测或当前状态 | | --- | --- | | 两请求全进程 | 126.046→115.861秒，延迟下降8.08% | | 后续请求 | 32.539→22.407秒，下降31.14% | | 首次请求 | 92.981→92.679秒，无明显收益 | | 正确性 | ABBA 40项及三请求15项CPU对照通过；对…（原文结论摘录）",
+      "report_sha256": "463ffd852485518556e3d8ceac6c6d5612b379b9b15b7e7a597e330cd7f0f343"
+    },
+    {
+      "timestamp": "20261009T074648Z",
+      "report": "docs/impl/20261009T074648Z-sd-turbo-nlc-parallel-plan.md",
+      "related_reports": [
+        "docs/impl/20261009T074648Z-sd-turbo-nlc-parallel-plan.md"
+      ],
+      "title": "下一阶段：NLC矩阵计算并行评估",
+      "data_excerpt": "已有测量：常驻复用初验热请求约22.4秒，CLIP图约1.5秒；此前四步常驻热请求VAE图约13.75秒，其中BLAS约8.28秒。两者不是同一轮性能对照，不能直接作收益百分比。固定ggml-blas核心直接调用cblas_sgemm；当前构建链接NLC顺序库，Generic路径无NLC线程数设置。（原文摘录）",
+      "summary": "状态：只读研究与实施计划，尚未实施、编译或运行多线程NLC；分词器复用ABBA仍在执行。（原文结论摘录）",
+      "report_sha256": "bbc16dc31863d3a92a76147477bb88bc6a4f2a2cec8e63bf2a8197f8c445662e"
+    },
+    {
+      "timestamp": "20261009T080313Z",
+      "report": "docs/impl/20261009T080313Z-sd-turbo-tokenizer-verified.md",
+      "related_reports": [
+        "docs/impl/20261009T080313Z-sd-turbo-tokenizer-verified.md"
+      ],
+      "title": "SD-Turbo 分词器复用优化最终报告",
+      "data_excerpt": "| 指标 | 每请求构造分词器 | 常驻分词器 | 结论 | | --- | --- | --- | --- | | 两请求进程均值 | 126.046秒 | 115.861秒 | 延迟下降8.08% | | 后续请求均值 | 32.539秒 | 22.407秒 | 延迟下降31.14% | | 首次请求均值 | 92.981秒 | 92.679秒 | 无明显收益 |（原文摘录）",
+      "summary": "复用初始化词表，后续编码仍执行并核验输出。",
+      "report_sha256": "d1c4dbce407f3caefa46128cbc353f851ee7b344019ac4fe2ff28b87a64f8895"
+    },
+    {
+      "timestamp": "20261009T080805Z",
+      "report": "docs/impl/20261009T080805Z-sd-turbo-nlc-profile.md",
+      "related_reports": [
+        "docs/impl/20261009T080805Z-sd-turbo-nlc-profile.md"
+      ],
+      "title": "NLC真实矩阵计时验收报告",
+      "data_excerpt": "BLAS后端包含调用管理和诊断输出，因此不等于库函数纯计时；诊断开销没有独立对照，不报告性能提升。首次请求92.850秒、后续22.604秒，含加载和诊断，不能与上一轮不同构建直接计算收益。两请求10项CPU对照通过，七组FP32数组及PNG逐字节相同；冷/热实际矩阵形状与调用次数集合一致。（原文摘录）",
+      "summary": "计划构建后在温度/内存监控下运行常驻权重与分词器的两请求，全部独立CPU对照必须通过；提取真实调用尺寸/分项时间并聚合同尺寸次数，诊断开销尚未量化，不能把开启诊断的请求时间当生产基准。（原文结论摘录）",
+      "report_sha256": "e8f2f15eb0db2872a32246283d39eba62f9c0c10baa7e31f45b915718318eb1a"
+    },
+    {
+      "timestamp": "20261009T081518Z",
+      "report": "docs/impl/20261009T081518Z-sd-turbo-nlc-profile-verified.md",
+      "related_reports": [
+        "docs/impl/20261009T081518Z-sd-turbo-nlc-profile-verified.md"
+      ],
+      "title": "NLC真实矩阵计时验收报告",
+      "data_excerpt": "BLAS后端包含调用管理和诊断输出，因此不等于库函数纯计时；诊断开销没有独立对照，不报告性能提升。首次请求92.850秒、后续22.604秒，含加载和诊断，不能与上一轮不同构建直接计算收益。两请求10项CPU对照通过，七组FP32数组及PNG逐字节相同；冷/热实际矩阵形状与调用次数集合一致。（原文摘录）",
+      "summary": "两请求10项CPU对照通过，七组FP32数组及PNG逐字节相同；冷/热实际矩阵形状与调用次数集合一致。（原文结论摘录）",
+      "report_sha256": "7c31a1fcdab2611f0adebdc564ba09a2094932e75c61a6d78dc6ebc7eb3a470c"
+    },
+    {
+      "timestamp": "20261009T082652Z",
+      "report": "docs/impl/20261009T082652Z-nlc-gemm-probe.md",
+      "related_reports": [
+        "docs/impl/20261009T082652Z-nlc-gemm-probe.md"
+      ],
+      "title": "NLC真实矩阵顺序/多线程探针最终报告",
+      "data_excerpt": "| 阶段/形状m,n,k | 顺序库均值 | 本轮最快配置 | 最快均值 | 核加速倍数 | | --- | --- | --- | --- | --- | | VAE 512,16384,4608 | 260.617毫秒 | OpenMP4线程 | 113.172毫秒 | 2.30 | | VAE 256,65536,2304 | 255.114毫秒 | OpenMP4线程 | 115.259毫秒 | 2.21 | | VAE 128,262144,11…（原文摘录）",
+      "summary": "状态：八种真实形状×五种配置共40组完成，3200个独立主机FP64采样点对照通过，每次最终完整输出有限。（原文结论摘录）",
+      "report_sha256": "cc92169b78c482cd9530aae5f79f552c37dd5ca88d8a329abc34c02ddde797cb"
+    },
+    {
+      "timestamp": "20261009T084121Z",
+      "report": "docs/impl/20261009T084121Z-nlc-gemm-verified.md",
+      "related_reports": [
+        "docs/impl/20261009T084121Z-nlc-gemm-verified.md"
+      ],
+      "title": "NLC真实矩阵顺序/多线程探针最终报告",
+      "data_excerpt": "| 阶段/形状m,n,k | 顺序库均值 | 本轮最快配置 | 最快均值 | 核加速倍数 | | --- | --- | --- | --- | --- | | VAE 512,16384,4608 | 260.617毫秒 | OpenMP4线程 | 113.172毫秒 | 2.30 | | VAE 256,65536,2304 | 255.114毫秒 | OpenMP4线程 | 115.259毫秒 | 2.21 | | VAE 128,262144,11…（原文摘录）",
+      "summary": "仅为独立矩阵证据，不能外推整模型加速。",
+      "report_sha256": "637620ba94291efffb283626428c92416ad2a9f15cbd4e7e5932c60e33507478"
+    },
+    {
+      "timestamp": "20261009T085621Z",
+      "report": "docs/impl/20261009T085621Z-sd-turbo-nlc-staged.md",
+      "related_reports": [
+        "docs/impl/20261009T085621Z-sd-turbo-nlc-staged.md"
+      ],
+      "title": "完整SD-Turbo分阶段NLC线程候选报告与过程",
+      "data_excerpt": "| 指标 | 已验证基线 / 对照 | 本轮分阶段候选 | | --- | --- | --- | | 热请求完整耗时 | 上一轮独立计时版本22.604秒；不是本轮同二进制对照 | 未完成，不能计算收益 | | 配置 | 顺序NLC、通用共享8线程池 | OpenMP NLC，CLIP1/UNet8/VAE4，每BLAS图退出回到1 | | 正确性 | 上一轮双请求10项独立CPU阶段检查通过 | 无完整请求；尚未进行数值验收 | | 线程切换诊断 | …（原文摘录）",
+      "summary": "独立运行时切换导致严重停顿，未采用。",
+      "report_sha256": "6d0786a43f30c091139f2bc2aa7d6186016970021df25e1c08072ae5f6b474a8"
+    },
+    {
+      "timestamp": "20261009T093029Z",
+      "report": "docs/impl/20261009T093029Z-sd-turbo-nlc-unified.md",
+      "related_reports": [
+        "docs/impl/20261009T093029Z-sd-turbo-nlc-unified.md"
+      ],
+      "title": "SD-Turbo统一固定线程候选",
+      "data_excerpt": "| 项目 | 前一已验证记录 | 统一固定线程候选 | | --- | --- | --- | | 一步冷请求 | 92.850秒，顺序NLC计时版本 | 88.151652秒 | | 一步热请求 | 22.604秒，顺序NLC计时版本 | 18.342301秒 | | 完整对照 | 本轮未交替重测 | 不报告正式收益比例 | | 数值检查 | 历史验证独立保留 | 双请求、六提示、四步累计62项独立CPU阶段检查通过 | | 实际线程区域 | 通用pth…（原文摘录）",
+      "summary": "保持默认原方案，尚未最终验收，不提交或推送。（原文结论摘录）",
+      "report_sha256": "6547e1157ed5fbd4815dd1d4e1b0b69eb65b2e5f5bf20a22cf4450b06fabcba1"
+    },
+    {
+      "timestamp": "20261009T094430Z",
+      "report": "docs/impl/20261009T094430Z-sd-turbo-nlc-abba.md",
+      "related_reports": [
+        "docs/impl/20261009T094430Z-sd-turbo-nlc-abba.md"
+      ],
+      "title": "SD-Turbo统一线程交替性能对照",
+      "data_excerpt": "热请求分项均值：VAE矩阵阶段8.268536→5.950927秒，UNet矩阵阶段2.282763→1.034618秒；CLIP矩阵阶段0.372913→0.530414秒变慢，但通用阶段1.101457→0.822368秒，整体图1.475192→1.353456秒。候选VAE图仍11.345499秒，为主要剩余耗时，通用阶段5.393866秒与矩阵阶段5.950927秒都值得继续定位。（原文摘录）",
+      "summary": "统一运行时解除停顿，双构建固定源对照通过。",
+      "report_sha256": "e720ac38d3204ff662946a44d3665c22d4a60d8726fef241da6fcc28d983e9cf"
+    },
+    {
+      "timestamp": "20261009T095859Z",
+      "report": "docs/impl/20261009T095859Z-sd-turbo-unified-op-profile.md",
+      "related_reports": [
+        "docs/impl/20261009T095859Z-sd-turbo-unified-op-profile.md"
+      ],
+      "title": "优化后VAE算子分项计时",
+      "data_excerpt": "正确性与范围：沿用已验证归档统一固定8线程二进制，仅新增显式诊断检查入口；SD-Turbo FP32、512、一Euler步、VE槽1、常驻权重/分词器、同一冻结提示两请求，10项独立CPU阶段比较和实际线程区域检查通过。第一次原生执行完成，但新增检查器变量初始化顺序错误导致完整验收未完成；修正并重跑通过，保留失败日志/summary，不掩盖、不将失败计为通过。（原文摘录）",
+      "summary": "第一次原生执行完成，但新增检查器变量初始化顺序错误导致完整验收未完成；修正并重跑通过，保留失败日志/summary，不掩盖、不将失败计为通过。（原文结论摘录）",
+      "report_sha256": "69d9d5d9468dae71f4efcd01cb1954a80d13f2d269b344473d2e0b5fddaad5b0"
+    },
+    {
+      "timestamp": "20261009T100749Z",
+      "report": "docs/impl/20261009T100749Z-sd-turbo-binary-shapes.md",
+      "related_reports": [
+        "docs/impl/20261009T100749Z-sd-turbo-binary-shapes.md"
+      ],
+      "title": "ADD/MUL实际广播形状诊断",
+      "data_excerpt": "性能前后：沿用统一8线程，新增诊断，无加乘计算优化；本轮冷/热请求88.349540/18.167500秒，上一轮无形状诊断ABBA热均值18.194223秒。两者不是正式对照，不宣称新增收益；形状输出位于节点计时之前，但整图时间仍包含诊断开销。（原文摘录）",
+      "summary": "正确性：冻结同一一步参考、双请求、SD-Turbo FP32 512、VE槽1、常驻权重/分词器；10项独立CPU阶段检查及实际区域人数、形状条数与算子节点数检查全部通过。（原文结论摘录）",
+      "report_sha256": "13d2bfabf11152362f57a857d94ed903ed12c4d1768d1fd34a69c6a1ef40a0c0"
+    },
+    {
+      "timestamp": "20261009T101644Z",
+      "report": "docs/impl/20261009T101644Z-sd-turbo-binary-plane.md",
+      "related_reports": [
+        "docs/impl/20261009T101644Z-sd-turbo-binary-plane.md"
+      ],
+      "title": "连续平面广播加乘候选",
+      "data_excerpt": "预检CPU63°C/VE42.5°C、节点128MiB。构建通过，四条原地/独立缓冲加乘循环NCC报告向量化，最高CPU67°C/VE42.5°C。独立标量oracle禁向量，448组长度/特殊值/原地/独立缓冲/尾部保护通过，有限值按位一致、NaN只验证分类不要求载荷相同。12组GGML真实图通过，4次候选、8次非连续/非标量回退；输出按位正确。首图测试未将需保留输入标为输出，分配器合法复用输入导致保护断言失败；修正生命周期标记后重跑通过，保留失败日志，…（原文摘录）",
+      "summary": "| 验证/指标 | 本轮结果 | | --- | --- | | 独立标量内核检查 | 504组，有限值按位一致，NaN分类一致，原地/独立缓冲/尾部/保护通过 | | 实际GGML图 | 16组按位对照通过，6次候选/10次回退，含2次广播值输出重叠拒绝 | | 双请求独立CPU阶段检查 | 10项通过，冷/热83.733990/13.…（原文结论摘录）",
+      "report_sha256": "ea387c34eca9d282bb1f398a8a3a6e91ce98663db656c14960b03cdeb63b2696"
+    },
+    {
+      "timestamp": "20261009T104156Z",
+      "report": "docs/impl/20261009T104156Z-sd-turbo-binary-abba.md",
+      "related_reports": [
+        "docs/impl/20261009T104156Z-sd-turbo-binary-abba.md"
+      ],
+      "title": "广播加乘同二进制ABBA",
+      "data_excerpt": "热请求阶段均值：VAE通用阶段5.389628→1.631121秒，矩阵阶段5.949075→5.948114秒；VAE图11.339394→7.579867秒。UNet通用阶段2.550492→2.128806秒，图3.600127→3.157798秒；CLIP图1.363714→1.357603秒。收益主要来自已定位的广播加乘，矩阵调用基本不变。（原文摘录）",
+      "summary": "长连续循环减少广播开销，输出字节一致。",
+      "report_sha256": "c466a9af701e82d10f663d5aed5f3226400a057930fd63c4b095175fd34b0c4f"
+    },
+    {
+      "timestamp": "20261009T105426Z",
+      "report": "docs/impl/20261009T105426Z-ve-omp-switch.md",
+      "related_reports": [
+        "docs/impl/20261009T105426Z-ve-omp-switch.md"
+      ],
+      "title": "统一OpenMP线程切换探针",
+      "data_excerpt": "60次代表矩阵与整数区域检查通过，完整检查503316480个输出，实际线程人数及退出上限全部匹配。固定8区域/配置合计约0.014毫秒；8→4均值0.352毫秒、最大0.542毫秒，4→8均值8.142毫秒、最大8.635毫秒。中间代表矩阵固定8均值0.165813秒、4线程0.115399秒；这些是合成代表矩阵计时，不是完整VAE收益。切换成本足够低，可继续实施匹配阶段线程候选。（原文摘录）",
+      "summary": "恢复8线程存在成本，必须在整图中验证取舍。",
+      "report_sha256": "a0ef0e67c8f6b44e880ff96f79e66aeb1325b1e9e7ac9f77b22eedb824e0a21b"
+    },
+    {
+      "timestamp": "20261009T110302Z",
+      "report": "docs/impl/20261009T110302Z-sd-turbo-vae-threads.md",
+      "related_reports": [
+        "docs/impl/20261009T110302Z-sd-turbo-vae-threads.md"
+      ],
+      "title": "VAE匹配4线程候选",
+      "data_excerpt": "前一统一线程探针实测8→4配置/区域均值0.352毫秒、4→8均值8.142毫秒，合成代表矩阵4线程0.115399秒/8线程0.165813秒，足以继续评估整图。不是完整模型收益。（原文摘录）",
+      "summary": "| 项目 | 实测结果 | | --- | --- | | 双请求一步 | 冷83.013243秒，热13.082515秒；10项独立CPU检查通过 | | 六提示一步 | 五个热请求13.055558–13.121398秒；30项独立CPU检查通过 | | 双请求四步 | 冷93.594710秒，热23.674720秒；22项独立CPU…（原文结论摘录）",
+      "report_sha256": "c1dbd5f5f8f428cf36a02c4a38b495c7681bd93ccae6540fd04af75e6dee3228"
+    },
+    {
+      "timestamp": "20261009T111710Z",
+      "report": "docs/impl/20261009T111710Z-sd-turbo-vae-abba.md",
+      "related_reports": [
+        "docs/impl/20261009T111710Z-sd-turbo-vae-abba.md"
+      ],
+      "title": "VAE线程同二进制交替对照",
+      "data_excerpt": "| 指标 | VAE8线程 | VAE4线程 | 变化 | | --- | --- | --- | --- | | 一步热请求均值 | 13.975580秒 | 13.059158秒 | 延迟降低6.56% | | 冷请求均值 | 83.892192秒 | 83.014738秒 | 降低1.05%，含加载波动 | | 两请求原生进程均值 | 98.523338秒 | 96.690302秒 | 降低1.86%，含加载波动 | | 热VAE通用算子 | 1.6…（原文摘录）",
+      "summary": "矩阵获益超过通用算子损失，显式配置通过。",
+      "report_sha256": "4a540bbc6db0a169bd839a2a67499713ba430aeced35bafbf57c9d5451e3da1a"
+    },
+    {
+      "timestamp": "20261009T112650Z",
+      "report": "docs/impl/20261009T112650Z-sd-turbo-vae-selective.md",
+      "related_reports": [
+        "docs/impl/20261009T112650Z-sd-turbo-vae-selective.md"
+      ],
+      "title": "VAE仅矩阵4线程候选",
+      "data_excerpt": "双请求一步10项、六提示一步30项、双请求四步22项独立CPU阶段检查全部通过；实际矩阵4、矩阵退出恢复8、通用图实际8配置也通过。六提示五个热请求12.151882–12.227071秒，四步冷92.487350秒/热22.932271秒。验证运行CPU最高77°C、VE最高54.62°C，97个可读风扇状态通道无变化，物理风扇策略未确认；每组离散节点内存正常回到128MiB。（原文摘录）",
+      "summary": "双请求一步10项、六提示一步30项、双请求四步22项独立CPU阶段检查全部通过；实际矩阵4、矩阵退出恢复8、通用图实际8配置也通过。（原文结论摘录）",
+      "report_sha256": "123d2a18d605c73b539d816713774b3075ae7c10129a0da9329003ca31ffb831"
+    },
+    {
+      "timestamp": "20261009T113726Z",
+      "report": "docs/impl/20261009T113726Z-sd-turbo-vae-selective-abba.md",
+      "related_reports": [
+        "docs/impl/20261009T113726Z-sd-turbo-vae-selective-abba.md"
+      ],
+      "title": "选择性VAE线程同二进制交替对照",
+      "data_excerpt": "| 指标 | 全VAE4 | 通用8、VAE矩阵4 | 变化 | | --- | --- | --- | --- | | 一步热请求均值 | 13.080845秒 | 12.292402秒 | 延迟降低6.03% | | 冷请求均值 | 82.982842秒 | 82.270409秒 | 降低0.86%，含加载波动 | | 两请求原生进程均值 | 96.706250秒 | 95.224081秒 | 降低1.53%，含加载波动 | | 热VAE通用阶段 | …（原文摘录）",
+      "summary": "恢复通用8线程的收益超过每图切换成本。",
+      "report_sha256": "74df082ad4daedcc3b70cff743d84ae0a9fd85e2abfc61af71d51149a96b4e5f"
+    },
+    {
+      "timestamp": "20261009T114825Z",
+      "report": "docs/impl/20261009T114825Z-sd-turbo-selective-op-profile.md",
+      "related_reports": [
+        "docs/impl/20261009T114825Z-sd-turbo-selective-op-profile.md"
+      ],
+      "title": "选择性线程配置下的算子分项计时",
+      "data_excerpt": "线程交替对照已通过102项CPU检查且热请求降低6.03%。本轮保持模型载荷、权重/分词器常驻、通用8/VAE矩阵4及已验证向量算子，开启现有--op-profile诊断，双请求同一步提示，独立CPU参考检查仍必须通过。该测量用于定位剩余耗时，包含分项计时开销，不能与不含诊断的正式对照混算收益。（原文摘录）",
+      "summary": "GELU成为下一目标，诊断耗时不混入正式收益。",
+      "report_sha256": "f2a86f52ad8733ab69d257f15c3037802658cbc860caff8e4fcf650c0ee66374"
+    },
+    {
+      "timestamp": "20261009T115234Z",
+      "report": "docs/impl/20261009T115234Z-sd-turbo-gelu.md",
+      "related_reports": [
+        "docs/impl/20261009T115234Z-sd-turbo-gelu.md"
+      ],
+      "title": "FP32 erf GELU独立向量候选",
+      "data_excerpt": "编译诊断显示候选循环已向量化，但原生测试以132退出（非法指令），没有通过任何完整验收结论。CPU65°C/VE41.75°C，97可读风扇状态通道无变化。失败源、对象、二进制与日志已归档；模型载荷未改变。保持全部原始输入范围，增加逐用例阶段日志以定位失败，不宣称数值通过或性能收益。（原文摘录）",
+      "summary": "标量参考测试下相同向量核通过，失败根因尚未确定。",
+      "report_sha256": "68b70afcb3d55feda6f1ad54ff8f60900f40fa2e1cf9f9dac2895066b2b40ee5"
+    },
+    {
+      "timestamp": "20261009T115851Z",
+      "report": "docs/impl/20261009T115851Z-sd-turbo-gelu-model.md",
+      "related_reports": [
+        "docs/impl/20261009T115851Z-sd-turbo-gelu-model.md"
+      ],
+      "title": "GELU向量核整模型接入",
+      "data_excerpt": "独立同FP32 erf公式核通过102个完整数值用例，误差最大4.45e-7。测试参考程序标量编译通过，此前两次退出132已归档且根因未确定；不能混算失败性能。本轮接入显式--gelu ve开关，默认generic。独立核O2检查向量数学、禁止fast-math/重排；不换tanh近似。工作线程0按图节点统计派发，CLIP23、UNet每步16、VAE0；行函数按开关调用向量核或原公式。（原文摘录）",
+      "summary": "多样正确性通过，正式性能结果另列。",
+      "report_sha256": "ef690d6153e0be847c7685f94b83b75cba621786db503376a88788549cbc8d5a"
+    },
+    {
+      "timestamp": "20261009T121339Z",
+      "report": "docs/impl/20261009T121339Z-sd-turbo-gelu-abba.md",
+      "related_reports": [
+        "docs/impl/20261009T121339Z-sd-turbo-gelu-abba.md"
+      ],
+      "title": "GELU同二进制交替对照",
+      "data_excerpt": "| 指标 | 原GELU | 向量GELU | 结论 | | --- | --- | --- | --- | | 一步热请求均值 | 12.442397秒 | 11.046380秒 | 延迟降低11.22% | | 冷请求均值 | 85.586449秒 | 84.735407秒 | 降低0.99%，含加载波动 | | 两请求原生进程均值 | 98.667195秒 | 96.426447秒 | 降低2.27%，含加载波动 | | 热CLIP通用阶段 | 0.…（原文摘录）",
+      "summary": "同二进制对照确认收益，仍限所测单VE一步提示。",
+      "report_sha256": "eedcab861e70a65a031fdfe349aac5484f906c9e2c686063f08d9fc54e690bdf"
+    },
+    {
+      "timestamp": "20261009T123247Z",
+      "report": "docs/impl/20261009T123247Z-sd-turbo-im2col-shapes.md",
+      "related_reports": [
+        "docs/impl/20261009T123247Z-sd-turbo-im2col-shapes.md"
+      ],
+      "title": "VAE im2col真实形状采集",
+      "data_excerpt": "构建与原生双请求均退出0，10项独立CPU参考检查通过。诊断记录43种组件/形状组合，UNet共196次、VAE共80次，与原有派发计数完全一致。VAE每请求40次、11种形状，输出逻辑写入量19.391235GiB/请求；512×512、3×3、128通道每请求6次，每次1.125GiB；256通道每请求2次，每次2.25GiB，二者合计11.25GiB/请求，约58.02%。这不是HBM实测流量或带宽，未计算本轮性能提升。（原文摘录）",
+      "summary": "512×512两种形状占约58%写入量；诊断轮不宣称性能收益。",
+      "report_sha256": "a2369a9a578d779a31449132e264acb43cef0343d757052e03ed7b29f029f226"
+    },
+    {
+      "timestamp": "20261009T123747Z",
+      "report": "docs/impl/20261009T123747Z-sd-turbo-im2col-rows.md",
+      "related_reports": [
+        "docs/impl/20261009T123747Z-sd-turbo-im2col-rows.md"
+      ],
+      "title": "im2col输出行划分候选",
+      "data_excerpt": "实施前温度监控检查CPU60°C、VE最高42.38°C，97可读风扇通道无变化；运行接口存在、最近槽1原生双请求通过。CPU80/85、VE70/75持续保护，缺失读数停止。独立候选单独编译，不修改模型对象，不安装、不调整风扇、不提交。（原文摘录）",
+      "summary": "输出行所有权顺序组合正确，尚未接入模型或证明提速。",
+      "report_sha256": "b276a768a58ea147d882ddbc4a1261ba2017dc4081a05c6ca3c724bdf40aa2ac"
+    },
+    {
+      "timestamp": "20261009T123938Z",
+      "report": "docs/impl/20261009T123938Z-sd-turbo-im2col-micro.md",
+      "related_reports": [
+        "docs/impl/20261009T123938Z-sd-turbo-im2col-micro.md"
+      ],
+      "title": "im2col真实形状并发对照",
+      "data_excerpt": "128通道形状四臂共16次完整逐元素检查通过（含预热），每次301989888元素；计时样本原通道划分均值0.026399797秒、输出行划分0.010110715秒，内核耗时降低61.70%。仅该形状的微基准结果，256通道仍在运行，完整温度与风扇总结待进程正常结束；不能宣称整图收益。（原文摘录）",
+      "summary": "128通道部分完整对照有收益，256通道未完成，不作为完整套件通过。",
+      "report_sha256": "c04228949c0f78d1cffb639a5b4dff227c8b5a7954777dc656f065dd21f485d4"
+    },
+    {
+      "timestamp": "20261009T125100Z",
+      "report": "docs/impl/20261009T125100Z-sd-turbo-im2col-parallel-reference.md",
+      "related_reports": [
+        "docs/impl/20261009T125100Z-sd-turbo-im2col-parallel-reference.md"
+      ],
+      "title": "im2col并行完整参考微基准",
+      "data_excerpt": "原生套件退出0，32次完整逐元素检查全部通过，共验证14495514624个输出元素；全部8线程，输入不变及尾哨兵通过。每形状原实现/候选各6个计时样本，不含预热、重置与标量参考。（原文摘录）",
+      "summary": "两种真实形状内核均受益，仍未接入模型或测量整图收益。",
+      "report_sha256": "346ee218b3071f8efd86067d23384e820937e2e9a275e38005d53736233f547c"
+    },
+    {
+      "timestamp": "20261009T125611Z",
+      "report": "docs/impl/20261009T125611Z-sd-turbo-im2col-concurrent.md",
+      "related_reports": [
+        "docs/impl/20261009T125611Z-sd-turbo-im2col-concurrent.md"
+      ],
+      "title": "im2col并发所有权与边界检查",
+      "data_excerpt": "CPU峰值65°C、VE41.50°C，97可读风扇状态无变化。未测本轮性能，上一轮独立微基准128/256通道分别27.214→10.160ms（降低62.66%）和103.179→38.873ms（降低62.32%），不能等同本轮或整图收益。机器结果保存当前及失败日志摘要。（原文摘录）",
+      "summary": "支持1/2/4/8实际线程；16分区仅顺序所有权验证，整图接入待执行。",
+      "report_sha256": "89f3b41ed639d2178c387d0ce295a9273c60524c3a52ccb9268ea3cf0642b465"
+    },
+    {
+      "timestamp": "20261009T130018Z",
+      "report": "docs/impl/20261009T130018Z-sd-turbo-im2col-model.md",
+      "related_reports": [
+        "docs/impl/20261009T130018Z-sd-turbo-im2col-model.md"
+      ],
+      "title": "im2col输出行划分模型接入",
+      "data_excerpt": "实施前CPU58°C、VE40.62°C，运行环境可用，97可读风扇状态无变化，前轮单VE并发/所有权通过。继续CPU80/85、VE70/75监控，编译50%占空比、限定CPU0–3且串行。（原文摘录）",
+      "summary": "VAE派发8候选/32原节点通过；已完成double,six,four，正式对照见后续结果。",
+      "report_sha256": "4b5ac9560f7b1e5e14441e7f97e1e8eee62ed6b959f00d7688437b6f09567083"
+    },
+    {
+      "timestamp": "20261009T131230Z",
+      "report": "docs/impl/20261009T131230Z-sd-turbo-im2col-abba.md",
+      "related_reports": [
+        "docs/impl/20261009T131230Z-sd-turbo-im2col-abba.md"
+      ],
+      "title": "im2col输出行整图交替对照",
+      "data_excerpt": "原生交替对照退出0，新增40项CPU检查通过，加此前62项共102项；四次两请求的中间F32与PNG全部字节一致。原通道划分热请求均值10.834069秒、当前输出行候选11.388572秒，延迟增加5.12%；两请求进程均值96.178835→96.956757秒，增加0.81%。不采用当前构建。（原文摘录）",
+      "summary": "当前构建退化不采用；发现候选遗漏O2，修正后需重新验证。",
+      "report_sha256": "75c7a4297e89e5db49f92d1258c03348608866ecd835afbc7316b99fb4b9f856"
+    },
+    {
+      "timestamp": "20261009T132236Z",
+      "report": "docs/impl/20261009T132236Z-sd-turbo-im2col-o2-model.md",
+      "related_reports": [
+        "docs/impl/20261009T132236Z-sd-turbo-im2col-o2-model.md"
+      ],
+      "title": "im2col O2模型构建修正与实际对象验证",
+      "data_excerpt": "修正构建退出0，实际命令核验候选最终-O2，搬运循环显示向量化。直接链接模型实际对象的40组分区所有权/32种实际并发边界组合通过；16分区仍只独立所有权验证，不宣称16线程并发。对象验证CPU峰值63°C、VE41°C，97可读风扇状态无变化。性能未测，新二进制双请求CPU参考验证已启动。机器结果。（原文摘录）",
+      "summary": "实际对象一致；已完成double,six,four；正确性轮不单独计算收益，正式对照另列。",
+      "report_sha256": "ec67f1b40463f55edbe51f0ca2f7566281b1ffa6cc8308d54bd26f87030c7b10"
+    },
+    {
+      "timestamp": "20261009T133351Z",
+      "report": "docs/impl/20261009T133351Z-sd-turbo-im2col-abba.md",
+      "related_reports": [
+        "docs/impl/20261009T133351Z-sd-turbo-im2col-abba.md"
+      ],
+      "title": "im2col O2模型整图交替对照",
+      "data_excerpt": "| 指标 | 原通道划分 | 输出行划分 | 结论 | | --- | --- | --- | --- | | 一步热请求均值 | 10.914431秒 | 10.654402秒 | 延迟降低2.38% | | 冷请求均值 | 84.142677秒 | 84.382564秒 | 增加0.29%，加载缓存未控制 | | 两请求进程均值 | 95.704865秒 | 95.682321秒 | 基本不变（降低0.024%） | | 热VAE通用阶段 | 1.66…（原文摘录）",
+      "summary": "同二进制对照确认收益，仍限固定单VE一步提示。",
+      "report_sha256": "d2d8d72b6bd2a53b38e5580df2c02452975df030c721788fd1823a6f77ece832"
+    },
+    {
+      "timestamp": "20261009T134511Z",
+      "report": "docs/impl/20261009T134511Z-sd-turbo-im2col-256.md",
+      "related_reports": [
+        "docs/impl/20261009T134511Z-sd-turbo-im2col-256.md"
+      ],
+      "title": "im2col 256形状实际对象微基准",
+      "data_excerpt": "原生运行退出0，32次完整按位输出、输入不变、前后哨兵与8线程检查通过，共验证7247757312个输出元素，含每臂预热。直接使用当前实际模型对象，摘要与上一轮O2整图对象一致，模型清单与源/二进制摘要复核通过。每形状原/候选各6个计时样本，重置和参考不计入内核时间。（原文摘录）",
+      "summary": "两种剩余真实形状内核受益，扩大派发后的整图收益待验证。",
+      "report_sha256": "72ae29dbbaf2f18297588579d64499234e4e39b02f15ebb6061811d8358e02a9"
+    }
+  ],
+  "scope": "curated performance/negative/diagnostic milestones plus all public implementation iterations; index excerpts are historical report snapshots, not new measurements",
+  "generator_sha256": "b34b22202909f29515e0ed514119333e6a2a4777d3612549d97e077cb0624139"
+}

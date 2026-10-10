@@ -1,0 +1,95 @@
+{
+  "iteration": "20261009T110302Z",
+  "status": "correctness_passed_formal_performance_pending",
+  "configuration": {
+    "clip_threads": 8,
+    "unet_threads": 8,
+    "vae_threads": 4,
+    "binary_scalar": "ve",
+    "weights": "resident",
+    "tokenizer": "resident"
+  },
+  "tests": [
+    {
+      "name": "double",
+      "summary": "build/results/20261009T110634Z-sd-resident/summary.json",
+      "summary_sha256": "fc8666289eac1c399647ef22d4732952309254c350c1384042046f5312832ed8",
+      "log": "build/sd-vae-threads-test.log",
+      "log_sha256": "d545777ac72740635a93236b75f31d4877d0cb3e387ac9f97c616872c20efa43",
+      "memory_summary": "build/results/20261009T110622Z-ve-memory-sampled/summary.json",
+      "memory_summary_sha256": "5b5ac7061d096abb6a5694b95277f1fda0ea8324f33a5c3c11500c6b0273b86b",
+      "binary_sha256": "e8e33bd8a52150259767a7c5f540ca3a1be7b57e1c85f0805eeeff1728cf6cdc",
+      "checker_sha256": "39a34c920557673a6a4055864aef16cb52d1617a2dfae682b1e861ad12ea137d",
+      "steps": 1,
+      "request_seconds": [
+        83.013243,
+        13.082515
+      ],
+      "independent_cpu_checks": 10,
+      "sampled_highest_used_kib": 10233856,
+      "final_used_kib": 131072
+    },
+    {
+      "name": "six",
+      "summary": "build/results/20261009T110949Z-sd-resident/summary.json",
+      "summary_sha256": "a69f0e14de85bbc633c01c1884823070e71b2601145b1e14661d051c663b7da1",
+      "log": "build/sd-vae-threads-six.log",
+      "log_sha256": "adb9c0dc6618e742ee94cb2b2fedb964e080a506e6bce6a965cccee01dd81afc",
+      "memory_summary": "build/results/20261009T110937Z-ve-memory-sampled/summary.json",
+      "memory_summary_sha256": "48ebf48a1e9db7d9a8997c39f50cf30cf3729c06f8dca2cb4b51e88475ad0155",
+      "binary_sha256": "e8e33bd8a52150259767a7c5f540ca3a1be7b57e1c85f0805eeeff1728cf6cdc",
+      "checker_sha256": "39a34c920557673a6a4055864aef16cb52d1617a2dfae682b1e861ad12ea137d",
+      "steps": 1,
+      "request_seconds": [
+        82.913763,
+        13.103946,
+        13.055558,
+        13.120989,
+        13.102421,
+        13.121398
+      ],
+      "independent_cpu_checks": 30,
+      "sampled_highest_used_kib": 10233856,
+      "final_used_kib": 131072
+    },
+    {
+      "name": "four",
+      "summary": "build/results/20261009T111316Z-sd-resident/summary.json",
+      "summary_sha256": "dfa8ac57079b36cbee26d745246e8ce2f23c2c16039275ffd795e37595f92895",
+      "log": "build/sd-vae-threads-four.log",
+      "log_sha256": "edbed73522ac232d55a624048193f82be323938f823d4700a07448b61d363e30",
+      "memory_summary": "build/results/20261009T111304Z-ve-memory-sampled/summary.json",
+      "memory_summary_sha256": "79bd1a79aef47f3bdc7cf890e71602822af60826f821b298d72f3d89012d5f4e",
+      "binary_sha256": "e8e33bd8a52150259767a7c5f540ca3a1be7b57e1c85f0805eeeff1728cf6cdc",
+      "checker_sha256": "39a34c920557673a6a4055864aef16cb52d1617a2dfae682b1e861ad12ea137d",
+      "steps": 4,
+      "request_seconds": [
+        93.59471,
+        23.67472
+      ],
+      "independent_cpu_checks": 22,
+      "sampled_highest_used_kib": 10233856,
+      "final_used_kib": 131072
+    }
+  ],
+  "formal_speedup": null,
+  "next": "Same-binary 8/4/4/8 paired comparison; do not calculate formal gains from separate processes/builds.",
+  "total_independent_cpu_checks": 62,
+  "temperature": {
+    "cpu_peak_c": 74,
+    "ve_peak_c": 54.12,
+    "cpu_warn_stop_c": [
+      80,
+      85
+    ],
+    "ve_warn_stop_c": [
+      70,
+      75
+    ]
+  },
+  "fans": {
+    "readable_channels": 97,
+    "observed_changes": 0,
+    "physical_strategy_verified": false
+  }
+}

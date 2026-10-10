@@ -1,0 +1,1160 @@
+{
+  "status": "model_validation_verified",
+  "tests": [
+    {
+      "artifacts": "build/results/20261009T195047Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T195035Z-ve-memory-sampled",
+      "sha256": {
+        "build/results/20261009T195047Z-sd-resident/summary.json": "ae2e74e16777ff15ba22ba0e08b32705c9d8540ccb4cc93641032d1325237f4d",
+        "build/results/20261009T195047Z-sd-resident/native.log": "2bdceae099f4223eb02b82dc4629885967cfc0ce1965c5f8f0036aa6817b4a87",
+        "build/results/20261009T195047Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T195035Z-ve-memory-sampled/summary.json": "e99741bf49bb5933c92f64fa421de7d55b28935ae9ed3542bc54d04a1b742996",
+        "build/results/20261009T195035Z-ve-memory-sampled/memory.csv": "418d09f488cd63b3df6e6b9e3f2e86cae5378291ff251ebb4224573cebd1cebc",
+        "build/sd-cont-extended-model-double.log": "d18c00a9b2e7a9a1c5b4825ba21f8c49db650ab8366b8d14ef4144302c4a914b",
+        "build/results/20261009T195035Z-temperature-sbmbpv7w.csv": "5d2d2a0a033cb67c54fe9d04e690664d1b689b863cc90fa69a73dfa2ab069dc3",
+        "build/results/20261009T195035Z-temperature-sbmbpv7w-fans.csv": "eb50021ef6328407cf04c5e1ff295391fde07cfa239720aa0998d97d8b42feac"
+      },
+      "request_seconds": [
+        84.431245,
+        9.339744
+      ],
+      "cpu_checks": 10,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 75.0,
+          "ve0": 61.5,
+          "ve1": 49.75,
+          "ve2": 51.88
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.947265625,
+      "rgb_buffer": "resident",
+      "pixel_kernel": "ve",
+      "name": "double",
+      "cont_kernel": "extended",
+      "cont_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ]
+      ],
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 2,
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76"
+      },
+      "packing_input_domain_verified": true
+    },
+    {
+      "artifacts": "build/results/20261009T195243Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T195231Z-ve-memory-sampled",
+      "sha256": {
+        "build/results/20261009T195243Z-sd-resident/summary.json": "7dfbde9c73cb432f030299f552de81497eeb60be956575803c528de38d3b51c5",
+        "build/results/20261009T195243Z-sd-resident/native.log": "afa325fdaacdf569bf1f0370bd8298b0f9c906c0d46e19d76d5c3a7c3bdfd39c",
+        "build/results/20261009T195243Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T195231Z-ve-memory-sampled/summary.json": "e2408cfa71e9e8dcf7dcb98dd119afe79464c7612fa696b63dbd08eb781ce24e",
+        "build/results/20261009T195231Z-ve-memory-sampled/memory.csv": "d4315ba2a178b9e617799dc900fbe8ae7b4333e0d4d134aac4902bd053eb2b57",
+        "build/sd-cont-extended-model-six.log": "db2af32b46aab9292cbb32f06cbff8985e3617b2c310869ef910bfc30a33a2df",
+        "build/results/20261009T195231Z-temperature-_jtk53oz.csv": "3c4276bf4bec887279708319af348dedcf85c2940a1dbd49c4847325303df617",
+        "build/results/20261009T195231Z-temperature-_jtk53oz-fans.csv": "061f514ecf7e597b3cd0906e45f5365ebb4777511f25744dc2d87b8f7f2000a2"
+      },
+      "request_seconds": [
+        83.461349,
+        9.382206,
+        9.280297,
+        9.356323,
+        9.373486,
+        9.283508
+      ],
+      "cpu_checks": 30,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 76.0,
+          "ve0": 64.0,
+          "ve1": 49.75,
+          "ve2": 52.0
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.947265625,
+      "rgb_buffer": "resident",
+      "pixel_kernel": "ve",
+      "name": "six",
+      "cont_kernel": "extended",
+      "cont_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ]
+      ],
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.1898290821743867e-06,
+          "max_abs_error": 1.564621925354004e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.290747780016011e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 6.477097031066101e-07,
+          "max_abs_error": 1.4722347259521484e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 1.1132134673218557e-05,
+          "max_abs_error": 0.0002155303955078125,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 4.2885169876482195e-06,
+          "max_abs_error": 8.907914161682129e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-embeddings",
+          "relative_l2": 2.089861323931437e-06,
+          "max_abs_error": 1.621246337890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-input",
+          "relative_l2": 5.306402597903837e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-epsilon",
+          "relative_l2": 3.330302716593069e-07,
+          "max_abs_error": 5.077570676803589e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-latent",
+          "relative_l2": 6.358750563279956e-06,
+          "max_abs_error": 7.420778274536133e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-decoded",
+          "relative_l2": 6.075360837354076e-06,
+          "max_abs_error": 0.00014445185661315918,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-embeddings",
+          "relative_l2": 2.2218675038449105e-06,
+          "max_abs_error": 1.52587890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-input",
+          "relative_l2": 5.2292039058432315e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.8213987461358027e-07,
+          "max_abs_error": 2.9802322387695312e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-latent",
+          "relative_l2": 4.417294206926504e-06,
+          "max_abs_error": 4.291534423828125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-decoded",
+          "relative_l2": 3.4348961836633265e-06,
+          "max_abs_error": 3.2007694244384766e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-embeddings",
+          "relative_l2": 2.124017609969239e-06,
+          "max_abs_error": 1.621246337890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-step0-input",
+          "relative_l2": 5.297791594895035e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.4313823603933436e-07,
+          "max_abs_error": 5.0961971282958984e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-latent",
+          "relative_l2": 4.155942092429359e-06,
+          "max_abs_error": 7.43865966796875e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-decoded",
+          "relative_l2": 2.1959593466317273e-06,
+          "max_abs_error": 3.1828880310058594e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-embeddings",
+          "relative_l2": 2.0765264854820284e-06,
+          "max_abs_error": 1.329183578491211e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-step0-input",
+          "relative_l2": 5.233191676565092e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-step0-epsilon",
+          "relative_l2": 8.669273129174466e-07,
+          "max_abs_error": 1.7881393432617188e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-latent",
+          "relative_l2": 1.4816683189021762e-05,
+          "max_abs_error": 0.0002613067626953125,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-decoded",
+          "relative_l2": 6.52590625322525e-06,
+          "max_abs_error": 0.00010159611701965332,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 6,
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case2/decoded.f32": "a6a90481d339f27167832fbd5e8308ec8f6c4e6a2b4c2b1b3d80c0fa51dd5ca2",
+        "build/results/20261008T081800Z-sd-reference/case3/noise.f32": "175ae09299615d0b0eb2c655c4657275c7da11bb2bb8419e656e9aaf1e1e33aa",
+        "build/results/20261008T081800Z-sd-reference/case5/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case1/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case5/embeddings.f32": "97ded69b790137c88a02aa3daa70594e25f7c89dcdf7009f29af9368138224b9",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-input.f32": "f9b1ac9ec0739a5dab24af95a10a6b44234402d5dbcec412e22ca46d90450962",
+        "build/results/20261008T081800Z-sd-reference/case3/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-latent.f32": "d144943224f6e1ab3e4919b29a7022dc68fec1235eae9df6a4d4acbf23fa8550",
+        "build/results/20261008T081800Z-sd-reference/case3/embeddings.f32": "9f63c41517dc1742a91cff8097c92a41806a98e6a0bc95616d38a60468019be6",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-epsilon.f32": "b3ba591252fbcc3b6bf2fff69730e767ad7e84a85f97d83f7496336149e0a810",
+        "build/results/20261008T081800Z-sd-reference/case1/decoded.f32": "9ec33668028a498b633dfc953d16f06a8b2fcaec60e84aa5f21d8970277ec009",
+        "build/results/20261008T081800Z-sd-reference/case4/noise.f32": "0e551d9d33f4f875c4622caf0b3fe4263e66b02263179bf0424f290cb9c355fa",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-epsilon.f32": "6fb8e32b97bce53fffeb934f216349c87cdbc3b340cb7b521cb2bb66f7cbafaa",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-input.f32": "9a6d7ef5e2d67bce8d09d62abaa13ad8a58d4b847a060c4fcf4da27b93bab509",
+        "build/results/20261008T081800Z-sd-reference/case4/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-latent.f32": "3e6828c6dc171d03908c1250271ea8a8a57667736388de6802dc3abeddea8247",
+        "build/results/20261008T081800Z-sd-reference/case5/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case4/embeddings.f32": "dd4ab68c371eb00318da5e139e446e24750acd181ee3c1307f22d8d096edbda7",
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case2/noise.f32": "5c63c669f669e569c1305107aedb6a469023904873b39362db430b91c569680e",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-epsilon.f32": "edd640c1a6013ff82d18e4a47b4cca176383173edef959ae858f7ca35f8a930a",
+        "build/results/20261008T081800Z-sd-reference/case3/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case5/decoded.f32": "a15115f5cb17ec20f501a89d468a6bc28b59703ac38d99dcb78da6253969ad09",
+        "build/results/20261008T081800Z-sd-reference/case2/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case2/embeddings.f32": "6772865f1b96a643d73e9310dd9dee9d2d7787bda35a68fee6e7251ae495414b",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-input.f32": "bf5ffae6e8895797905425e0e7bd3ce7c7a19ef03f396c02e5327d0eeb42dbb4",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-latent.f32": "56c23a1e9b85c767a6ea948d21cd348c7e514265fe4aa3326cc85382a9f4592e",
+        "build/results/20261008T081800Z-sd-reference/case3/decoded.f32": "bd6e994ba8c93ba3eaba87fe7b8272bd8c56a0cc03602a48bf12a2127dd23e72",
+        "build/results/20261008T081800Z-sd-reference/case1/noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+        "build/results/20261008T081800Z-sd-reference/case4/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-epsilon.f32": "a92367fa7419ad248038ff8b0b403a4405f502a0c5e928ed5cbd50eaa95ffba3",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-input.f32": "bad31ffed2fd7eb882b5400306ad49bc91c5332f7489c2948726dc24c6e68d0a",
+        "build/results/20261008T081800Z-sd-reference/case1/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-latent.f32": "d664bc51e4cc2ed0f063edcfa4305eba5609215a7bec2ec1c5e2edd8f621faf9",
+        "build/results/20261008T081800Z-sd-reference/case1/embeddings.f32": "6b0f6762b7408badeb730b425da327cf2b650db959ba27be9c907b350229b572",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case4/decoded.f32": "238988d8768db206f8c2f6b33b162f684aa62c73fe20dc56174c59600bb74235",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-epsilon.f32": "7ec11a96b7a9cae670e1d02cbc1252efbe1c427c08464a66e069b3190ef57ec4",
+        "build/results/20261008T081800Z-sd-reference/case2/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-input.f32": "62fd0d82ad1a28642902bed7a789987aff26ef9c504e6e94558d0a20cdfc489f",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-latent.f32": "66f9e354cc9be933763f4375236dd4f9cda2464c4ac82d1733daf0058435fd26",
+        "build/results/20261008T081800Z-sd-reference/case5/noise.f32": "b811ff3e31f764c29b105dd1868421a006f7e123ab06bed8d5a4dbf7ac7ea3ee"
+      },
+      "packing_input_domain_verified": true
+    },
+    {
+      "artifacts": "build/results/20261009T195519Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T195507Z-ve-memory-sampled",
+      "sha256": {
+        "build/results/20261009T195519Z-sd-resident/summary.json": "d7faaa8bd7cfeffa035876285b647fb6b88eb6cd9706c86fc5fb8b9887f616cf",
+        "build/results/20261009T195519Z-sd-resident/native.log": "4e41b934eb90e5e831d82c76d149879ef0eb809daaec007849c7d6d3a8d3d49f",
+        "build/results/20261009T195519Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T195507Z-ve-memory-sampled/summary.json": "b2d5e596dc3308990f076adbfa24246bf5977899e22cb9662b601bf5a65579ab",
+        "build/results/20261009T195507Z-ve-memory-sampled/memory.csv": "aac257eebc65e1ac2fef874030ee82acac430767b3b1e7e26efdfa3401996104",
+        "build/sd-cont-extended-model-four.log": "a747c2ab2a342755e547e673754bfeaa2f8d205b0be643c1dc1f037722c6cd6e",
+        "build/results/20261009T195506Z-temperature-nefyyfh9.csv": "1e6a2540fb2a4e4df0b0887b9cf2d173ae2a2662b0fe49c9da2a38b9668bda74",
+        "build/results/20261009T195506Z-temperature-nefyyfh9-fans.csv": "41f2edf4060f8c02a2ed8f6b27778ee5d24788b3a9d7b1ad51049b3d705a572e"
+      },
+      "request_seconds": [
+        90.505384,
+        16.962391
+      ],
+      "cpu_checks": 22,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 77.0,
+          "ve0": 63.62,
+          "ve1": 49.75,
+          "ve2": 52.0
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "rgb_buffer": "resident",
+      "pixel_kernel": "ve",
+      "name": "four",
+      "cont_kernel": "extended",
+      "cont_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ]
+      ],
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step1-input",
+          "relative_l2": 5.713952141742209e-07,
+          "max_abs_error": 8.595176041126251e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step1-epsilon",
+          "relative_l2": 6.547238099051782e-07,
+          "max_abs_error": 7.495284080505371e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step2-input",
+          "relative_l2": 8.741469285361333e-07,
+          "max_abs_error": 9.775161743164062e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step2-epsilon",
+          "relative_l2": 1.5715198555942695e-06,
+          "max_abs_error": 2.2172927856445312e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step3-input",
+          "relative_l2": 1.6936714316347339e-06,
+          "max_abs_error": 1.6033649444580078e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step3-epsilon",
+          "relative_l2": 1.7767453986665628e-06,
+          "max_abs_error": 1.946091651916504e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 2.5416333135354637e-06,
+          "max_abs_error": 2.5510787963867188e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.586960949654215e-06,
+          "max_abs_error": 1.4483928680419922e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step1-input",
+          "relative_l2": 5.713952141742209e-07,
+          "max_abs_error": 8.595176041126251e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step1-epsilon",
+          "relative_l2": 6.547238099051782e-07,
+          "max_abs_error": 7.495284080505371e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step2-input",
+          "relative_l2": 8.741469285361333e-07,
+          "max_abs_error": 9.775161743164062e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step2-epsilon",
+          "relative_l2": 1.5715198555942695e-06,
+          "max_abs_error": 2.2172927856445312e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step3-input",
+          "relative_l2": 1.6936714316347339e-06,
+          "max_abs_error": 1.6033649444580078e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step3-epsilon",
+          "relative_l2": 1.7767453986665628e-06,
+          "max_abs_error": 1.946091651916504e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 2.5416333135354637e-06,
+          "max_abs_error": 2.5510787963867188e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.586960949654215e-06,
+          "max_abs_error": 1.4483928680419922e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 2,
+      "cpu_reference_sha256": {
+        "build/results/20261008T083810Z-sd-reference/case0/decoded.f32": "367a6a341ab344df91ad81e80b19f2d2cca2407838e4dc6ae8044628165e65cc",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-latent.f32": "0c21dcb60aa80a0bb0e010b3098de04dc4622d7b5a5019c3177277056694288e",
+        "build/results/20261008T083810Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T083810Z-sd-reference/case0/step1-latent.f32": "41f62bc5fda6c01a447823ab6bb7c2b3d8178637e167cfd6863ea415460bdee8",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-epsilon.f32": "8468b716848a7011866f3f689cc6561cc91e7656a6097571683f6832040f5017",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-latent.f32": "5c739a9e1d6bbdd38f52538c9e4a82508137b3795300a3d60153cc342875eac6",
+        "build/results/20261008T083810Z-sd-reference/case0/step1-input.f32": "9faf9ed658d358068bfa0e8ae3ac103e9f152d8e3bf7235aa8c062e64f9d2633",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-input.f32": "6bfeb82a41e590570daf346e4da2be4e96823856b818876e0645f669e11cbe9d",
+        "build/results/20261008T083810Z-sd-reference/summary.json": "b7752f46795a896faf8099fa44821d51a5be7d64a85f0892eba508f67189aefb",
+        "build/results/20261008T083810Z-sd-reference/case0/step1-epsilon.f32": "78943d56cabe7200bdd5f0d11bfdaeff49f12a381da8b1d1303bca89bebd379b",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-latent.f32": "c0e15239b55f0874ffad33b168d1403423c488318df8b9290f728a317ba24fdd",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-input.f32": "ffbd676274fad33b895b9d1e1aae64b9f6de58587b6d7eee5428e062bf114d60",
+        "build/results/20261008T083810Z-sd-reference/case0/sigmas.f32": "40dcecbf8e3d9eb502b2036e77407673c22ad6a6aec6fcbb3065127d65991c53",
+        "build/results/20261008T083810Z-sd-reference/case0/timesteps.f32": "cc5d5b039489b1f352926c878e2943c6bb49f47df9a50ea1abd80f332cabe8f4",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T083810Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-epsilon.f32": "1c786a59e04ba06efb23f6000495beb98e29ea1ab185cef0ed981cc78e3974c0"
+      },
+      "packing_input_domain_verified": true
+    }
+  ],
+  "model_manifest_sha256": "9922e478a088c149978c8c404dbcd03fd626a09206b437775e88ae2641528919",
+  "binary_sha256": "31201de0ae0abb61063bdcc6f9be68d49aa5b41bdbd342c1e4805a9f93565040",
+  "checker_sha256": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+  "completed_tests": [
+    "double",
+    "six",
+    "four"
+  ],
+  "independent_cpu_checks": 62,
+  "cpu_recomputed_checks": 62,
+  "cpu_recomputed_png_checks": 10,
+  "all_candidate_tests_completed": true,
+  "actual_cont_compiler": {
+    "effective_optimization": "-O2",
+    "compiler_flags": "-O2 -std=c11 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=gnu11 -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -fopenmp",
+    "object_sha256": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+    "source_sha256": "4cd140451c05b2fa14284efbc1a9e1022ec11c3a05aca4bdbaed5657d47eef39",
+    "flags_make_sha256": "84cd82beb62cde17063e40d90d58708fe655eb32519c5d925e1cad441b41676f",
+    "build_make_sha256": "10c30874cbb23a4450c22a9df3894da389e589ceafbfb94d353c1418e1904b86",
+    "linked_function_size": 800,
+    "compiler_diagnostics": [
+      {
+        "line": 10,
+        "message": "Potential dependency due to pointer -- use restrict qualifier if ok: column"
+      },
+      {
+        "line": 10,
+        "message": "Vectorized loop."
+      }
+    ],
+    "build_log_sha256": "e6462e41112b26274f7c8c6da07882facc64c11c3f1ec9594a0e236370a65582",
+    "object_compile_log_sha256": "ea2eb88b6abccf793fecea4bb6c90e6de665d35b11f9ea69e9262fb18061bc8c",
+    "independent_proof_sha256": "ff2b0e7f5f1ee60c4dedb5a2afd51ed6e159018e1b0052452a9fde673a256905",
+    "actual_object_matches_independent": true
+  },
+  "actual_png_compiler": {
+    "effective_png_optimization": "-O2",
+    "png_flags": "-O2 -std=c++17 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=c++11 -O2 -fno-fast-math -fno-associative-math -fdiag-vector=2",
+    "png_object_sha256": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+    "png_flags_make_sha256": "223e9008d3f9047f57583be530789e43c316ea6747a94bb0474a25f8a3967ec8",
+    "png_build_make_sha256": "79eb24aa663d1dc69a82d4c68d1c0bae90f1aaa95f8a542df404fa706f5b87ac",
+    "main_flags": "-O2 -std=c++17 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=c++11 -O0 -fno-inline",
+    "main_optimization": "-O0",
+    "main_flags_make_sha256": "929e7458ea809429f541462adc1de1139e9d18e9775aa2571481c6a23e570547"
+  },
+  "publisher_sha256": "45aeb21d0f427205531c10da3970f8d9deec9c3bf38020054052a1b34c9ba031",
+  "audit_dependency_sha256": {
+    "scripts/record_sd_pixels_pack_model.py": "39fed96d72cc160c5a0d61c9b7a1cd4d2297fe2a114215fc9145c2f08e6c6de3",
+    "scripts/record_sd_rgb_model.py": "7662ecd956396a86aff4d48fee54dcc8f55b9fcce1e6e6bc516a634180fc43e5",
+    "scripts/record_sd_png_model.py": "ea4ae3b1f2e1949152cd2abb78f4c10ad7316ef803fa213e58c16511bcce7d6d",
+    "scripts/record_sd_gemm_spatial_model.py": "9e70b3db9f723dc945c1e7ba027fa1e78d6958e6c2f96de2b9abe1db038d1967",
+    "scripts/record_sd_gelu_result.py": "efdbc4a91454f154f42c0af6d8307e565e58109ed2b4a9a99f7f9c14871ce351",
+    "scripts/record_sd_im2col_rows_abba.py": "5e193b0d4301ee7f4d16621b216c14da0258f7124f1f7c9f6693c442b502d903"
+  },
+  "full_graph_speedup_measured": false,
+  "configuration": {
+    "cont_kernel": "extended",
+    "pixel_kernel": "ve",
+    "rgb_buffer": "resident",
+    "png_encoder": "ve",
+    "vae_spatial_tile": "8192",
+    "im2col_mode": "rows_256",
+    "generic_threads": 8,
+    "vae_blas_threads": 4,
+    "gelu": "ve",
+    "binary_scalar": "ve",
+    "weights": "resident",
+    "tokenizer": "resident"
+  },
+  "scope": "actual-model selective CONT transpose O2 correctness and independently recomputed CPU/PNG; actual object equal independently tested object; 23 CLIP nodes,45 UNet nodes/step,3 VAE nodes; full request incremental speedup requires controlled comparison",
+  "expanded_independent_proof_sha256": "76203dd13fb2ae8d8b98c5baaea18d4c89f0d85e7bee8c7fc9cdfa1ee3ae6ee6",
+  "previous_model_byte_comparison": {
+    "proof": "docs/results/20261009T185903Z-sd-turbo-cont-model.json",
+    "proof_sha256": "ead226065ebf146d4e194af27d8bd93e11894a8b0d38efbd84ab0d7a8cfe48f2",
+    "requests": 10,
+    "all_trace_and_png_bytes_identical": true
+  },
+  "actual_model_object_matches_independent_kernel": true,
+  "cpu_validation_temperature": {
+    "double": {
+      "peaks_c": {
+        "cpu": 75.0,
+        "ve0": 55.88,
+        "ve1": 49.75,
+        "ve2": 51.88
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "six": {
+      "peaks_c": {
+        "cpu": 74.0,
+        "ve0": 58.62,
+        "ve1": 49.75,
+        "ve2": 52.0
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "four": {
+      "peaks_c": {
+        "cpu": 69.0,
+        "ve0": 58.25,
+        "ve1": 49.75,
+        "ve2": 51.88
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    }
+  },
+  "cpu_validation_fan_detail": {
+    "double": {
+      "sysfs_rpm_channels": 6,
+      "sysfs_rpm_channels_with_changes": 0,
+      "sysfs_rpm_aggregate_range": [
+        0.0,
+        0.0
+      ],
+      "all_observed_rpm_values_zero": true,
+      "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+    },
+    "six": {
+      "sysfs_rpm_channels": 6,
+      "sysfs_rpm_channels_with_changes": 0,
+      "sysfs_rpm_aggregate_range": [
+        0.0,
+        0.0
+      ],
+      "all_observed_rpm_values_zero": true,
+      "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+    },
+    "four": {
+      "sysfs_rpm_channels": 6,
+      "sysfs_rpm_channels_with_changes": 0,
+      "sysfs_rpm_aggregate_range": [
+        0.0,
+        0.0
+      ],
+      "all_observed_rpm_values_zero": true,
+      "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+    }
+  },
+  "cpu_validation_artifact_sha256": {
+    "build/sd-cont-extended-model-double-audit.log": "6a58057461f9d1ed43c83f2a8373d5440ac2d8b45a71f3d7e16126d3c79a1d0e",
+    "build/results/20261009T195226Z-temperature-2pk5lk_w.csv": "273ba6de924c3068bc706ab7a4760f86463d97eacc330c7bdb5dafcdbc2f2335",
+    "build/results/20261009T195226Z-temperature-2pk5lk_w-fans.csv": "0d46ec4adfd902eed0349d098fa392b0dce3e24b170679f8b089bb53a7554d1a",
+    "build/sd-cont-extended-model-six-audit.log": "22d1f3412d86051493927357dbd911a105e84ff72b2f05bbc9217f07fa8cffc4",
+    "build/results/20261009T195500Z-temperature-y_3s0f1a.csv": "fbcfc5f3e37f864b5adc6170e6b66f8a2e1de22536e7b3840c5d7040935d5ef2",
+    "build/results/20261009T195500Z-temperature-y_3s0f1a-fans.csv": "81381dc550c4475bde606a8a54955c41c081004af70da962ab9073a5ea5d2efc",
+    "build/sd-cont-extended-model-four-audit.log": "1cea0f9536ec22d7396dcee9778dd181daa8cdbddd37bd497d9ee75b8447390e",
+    "build/results/20261009T195712Z-temperature-a921b_yr.csv": "ca436ff79d1c7be6c84ea1cd606b7e81f0b69b9286cec4f14c05841180330fe8",
+    "build/results/20261009T195712Z-temperature-a921b_yr-fans.csv": "adc8001ca5e94981984a0b522b773a45593d13f9ac10166981e9c0a04d16ca19"
+  },
+  "model_build_artifact_sha256": {
+    "build/sd-cont-extended-model-build.log": "e6462e41112b26274f7c8c6da07882facc64c11c3f1ec9594a0e236370a65582",
+    "build/sd-baseline-ve/manifest.json": "9922e478a088c149978c8c404dbcd03fd626a09206b437775e88ae2641528919",
+    "build/sd-baseline-ve/bin/sd": "31201de0ae0abb61063bdcc6f9be68d49aa5b41bdbd342c1e4805a9f93565040",
+    "scripts/prepare_sd_baseline_overlay.py": "69fa514fb852e647f6b01ca13da0ffc93f397a2ee9fd98ab484ed940381ca931",
+    "scripts/validate_sd_cont_extended_model.sh": "a507c0d83be0443f3e88bea75c803daeae80b39d94728c75fe9273125b51409d",
+    "scripts/record_sd_cont_extended_model.py": "45aeb21d0f427205531c10da3970f8d9deec9c3bf38020054052a1b34c9ba031",
+    "docs/results/20261009T194513Z-sd-turbo-cont-expanded.json": "76203dd13fb2ae8d8b98c5baaea18d4c89f0d85e7bee8c7fc9cdfa1ee3ae6ee6"
+  },
+  "finalizer_sha256": "bc9a6dfed90b3e40605b413b2d7548c1b7507aded4a2db6a348abbf384c97fd9"
+}

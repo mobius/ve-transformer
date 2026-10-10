@@ -1,0 +1,19 @@
+{
+  "completed": false,
+  "returncode": 124,
+  "reason": "600-second timeout; scalar full-output oracle outside timed kernel dominates wall time",
+  "passed_full_checks": 23,
+  "cpu_peak_c": 68,
+  "ve_peak_c": 49.5,
+  "fan_changes": 0,
+  "sha256": {
+    "src/ve_sd_turbo_im2col.c": "f9e4187424880df7a44ef23b08f6043438bd0c150020e4fc1e661701507da2c6",
+    "src/ve_sd_turbo_im2col_rows.c": "8978fb5c729b3f472a72d3e0c03b71fcb078e56fd61af80594fe8453f985b847",
+    "tests/benchmark_sd_im2col_rows.c": "caf483815db93fb13dbfbfa4b369622bff62d5c007dcb5f2f78787588e8f7c2d",
+    "scripts/benchmark_sd_im2col_rows.sh": "22870b2a4835c73d02a10167e2256e85dcd833745c407d1d82a51a8831db89a1",
+    "build/im2col-rows/baseline.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+    "build/im2col-rows/kernel.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+    "build/im2col-rows/benchmark": "7b3a7c4099b2c301e66cd71d8fb5118858aa6c256eca9924eda3632e4745c6d6",
+    "build/sd-im2col-rows-benchmark.log": "67fa082347e44c2bd23a3709b712f3605ca07d2335dd8241bb9b8697aee7567a"
+  }
+}

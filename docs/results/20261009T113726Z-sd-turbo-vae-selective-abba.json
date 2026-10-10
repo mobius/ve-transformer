@@ -1,0 +1,213 @@
+{
+  "status": "faster_for_validated_workload",
+  "default_enabled": false,
+  "same_binary": true,
+  "model": "stabilityai/sd-turbo",
+  "precision": "FP32",
+  "size": 512,
+  "runtime_slot": 1,
+  "binary_sha256": "e32032d2bdfc37088f381e20b7efe2d9732b12642f82d8c0e91b7396e0d44029",
+  "checker_sha256": "d30d055ff482412b950c660f6f9018cdd441c2b3f087007243be78e28da6229e",
+  "benchmark_sha256": "b4151dcb94816b91243f9cfe366c03c4766d56568903ab051718816a8246e3bc",
+  "publisher_sha256": "a2c0dcbfab5d5d7165f80c0251eb88639590084079e4b3e46da5755a7095a904",
+  "build_manifest_sha256": "4673a8e5b0a03dfef3ca0d5740f41349a88a67f09f074c1e9df688502aadff30",
+  "metrics": {
+    "process": {
+      "all_four_seconds": 96.70625027781352,
+      "selective_seconds": 95.22408075258136,
+      "latency_reduction_percent": 1.5326512205511622
+    },
+    "request0": {
+      "all_four_seconds": 82.982842,
+      "selective_seconds": 82.270409,
+      "latency_reduction_percent": 0.8585304899535795
+    },
+    "request1": {
+      "all_four_seconds": 13.080845499999999,
+      "selective_seconds": 12.292402,
+      "latency_reduction_percent": 6.027465885137162
+    }
+  },
+  "hot_stage_profile_mean_seconds": {
+    "clip": {
+      "all4": {
+        "backend_CPU": 0.8228345,
+        "backend_BLAS": 0.529005,
+        "graph_compute": 1.36014,
+        "nlc_thread_prepare": 0.0018125000000000014,
+        "nlc_thread_release": 0.033282500000000007
+      },
+      "selective": {
+        "backend_CPU": 0.8240595,
+        "backend_BLAS": 0.5358275,
+        "graph_compute": 1.3605875,
+        "nlc_thread_prepare": 0.0018115000000000015,
+        "nlc_thread_release": 0.039724500000000024
+      }
+    },
+    "unet": {
+      "all4": {
+        "backend_CPU": 2.132531,
+        "backend_BLAS": 1.0432584999999999,
+        "graph_compute": 3.1773105,
+        "nlc_thread_prepare": 0.0033565000000000053,
+        "nlc_thread_release": 0.061011500000000045
+      },
+      "selective": {
+        "backend_CPU": 2.1349125,
+        "backend_BLAS": 1.046438,
+        "graph_compute": 3.1827395,
+        "nlc_thread_prepare": 0.0033450000000000042,
+        "nlc_thread_release": 0.06332800000000002
+      }
+    },
+    "vae": {
+      "all4": {
+        "backend_CPU": 2.81413,
+        "backend_BLAS": 3.8832275000000003,
+        "graph_compute": 6.698634,
+        "nlc_thread_prepare": 0.0004215000000000001,
+        "nlc_thread_release": 0.0132895
+      },
+      "selective": {
+        "backend_CPU": 1.6450025,
+        "backend_BLAS": 4.257675,
+        "graph_compute": 5.9033625,
+        "nlc_thread_prepare": 0.022896,
+        "nlc_thread_release": 0.392045
+      }
+    }
+  },
+  "all_trace_and_png_bytes_identical": true,
+  "abba_cpu_stage_checks": 40,
+  "earlier_cpu_stage_checks": 62,
+  "total_cpu_stage_checks": 102,
+  "vae_configuration_abba": [
+    "all4",
+    "selective",
+    "selective",
+    "all4"
+  ],
+  "earlier_proof": {
+    "path": "docs/results/20261009T112650Z-sd-turbo-vae-selective.json",
+    "sha256": "b64063dd6a4df36cebbd3ce0870c3f590b9d24d368aa4d0390012fafc49f55a9"
+  },
+  "runs": [
+    {
+      "mode": "all4",
+      "process_seconds": 96.80784742161632,
+      "request_seconds": [
+        83.066156,
+        13.090231
+      ],
+      "cold_weights_load_seconds": 59.10253899999999,
+      "sampled_node_peak_gib": 9.759765625,
+      "final_node_used_mib": 128
+    },
+    {
+      "mode": "selective",
+      "process_seconds": 95.37399989087135,
+      "request_seconds": [
+        82.415763,
+        12.312749
+      ],
+      "cold_weights_load_seconds": 59.240162000000005,
+      "sampled_node_peak_gib": 9.884765625,
+      "final_node_used_mib": 128
+    },
+    {
+      "mode": "selective",
+      "process_seconds": 95.07416161429137,
+      "request_seconds": [
+        82.125055,
+        12.272055
+      ],
+      "cold_weights_load_seconds": 59.013543,
+      "sampled_node_peak_gib": 9.884765625,
+      "final_node_used_mib": 128
+    },
+    {
+      "mode": "all4",
+      "process_seconds": 96.60465313401073,
+      "request_seconds": [
+        82.899528,
+        13.07146
+      ],
+      "cold_weights_load_seconds": 58.968349,
+      "sampled_node_peak_gib": 9.759765625,
+      "final_node_used_mib": 128
+    }
+  ],
+  "temperature": {
+    "peaks_c": {
+      "cpu": 78.0,
+      "ve0": 52.88,
+      "ve1": 39.12,
+      "ve2": 41.5
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "warning_events": 0,
+  "artifact_sha256": {
+    "0": {
+      "build/results/20261009T113726Z-sd-vae-selective-abba/run0.log": "90a26f696a8f232a8a30245a94f8c330e3cf0b2e8e3dad21cb9ff9f8725ab89f",
+      "build/results/20261009T113738Z-sd-resident/summary.json": "c5b1423fb916c19e86e36e8856b3f25189c1a719f438b3d575349c93fc6a0ceb",
+      "build/results/20261009T113738Z-sd-resident/native.log": "2001a55fa71f4ce1ae7d7527608c684d3cc7f8467b8d03e0a2fa024c38cc219f",
+      "build/results/20261009T113738Z-sd-resident/check_sd_resident.py": "d30d055ff482412b950c660f6f9018cdd441c2b3f087007243be78e28da6229e",
+      "build/results/20261009T113726Z-ve-memory-sampled/summary.json": "3f9530f33305c3d698eb5830b45028bbe45c0f615c1339795da452d037b71e39",
+      "build/results/20261009T113726Z-ve-memory-sampled/memory.csv": "8d0da9f702752594fe77ddedc1d7ba08a2d1739d6b306cbe32d9e3239cd0a8ef"
+    },
+    "1": {
+      "build/results/20261009T113726Z-sd-vae-selective-abba/run1.log": "d4602af740d7e86f67c1181e5018bb60119c73d5b76dd50dd04decc4899dc71f",
+      "build/results/20261009T113929Z-sd-resident/summary.json": "f44ad4e91a581d57d21218f40451058802ada05118c17f52351b6d008141a104",
+      "build/results/20261009T113929Z-sd-resident/native.log": "a9bf8186ad84da20187234283b86784b7a5dcde46e8e5911a56d62017c0d39c0",
+      "build/results/20261009T113929Z-sd-resident/check_sd_resident.py": "d30d055ff482412b950c660f6f9018cdd441c2b3f087007243be78e28da6229e",
+      "build/results/20261009T113917Z-ve-memory-sampled/summary.json": "8efccf1f0d9470eaad78819c19ed6458e477896f14116dcb115eb1276640a2d8",
+      "build/results/20261009T113917Z-ve-memory-sampled/memory.csv": "d3e18c598d929063d53161b6afc2fee4609dd496d2269a6c1ec08fbb4b2bf9d1"
+    },
+    "2": {
+      "build/results/20261009T113726Z-sd-vae-selective-abba/run2.log": "61db390c8bd428cc18454f68748dd8b27d90468c709f64c00cd2738c87211e9c",
+      "build/results/20261009T114119Z-sd-resident/summary.json": "be08be938f34ae741913974c5b62c5ffec5c9eeba0fe83736e32209034eed53f",
+      "build/results/20261009T114119Z-sd-resident/native.log": "a718ff419b18c28598758d128fd8d971b786a3d1e2f46fda4d8e027983399235",
+      "build/results/20261009T114119Z-sd-resident/check_sd_resident.py": "d30d055ff482412b950c660f6f9018cdd441c2b3f087007243be78e28da6229e",
+      "build/results/20261009T114107Z-ve-memory-sampled/summary.json": "5acb1f683e6a57fed9a8ce073e3d771b1c95e85b7c2bead9ec039252c180fb23",
+      "build/results/20261009T114107Z-ve-memory-sampled/memory.csv": "8f32e2c912830120614ad129c168a00d5865c309e96a61efb59102fdfeed1fd6"
+    },
+    "3": {
+      "build/results/20261009T113726Z-sd-vae-selective-abba/run3.log": "c46607dee484d52e749459daa3b05dc1b2c7c4ffa90bf0ea7f42cd72e401bc62",
+      "build/results/20261009T114309Z-sd-resident/summary.json": "19b77a807fda2e44771f0ec21cab61d03d1f5e714f0ac30f234669dea3014c0a",
+      "build/results/20261009T114309Z-sd-resident/native.log": "40fe803106623804efe329ccfdf2b69a68033d51606777bcb46f7c99a98d1774",
+      "build/results/20261009T114309Z-sd-resident/check_sd_resident.py": "d30d055ff482412b950c660f6f9018cdd441c2b3f087007243be78e28da6229e",
+      "build/results/20261009T114257Z-ve-memory-sampled/summary.json": "75459ac1ccc499f99876bacf7639cc7366747fbbecb47542e65c18cf4c46ee76",
+      "build/results/20261009T114257Z-ve-memory-sampled/memory.csv": "b8ce1ad149da9d15e22b93f9d6e8906704c9360ee027ba2dc57479fa639859f8"
+    }
+  },
+  "thermal_artifact_sha256": {
+    "build/sd-vae-selective-abba-test.log": "fc73cc3925228352b8e318c19fb300ae1b687b9af93b24a6e8a3e246cf726737",
+    "build/results/20261009T113726Z-temperature-8569316p.csv": "2893336349169db76eb1cb584bdf3c733484b0ded3626db35ff372ef28dbfdf9",
+    "build/results/20261009T113726Z-temperature-8569316p-fans.csv": "adf8abc5689579463a6359c80314e1dd9d316642f113dfeefd056e5991e4473a"
+  },
+  "scope": "two runs per mode, two same-process requests, one fixed one-step prompt; six-prompt/four-step candidate correctness separately verified",
+  "limitations": [
+    "includes stage/thread/dispatch diagnostics and native output IO; not a production service benchmark",
+    "thread count changes may alter library rounding; independent reference tolerances remain required",
+    "cold loading caches not controlled; two repeats do not characterize tails or long-run variance",
+    "other sizes, models, precisions and concurrent requests not covered",
+    "memory is discrete whole-node usage; readable fan states do not establish actual physical fan policy"
+  ]
+}

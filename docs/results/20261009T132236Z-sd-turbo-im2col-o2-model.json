@@ -1,0 +1,199 @@
+{
+  "scope": "O2 model candidate correctness; controlled performance comparison separate",
+  "model_object_ownership_groups": 40,
+  "model_object_distinct_concurrent_groups": 32,
+  "actual_concurrent_threads": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "actual_model_object_sha256": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+  "kernel_source_sha256": "8978fb5c729b3f472a72d3e0c03b71fcb078e56fd61af80594fe8453f985b847",
+  "model_manifest_sha256": "a29a63d23fe3c216d89f2c67d220553ea2b62e9a3cbf386711dcc6f325f23965",
+  "actual_compile_option": "-O2",
+  "performance_measured": true,
+  "cpu_peak_c": 63,
+  "ve_peak_c": 41,
+  "fan_changes": 0,
+  "object_check_log_sha256": "962a072d75e6437c52d38304b308f19c5a659a6b313c36543adf27d9bda2f2cb",
+  "completed_tests": [
+    "double",
+    "six",
+    "four"
+  ],
+  "independent_cpu_checks": 62,
+  "request_seconds": [
+    84.781437,
+    10.67001
+  ],
+  "controlled_speedup_measured": false,
+  "model_cpu_peak_c": 69,
+  "model_ve_peak_c": 50.38,
+  "tests": [
+    {
+      "name": "double",
+      "artifacts": "build/results/20261009T132513Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T132501Z-ve-memory-sampled",
+      "guard_log": "build/sd-im2col-o2-double.log",
+      "sha256": {
+        "build/results/20261009T132513Z-sd-resident/summary.json": "83fcbebe2a17ddcd9edef57ca3f8dba3263ee23cf0e2e610ca9ea2197f66227e",
+        "build/results/20261009T132513Z-sd-resident/native.log": "7563422c11f5345615a8211252e9dbaf5e6a50c881067231f0d4f327ae77ace6",
+        "build/results/20261009T132501Z-ve-memory-sampled/summary.json": "eac48cf32f1611621acbd53478b7cfd1dbb534fb11d4658f1f3595905d6e15d8",
+        "build/results/20261009T132501Z-ve-memory-sampled/memory.csv": "81ec9e82fbbed7a3259ead22ec47f0592ac69a5860ca9410e2f84c3cfdd7dd01",
+        "build/sd-im2col-o2-double.log": "3438c1d9f6769b366f0236cde2edc3da40733a4a3a1e01523723ce94f903a5ec"
+      },
+      "request_seconds": [
+        84.781437,
+        10.67001
+      ],
+      "cpu_checks": 10
+    },
+    {
+      "name": "six",
+      "artifacts": "build/results/20261009T132828Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T132815Z-ve-memory-sampled",
+      "guard_log": "build/sd-im2col-o2-six.log",
+      "sha256": {
+        "build/results/20261009T132828Z-sd-resident/summary.json": "e964282c88aae457f40eae1eff7d0edb405e55d2f9d47f2dd0ce9acb16a09c17",
+        "build/results/20261009T132828Z-sd-resident/native.log": "2999abf98e809f372381e63e17835b2c29de7fd4fca53f821a101102b5b856ab",
+        "build/results/20261009T132815Z-ve-memory-sampled/summary.json": "df406b0f6091a2c4c3109e1ca5c9eaad2827e810aa50443706afcc2f21c86ce4",
+        "build/results/20261009T132815Z-ve-memory-sampled/memory.csv": "2d01b510f59ce9f6b184233e7d795b5d3e578b90004a74361aed5609290533d6",
+        "build/sd-im2col-o2-six.log": "7226806fb191fa75f7536b6d734f9647dda30b9bdff20d7f673ee1b38b24b786",
+        "build/results/20261009T132815Z-temperature-w114mu_b.csv": "5bdfd5527ac97530c6ca63fc1e8cad4a5ccff106e3edd74be71b883b1ad2eb8d",
+        "build/results/20261009T132815Z-temperature-w114mu_b-fans.csv": "35b1a55de5c44d0782f52b9ce8ea6ca8267c68c8f47e0b1eb508250a15685f99"
+      },
+      "request_seconds": [
+        84.789467,
+        10.683962,
+        10.559471,
+        10.508245,
+        10.596785,
+        10.602517
+      ],
+      "cpu_checks": 30,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 71.0,
+          "ve0": 52.62,
+          "ve1": 38.25,
+          "ve2": 40.5
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      }
+    },
+    {
+      "name": "four",
+      "artifacts": "build/results/20261009T133129Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T133117Z-ve-memory-sampled",
+      "guard_log": "build/sd-im2col-o2-four.log",
+      "sha256": {
+        "build/results/20261009T133129Z-sd-resident/summary.json": "ce31bb24609edba7f0d5ca4491dc71d6d6177539f77473a7049697255d73546d",
+        "build/results/20261009T133129Z-sd-resident/native.log": "869a5887d862b0f516bb5dc0e7a2ba1106e7c7ea34390ca7f8e066272b43a04b",
+        "build/results/20261009T133117Z-ve-memory-sampled/summary.json": "f6f502875603def8fe29a079fc77995f07675458c3b790e148a3f2a20221d029",
+        "build/results/20261009T133117Z-ve-memory-sampled/memory.csv": "35afeb4e2478dd739ea05b8b1022f4b3dd059eaf6cd31d80bfe43affc6a5c2ae",
+        "build/sd-im2col-o2-four.log": "29d4b72a36e10125df7bbf94d6a7c9e0c2cef1d6ce8eb88402aa7a02cd190d21",
+        "build/results/20261009T133117Z-temperature-l5jgbjtc.csv": "7bd39a70068c9d65e6d878aec87d6f5645bfa559f52aba44346f9bcbe8094cf2",
+        "build/results/20261009T133117Z-temperature-l5jgbjtc-fans.csv": "4166c570af8b8432ba506bd243a468d91fbb012e94bc5f995d4a79a705104f35"
+      },
+      "request_seconds": [
+        91.553465,
+        19.016776
+      ],
+      "cpu_checks": 22,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 72.0,
+          "ve0": 53.12,
+          "ve1": 38.25,
+          "ve2": 40.5
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      }
+    }
+  ],
+  "six": {
+    "name": "six",
+    "artifacts": "build/results/20261009T132828Z-sd-resident",
+    "memory_artifacts": "build/results/20261009T132815Z-ve-memory-sampled",
+    "guard_log": "build/sd-im2col-o2-six.log",
+    "sha256": {
+      "build/results/20261009T132828Z-sd-resident/summary.json": "e964282c88aae457f40eae1eff7d0edb405e55d2f9d47f2dd0ce9acb16a09c17",
+      "build/results/20261009T132828Z-sd-resident/native.log": "2999abf98e809f372381e63e17835b2c29de7fd4fca53f821a101102b5b856ab",
+      "build/results/20261009T132815Z-ve-memory-sampled/summary.json": "df406b0f6091a2c4c3109e1ca5c9eaad2827e810aa50443706afcc2f21c86ce4",
+      "build/results/20261009T132815Z-ve-memory-sampled/memory.csv": "2d01b510f59ce9f6b184233e7d795b5d3e578b90004a74361aed5609290533d6",
+      "build/sd-im2col-o2-six.log": "7226806fb191fa75f7536b6d734f9647dda30b9bdff20d7f673ee1b38b24b786",
+      "build/results/20261009T132815Z-temperature-w114mu_b.csv": "5bdfd5527ac97530c6ca63fc1e8cad4a5ccff106e3edd74be71b883b1ad2eb8d",
+      "build/results/20261009T132815Z-temperature-w114mu_b-fans.csv": "35b1a55de5c44d0782f52b9ce8ea6ca8267c68c8f47e0b1eb508250a15685f99"
+    },
+    "request_seconds": [
+      84.789467,
+      10.683962,
+      10.559471,
+      10.508245,
+      10.596785,
+      10.602517
+    ],
+    "cpu_checks": 30,
+    "temperature": {
+      "peaks_c": {
+        "cpu": 71.0,
+        "ve0": 52.62,
+        "ve1": 38.25,
+        "ve2": 40.5
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    }
+  },
+  "all_candidate_tests_completed": true,
+  "publisher_sha256": "fa95d64a71f5736491139f3d30e1eb6cf528bfe073fdd7d388594874d0cd2c0d",
+  "four": {
+    "name": "four",
+    "artifacts": "build/results/20261009T133129Z-sd-resident",
+    "memory_artifacts": "build/results/20261009T133117Z-ve-memory-sampled",
+    "guard_log": "build/sd-im2col-o2-four.log",
+    "sha256": {
+      "build/results/20261009T133129Z-sd-resident/summary.json": "ce31bb24609edba7f0d5ca4491dc71d6d6177539f77473a7049697255d73546d",
+      "build/results/20261009T133129Z-sd-resident/native.log": "869a5887d862b0f516bb5dc0e7a2ba1106e7c7ea34390ca7f8e066272b43a04b",
+      "build/results/20261009T133117Z-ve-memory-sampled/summary.json": "f6f502875603def8fe29a079fc77995f07675458c3b790e148a3f2a20221d029",
+      "build/results/20261009T133117Z-ve-memory-sampled/memory.csv": "35afeb4e2478dd739ea05b8b1022f4b3dd059eaf6cd31d80bfe43affc6a5c2ae",
+      "build/sd-im2col-o2-four.log": "29d4b72a36e10125df7bbf94d6a7c9e0c2cef1d6ce8eb88402aa7a02cd190d21",
+      "build/results/20261009T133117Z-temperature-l5jgbjtc.csv": "7bd39a70068c9d65e6d878aec87d6f5645bfa559f52aba44346f9bcbe8094cf2",
+      "build/results/20261009T133117Z-temperature-l5jgbjtc-fans.csv": "4166c570af8b8432ba506bd243a468d91fbb012e94bc5f995d4a79a705104f35"
+    },
+    "request_seconds": [
+      91.553465,
+      19.016776
+    ],
+    "cpu_checks": 22,
+    "temperature": {
+      "peaks_c": {
+        "cpu": 72.0,
+        "ve0": 53.12,
+        "ve1": 38.25,
+        "ve2": 40.5
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    }
+  }
+}

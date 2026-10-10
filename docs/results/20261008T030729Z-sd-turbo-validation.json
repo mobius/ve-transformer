@@ -1,0 +1,200 @@
+{
+  "status": "cpu_reference_and_ve_operators_complete_full_image_pending",
+  "default_adopted": false,
+  "model_repo": "stabilityai/sd-turbo",
+  "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "architecture": "dense distilled SD2.1: CLIP, U-Net, VAE",
+  "reference_artifacts": "build/results/20261008T023813Z-sd-reference",
+  "reference": {
+    "completed": true,
+    "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+    "steps": 1,
+    "size": 512,
+    "precision": "CPU FP32",
+    "threads": 1,
+    "test_sha256": "9c3dfdb454769aaaabfeff00cf679ebea050e902ccda6a0a65fd522b25e8917e",
+    "cases": [
+      {
+        "case": 0,
+        "seed": 2026,
+        "text_seconds": 1.7993613295257092,
+        "unet_seconds": [
+          18.806271760724485
+        ],
+        "vae_seconds": 54.13446416147053,
+        "arrays": {
+          "embeddings": {
+            "shape": [
+              1,
+              77,
+              1024
+            ],
+            "sha256": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+            "bytes": 315392
+          },
+          "noise": {
+            "shape": [
+              1,
+              4,
+              64,
+              64
+            ],
+            "sha256": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+            "bytes": 65536
+          },
+          "timesteps": {
+            "shape": [
+              1
+            ],
+            "sha256": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+            "bytes": 4
+          },
+          "sigmas": {
+            "shape": [
+              2
+            ],
+            "sha256": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+            "bytes": 8
+          },
+          "step0-input": {
+            "shape": [
+              1,
+              4,
+              64,
+              64
+            ],
+            "sha256": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+            "bytes": 65536
+          },
+          "step0-epsilon": {
+            "shape": [
+              1,
+              4,
+              64,
+              64
+            ],
+            "sha256": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+            "bytes": 65536
+          },
+          "step0-latent": {
+            "shape": [
+              1,
+              4,
+              64,
+              64
+            ],
+            "sha256": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+            "bytes": 65536
+          },
+          "decoded": {
+            "shape": [
+              1,
+              3,
+              512,
+              512
+            ],
+            "sha256": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+            "bytes": 3145728
+          }
+        }
+      }
+    ],
+    "cpu_duty_percent": 25,
+    "timing_scope": "reference execution including any explicit CPU duty throttling; not an optimized CPU benchmark",
+    "load_seconds": 0.8852317444980145,
+    "torch_version": "2.8.0+cpu"
+  },
+  "reference_temperature": {
+    "peaks_c": {
+      "cpu": 79.0,
+      "ve0": 45.12,
+      "ve1": 42.88,
+      "ve2": 45.12
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "timing_scope": "correctness validation including model loading and trace export; no steady-state performance claim",
+  "physical_hbm_peak_measured": false,
+  "quality_scope": "numerical agreement and generated-image inspection; no quality benchmark",
+  "operators": {
+    "cases": 11,
+    "relative_l2_limit": 0.0001,
+    "checks": [
+      {
+        "name": "NLC SGEMM",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "NLC SGEMM",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "FP32 convolution",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "FP32 convolution",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "FP32 convolution",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "layer normalization",
+        "relative_l2": 4.68127779e-08,
+        "max_abs_error": 2.08354936e-07
+      },
+      {
+        "name": "SiLU",
+        "relative_l2": 4.13007092e-08,
+        "max_abs_error": 8.19433585e-08
+      },
+      {
+        "name": "GELU",
+        "relative_l2": 4.67965088e-08,
+        "max_abs_error": 8.95086876e-08
+      },
+      {
+        "name": "softmax",
+        "relative_l2": 4.00286955e-08,
+        "max_abs_error": 5.27588571e-09
+      },
+      {
+        "name": "group normalization",
+        "relative_l2": 4.04278643e-08,
+        "max_abs_error": 1.22221034e-07
+      },
+      {
+        "name": "nearest upscale",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      }
+    ],
+    "source_sha256": "5172b96aa3b0b453e23483b5899cddda1781c7db670b75acbb81da01f74a361b",
+    "temperature": {
+      "peaks_c": {
+        "cpu": 69.0,
+        "ve0": 46.88,
+        "ve1": 42.75,
+        "ve2": 45.12
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    }
+  }
+}

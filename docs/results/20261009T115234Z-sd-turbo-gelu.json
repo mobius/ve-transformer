@@ -1,0 +1,55 @@
+{
+  "status": "standalone_correctness_passed_model_not_integrated",
+  "fixtures": 102,
+  "max_abs_error": 4.45248586e-07,
+  "kernel_vectorized_compiler_diagnostic": true,
+  "reference_harness_compilation": "O1 no-vector",
+  "kernel_object_identical_across_failed_and_passed_trials": true,
+  "failed_trials": [
+    {
+      "log": "build/sd-gelu-check.log",
+      "returncode": 132
+    },
+    {
+      "log": "build/sd-gelu-check-diagnostic.log",
+      "returncode": 132
+    }
+  ],
+  "failed_cause": "observed outside kernel invocation; root cause not established; scalar oracle compilation completed same full input scope",
+  "model_binary_unchanged_sha256": "e32032d2bdfc37088f381e20b7efe2d9732b12642f82d8c0e91b7396e0d44029",
+  "temperature": {
+    "peaks_c": {
+      "cpu": 59.0,
+      "ve0": 42.38,
+      "ve1": 38.75,
+      "ve2": 41.12
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "artifact_sha256": {
+    "src/ve_sd_turbo_gelu.c": "7e668a4bb9bcff7d7fb8d7be7243dbbd1df046c233f534fb4f408a0fdaeb37d1",
+    "tests/check_sd_gelu.c": "0d4ce77e46c523bd68c9c53f74ab6cb686d9e5632be1788348e1e83262453a68",
+    "scripts/check_sd_gelu.sh": "b8eacc5f5b35900b74a65fab5bf99411a4cf3b7c1b3fcc483f02538bcfa71fc4",
+    "build/sd-gelu-probe/gelu.o": "dd3f23b1e1d83a421d2ea3c1bb83c0a4ca86f5270036d1f4deffa823a4d5db38",
+    "build/sd-gelu-probe/check-gelu": "d519b033bdc7550ee725bbc1910ddc6cc7eb8e03495a75bfb9897c0a8e4d70e9",
+    "build/sd-gelu-check.log": "44515e37a51ab7d9b540034d254696bf47cc0a0ff1ea431adc42fde86bf3b89a",
+    "build/sd-gelu-check-diagnostic.log": "4e86142c478a0c00fcbcbf8b4d1035a4135bed07650fcd03092899c91b8a666a",
+    "build/sd-gelu-check-scalar-oracle.log": "190610fa32ccbe6660e4712e024dda68299f06cdc9530ec1cbdb96b8cf58ed93"
+  },
+  "scope": "same FP32 erf formula standalone; finite FP64 reference, nonfinite classification, signed zero, length boundaries, inplace and guards; no latency or full-model gain measured"
+}

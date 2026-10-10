@@ -1,0 +1,2996 @@
+{
+  "clamp_source_identical": true,
+  "status": "formal_dual_abba_verified",
+  "same_binary": false,
+  "full_graph_incremental_speedup_measured": true,
+  "pair": {
+    "changed_common_artifacts": [
+      "build/sd-baseline-ve/bin/sd",
+      "cmake/nec-sd-baseline-overrides.cmake"
+    ],
+    "candidate_only_artifacts": [
+      "src/ve_sd_turbo_pixels_pack.cpp"
+    ],
+    "matching_common_artifacts": 65,
+    "accepted_proof_sha256": {
+      "baseline": "1f5cf51d522e0b32913fe762fe244f848e6e983f3b7989acef9f3d9b19eb34fc",
+      "candidate": "36242c8a075ca17297b9385361268ac809d1155a80f7d95f51f106a7051deebd"
+    },
+    "same_binary": false
+  },
+  "builds": {
+    "baseline": {
+      "snapshot": "build/accepted/pixels-bits-model-20261009T172525Z",
+      "manifest_sha256": "2bca7ea86c25ee1ea99c869097b4d280f729cee9f7f3a7273f4f6c9d2332d70a",
+      "binary_sha256": "70a902375566c7fab18f1d07ea00344e1509a8426b1fc72fb955898b0b4bd0b5"
+    },
+    "candidate": {
+      "snapshot": "build/accepted/pixels-pack-model-20261009T181647Z",
+      "manifest_sha256": "d1d3d4213f13d1d9a2ddcf1b5c47ac46b02ecb7e9ee036bdc2f629eb4eee5ff4",
+      "binary_sha256": "66e2bd4750199642026b78203d62a86903f92a895f3a99bd7c6658df066015a8"
+    }
+  },
+  "metrics": {
+    "process": {
+      "baseline": 113.66624518251047,
+      "candidate": 113.75093279685825,
+      "latency_reduction_percent": -0.07450550883580931
+    },
+    "request0": {
+      "baseline": 83.913584,
+      "candidate": 84.025124,
+      "latency_reduction_percent": -0.13292245984870554
+    },
+    "request1": {
+      "baseline": 9.742481,
+      "candidate": 9.7547645,
+      "latency_reduction_percent": -0.12608184711881965
+    },
+    "request2": {
+      "baseline": 9.7332785,
+      "candidate": 9.7217755,
+      "latency_reduction_percent": 0.11818217263588338
+    },
+    "request3": {
+      "baseline": 9.735312,
+      "candidate": 9.684134,
+      "latency_reduction_percent": 0.5256945026517967
+    }
+  },
+  "hot_requests": {
+    "baseline": {
+      "samples_seconds": [
+        9.736105,
+        9.770482,
+        9.740236,
+        9.748857,
+        9.696075,
+        9.730388
+      ],
+      "mean_seconds": 9.737023833333334
+    },
+    "candidate": {
+      "samples_seconds": [
+        9.726025,
+        9.689218,
+        9.652781,
+        9.783504,
+        9.754333,
+        9.715487
+      ],
+      "mean_seconds": 9.720224666666667
+    },
+    "latency_reduction_percent": 0.17252876191139466
+  },
+  "hot_image_output_mean_seconds": {
+    "baseline": 0.411676,
+    "candidate": 0.38156066666666666
+  },
+  "hot_stage_profile_seconds": {
+    "clip/backend_CPU": {
+      "baseline": 0.063133,
+      "candidate": 0.061287
+    },
+    "clip/backend_BLAS": {
+      "baseline": 0.5324496666666667,
+      "candidate": 0.5314006666666667
+    },
+    "clip/graph_compute": {
+      "baseline": 0.5963078333333334,
+      "candidate": 0.5934223333333334
+    },
+    "clip/nlc_thread_prepare": {
+      "baseline": 0.0019616666666666662,
+      "candidate": 0.0019021666666666685
+    },
+    "clip/nlc_thread_release": {
+      "baseline": 0.03780166666666667,
+      "candidate": 0.03736716666666667
+    },
+    "unet/backend_CPU": {
+      "baseline": 1.4175286666666667,
+      "candidate": 1.4310795
+    },
+    "unet/backend_BLAS": {
+      "baseline": 1.0399125,
+      "candidate": 1.0431885
+    },
+    "unet/graph_compute": {
+      "baseline": 2.4589548333333333,
+      "candidate": 2.475924333333333
+    },
+    "unet/nlc_thread_prepare": {
+      "baseline": 0.003716166666666679,
+      "candidate": 0.003633666666666681
+    },
+    "unet/nlc_thread_release": {
+      "baseline": 0.07052983333333336,
+      "candidate": 0.06254783333333337
+    },
+    "vae/backend_CPU": {
+      "baseline": 1.3129860000000002,
+      "candidate": 1.3316838333333332
+    },
+    "vae/backend_BLAS": {
+      "baseline": 4.2382471666666675,
+      "candidate": 4.226168166666667
+    },
+    "vae/graph_compute": {
+      "baseline": 5.552114500000001,
+      "candidate": 5.558629166666667
+    },
+    "vae/nlc_thread_prepare": {
+      "baseline": 0.024380999999999996,
+      "candidate": 0.025107
+    },
+    "vae/nlc_thread_release": {
+      "baseline": 0.45595633333333324,
+      "candidate": 0.451867
+    }
+  },
+  "paired_hot_arm_means": [
+    {
+      "baseline_arm": 0,
+      "candidate_arm": 1,
+      "baseline_seconds": 9.748941,
+      "candidate_seconds": 9.689341333333333,
+      "latency_reduction_percent": 0.6113450339546356
+    },
+    {
+      "baseline_arm": 3,
+      "candidate_arm": 2,
+      "baseline_seconds": 9.725106666666667,
+      "candidate_seconds": 9.751108,
+      "latency_reduction_percent": -0.26736296294265216
+    }
+  ],
+  "runs": [
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T182655Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T182642Z-ve-memory-sampled",
+      "request_seconds": [
+        83.889395,
+        9.736105,
+        9.770482,
+        9.740236
+      ],
+      "process_seconds": 113.66006039083004,
+      "image_output_seconds": [
+        0.593202,
+        0.412664,
+        0.410684,
+        0.411522
+      ],
+      "cpu_checks": 20,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 4,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 80.0,
+          "ve0": 62.88,
+          "ve1": 48.25,
+          "ve2": 50.62
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "sha256": {
+        "build/results/20261009T182655Z-sd-resident/summary.json": "7542ab31bd96e55d13bfb072de2aa12a491e72fbaaceb432d9086ee787f48a3d",
+        "build/results/20261009T182655Z-sd-resident/native.log": "09c484a0cb31d0be36481b8dbcc6992026e84d7485fa99f766d0eecb69f3ace3",
+        "build/results/20261009T182655Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T182642Z-ve-memory-sampled/summary.json": "1451a64e9c908672c9b0a83409d48c40a3aa33916ff1797f713fc02b5be9945d",
+        "build/results/20261009T182642Z-ve-memory-sampled/memory.csv": "dff21aa4da2c939edbca4cbabe98f33da69844bb79d5b1e5633f1f0cfc3b6988",
+        "build/sd-pixels-pack-abba.log": "96c7d7d6a95e7057c805ae0f747b73ff367c2f4d8494232a679474c02d6ec1cc",
+        "build/results/20261009T182642Z-temperature-xj0vwnxi.csv": "59d36861a0c3fb3ec15c182e163b231f0a8b127fbfe74d64bd0344cc5a861522",
+        "build/results/20261009T182642Z-temperature-xj0vwnxi-fans.csv": "7a5169c74c979889f956122304fc578cc1cb7aa4d397bb648c853edd18277e87",
+        "build/results/20261009T182655Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T182655Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182655Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T182655Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182655Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182655Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182655Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182655Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T182655Z-sd-resident/request1/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T182655Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182655Z-sd-resident/request1/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T182655Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182655Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182655Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182655Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182655Z-sd-resident/request1/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T182655Z-sd-resident/request2/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T182655Z-sd-resident/request2/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182655Z-sd-resident/request2/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T182655Z-sd-resident/request2/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182655Z-sd-resident/request2/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182655Z-sd-resident/request2/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182655Z-sd-resident/request2/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182655Z-sd-resident/request2/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T182655Z-sd-resident/request3/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T182655Z-sd-resident/request3/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182655Z-sd-resident/request3/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T182655Z-sd-resident/request3/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182655Z-sd-resident/request3/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182655Z-sd-resident/request3/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182655Z-sd-resident/request3/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182655Z-sd-resident/request3/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c"
+      },
+      "mode": "baseline"
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T182904Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T182852Z-ve-memory-sampled",
+      "request_seconds": [
+        84.205162,
+        9.726025,
+        9.689218,
+        9.652781
+      ],
+      "process_seconds": 113.83072504401207,
+      "image_output_seconds": [
+        0.559875,
+        0.382751,
+        0.381246,
+        0.380751
+      ],
+      "cpu_checks": 20,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 4,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 80.0,
+          "ve0": 62.88,
+          "ve1": 48.25,
+          "ve2": 50.62
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "sha256": {
+        "build/results/20261009T182904Z-sd-resident/summary.json": "48ff9cb3f41e00c664d25b9ace8f5a5bfd78d26e039cc52e522825240c51918a",
+        "build/results/20261009T182904Z-sd-resident/native.log": "ec1d00c7248296349f65ed7acf8a3d205b8ddc9dae8e9b616cad251f9483375a",
+        "build/results/20261009T182904Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T182852Z-ve-memory-sampled/summary.json": "4fcf9a8e5b3c7220b22389ed62f5be32c324a529d6c1ea0ba247b34c7f67e871",
+        "build/results/20261009T182852Z-ve-memory-sampled/memory.csv": "13127cac5b8716551065a09e8ea27449f78ad7a7b158b7ce71e25b5ca16af7ec",
+        "build/sd-pixels-pack-abba.log": "96c7d7d6a95e7057c805ae0f747b73ff367c2f4d8494232a679474c02d6ec1cc",
+        "build/results/20261009T182642Z-temperature-xj0vwnxi.csv": "59d36861a0c3fb3ec15c182e163b231f0a8b127fbfe74d64bd0344cc5a861522",
+        "build/results/20261009T182642Z-temperature-xj0vwnxi-fans.csv": "7a5169c74c979889f956122304fc578cc1cb7aa4d397bb648c853edd18277e87",
+        "build/results/20261009T182904Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T182904Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182904Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T182904Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182904Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182904Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182904Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182904Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T182904Z-sd-resident/request1/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T182904Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182904Z-sd-resident/request1/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T182904Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182904Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182904Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182904Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182904Z-sd-resident/request1/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T182904Z-sd-resident/request2/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T182904Z-sd-resident/request2/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182904Z-sd-resident/request2/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T182904Z-sd-resident/request2/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182904Z-sd-resident/request2/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182904Z-sd-resident/request2/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182904Z-sd-resident/request2/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182904Z-sd-resident/request2/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T182904Z-sd-resident/request3/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T182904Z-sd-resident/request3/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182904Z-sd-resident/request3/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T182904Z-sd-resident/request3/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182904Z-sd-resident/request3/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182904Z-sd-resident/request3/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182904Z-sd-resident/request3/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182904Z-sd-resident/request3/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c"
+      },
+      "mode": "candidate"
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T183113Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T183101Z-ve-memory-sampled",
+      "request_seconds": [
+        83.845086,
+        9.783504,
+        9.754333,
+        9.715487
+      ],
+      "process_seconds": 113.67114054970443,
+      "image_output_seconds": [
+        0.558787,
+        0.382005,
+        0.381261,
+        0.38135
+      ],
+      "cpu_checks": 20,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 4,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 80.0,
+          "ve0": 62.88,
+          "ve1": 48.25,
+          "ve2": 50.62
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "sha256": {
+        "build/results/20261009T183113Z-sd-resident/summary.json": "77da40349fb997a6ff7599ede6454c86f73013d7c87499094ececcadc175a41d",
+        "build/results/20261009T183113Z-sd-resident/native.log": "af03fdd3ff4d8d877825344664034b9bea02d19981be094e8e4aa5a9e792cca4",
+        "build/results/20261009T183113Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T183101Z-ve-memory-sampled/summary.json": "8a0aca959c7539c48d44c6d7c1831eb20f9166f6fecbf76237f47d4c22382f00",
+        "build/results/20261009T183101Z-ve-memory-sampled/memory.csv": "5d690ef46f6278b017af77f9277d2372629a662e93dfa24fc7864512f820c1c7",
+        "build/sd-pixels-pack-abba.log": "96c7d7d6a95e7057c805ae0f747b73ff367c2f4d8494232a679474c02d6ec1cc",
+        "build/results/20261009T182642Z-temperature-xj0vwnxi.csv": "59d36861a0c3fb3ec15c182e163b231f0a8b127fbfe74d64bd0344cc5a861522",
+        "build/results/20261009T182642Z-temperature-xj0vwnxi-fans.csv": "7a5169c74c979889f956122304fc578cc1cb7aa4d397bb648c853edd18277e87",
+        "build/results/20261009T183113Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T183113Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T183113Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T183113Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T183113Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T183113Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T183113Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T183113Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T183113Z-sd-resident/request1/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T183113Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T183113Z-sd-resident/request1/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T183113Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T183113Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T183113Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T183113Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T183113Z-sd-resident/request1/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T183113Z-sd-resident/request2/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T183113Z-sd-resident/request2/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T183113Z-sd-resident/request2/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T183113Z-sd-resident/request2/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T183113Z-sd-resident/request2/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T183113Z-sd-resident/request2/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T183113Z-sd-resident/request2/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T183113Z-sd-resident/request2/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T183113Z-sd-resident/request3/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T183113Z-sd-resident/request3/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T183113Z-sd-resident/request3/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T183113Z-sd-resident/request3/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T183113Z-sd-resident/request3/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T183113Z-sd-resident/request3/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T183113Z-sd-resident/request3/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T183113Z-sd-resident/request3/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c"
+      },
+      "mode": "candidate"
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T183322Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T183310Z-ve-memory-sampled",
+      "request_seconds": [
+        83.937773,
+        9.748857,
+        9.696075,
+        9.730388
+      ],
+      "process_seconds": 113.67242997419089,
+      "image_output_seconds": [
+        0.591012,
+        0.411763,
+        0.411851,
+        0.411572
+      ],
+      "cpu_checks": 20,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 4,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 80.0,
+          "ve0": 62.88,
+          "ve1": 48.25,
+          "ve2": 50.62
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "sha256": {
+        "build/results/20261009T183322Z-sd-resident/summary.json": "342c681d3aaed197981dcb41e8b1555112cc7cef58734f7410fb537848266e07",
+        "build/results/20261009T183322Z-sd-resident/native.log": "7c1ed7ca73388055ffcb4df11aaa17a4ccf3c86709538619db37b90ace0d23d1",
+        "build/results/20261009T183322Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T183310Z-ve-memory-sampled/summary.json": "71c8c181275901aa13eebe83e33fc0dfc8ee2c874fad1b0a460933a670b53055",
+        "build/results/20261009T183310Z-ve-memory-sampled/memory.csv": "520d1a1e22cf427a06b06fc115212222b983429f268670fb95262fb3b589141f",
+        "build/sd-pixels-pack-abba.log": "96c7d7d6a95e7057c805ae0f747b73ff367c2f4d8494232a679474c02d6ec1cc",
+        "build/results/20261009T182642Z-temperature-xj0vwnxi.csv": "59d36861a0c3fb3ec15c182e163b231f0a8b127fbfe74d64bd0344cc5a861522",
+        "build/results/20261009T182642Z-temperature-xj0vwnxi-fans.csv": "7a5169c74c979889f956122304fc578cc1cb7aa4d397bb648c853edd18277e87",
+        "build/results/20261009T183322Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T183322Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T183322Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T183322Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T183322Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T183322Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T183322Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T183322Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T183322Z-sd-resident/request1/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T183322Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T183322Z-sd-resident/request1/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T183322Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T183322Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T183322Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T183322Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T183322Z-sd-resident/request1/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T183322Z-sd-resident/request2/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T183322Z-sd-resident/request2/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T183322Z-sd-resident/request2/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T183322Z-sd-resident/request2/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T183322Z-sd-resident/request2/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T183322Z-sd-resident/request2/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T183322Z-sd-resident/request2/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T183322Z-sd-resident/request2/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T183322Z-sd-resident/request3/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T183322Z-sd-resident/request3/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T183322Z-sd-resident/request3/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T183322Z-sd-resident/request3/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T183322Z-sd-resident/request3/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T183322Z-sd-resident/request3/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T183322Z-sd-resident/request3/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T183322Z-sd-resident/request3/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c"
+      },
+      "mode": "baseline"
+    }
+  ],
+  "prior_runs": [
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T172920Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T172908Z-ve-memory-sampled",
+      "request_seconds": [
+        84.450531,
+        9.695796
+      ],
+      "process_seconds": 94.70305920671672,
+      "image_output_seconds": [
+        0.591255,
+        0.411949
+      ],
+      "cpu_checks": 10,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 2,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 73.0,
+          "ve0": 58.62,
+          "ve1": 46.75,
+          "ve2": 49.12
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "sha256": {
+        "build/results/20261009T172920Z-sd-resident/summary.json": "c8b07f9d87fe188c0965f1d8513a256d3bc3b34729aa3f9f5839eb4636a48687",
+        "build/results/20261009T172920Z-sd-resident/native.log": "9b61ca5292ab5f1770782a16c85eff91b2fa0a6946c1d12661e8c977eb433d87",
+        "build/results/20261009T172920Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T172908Z-ve-memory-sampled/summary.json": "1a33bf50a1fd4f448544e1da4fc7971f0e698fc6503d0b2f4e9dff1fd9d95d7c",
+        "build/results/20261009T172908Z-ve-memory-sampled/memory.csv": "bbc5c0e32df99bba4cfa31d1dbd4fe37b8a4fcb2218a76a30033222292458028",
+        "build/sd-pixels-bits-model-double.log": "f90951dd5cbf53ce2b33ed627874bcec2d1a268f2695a9245bf825a7aa065628",
+        "build/results/20261009T172908Z-temperature-y42d5oqo.csv": "1d89117a6590802a3bb46ffd3142881c2f1cbd2d80150fc059c203a90498f7de",
+        "build/results/20261009T172908Z-temperature-y42d5oqo-fans.csv": "7879c4d2729ee34baabfd21b45d404d1edf11aa579fa7bd5e05925c5abb616c1",
+        "build/results/20261009T172920Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T172920Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T172920Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T172920Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T172920Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T172920Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T172920Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T172920Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T172920Z-sd-resident/request1/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T172920Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T172920Z-sd-resident/request1/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T172920Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T172920Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T172920Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T172920Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T172920Z-sd-resident/request1/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c"
+      },
+      "mode": "baseline",
+      "name": "double"
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T173117Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T173105Z-ve-memory-sampled",
+      "request_seconds": [
+        83.142318,
+        9.777053,
+        9.793197,
+        9.793274,
+        9.700204,
+        9.730889
+      ],
+      "process_seconds": 132.48673262819648,
+      "image_output_seconds": [
+        0.591361,
+        0.395301,
+        0.422532,
+        0.446373,
+        0.397189,
+        0.436759
+      ],
+      "cpu_checks": 30,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.1898290821743867e-06,
+          "max_abs_error": 1.564621925354004e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.290747780016011e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 6.477097031066101e-07,
+          "max_abs_error": 1.4722347259521484e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 1.1132134673218557e-05,
+          "max_abs_error": 0.0002155303955078125,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 4.2885169876482195e-06,
+          "max_abs_error": 8.907914161682129e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-embeddings",
+          "relative_l2": 2.089861323931437e-06,
+          "max_abs_error": 1.621246337890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-input",
+          "relative_l2": 5.306402597903837e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-epsilon",
+          "relative_l2": 3.330302716593069e-07,
+          "max_abs_error": 5.077570676803589e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-latent",
+          "relative_l2": 6.358750563279956e-06,
+          "max_abs_error": 7.420778274536133e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-decoded",
+          "relative_l2": 6.075360837354076e-06,
+          "max_abs_error": 0.00014445185661315918,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-embeddings",
+          "relative_l2": 2.2218675038449105e-06,
+          "max_abs_error": 1.52587890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-input",
+          "relative_l2": 5.2292039058432315e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.8213987461358027e-07,
+          "max_abs_error": 2.9802322387695312e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-latent",
+          "relative_l2": 4.417294206926504e-06,
+          "max_abs_error": 4.291534423828125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-decoded",
+          "relative_l2": 3.4348961836633265e-06,
+          "max_abs_error": 3.2007694244384766e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-embeddings",
+          "relative_l2": 2.124017609969239e-06,
+          "max_abs_error": 1.621246337890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-step0-input",
+          "relative_l2": 5.297791594895035e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.4313823603933436e-07,
+          "max_abs_error": 5.0961971282958984e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-latent",
+          "relative_l2": 4.155942092429359e-06,
+          "max_abs_error": 7.43865966796875e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-decoded",
+          "relative_l2": 2.1959593466317273e-06,
+          "max_abs_error": 3.1828880310058594e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-embeddings",
+          "relative_l2": 2.0765264854820284e-06,
+          "max_abs_error": 1.329183578491211e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-step0-input",
+          "relative_l2": 5.233191676565092e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-step0-epsilon",
+          "relative_l2": 8.669273129174466e-07,
+          "max_abs_error": 1.7881393432617188e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-latent",
+          "relative_l2": 1.4816683189021762e-05,
+          "max_abs_error": 0.0002613067626953125,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-decoded",
+          "relative_l2": 6.52590625322525e-06,
+          "max_abs_error": 0.00010159611701965332,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 6,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 77.0,
+          "ve0": 61.5,
+          "ve1": 46.75,
+          "ve2": 49.12
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 10.009765625,
+      "sha256": {
+        "build/results/20261009T173117Z-sd-resident/summary.json": "a75aca7e4c14160aadc954e60c8eecbeadae8381027cd2e3b05da8a0e8194dd4",
+        "build/results/20261009T173117Z-sd-resident/native.log": "388740f97e60d6055a57ddf76ed4781b10f71fbc647fe36a34e1d34e4a67c705",
+        "build/results/20261009T173117Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T173105Z-ve-memory-sampled/summary.json": "33c6891a8a6c65e0c95eae19f7e5ff0ee17a625f8d63284e70b2e145967e40ae",
+        "build/results/20261009T173105Z-ve-memory-sampled/memory.csv": "207a2d82fcee813f1e43766ecca28af22a5d72b1e8d222224b86e1e1bc8900fb",
+        "build/sd-pixels-bits-model-six.log": "d1e9ff04740e48969182942d7790833323bcd7fed49e8f2449e704c9f6160d6a",
+        "build/results/20261009T173105Z-temperature-khuvhz01.csv": "e4d51569357c68b1a7a341f7328721e43fccb5eae2dfe7182b1a50d31854e35a",
+        "build/results/20261009T173105Z-temperature-khuvhz01-fans.csv": "2a98e6d4e01aa994cca2d09c498248bb0015b0c66f6c6ee550c742b9853a6792",
+        "build/results/20261009T173117Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T173117Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T173117Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T173117Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T173117Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T173117Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T173117Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T173117Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T173117Z-sd-resident/request1/native-decoded.f32": "770d5d29f74ffe8547350a8ecd25ffb910ae8e3405f99a299750657f1c360e7d",
+        "build/results/20261009T173117Z-sd-resident/request1/native-embeddings.f32": "181289d593714c08d63d1710f0473cda78ca0a35675d8afeb66230b048f8aef6",
+        "build/results/20261009T173117Z-sd-resident/request1/native-latent.f32": "6d1963c69c1a3b1e049a29e7e66982781f91f042e1caa46bed73063c3f19e83c",
+        "build/results/20261009T173117Z-sd-resident/request1/native-noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+        "build/results/20261009T173117Z-sd-resident/request1/native-step0-epsilon.f32": "a93625649dacecc734188bde2e76f87e2b3fec05ed0b7088ed7293f09ac9a7c8",
+        "build/results/20261009T173117Z-sd-resident/request1/native-step0-input.f32": "4eabd420973794bc3fba716b0997ab5df204ece75401d7bda98df67886db6a36",
+        "build/results/20261009T173117Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T173117Z-sd-resident/request1/image.png": "eec2e99cf02e5ebcf74e3bd907e5b6a2f556a526a3bf80d6dd38b1e8ae56ccec",
+        "build/results/20261009T173117Z-sd-resident/request2/native-decoded.f32": "44249bde81f2908e46bbfd68f061b209b23f3ce38be56d8dee5d9950fd337406",
+        "build/results/20261009T173117Z-sd-resident/request2/native-embeddings.f32": "9621acea46421359da5c5170616b0f3fb32aecc02a4feb0e302ad414c6c2a481",
+        "build/results/20261009T173117Z-sd-resident/request2/native-latent.f32": "b5f3ebcc8e1dfa2c487421f18344a89b86e7fc925e78f2ed4df7984beb89931c",
+        "build/results/20261009T173117Z-sd-resident/request2/native-noise.f32": "5c63c669f669e569c1305107aedb6a469023904873b39362db430b91c569680e",
+        "build/results/20261009T173117Z-sd-resident/request2/native-step0-epsilon.f32": "99f7ef10f6edf9ca249b166389e2758d102ef64dbd89ccdb9b184958f61eb275",
+        "build/results/20261009T173117Z-sd-resident/request2/native-step0-input.f32": "8c26d02f807b3393f6b9d6326c343d0318754e5f0f21d1cb9f73369cafc63ac5",
+        "build/results/20261009T173117Z-sd-resident/request2/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T173117Z-sd-resident/request2/image.png": "19b93473cac5405e3c20bdb8738874c8a17985f38e02ed70e9003084b3a1bc84",
+        "build/results/20261009T173117Z-sd-resident/request3/native-decoded.f32": "221ef0d2d34712106c2270b05c206209eb397e06f1a867bd56b442b4e26a07d3",
+        "build/results/20261009T173117Z-sd-resident/request3/native-embeddings.f32": "bc676fc707e8de468fe444185a3950812361f5d71caef5a12686a85ceb3ba8d2",
+        "build/results/20261009T173117Z-sd-resident/request3/native-latent.f32": "21a8092fa60a36693335d67d641307cf9aafbe07958b2ab08330a25c8f7a1dcd",
+        "build/results/20261009T173117Z-sd-resident/request3/native-noise.f32": "175ae09299615d0b0eb2c655c4657275c7da11bb2bb8419e656e9aaf1e1e33aa",
+        "build/results/20261009T173117Z-sd-resident/request3/native-step0-epsilon.f32": "b27ef5177d2612da01fe803f6a894b4e04ea0d49a9d1b78d1f40b9959ea03ec1",
+        "build/results/20261009T173117Z-sd-resident/request3/native-step0-input.f32": "98845b1c96f84ee7db2f9bbe818ed2b43e2a9ae578f661ad489bf65c572e6f4c",
+        "build/results/20261009T173117Z-sd-resident/request3/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T173117Z-sd-resident/request3/image.png": "d16df52c85aff2960bc2d8efb4a402269c1a8d25bbb67fcbcc9dbc176f7a2e4c",
+        "build/results/20261009T173117Z-sd-resident/request4/native-decoded.f32": "3fc6720b288108fd6a830b6e8bfc15d3e90f0eaad330511e482b01a9d5261835",
+        "build/results/20261009T173117Z-sd-resident/request4/native-embeddings.f32": "9d56aabe2acb45586845eb841037e42d1e28adc2bacbc91b6f2ea08182fbf44d",
+        "build/results/20261009T173117Z-sd-resident/request4/native-latent.f32": "47784ac6f57b99f35bf74cf0cdeab29be8858a0e1a0ea142a08b1f03cc3b9418",
+        "build/results/20261009T173117Z-sd-resident/request4/native-noise.f32": "0e551d9d33f4f875c4622caf0b3fe4263e66b02263179bf0424f290cb9c355fa",
+        "build/results/20261009T173117Z-sd-resident/request4/native-step0-epsilon.f32": "b2885465b5faa9693d8ce6ef8f89d949720640ee6dd919849000208a8c673566",
+        "build/results/20261009T173117Z-sd-resident/request4/native-step0-input.f32": "562327af3ac98f36eadd1f4a6f64c42c2359603bd520ba1c5df9a8e6ef4c3320",
+        "build/results/20261009T173117Z-sd-resident/request4/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T173117Z-sd-resident/request4/image.png": "c2058fa615b155395d1bfe6396b6b1ee4e70a8500fcb661d701e94200fab7302",
+        "build/results/20261009T173117Z-sd-resident/request5/native-decoded.f32": "39ffb2a69f2bea8d2c6bfc9297811061ef73530777ea5b0cf2d336d9b2cc1e73",
+        "build/results/20261009T173117Z-sd-resident/request5/native-embeddings.f32": "b7470d7417bd66baaffd010a0a102bba20a9751fbd99b1a6137bfdd537a17a28",
+        "build/results/20261009T173117Z-sd-resident/request5/native-latent.f32": "eb0f6f3213f00a3fd9b4964870c90607c79d8883e9947d22349a6ea20cdd7441",
+        "build/results/20261009T173117Z-sd-resident/request5/native-noise.f32": "b811ff3e31f764c29b105dd1868421a006f7e123ab06bed8d5a4dbf7ac7ea3ee",
+        "build/results/20261009T173117Z-sd-resident/request5/native-step0-epsilon.f32": "c590b1cca1684211b5cb2813d7043506cbcd94ee9c7d1b930c2b788f3891de86",
+        "build/results/20261009T173117Z-sd-resident/request5/native-step0-input.f32": "fac8d50a3808ff72cbd0b47baf7498a6fbc80d0f9726ccf2043c04dd3816d756",
+        "build/results/20261009T173117Z-sd-resident/request5/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T173117Z-sd-resident/request5/image.png": "08f84c0551cbf7f0d0dbe737f7c444e10ed691733a41bb9e6e4458d473522895"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case3/embeddings.f32": "9f63c41517dc1742a91cff8097c92a41806a98e6a0bc95616d38a60468019be6",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-epsilon.f32": "edd640c1a6013ff82d18e4a47b4cca176383173edef959ae858f7ca35f8a930a",
+        "build/results/20261008T081800Z-sd-reference/case4/decoded.f32": "238988d8768db206f8c2f6b33b162f684aa62c73fe20dc56174c59600bb74235",
+        "build/results/20261008T081800Z-sd-reference/case1/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-input.f32": "bf5ffae6e8895797905425e0e7bd3ce7c7a19ef03f396c02e5327d0eeb42dbb4",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-latent.f32": "56c23a1e9b85c767a6ea948d21cd348c7e514265fe4aa3326cc85382a9f4592e",
+        "build/results/20261008T081800Z-sd-reference/case4/noise.f32": "0e551d9d33f4f875c4622caf0b3fe4263e66b02263179bf0424f290cb9c355fa",
+        "build/results/20261008T081800Z-sd-reference/case2/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case4/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-epsilon.f32": "7ec11a96b7a9cae670e1d02cbc1252efbe1c427c08464a66e069b3190ef57ec4",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-epsilon.f32": "a92367fa7419ad248038ff8b0b403a4405f502a0c5e928ed5cbd50eaa95ffba3",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/case5/embeddings.f32": "97ded69b790137c88a02aa3daa70594e25f7c89dcdf7009f29af9368138224b9",
+        "build/results/20261008T081800Z-sd-reference/case1/decoded.f32": "9ec33668028a498b633dfc953d16f06a8b2fcaec60e84aa5f21d8970277ec009",
+        "build/results/20261008T081800Z-sd-reference/case3/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case2/decoded.f32": "a6a90481d339f27167832fbd5e8308ec8f6c4e6a2b4c2b1b3d80c0fa51dd5ca2",
+        "build/results/20261008T081800Z-sd-reference/case2/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case1/noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+        "build/results/20261008T081800Z-sd-reference/case1/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case2/noise.f32": "5c63c669f669e569c1305107aedb6a469023904873b39362db430b91c569680e",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-epsilon.f32": "6fb8e32b97bce53fffeb934f216349c87cdbc3b340cb7b521cb2bb66f7cbafaa",
+        "build/results/20261008T081800Z-sd-reference/case3/noise.f32": "175ae09299615d0b0eb2c655c4657275c7da11bb2bb8419e656e9aaf1e1e33aa",
+        "build/results/20261008T081800Z-sd-reference/case3/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case3/decoded.f32": "bd6e994ba8c93ba3eaba87fe7b8272bd8c56a0cc03602a48bf12a2127dd23e72",
+        "build/results/20261008T081800Z-sd-reference/case5/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-input.f32": "62fd0d82ad1a28642902bed7a789987aff26ef9c504e6e94558d0a20cdfc489f",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-epsilon.f32": "b3ba591252fbcc3b6bf2fff69730e767ad7e84a85f97d83f7496336149e0a810",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-input.f32": "f9b1ac9ec0739a5dab24af95a10a6b44234402d5dbcec412e22ca46d90450962",
+        "build/results/20261008T081800Z-sd-reference/case5/noise.f32": "b811ff3e31f764c29b105dd1868421a006f7e123ab06bed8d5a4dbf7ac7ea3ee",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-latent.f32": "66f9e354cc9be933763f4375236dd4f9cda2464c4ac82d1733daf0058435fd26",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-input.f32": "9a6d7ef5e2d67bce8d09d62abaa13ad8a58d4b847a060c4fcf4da27b93bab509",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case5/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case5/decoded.f32": "a15115f5cb17ec20f501a89d468a6bc28b59703ac38d99dcb78da6253969ad09",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-latent.f32": "3e6828c6dc171d03908c1250271ea8a8a57667736388de6802dc3abeddea8247",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-input.f32": "bad31ffed2fd7eb882b5400306ad49bc91c5332f7489c2948726dc24c6e68d0a",
+        "build/results/20261008T081800Z-sd-reference/case4/embeddings.f32": "dd4ab68c371eb00318da5e139e446e24750acd181ee3c1307f22d8d096edbda7",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-latent.f32": "d144943224f6e1ab3e4919b29a7022dc68fec1235eae9df6a4d4acbf23fa8550",
+        "build/results/20261008T081800Z-sd-reference/case1/embeddings.f32": "6b0f6762b7408badeb730b425da327cf2b650db959ba27be9c907b350229b572",
+        "build/results/20261008T081800Z-sd-reference/case2/embeddings.f32": "6772865f1b96a643d73e9310dd9dee9d2d7787bda35a68fee6e7251ae495414b",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-latent.f32": "d664bc51e4cc2ed0f063edcfa4305eba5609215a7bec2ec1c5e2edd8f621faf9",
+        "build/results/20261008T081800Z-sd-reference/case4/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c"
+      },
+      "mode": "baseline",
+      "name": "six"
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T173354Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T173342Z-ve-memory-sampled",
+      "request_seconds": [
+        88.303862,
+        18.334432
+      ],
+      "process_seconds": 107.16047555021942,
+      "image_output_seconds": [
+        0.620158,
+        0.443392
+      ],
+      "cpu_checks": 22,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step1-input",
+          "relative_l2": 5.713952141742209e-07,
+          "max_abs_error": 8.595176041126251e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step1-epsilon",
+          "relative_l2": 6.547238099051782e-07,
+          "max_abs_error": 7.495284080505371e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step2-input",
+          "relative_l2": 8.741469285361333e-07,
+          "max_abs_error": 9.775161743164062e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step2-epsilon",
+          "relative_l2": 1.5715198555942695e-06,
+          "max_abs_error": 2.2172927856445312e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step3-input",
+          "relative_l2": 1.6936714316347339e-06,
+          "max_abs_error": 1.6033649444580078e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step3-epsilon",
+          "relative_l2": 1.7767453986665628e-06,
+          "max_abs_error": 1.946091651916504e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 2.5416333135354637e-06,
+          "max_abs_error": 2.5510787963867188e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.586960949654215e-06,
+          "max_abs_error": 1.4483928680419922e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step1-input",
+          "relative_l2": 5.713952141742209e-07,
+          "max_abs_error": 8.595176041126251e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step1-epsilon",
+          "relative_l2": 6.547238099051782e-07,
+          "max_abs_error": 7.495284080505371e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step2-input",
+          "relative_l2": 8.741469285361333e-07,
+          "max_abs_error": 9.775161743164062e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step2-epsilon",
+          "relative_l2": 1.5715198555942695e-06,
+          "max_abs_error": 2.2172927856445312e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step3-input",
+          "relative_l2": 1.6936714316347339e-06,
+          "max_abs_error": 1.6033649444580078e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step3-epsilon",
+          "relative_l2": 1.7767453986665628e-06,
+          "max_abs_error": 1.946091651916504e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 2.5416333135354637e-06,
+          "max_abs_error": 2.5510787963867188e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.586960949654215e-06,
+          "max_abs_error": 1.4483928680419922e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 2,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 76.0,
+          "ve0": 60.88,
+          "ve1": 46.75,
+          "ve2": 49.12
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "sha256": {
+        "build/results/20261009T173354Z-sd-resident/summary.json": "0a8a356d292de8dc36d365f5f6d0d803817cd82d2ed101912b559c479e994e74",
+        "build/results/20261009T173354Z-sd-resident/native.log": "6c2bbe005f01307e04992e920639941abe179f7e9b8a4b4286fe5737113f6cb9",
+        "build/results/20261009T173354Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T173342Z-ve-memory-sampled/summary.json": "e2ceca7d3d02e99ec4b3baab3b5ac8d20bd8b764973f1a72e67ea99360507381",
+        "build/results/20261009T173342Z-ve-memory-sampled/memory.csv": "c3125e5a43ba7c294548c748a0a94a1cbc0901d33c04b0d7902b89adb6d9683d",
+        "build/sd-pixels-bits-model-four.log": "5b5e6fba25dec88830656e785d72f8689d7df2b843ae72db145fe348effa9f50",
+        "build/results/20261009T173342Z-temperature-gwhktxsa.csv": "165d87dbe0b7660af6ece4afca9980f1fe167781f68280fc962c2a87f759a75e",
+        "build/results/20261009T173342Z-temperature-gwhktxsa-fans.csv": "0ce5e8c30e3c36d7106779d94f64feaaace1edfe3579cc70b8c3ef1c2a0554ea",
+        "build/results/20261009T173354Z-sd-resident/request0/native-decoded.f32": "76602b6d2ac04e14f9ba83091a8026bd43a17bd99313031c75e579301981183f",
+        "build/results/20261009T173354Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T173354Z-sd-resident/request0/native-latent.f32": "e97fd398fb7dd8659041f405c5ab7e8c6f59a183ef3d03944959582474c41885",
+        "build/results/20261009T173354Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step1-epsilon.f32": "3f52d54de138da6e5c6928f1e442e163d76c7b003ece9bf08d5fe85d8cac06ee",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step1-input.f32": "631b6ad137990c1cb21b6d423898506db7ff707ee65d8b99fd976077998bf647",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step2-epsilon.f32": "607d29f32c3d4929be9796451a9f54c3c33183db5b6ba75f012d2c410b10d316",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step2-input.f32": "0c9c069a966345b8e9408e2159165a194042d1bca19515873672be0e554c3c1d",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step3-epsilon.f32": "82984221aa1148d64cd5975aa3c2e299b031d100df65a77b978b3e1dca7e78b6",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step3-input.f32": "b64055c90ce89cfd0c403010ce0b95529f563471e4e4702ff1574f4f9a40c33a",
+        "build/results/20261009T173354Z-sd-resident/request0/native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce",
+        "build/results/20261009T173354Z-sd-resident/request0/image.png": "5366a3d8e83f5bb38a8ecdef5c8d70937e376026944f28e505b24a277bd659ca",
+        "build/results/20261009T173354Z-sd-resident/request1/native-decoded.f32": "76602b6d2ac04e14f9ba83091a8026bd43a17bd99313031c75e579301981183f",
+        "build/results/20261009T173354Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T173354Z-sd-resident/request1/native-latent.f32": "e97fd398fb7dd8659041f405c5ab7e8c6f59a183ef3d03944959582474c41885",
+        "build/results/20261009T173354Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step1-epsilon.f32": "3f52d54de138da6e5c6928f1e442e163d76c7b003ece9bf08d5fe85d8cac06ee",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step1-input.f32": "631b6ad137990c1cb21b6d423898506db7ff707ee65d8b99fd976077998bf647",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step2-epsilon.f32": "607d29f32c3d4929be9796451a9f54c3c33183db5b6ba75f012d2c410b10d316",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step2-input.f32": "0c9c069a966345b8e9408e2159165a194042d1bca19515873672be0e554c3c1d",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step3-epsilon.f32": "82984221aa1148d64cd5975aa3c2e299b031d100df65a77b978b3e1dca7e78b6",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step3-input.f32": "b64055c90ce89cfd0c403010ce0b95529f563471e4e4702ff1574f4f9a40c33a",
+        "build/results/20261009T173354Z-sd-resident/request1/native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce",
+        "build/results/20261009T173354Z-sd-resident/request1/image.png": "5366a3d8e83f5bb38a8ecdef5c8d70937e376026944f28e505b24a277bd659ca"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T083810Z-sd-reference/case0/step1-input.f32": "9faf9ed658d358068bfa0e8ae3ac103e9f152d8e3bf7235aa8c062e64f9d2633",
+        "build/results/20261008T083810Z-sd-reference/case0/step1-latent.f32": "41f62bc5fda6c01a447823ab6bb7c2b3d8178637e167cfd6863ea415460bdee8",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-input.f32": "ffbd676274fad33b895b9d1e1aae64b9f6de58587b6d7eee5428e062bf114d60",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-latent.f32": "0c21dcb60aa80a0bb0e010b3098de04dc4622d7b5a5019c3177277056694288e",
+        "build/results/20261008T083810Z-sd-reference/case0/decoded.f32": "367a6a341ab344df91ad81e80b19f2d2cca2407838e4dc6ae8044628165e65cc",
+        "build/results/20261008T083810Z-sd-reference/summary.json": "b7752f46795a896faf8099fa44821d51a5be7d64a85f0892eba508f67189aefb",
+        "build/results/20261008T083810Z-sd-reference/case0/sigmas.f32": "40dcecbf8e3d9eb502b2036e77407673c22ad6a6aec6fcbb3065127d65991c53",
+        "build/results/20261008T083810Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-input.f32": "6bfeb82a41e590570daf346e4da2be4e96823856b818876e0645f669e11cbe9d",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-latent.f32": "5c739a9e1d6bbdd38f52538c9e4a82508137b3795300a3d60153cc342875eac6",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-epsilon.f32": "1c786a59e04ba06efb23f6000495beb98e29ea1ab185cef0ed981cc78e3974c0",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-epsilon.f32": "8468b716848a7011866f3f689cc6561cc91e7656a6097571683f6832040f5017",
+        "build/results/20261008T083810Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T083810Z-sd-reference/case0/timesteps.f32": "cc5d5b039489b1f352926c878e2943c6bb49f47df9a50ea1abd80f332cabe8f4",
+        "build/results/20261008T083810Z-sd-reference/case0/step1-epsilon.f32": "78943d56cabe7200bdd5f0d11bfdaeff49f12a381da8b1d1303bca89bebd379b",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-latent.f32": "c0e15239b55f0874ffad33b168d1403423c488318df8b9290f728a317ba24fdd"
+      },
+      "mode": "baseline",
+      "name": "four"
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T181825Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T181813Z-ve-memory-sampled",
+      "request_seconds": [
+        84.750268,
+        9.73553
+      ],
+      "process_seconds": 95.05337993521243,
+      "image_output_seconds": [
+        0.558577,
+        0.381248
+      ],
+      "cpu_checks": 10,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 2,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 73.0,
+          "ve0": 59.12,
+          "ve1": 47.75,
+          "ve2": 50.12
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "sha256": {
+        "build/results/20261009T181825Z-sd-resident/summary.json": "0388d2abd84f466801fb53bb6579315c491bfdbe03e50cc66bb36ebcd025b5f1",
+        "build/results/20261009T181825Z-sd-resident/native.log": "6f2f9e8d957d5c5428e8650a11bae2fbe0975fd8f5889fb2df387f7ba574e8e5",
+        "build/results/20261009T181825Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T181813Z-ve-memory-sampled/summary.json": "612561686e7bd31be2abe0746cf1dcdca6ec50dcd129e51557b000953ba8d637",
+        "build/results/20261009T181813Z-ve-memory-sampled/memory.csv": "4be1463d6086170a9a90a892abcfab5a2ce7ff7ba9711a4fb956cf031f1f2fed",
+        "build/sd-pixels-pack-model-double.log": "1d131d64d9f3ab305d170151c46ed792ad44b089766e8714c24bdd6a30b4748b",
+        "build/results/20261009T181812Z-temperature-kbtxgfmw.csv": "f59f5e250db6e7fa44198ad1009298738fb2e0c73e4f73277b9cd108b069c0d6",
+        "build/results/20261009T181812Z-temperature-kbtxgfmw-fans.csv": "c10343773080a983bccc50851f8656b4ca91e59eef41b6eebc7c4495c332ef34",
+        "build/results/20261009T181825Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T181825Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T181825Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T181825Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T181825Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T181825Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T181825Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T181825Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T181825Z-sd-resident/request1/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T181825Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T181825Z-sd-resident/request1/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T181825Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T181825Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T181825Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T181825Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T181825Z-sd-resident/request1/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c"
+      },
+      "mode": "candidate",
+      "name": "double"
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T182022Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T182010Z-ve-memory-sampled",
+      "request_seconds": [
+        83.250177,
+        9.831869,
+        9.703388,
+        9.815344,
+        9.66308,
+        9.758834
+      ],
+      "process_seconds": 132.57016856223345,
+      "image_output_seconds": [
+        0.558663,
+        0.364285,
+        0.393204,
+        0.417026,
+        0.367508,
+        0.406767
+      ],
+      "cpu_checks": 30,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.1898290821743867e-06,
+          "max_abs_error": 1.564621925354004e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.290747780016011e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 6.477097031066101e-07,
+          "max_abs_error": 1.4722347259521484e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 1.1132134673218557e-05,
+          "max_abs_error": 0.0002155303955078125,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 4.2885169876482195e-06,
+          "max_abs_error": 8.907914161682129e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-embeddings",
+          "relative_l2": 2.089861323931437e-06,
+          "max_abs_error": 1.621246337890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-input",
+          "relative_l2": 5.306402597903837e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-epsilon",
+          "relative_l2": 3.330302716593069e-07,
+          "max_abs_error": 5.077570676803589e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-latent",
+          "relative_l2": 6.358750563279956e-06,
+          "max_abs_error": 7.420778274536133e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-decoded",
+          "relative_l2": 6.075360837354076e-06,
+          "max_abs_error": 0.00014445185661315918,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-embeddings",
+          "relative_l2": 2.2218675038449105e-06,
+          "max_abs_error": 1.52587890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-input",
+          "relative_l2": 5.2292039058432315e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.8213987461358027e-07,
+          "max_abs_error": 2.9802322387695312e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-latent",
+          "relative_l2": 4.417294206926504e-06,
+          "max_abs_error": 4.291534423828125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-decoded",
+          "relative_l2": 3.4348961836633265e-06,
+          "max_abs_error": 3.2007694244384766e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-embeddings",
+          "relative_l2": 2.124017609969239e-06,
+          "max_abs_error": 1.621246337890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-step0-input",
+          "relative_l2": 5.297791594895035e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.4313823603933436e-07,
+          "max_abs_error": 5.0961971282958984e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-latent",
+          "relative_l2": 4.155942092429359e-06,
+          "max_abs_error": 7.43865966796875e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-decoded",
+          "relative_l2": 2.1959593466317273e-06,
+          "max_abs_error": 3.1828880310058594e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-embeddings",
+          "relative_l2": 2.0765264854820284e-06,
+          "max_abs_error": 1.329183578491211e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-step0-input",
+          "relative_l2": 5.233191676565092e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-step0-epsilon",
+          "relative_l2": 8.669273129174466e-07,
+          "max_abs_error": 1.7881393432617188e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-latent",
+          "relative_l2": 1.4816683189021762e-05,
+          "max_abs_error": 0.0002613067626953125,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-decoded",
+          "relative_l2": 6.52590625322525e-06,
+          "max_abs_error": 0.00010159611701965332,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 6,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 75.0,
+          "ve0": 61.75,
+          "ve1": 47.88,
+          "ve2": 50.12
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 10.009765625,
+      "sha256": {
+        "build/results/20261009T182022Z-sd-resident/summary.json": "d75e704c76dff5ba2f372f2f0c323dad8bfdd745154ab7cdd314fb19ff732a84",
+        "build/results/20261009T182022Z-sd-resident/native.log": "f8643ec80a8d95e3b32ec1bbaf9112a6cbfbcb917fbe665038e2b8da8f817a9b",
+        "build/results/20261009T182022Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T182010Z-ve-memory-sampled/summary.json": "99229f8993695fc60e53fa943774cf9458faa4802859c1be49592e48893fece8",
+        "build/results/20261009T182010Z-ve-memory-sampled/memory.csv": "01389c1294f12ce979cc0094e9533ef2b31048718c619d152cc35a1ebe0616e2",
+        "build/sd-pixels-pack-model-six.log": "2f037692010ca77abafa2bcc18216747f9ff81c5ea7703c2fadc293183718880",
+        "build/results/20261009T182009Z-temperature-n844q7va.csv": "9999210427862d96c7a5b503ac0622b90b7e4b5c4b950b14bb3eee74dc2722ea",
+        "build/results/20261009T182009Z-temperature-n844q7va-fans.csv": "3b3d3a9086d0cc9b3b154bf363b04f878afef6ac0b87bf40b2d2b40b995d8e6c",
+        "build/results/20261009T182022Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261009T182022Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182022Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261009T182022Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182022Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182022Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182022Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182022Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261009T182022Z-sd-resident/request1/native-decoded.f32": "770d5d29f74ffe8547350a8ecd25ffb910ae8e3405f99a299750657f1c360e7d",
+        "build/results/20261009T182022Z-sd-resident/request1/native-embeddings.f32": "181289d593714c08d63d1710f0473cda78ca0a35675d8afeb66230b048f8aef6",
+        "build/results/20261009T182022Z-sd-resident/request1/native-latent.f32": "6d1963c69c1a3b1e049a29e7e66982781f91f042e1caa46bed73063c3f19e83c",
+        "build/results/20261009T182022Z-sd-resident/request1/native-noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+        "build/results/20261009T182022Z-sd-resident/request1/native-step0-epsilon.f32": "a93625649dacecc734188bde2e76f87e2b3fec05ed0b7088ed7293f09ac9a7c8",
+        "build/results/20261009T182022Z-sd-resident/request1/native-step0-input.f32": "4eabd420973794bc3fba716b0997ab5df204ece75401d7bda98df67886db6a36",
+        "build/results/20261009T182022Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182022Z-sd-resident/request1/image.png": "eec2e99cf02e5ebcf74e3bd907e5b6a2f556a526a3bf80d6dd38b1e8ae56ccec",
+        "build/results/20261009T182022Z-sd-resident/request2/native-decoded.f32": "44249bde81f2908e46bbfd68f061b209b23f3ce38be56d8dee5d9950fd337406",
+        "build/results/20261009T182022Z-sd-resident/request2/native-embeddings.f32": "9621acea46421359da5c5170616b0f3fb32aecc02a4feb0e302ad414c6c2a481",
+        "build/results/20261009T182022Z-sd-resident/request2/native-latent.f32": "b5f3ebcc8e1dfa2c487421f18344a89b86e7fc925e78f2ed4df7984beb89931c",
+        "build/results/20261009T182022Z-sd-resident/request2/native-noise.f32": "5c63c669f669e569c1305107aedb6a469023904873b39362db430b91c569680e",
+        "build/results/20261009T182022Z-sd-resident/request2/native-step0-epsilon.f32": "99f7ef10f6edf9ca249b166389e2758d102ef64dbd89ccdb9b184958f61eb275",
+        "build/results/20261009T182022Z-sd-resident/request2/native-step0-input.f32": "8c26d02f807b3393f6b9d6326c343d0318754e5f0f21d1cb9f73369cafc63ac5",
+        "build/results/20261009T182022Z-sd-resident/request2/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182022Z-sd-resident/request2/image.png": "19b93473cac5405e3c20bdb8738874c8a17985f38e02ed70e9003084b3a1bc84",
+        "build/results/20261009T182022Z-sd-resident/request3/native-decoded.f32": "221ef0d2d34712106c2270b05c206209eb397e06f1a867bd56b442b4e26a07d3",
+        "build/results/20261009T182022Z-sd-resident/request3/native-embeddings.f32": "bc676fc707e8de468fe444185a3950812361f5d71caef5a12686a85ceb3ba8d2",
+        "build/results/20261009T182022Z-sd-resident/request3/native-latent.f32": "21a8092fa60a36693335d67d641307cf9aafbe07958b2ab08330a25c8f7a1dcd",
+        "build/results/20261009T182022Z-sd-resident/request3/native-noise.f32": "175ae09299615d0b0eb2c655c4657275c7da11bb2bb8419e656e9aaf1e1e33aa",
+        "build/results/20261009T182022Z-sd-resident/request3/native-step0-epsilon.f32": "b27ef5177d2612da01fe803f6a894b4e04ea0d49a9d1b78d1f40b9959ea03ec1",
+        "build/results/20261009T182022Z-sd-resident/request3/native-step0-input.f32": "98845b1c96f84ee7db2f9bbe818ed2b43e2a9ae578f661ad489bf65c572e6f4c",
+        "build/results/20261009T182022Z-sd-resident/request3/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182022Z-sd-resident/request3/image.png": "d16df52c85aff2960bc2d8efb4a402269c1a8d25bbb67fcbcc9dbc176f7a2e4c",
+        "build/results/20261009T182022Z-sd-resident/request4/native-decoded.f32": "3fc6720b288108fd6a830b6e8bfc15d3e90f0eaad330511e482b01a9d5261835",
+        "build/results/20261009T182022Z-sd-resident/request4/native-embeddings.f32": "9d56aabe2acb45586845eb841037e42d1e28adc2bacbc91b6f2ea08182fbf44d",
+        "build/results/20261009T182022Z-sd-resident/request4/native-latent.f32": "47784ac6f57b99f35bf74cf0cdeab29be8858a0e1a0ea142a08b1f03cc3b9418",
+        "build/results/20261009T182022Z-sd-resident/request4/native-noise.f32": "0e551d9d33f4f875c4622caf0b3fe4263e66b02263179bf0424f290cb9c355fa",
+        "build/results/20261009T182022Z-sd-resident/request4/native-step0-epsilon.f32": "b2885465b5faa9693d8ce6ef8f89d949720640ee6dd919849000208a8c673566",
+        "build/results/20261009T182022Z-sd-resident/request4/native-step0-input.f32": "562327af3ac98f36eadd1f4a6f64c42c2359603bd520ba1c5df9a8e6ef4c3320",
+        "build/results/20261009T182022Z-sd-resident/request4/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182022Z-sd-resident/request4/image.png": "c2058fa615b155395d1bfe6396b6b1ee4e70a8500fcb661d701e94200fab7302",
+        "build/results/20261009T182022Z-sd-resident/request5/native-decoded.f32": "39ffb2a69f2bea8d2c6bfc9297811061ef73530777ea5b0cf2d336d9b2cc1e73",
+        "build/results/20261009T182022Z-sd-resident/request5/native-embeddings.f32": "b7470d7417bd66baaffd010a0a102bba20a9751fbd99b1a6137bfdd537a17a28",
+        "build/results/20261009T182022Z-sd-resident/request5/native-latent.f32": "eb0f6f3213f00a3fd9b4964870c90607c79d8883e9947d22349a6ea20cdd7441",
+        "build/results/20261009T182022Z-sd-resident/request5/native-noise.f32": "b811ff3e31f764c29b105dd1868421a006f7e123ab06bed8d5a4dbf7ac7ea3ee",
+        "build/results/20261009T182022Z-sd-resident/request5/native-step0-epsilon.f32": "c590b1cca1684211b5cb2813d7043506cbcd94ee9c7d1b930c2b788f3891de86",
+        "build/results/20261009T182022Z-sd-resident/request5/native-step0-input.f32": "fac8d50a3808ff72cbd0b47baf7498a6fbc80d0f9726ccf2043c04dd3816d756",
+        "build/results/20261009T182022Z-sd-resident/request5/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182022Z-sd-resident/request5/image.png": "08f84c0551cbf7f0d0dbe737f7c444e10ed691733a41bb9e6e4458d473522895"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case3/embeddings.f32": "9f63c41517dc1742a91cff8097c92a41806a98e6a0bc95616d38a60468019be6",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-epsilon.f32": "edd640c1a6013ff82d18e4a47b4cca176383173edef959ae858f7ca35f8a930a",
+        "build/results/20261008T081800Z-sd-reference/case4/decoded.f32": "238988d8768db206f8c2f6b33b162f684aa62c73fe20dc56174c59600bb74235",
+        "build/results/20261008T081800Z-sd-reference/case1/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-input.f32": "bf5ffae6e8895797905425e0e7bd3ce7c7a19ef03f396c02e5327d0eeb42dbb4",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-latent.f32": "56c23a1e9b85c767a6ea948d21cd348c7e514265fe4aa3326cc85382a9f4592e",
+        "build/results/20261008T081800Z-sd-reference/case4/noise.f32": "0e551d9d33f4f875c4622caf0b3fe4263e66b02263179bf0424f290cb9c355fa",
+        "build/results/20261008T081800Z-sd-reference/case2/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case4/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-epsilon.f32": "7ec11a96b7a9cae670e1d02cbc1252efbe1c427c08464a66e069b3190ef57ec4",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-epsilon.f32": "a92367fa7419ad248038ff8b0b403a4405f502a0c5e928ed5cbd50eaa95ffba3",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/case5/embeddings.f32": "97ded69b790137c88a02aa3daa70594e25f7c89dcdf7009f29af9368138224b9",
+        "build/results/20261008T081800Z-sd-reference/case1/decoded.f32": "9ec33668028a498b633dfc953d16f06a8b2fcaec60e84aa5f21d8970277ec009",
+        "build/results/20261008T081800Z-sd-reference/case3/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case2/decoded.f32": "a6a90481d339f27167832fbd5e8308ec8f6c4e6a2b4c2b1b3d80c0fa51dd5ca2",
+        "build/results/20261008T081800Z-sd-reference/case2/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case1/noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+        "build/results/20261008T081800Z-sd-reference/case1/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case2/noise.f32": "5c63c669f669e569c1305107aedb6a469023904873b39362db430b91c569680e",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-epsilon.f32": "6fb8e32b97bce53fffeb934f216349c87cdbc3b340cb7b521cb2bb66f7cbafaa",
+        "build/results/20261008T081800Z-sd-reference/case3/noise.f32": "175ae09299615d0b0eb2c655c4657275c7da11bb2bb8419e656e9aaf1e1e33aa",
+        "build/results/20261008T081800Z-sd-reference/case3/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case3/decoded.f32": "bd6e994ba8c93ba3eaba87fe7b8272bd8c56a0cc03602a48bf12a2127dd23e72",
+        "build/results/20261008T081800Z-sd-reference/case5/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-input.f32": "62fd0d82ad1a28642902bed7a789987aff26ef9c504e6e94558d0a20cdfc489f",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-epsilon.f32": "b3ba591252fbcc3b6bf2fff69730e767ad7e84a85f97d83f7496336149e0a810",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-input.f32": "f9b1ac9ec0739a5dab24af95a10a6b44234402d5dbcec412e22ca46d90450962",
+        "build/results/20261008T081800Z-sd-reference/case5/noise.f32": "b811ff3e31f764c29b105dd1868421a006f7e123ab06bed8d5a4dbf7ac7ea3ee",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-latent.f32": "66f9e354cc9be933763f4375236dd4f9cda2464c4ac82d1733daf0058435fd26",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-input.f32": "9a6d7ef5e2d67bce8d09d62abaa13ad8a58d4b847a060c4fcf4da27b93bab509",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case5/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case5/decoded.f32": "a15115f5cb17ec20f501a89d468a6bc28b59703ac38d99dcb78da6253969ad09",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-latent.f32": "3e6828c6dc171d03908c1250271ea8a8a57667736388de6802dc3abeddea8247",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-input.f32": "bad31ffed2fd7eb882b5400306ad49bc91c5332f7489c2948726dc24c6e68d0a",
+        "build/results/20261008T081800Z-sd-reference/case4/embeddings.f32": "dd4ab68c371eb00318da5e139e446e24750acd181ee3c1307f22d8d096edbda7",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-latent.f32": "d144943224f6e1ab3e4919b29a7022dc68fec1235eae9df6a4d4acbf23fa8550",
+        "build/results/20261008T081800Z-sd-reference/case1/embeddings.f32": "6b0f6762b7408badeb730b425da327cf2b650db959ba27be9c907b350229b572",
+        "build/results/20261008T081800Z-sd-reference/case2/embeddings.f32": "6772865f1b96a643d73e9310dd9dee9d2d7787bda35a68fee6e7251ae495414b",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-latent.f32": "d664bc51e4cc2ed0f063edcfa4305eba5609215a7bec2ec1c5e2edd8f621faf9",
+        "build/results/20261008T081800Z-sd-reference/case4/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c"
+      },
+      "mode": "candidate",
+      "name": "six"
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261009T182259Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T182247Z-ve-memory-sampled",
+      "request_seconds": [
+        92.485213,
+        18.376822
+      ],
+      "process_seconds": 111.40027921646833,
+      "image_output_seconds": [
+        0.589698,
+        0.413607
+      ],
+      "cpu_checks": 22,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step1-input",
+          "relative_l2": 5.713952141742209e-07,
+          "max_abs_error": 8.595176041126251e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step1-epsilon",
+          "relative_l2": 6.547238099051782e-07,
+          "max_abs_error": 7.495284080505371e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step2-input",
+          "relative_l2": 8.741469285361333e-07,
+          "max_abs_error": 9.775161743164062e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step2-epsilon",
+          "relative_l2": 1.5715198555942695e-06,
+          "max_abs_error": 2.2172927856445312e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step3-input",
+          "relative_l2": 1.6936714316347339e-06,
+          "max_abs_error": 1.6033649444580078e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step3-epsilon",
+          "relative_l2": 1.7767453986665628e-06,
+          "max_abs_error": 1.946091651916504e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 2.5416333135354637e-06,
+          "max_abs_error": 2.5510787963867188e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.586960949654215e-06,
+          "max_abs_error": 1.4483928680419922e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step1-input",
+          "relative_l2": 5.713952141742209e-07,
+          "max_abs_error": 8.595176041126251e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step1-epsilon",
+          "relative_l2": 6.547238099051782e-07,
+          "max_abs_error": 7.495284080505371e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step2-input",
+          "relative_l2": 8.741469285361333e-07,
+          "max_abs_error": 9.775161743164062e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step2-epsilon",
+          "relative_l2": 1.5715198555942695e-06,
+          "max_abs_error": 2.2172927856445312e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step3-input",
+          "relative_l2": 1.6936714316347339e-06,
+          "max_abs_error": 1.6033649444580078e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step3-epsilon",
+          "relative_l2": 1.7767453986665628e-06,
+          "max_abs_error": 1.946091651916504e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 2.5416333135354637e-06,
+          "max_abs_error": 2.5510787963867188e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.586960949654215e-06,
+          "max_abs_error": 1.4483928680419922e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 2,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 79.0,
+          "ve0": 62.12,
+          "ve1": 47.88,
+          "ve2": 50.25
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "sha256": {
+        "build/results/20261009T182259Z-sd-resident/summary.json": "e818efd012bfaa275e13af2421569f1a1e682140688c9d4a407782fe0941da6b",
+        "build/results/20261009T182259Z-sd-resident/native.log": "acd53b300ccfba722e9cc4f4748ec26e329a9e601e0016c7e340beae1b0fdb79",
+        "build/results/20261009T182259Z-sd-resident/check_sd_resident.py": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+        "build/results/20261009T182247Z-ve-memory-sampled/summary.json": "433f22c7db1eee2551f6df55564c7cb251f4970784b47fece4ef8792f6f88603",
+        "build/results/20261009T182247Z-ve-memory-sampled/memory.csv": "295cbc6ba2d91634ccc622846faf22aad8da57b7fcf8fa4f1fdb73c12b9517ab",
+        "build/sd-pixels-pack-model-four.log": "2eecb6dbf3d1116ceea4b3d44379f4e300c6efa64c64a38609bd78f00fa39965",
+        "build/results/20261009T182247Z-temperature-mb78klu1.csv": "ba6612df74d8a8002341db4a2391f7b3b570eb26562b5e396c011becfaa8b842",
+        "build/results/20261009T182247Z-temperature-mb78klu1-fans.csv": "a32b703139bf6dab7d7479ceac05251772bc6aeec4ea39c05128d7ec95ced926",
+        "build/results/20261009T182259Z-sd-resident/request0/native-decoded.f32": "76602b6d2ac04e14f9ba83091a8026bd43a17bd99313031c75e579301981183f",
+        "build/results/20261009T182259Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182259Z-sd-resident/request0/native-latent.f32": "e97fd398fb7dd8659041f405c5ab7e8c6f59a183ef3d03944959582474c41885",
+        "build/results/20261009T182259Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step1-epsilon.f32": "3f52d54de138da6e5c6928f1e442e163d76c7b003ece9bf08d5fe85d8cac06ee",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step1-input.f32": "631b6ad137990c1cb21b6d423898506db7ff707ee65d8b99fd976077998bf647",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step2-epsilon.f32": "607d29f32c3d4929be9796451a9f54c3c33183db5b6ba75f012d2c410b10d316",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step2-input.f32": "0c9c069a966345b8e9408e2159165a194042d1bca19515873672be0e554c3c1d",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step3-epsilon.f32": "82984221aa1148d64cd5975aa3c2e299b031d100df65a77b978b3e1dca7e78b6",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step3-input.f32": "b64055c90ce89cfd0c403010ce0b95529f563471e4e4702ff1574f4f9a40c33a",
+        "build/results/20261009T182259Z-sd-resident/request0/native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce",
+        "build/results/20261009T182259Z-sd-resident/request0/image.png": "5366a3d8e83f5bb38a8ecdef5c8d70937e376026944f28e505b24a277bd659ca",
+        "build/results/20261009T182259Z-sd-resident/request1/native-decoded.f32": "76602b6d2ac04e14f9ba83091a8026bd43a17bd99313031c75e579301981183f",
+        "build/results/20261009T182259Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261009T182259Z-sd-resident/request1/native-latent.f32": "e97fd398fb7dd8659041f405c5ab7e8c6f59a183ef3d03944959582474c41885",
+        "build/results/20261009T182259Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step1-epsilon.f32": "3f52d54de138da6e5c6928f1e442e163d76c7b003ece9bf08d5fe85d8cac06ee",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step1-input.f32": "631b6ad137990c1cb21b6d423898506db7ff707ee65d8b99fd976077998bf647",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step2-epsilon.f32": "607d29f32c3d4929be9796451a9f54c3c33183db5b6ba75f012d2c410b10d316",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step2-input.f32": "0c9c069a966345b8e9408e2159165a194042d1bca19515873672be0e554c3c1d",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step3-epsilon.f32": "82984221aa1148d64cd5975aa3c2e299b031d100df65a77b978b3e1dca7e78b6",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step3-input.f32": "b64055c90ce89cfd0c403010ce0b95529f563471e4e4702ff1574f4f9a40c33a",
+        "build/results/20261009T182259Z-sd-resident/request1/native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce",
+        "build/results/20261009T182259Z-sd-resident/request1/image.png": "5366a3d8e83f5bb38a8ecdef5c8d70937e376026944f28e505b24a277bd659ca"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T083810Z-sd-reference/case0/step1-input.f32": "9faf9ed658d358068bfa0e8ae3ac103e9f152d8e3bf7235aa8c062e64f9d2633",
+        "build/results/20261008T083810Z-sd-reference/case0/step1-latent.f32": "41f62bc5fda6c01a447823ab6bb7c2b3d8178637e167cfd6863ea415460bdee8",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-input.f32": "ffbd676274fad33b895b9d1e1aae64b9f6de58587b6d7eee5428e062bf114d60",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-latent.f32": "0c21dcb60aa80a0bb0e010b3098de04dc4622d7b5a5019c3177277056694288e",
+        "build/results/20261008T083810Z-sd-reference/case0/decoded.f32": "367a6a341ab344df91ad81e80b19f2d2cca2407838e4dc6ae8044628165e65cc",
+        "build/results/20261008T083810Z-sd-reference/summary.json": "b7752f46795a896faf8099fa44821d51a5be7d64a85f0892eba508f67189aefb",
+        "build/results/20261008T083810Z-sd-reference/case0/sigmas.f32": "40dcecbf8e3d9eb502b2036e77407673c22ad6a6aec6fcbb3065127d65991c53",
+        "build/results/20261008T083810Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-input.f32": "6bfeb82a41e590570daf346e4da2be4e96823856b818876e0645f669e11cbe9d",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-latent.f32": "5c739a9e1d6bbdd38f52538c9e4a82508137b3795300a3d60153cc342875eac6",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-epsilon.f32": "1c786a59e04ba06efb23f6000495beb98e29ea1ab185cef0ed981cc78e3974c0",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-epsilon.f32": "8468b716848a7011866f3f689cc6561cc91e7656a6097571683f6832040f5017",
+        "build/results/20261008T083810Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T083810Z-sd-reference/case0/timesteps.f32": "cc5d5b039489b1f352926c878e2943c6bb49f47df9a50ea1abd80f332cabe8f4",
+        "build/results/20261008T083810Z-sd-reference/case0/step1-epsilon.f32": "78943d56cabe7200bdd5f0d11bfdaeff49f12a381da8b1d1303bca89bebd379b",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-latent.f32": "c0e15239b55f0874ffad33b168d1403423c488318df8b9290f728a317ba24fdd"
+      },
+      "mode": "candidate",
+      "name": "four"
+    }
+  ],
+  "prior_cpu_checks": 124,
+  "formal_cpu_checks": 80,
+  "independent_cpu_checks": 204,
+  "cpu_recomputed_png_checks": 36,
+  "all_trace_and_png_bytes_identical": true,
+  "temperature": {
+    "peaks_c": {
+      "cpu": 80.0,
+      "ve0": 62.88,
+      "ve1": 48.25,
+      "ve2": 50.62
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "checker_sha256": "47e32946269c26a9ef1aa5f91bbe1fb1b901854424dc3d6dedcf5baa9fec08cf",
+  "benchmark_sha256": "4608856558d5d90ba4e7f15f7c7c2135bebc8d18486417e7549d1a9a81ac2de2",
+  "library_sha256": {
+    "libcblas.so": "9a12c2e92e296664083267c002d37f05d44738ccb49b947ff69bbc24403e04eb",
+    "libblas_sequential.so": "48d78a6f47b4596479cfd1b38423c6d68ea552bc859652e5599e60b36c0a0f4a",
+    "libblas_openmp.so": "c27f957052ee18263dfd47bcde5606b9dc592e2b07294a886fd599a89ebd8f28"
+  },
+  "artifact_sha256": {
+    "build/results/20261009T182642Z-sd-pixels-pack-abba/summary.json": "2ebc3da5707a864b95cc819bebca5546cbb5e14238710ad2608741f9668a736f",
+    "build/results/20261009T182642Z-sd-pixels-pack-abba/benchmark_sd_pixels_pack_abba.py": "4608856558d5d90ba4e7f15f7c7c2135bebc8d18486417e7549d1a9a81ac2de2",
+    "docs/results/20261009T172525Z-sd-turbo-pixels-bits-model.json": "1f5cf51d522e0b32913fe762fe244f848e6e983f3b7989acef9f3d9b19eb34fc",
+    "build/accepted/pixels-bits-model-20261009T172525Z/build/sd-baseline-ve/manifest.json": "2bca7ea86c25ee1ea99c869097b4d280f729cee9f7f3a7273f4f6c9d2332d70a",
+    "build/accepted/pixels-bits-model-20261009T172525Z/actual-pixels-object.o": "30d05ca5643a5103eaa4e4ccb7073bfcb88f675ed3fbe4cfa385900102286b96",
+    "docs/results/20261009T181647Z-sd-turbo-pixels-pack-model.json": "36242c8a075ca17297b9385361268ac809d1155a80f7d95f51f106a7051deebd",
+    "build/accepted/pixels-pack-model-20261009T181647Z/build/sd-baseline-ve/manifest.json": "d1d3d4213f13d1d9a2ddcf1b5c47ac46b02ecb7e9ee036bdc2f629eb4eee5ff4",
+    "build/accepted/pixels-pack-model-20261009T181647Z/actual-pixels-object.o": "5f41861f61893505b94d233b53e000c476c6809cb83f92aca6f7d89fc648acd7",
+    "build/results/20261009T182642Z-sd-pixels-pack-abba/run0.log": "71ec0f653589a762dad45e7c0a8831037c2293f31920d686ab6297a602103dd1",
+    "build/results/20261009T182642Z-sd-pixels-pack-abba/run1.log": "3f5bf746736a31f155cc748a9b885169f8105f91e93389a404a597449c4e38f0",
+    "build/results/20261009T182642Z-sd-pixels-pack-abba/run2.log": "3d258ddaed2cf90906fad3827206281f367fad854b1654ba89f598326599c705",
+    "build/results/20261009T182642Z-sd-pixels-pack-abba/run3.log": "5dc41e68e4ad52e776661c6618c92500922fe78ce7f27cfd623aad7f711fa45e",
+    "build/sd-baseline-ve/manifest.json": "d1d3d4213f13d1d9a2ddcf1b5c47ac46b02ecb7e9ee036bdc2f629eb4eee5ff4",
+    "build/sd-pixels-pack-abba-audit.log": "3ceba737f9ddd3bc20e2b017c056ac08b06a79af022799309cc2dcadbd62db19",
+    "build/results/20261009T183532Z-temperature-m817ly5x.csv": "83b0221e1006d6af0ac65a80725fd11f9d256656af5b7e1165f9034303ef6f76",
+    "build/results/20261009T183532Z-temperature-m817ly5x-fans.csv": "1bd6d67215986fa20368068d24ca1e0774e7f9e39b6677a2c7c0aad378af38b3",
+    "build/sd-baseline-ve/examples/cli/CMakeFiles/sd.dir/flags.make": "929e7458ea809429f541462adc1de1139e9d18e9775aa2571481c6a23e570547"
+  },
+  "publisher_sha256": "9f584710111235bc6d3a23f96a4f4c6af0c5685f98911ef09ec86d9c527914c2",
+  "audit_dependency_sha256": {
+    "scripts/benchmark_sd_pixels_pack_abba.py": "4608856558d5d90ba4e7f15f7c7c2135bebc8d18486417e7549d1a9a81ac2de2",
+    "scripts/benchmark_sd_runtime.py": "8a69d1198691a23381c61ff0640da2d94a069fa4928c4431520d51be8f1850ed",
+    "scripts/record_sd_pixels_pack_model.py": "39fed96d72cc160c5a0d61c9b7a1cd4d2297fe2a114215fc9145c2f08e6c6de3",
+    "scripts/record_sd_gelu_result.py": "efdbc4a91454f154f42c0af6d8307e565e58109ed2b4a9a99f7f9c14871ce351",
+    "scripts/record_sd_im2col_rows_abba.py": "5e193b0d4301ee7f4d16621b216c14da0258f7124f1f7c9f6693c442b502d903",
+    "scripts/record_sd_gemm_spatial_model.py": "9e70b3db9f723dc945c1e7ba027fa1e78d6958e6c2f96de2b9abe1db038d1967",
+    "scripts/record_sd_png_model.py": "ea4ae3b1f2e1949152cd2abb78f4c10ad7316ef803fa213e58c16511bcce7d6d"
+  },
+  "scope": "incremental bit-pattern O2 versus exact RGB packing O2 pixels; two archived binaries with same common neural/main/PNG source and fixed runtime; one-step 512x512 case0 ABBA one cold/three hot per arm, six hot samples/mode; all prior/formal CPU errors recomputed and full PNG RGB bytes checked; link layout differs, cold caches uncontrolled, no arbitrary prompt/multistep performance claim",
+  "cpu_validation_temperature": {
+    "peaks_c": {
+      "cpu": 77.0,
+      "ve0": 56.25,
+      "ve1": 48.38,
+      "ve2": 50.62
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "temperature_append_publisher_sha256": "1df69ec6e02fac7891287c1af22d2866fbbdc7e2e182911a168a4e57ba16ae13",
+  "current_model_main_compiler_flags": "-O2 -std=c++17 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=c++11 -O0 -fno-inline",
+  "current_model_main_optimization": "-O0"
+}

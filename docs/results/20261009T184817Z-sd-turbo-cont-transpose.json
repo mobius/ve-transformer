@@ -1,0 +1,441 @@
+{
+  "status": "cont_transpose_microbenchmark_verified",
+  "baseline": {
+    "proof_sha256": "69e444bb1b238877acebb99a8d1aaaccc59d4e90eed6d54292254c5c6b4b8989",
+    "manifest_sha256": "bca33b2749595110df0bc702472bcd6327481debcf6b7d1254982fea3abf651e",
+    "binary_sha256": "2411621c405befe24f33980eb80de6182a3fd99e095e1cb389306fa8af1c3c11",
+    "actual_cpu_object_sha256": "292520b6d11757760118115c6d6726daae599c87434bdb0618dfc808b8f7a79c",
+    "libraries_sha256": {
+      "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "5282930045ac5fd1ce73b77f1c4c2b71e46262e341d17ad71f77765a181068e9",
+      "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a"
+    },
+    "shapes": [
+      {
+        "shape": [
+          320,
+          64,
+          64,
+          1
+        ],
+        "strides": [
+          16384,
+          4,
+          256,
+          5242880
+        ],
+        "m": 320,
+        "n": 4096,
+        "nodes": 5,
+        "diagnostic_seconds": 0.074423
+      },
+      {
+        "shape": [
+          4096,
+          64,
+          5,
+          1
+        ],
+        "strides": [
+          1280,
+          4,
+          256,
+          5242880
+        ],
+        "m": 4096,
+        "n": 320,
+        "nodes": 5,
+        "diagnostic_seconds": 0.072325
+      },
+      {
+        "shape": [
+          4096,
+          320,
+          1,
+          1
+        ],
+        "strides": [
+          1280,
+          4,
+          5242880,
+          5242880
+        ],
+        "m": 4096,
+        "n": 320,
+        "nodes": 5,
+        "diagnostic_seconds": 0.071028
+      }
+    ]
+  },
+  "results": [
+    {
+      "shape": [
+        320,
+        64,
+        64,
+        1
+      ],
+      "strides": [
+        16384,
+        4,
+        256,
+        5242880
+      ],
+      "m": 320,
+      "n": 4096,
+      "nodes": 5,
+      "diagnostic_seconds": 0.074423,
+      "baseline_seconds": 0.015325416666666668,
+      "candidate_seconds": 0.0007838333333333334,
+      "latency_reduction_percent": 94.88540278948369,
+      "samples_seconds": {
+        "baseline": [
+          0.015408,
+          0.015339,
+          0.015335,
+          0.015326,
+          0.015259,
+          0.015324,
+          0.015334,
+          0.015322,
+          0.015254,
+          0.015326,
+          0.015334,
+          0.015344
+        ],
+        "candidate": [
+          0.000455,
+          0.00066,
+          0.000764,
+          0.000765,
+          0.001489,
+          0.000759,
+          0.000766,
+          0.000773,
+          0.00076,
+          0.000753,
+          0.000779,
+          0.000683
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.015320666666666668,
+          "candidate_seconds": 0.0008355000000000002,
+          "latency_reduction_percent": 94.54658195900961
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.015330166666666667,
+          "candidate_seconds": 0.0007321666666666669,
+          "latency_reduction_percent": 95.22401365499397
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "shape": [
+        4096,
+        64,
+        5,
+        1
+      ],
+      "strides": [
+        1280,
+        4,
+        256,
+        5242880
+      ],
+      "m": 4096,
+      "n": 320,
+      "nodes": 5,
+      "diagnostic_seconds": 0.072325,
+      "baseline_seconds": 0.014611250000000001,
+      "candidate_seconds": 0.00041099999999999996,
+      "latency_reduction_percent": 97.18709898194884,
+      "samples_seconds": {
+        "baseline": [
+          0.01487,
+          0.014364,
+          0.014457,
+          0.014461,
+          0.014856,
+          0.014854,
+          0.014484,
+          0.014386,
+          0.014873,
+          0.014472,
+          0.014905,
+          0.014353
+        ],
+        "candidate": [
+          0.000454,
+          0.000443,
+          0.000392,
+          0.000454,
+          0.000426,
+          0.000348,
+          0.000451,
+          0.000456,
+          0.000416,
+          0.000472,
+          0.000309,
+          0.000311
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.014740833333333333,
+          "candidate_seconds": 0.00040799999999999994,
+          "latency_reduction_percent": 97.2321781898355
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.014481666666666665,
+          "candidate_seconds": 0.00041400000000000003,
+          "latency_reduction_percent": 97.14121302796639
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "shape": [
+        4096,
+        320,
+        1,
+        1
+      ],
+      "strides": [
+        1280,
+        4,
+        5242880,
+        5242880
+      ],
+      "m": 4096,
+      "n": 320,
+      "nodes": 5,
+      "diagnostic_seconds": 0.071028,
+      "baseline_seconds": 0.01468325,
+      "candidate_seconds": 0.00043991666666666664,
+      "latency_reduction_percent": 97.00395575457296,
+      "samples_seconds": {
+        "baseline": [
+          0.014884,
+          0.014885,
+          0.014792,
+          0.014857,
+          0.014455,
+          0.014417,
+          0.014887,
+          0.014426,
+          0.014916,
+          0.014348,
+          0.014433,
+          0.014899
+        ],
+        "candidate": [
+          0.000466,
+          0.000445,
+          0.000442,
+          0.000463,
+          0.000436,
+          0.000455,
+          0.000412,
+          0.000452,
+          0.00045,
+          0.000362,
+          0.000448,
+          0.000448
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.014727833333333334,
+          "candidate_seconds": 0.00044233333333333337,
+          "latency_reduction_percent": 96.99661638394423
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.014638666666666666,
+          "candidate_seconds": 0.0004375,
+          "latency_reduction_percent": 97.01133983058567
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    }
+  ],
+  "checks": {
+    "ownership": 180,
+    "concurrent": 48,
+    "graph": 24,
+    "invalid": 14
+  },
+  "cpu_bit_checks": 6,
+  "timed_graphs": 72,
+  "actual_graph_correctness_cases": 24,
+  "actual_thread_counts": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "compiler_diagnostics": [
+    {
+      "line": 10,
+      "message": "Potential dependency due to pointer -- use restrict qualifier if ok: column"
+    },
+    {
+      "line": 10,
+      "message": "Vectorized loop."
+    }
+  ],
+  "candidate_effective_optimization": "-O2",
+  "model_unchanged": true,
+  "temperature": {
+    "peaks_c": {
+      "cpu": 68.0,
+      "ve0": 53.62,
+      "ve1": 48.62,
+      "ve2": 50.88
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "artifact_sha256": {
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/checks.tsv": "c018bd091cd364e2bab477fb081d1fad3b356c8fdfd44dd8cff0cbfa685fadcc",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/timings.tsv": "940e762b794516ecc39b97ef32000ce3a3526ed3f9501e0d36ac30dfabec8846",
+    "build/sd-cont-transpose-probe.log": "2fa33231879e8b608ba8ace3f6b11400ddc0410158adcbb2b9cdb078515e59b9",
+    "build/sd-cont-transpose-probe/baseline.json": "f1bb8d5e93f4eef38a8d801093e83e1087ab2f128c8dab61f99f539e39e509ef",
+    "build/sd-cont-transpose-probe/shapes.tsv": "786c24d10f854390e9acf2c866818be1f578d76e47ed3535bee9a9cc1e7626c9",
+    "docs/results/20261009T183852Z-sd-turbo-cont-shapes.json": "69e444bb1b238877acebb99a8d1aaaccc59d4e90eed6d54292254c5c6b4b8989",
+    "build/sd-baseline-ve/manifest.json": "bca33b2749595110df0bc702472bcd6327481debcf6b7d1254982fea3abf651e",
+    "build/sd-baseline-ve/bin/sd": "2411621c405befe24f33980eb80de6182a3fd99e095e1cb389306fa8af1c3c11",
+    "build/results/20261009T185309Z-temperature-au0e23pw.csv": "25e94ee76b426019e561fec0eb1d04493ff15356ac031c9aa983656d27ae73eb",
+    "build/results/20261009T185309Z-temperature-au0e23pw-fans.csv": "341dd16ebcd886dd2f101f51f5bc0b6635dcc244c3ecf38a465dac349a18492c",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/shape0-input.f32": "d4c30347d45351906e91aa892595f63f24edc262fc788cada094fd5d6b45abe4",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/shape0-baseline.f32": "41b3a067a9d6a31fbedcb8a852dd0cf3cbbead5b97fc71edb432d3c4b1ddd3bc",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/shape0-candidate.f32": "41b3a067a9d6a31fbedcb8a852dd0cf3cbbead5b97fc71edb432d3c4b1ddd3bc",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/shape1-input.f32": "d4c30347d45351906e91aa892595f63f24edc262fc788cada094fd5d6b45abe4",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/shape1-baseline.f32": "cfef3f4639d40b953e2813075d7d5acad7e6d87b563e8a1ddb0ba3ef780a6a5f",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/shape1-candidate.f32": "cfef3f4639d40b953e2813075d7d5acad7e6d87b563e8a1ddb0ba3ef780a6a5f",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/shape2-input.f32": "d4c30347d45351906e91aa892595f63f24edc262fc788cada094fd5d6b45abe4",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/shape2-baseline.f32": "cfef3f4639d40b953e2813075d7d5acad7e6d87b563e8a1ddb0ba3ef780a6a5f",
+    "build/results/20261009T185327Z-sd-cont-transpose-probe/shape2-candidate.f32": "cfef3f4639d40b953e2813075d7d5acad7e6d87b563e8a1ddb0ba3ef780a6a5f",
+    "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "5282930045ac5fd1ce73b77f1c4c2b71e46262e341d17ad71f77765a181068e9",
+    "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a",
+    "src/ve_sd_turbo_cont_transpose.c": "4cd140451c05b2fa14284efbc1a9e1022ec11c3a05aca4bdbaed5657d47eef39",
+    "tests/benchmark_sd_cont_transpose.cpp": "05c03134a89debe7c39bb3d024144849869abf9f957fa676d0f4b873dac3a1c0",
+    "scripts/benchmark_sd_cont_transpose.sh": "fb380a59047a1c6384c1134a23054f95b30218ce0a34be7278e1ef73a9253f90",
+    "scripts/prepare_sd_cont_transpose_fixtures.py": "b8bdd75cd062b69b1a350efbc4a4a0a69dc76d7b3888db234b336b18f5cc9aaa",
+    "build/sd-cont-transpose-probe/candidate.o": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+    "build/sd-cont-transpose-probe/probe": "b4754babd69cd55f8dd1a2000532572591cbf0cdfa9eef527b3db45572ca0efa",
+    "build/sd-cont-transpose-symbols.log": "2257ab8d805a23c9642bbf531f94c0035cf7bdfac7c3f263a43df3abba09fa58",
+    "build/sd-cont-transpose-relocations.log": "aa52deda7b13bf5ce086310b72853bf5b4f4c5c946482ed52c1ddaa2bdef9e45",
+    "build/sd-cont-transpose-fixture-rejection.log": "5d057213f9919af37c3d9eef4e2b3f013971660b878f8c8343af41546cb0382e",
+    "build/sd-cont-transpose-audit-thread-log-rejection.log": "c200f53af75d1dcc23b7a333c1a1ae6ddfb3c6f755c9d5a34041f4971f5d319e",
+    "build/sd-cont-transpose-audit.log": "494edd1f6131b3fd0c3289e5e56e274b428efd027d97eb74e07edd2c09ceb013",
+    "build/results/20261009T185505Z-temperature-kaul0q2j.csv": "0751ec30d9ff853008fce865ab676c6fd6e1bc7a27054e254feca1330c96129e",
+    "build/results/20261009T185505Z-temperature-kaul0q2j-fans.csv": "63ae260006723a6b5836aabd8ea25954aff367221dfc577fb8c1d9eb3e93a135",
+    "build/results/20261009T185213Z-temperature-0ejz00ck.csv": "0588d917448dc74bb45cca13582322f284d14452789b42beb3d9264a840f6e1d",
+    "build/results/20261009T185213Z-temperature-0ejz00ck-fans.csv": "0857803f49840b8e3effcbc1c2316eb7f40923a6583038aa67fd10988be50880",
+    "build/results/20261009T185429Z-temperature-20w6gdwz.csv": "dc3d38c33668ccbee4a80968902cc6a1f87ef00b1f7991f1cee8d9a7b17a9819",
+    "build/results/20261009T185429Z-temperature-20w6gdwz-fans.csv": "8098914672b57268d9d7d0ed08de96e29df55118167d20da4dc750a947ce3741"
+  },
+  "publisher_sha256": "b52416acaffcb3643a0d97cce76dbdf41a1b93d6fd87bfc32d395a8cded8a8da",
+  "audit_dependency_sha256": {
+    "scripts/record_sd_pixels_pack_abba.py": "9f584710111235bc6d3a23f96a4f4c6af0c5685f98911ef09ec86d9c527914c2",
+    "scripts/record_qwen36_mtp.py": "951872f035a99a8394dfeef852b97dcc08a5120951356c8a67ea7e1e0c43e47b",
+    "scripts/record_sd_im2col_result.py": "b71ba007623644aaf4ae2fb667996c990aa133834429d2cc3a26c54b164363c6"
+  },
+  "scope": "independent candidate O2 pure transpose, actual model O1 ggml CONT graph baseline versus custom candidate graph, common actual runtime; three measured layouts, 12 samples/mode/shape with ABBA; full bit-pattern/direct/concurrent checks; graph overhead included, no model integration or full-model speedup claim",
+  "cpu_validation_temperature": {
+    "peaks_c": {
+      "cpu": 64.0,
+      "ve0": 50.75,
+      "ve1": 48.62,
+      "ve2": 50.88
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "cpu_validation_fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "preserved_rejections": [
+    {
+      "log": "build/sd-cont-transpose-fixture-rejection.log",
+      "reason": "pre-execution singleton-dimension stride check was too strict; fixed before compilation/VE execution",
+      "temperature": {
+        "peaks_c": {
+          "cpu": 62.0,
+          "ve0": 50.38,
+          "ve1": 48.5,
+          "ve2": 50.75
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      }
+    },
+    {
+      "log": "build/sd-cont-transpose-audit-thread-log-rejection.log",
+      "reason": "audit incorrectly expected a diagnostic thread marker in the actual ggml single-thread fast path; corrected without rerunning hardware",
+      "temperature": {
+        "peaks_c": {
+          "cpu": 63.0,
+          "ve0": 50.88,
+          "ve1": 48.62,
+          "ve2": 50.75
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      }
+    }
+  ],
+  "finalizer_sha256": "e59c38248fb7be379df24f9e3092ba6109942ed19e9fccd2d6979d8200abc046"
+}

@@ -1,0 +1,16 @@
+{
+  "scope": "VE standalone sequential worker partition correctness; no concurrent or performance claim",
+  "cases_passed": 16,
+  "cpu_peak_c": 60,
+  "ve_peak_c": 41.5,
+  "fan_channels": 97,
+  "observed_fan_changes": 0,
+  "sha256": {
+    "src/ve_sd_turbo_im2col_rows.c": "8978fb5c729b3f472a72d3e0c03b71fcb078e56fd61af80594fe8453f985b847",
+    "tests/check_sd_im2col_rows.c": "b965d489574846b503ac7e937a72d3feae4dadc4d241415c37acae91fdace1a2",
+    "scripts/check_sd_im2col_rows.sh": "600ea1f652ebb81b52f80c28b219faabe4ae0e2ed9038a61ba4df8442f57a0bd",
+    "build/im2col-rows/kernel.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+    "build/im2col-rows/check": "84475b4b5a91ed5c647e81c5401f8d69878360a4eeab3361ad9977eea1a1a0e2",
+    "build/sd-im2col-rows-check.log": "0a2c31ee4477bad1b5c57a73fac480a058806a3a747a1b384dc4dff2b6984c50"
+  }
+}

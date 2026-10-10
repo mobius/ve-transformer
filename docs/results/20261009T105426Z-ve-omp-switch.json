@@ -1,0 +1,136 @@
+{
+  "status": "standalone unified runtime switching verified; stage model candidate not yet implemented",
+  "runtime_slot": 1,
+  "matrix": {
+    "m": 512,
+    "n": 16384,
+    "k": 4608,
+    "lda": 4608,
+    "ldb": 4608,
+    "ldc": 16384,
+    "trans_a": "N",
+    "trans_b": "T"
+  },
+  "source_profile": "docs/results/20261009T081518Z-sd-turbo-nlc-profile.json",
+  "source_profile_sha256": "6c46c33079975b861501b235bc7d23c248667a5aa2a10f6c01e7cd4c34f5b384",
+  "calls": 60,
+  "checked_output_elements": 503316480,
+  "integer_region_checks": 60,
+  "metrics": {
+    "fixed": {
+      "0": {
+        "config_seconds": 1.124875e-06,
+        "region_seconds": 1.2874625e-05,
+        "gemm_seconds": 0.165917875,
+        "lifecycle_mean_seconds": 1.39995e-05,
+        "lifecycle_max_seconds": 1.4e-05,
+        "samples": 8
+      },
+      "1": {
+        "config_seconds": 1.249875e-06,
+        "region_seconds": 1.29995e-05,
+        "gemm_seconds": 0.165813125,
+        "lifecycle_mean_seconds": 1.4249375e-05,
+        "lifecycle_max_seconds": 1.4999e-05,
+        "samples": 8
+      },
+      "2": {
+        "config_seconds": 1.374875e-06,
+        "region_seconds": 1.28745e-05,
+        "gemm_seconds": 0.16590887525,
+        "lifecycle_mean_seconds": 1.4249375e-05,
+        "lifecycle_max_seconds": 1.4999999999999999e-05,
+        "samples": 8
+      }
+    },
+    "switch": {
+      "0": {
+        "config_seconds": 1.375e-06,
+        "region_seconds": 1.2624625e-05,
+        "gemm_seconds": 0.166210499875,
+        "lifecycle_mean_seconds": 1.3999625e-05,
+        "lifecycle_max_seconds": 1.4e-05,
+        "samples": 8
+      },
+      "1": {
+        "config_seconds": 0.000343375125,
+        "region_seconds": 8.749625e-06,
+        "gemm_seconds": 0.115399499875,
+        "lifecycle_mean_seconds": 0.00035212475,
+        "lifecycle_max_seconds": 0.000542,
+        "samples": 8
+      },
+      "2": {
+        "config_seconds": 0.00808775,
+        "region_seconds": 5.4249875e-05,
+        "gemm_seconds": 0.16591925,
+        "lifecycle_mean_seconds": 0.008141999875,
+        "lifecycle_max_seconds": 0.008634999,
+        "samples": 8
+      }
+    }
+  },
+  "model_binary_unchanged": true,
+  "build_temperature": {
+    "peaks_c": {
+      "cpu": 64.0,
+      "ve0": 42.0,
+      "ve1": 39.62,
+      "ve2": 41.88
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "test_temperature": {
+    "peaks_c": {
+      "cpu": 60.0,
+      "ve0": 46.12,
+      "ve1": 39.62,
+      "ve2": 41.88
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "sampled_node_peak_gib": 1.884765625,
+  "final_node_used_mib": 128,
+  "manifest_sha256": "7548fca44dda749d987baad978abc0f3c661ea43d36a1aafe55cb4ab5ad4950c",
+  "source_binary_sha256": {
+    "src/ve_omp_switch_probe.c": "dcf24e50b7f83e5173a07f95b3d0e9b91f736ef8005ef8a7a0298e1b219bbd83",
+    "scripts/build_omp_switch_probe.sh": "f7d1f916b889a11f1e1b1ee1658cee6853332bf318626c1770daf5ab955abfe9",
+    "build/omp-switch/probe": "974477968495134b0c96d95b9fe14fbc28f35a6622bfe4120195a5af9aaf34dc"
+  },
+  "artifact_sha256": {
+    "build/omp-switch-test.log": "bf69ddc844d64f0b9704fc8abc5a4765fbc86c6968cfb86e871d6efd23504bed",
+    "build/omp-switch-build.log": "a0aaa01be3d2a5de007e4fa2c94ca92ccd87e2a6c29c82d29c6f00c6b638fa3b",
+    "build/results/20261009T105847Z-ve-memory-sampled/summary.json": "a449c6ab789f10ea8d455c3de7d5e190ff4b3925221b10cd4db58ae165df321d",
+    "build/results/20261009T105847Z-ve-memory-sampled/memory.csv": "a614fc45c3d55dcf6ab298ff5662b32f129ef5b807c590a9214055d5f51be8fb",
+    "build/results/20261009T105847Z-temperature-8cepskec.csv": "c99569b5093a18f3036c383568afd19820b90f00f25ef4fb8e798ea6358a1771",
+    "build/results/20261009T105847Z-temperature-8cepskec-fans.csv": "6ac0823dcf3b5b24cabfda0acaa3130dc3cb68d3ff7684a2977acce668cf204d"
+  },
+  "limitations": [
+    "one synthetic representative matrix; constants exactly representable, not arbitrary activations",
+    "no GGML graph or workspaces, not complete model speedup",
+    "timing excludes output validation, initialization and IO",
+    "actual region count verifies capacity, not per-library-call physical utilization"
+  ],
+  "model_binary_at_probe_completion_sha256": "23dc96525ffbcad3c128e0c3e82d1a3c3aa22b5778eb45a05f7cc4c0c8b4643a",
+  "unchanged_model_evidence_scope": "probe build/test completion before the subsequent intentional stage-candidate rebuild"
+}

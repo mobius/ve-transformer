@@ -1,0 +1,124 @@
+"""Audit selective GroupNorm model dispatch, exact kernel and CPU/PNG outputs."""
+import argparse
+import json
+from pathlib import Path
+import re
+import subprocess
+from benchmark_sd_runtime import sha
+from record_sd_pixels_pack_model import audited_pixels_run,recompute_cpu_reference
+from record_sd_png_model import png_compiler_evidence
+from record_qwen36_mtp import safe
+ROOT=Path(__file__).resolve().parents[1]
+def cont_dispatch(run,value,mode):
+ raw=(run/'native.log').read_text();bodies=re.findall(r'SD_REQUEST_BEGIN index=\d+ resident=\d+\n(.*?)SD_REQUEST_END index=\d+ seconds=[0-9.]+',raw,re.S)
+ if len(bodies)!=len(value['requests']) or 'SD_CONT_SHAPE ' in raw:raise RuntimeError('unprofiled ordered CONT requests required')
+ parsed=[]
+ for body in bodies:
+  rows=re.findall(r'SD_CONT_DISPATCH stage=(clip|unet|vae) optimized=(\d+) fallback=(\d+) enabled=(0|1)',body)
+  if len(rows)!=body.count('SD_CONT_DISPATCH '):raise RuntimeError('complete CONT markers required')
+  entries=[dict(stage=s,optimized=int(o),fallback=int(f),enabled=int(e)) for s,o,f,e in rows]
+  for stage,total in (('clip',92),('unet',258),('vae',43)):
+   actual=[r for r in entries if r['stage']==stage];optimized=({'clip':23,'unet':45,'vae':3}[stage] if mode=='extended' else (15 if mode=='ve' and stage=='unet' else 0))
+   expected=dict(stage=stage,optimized=optimized,fallback=total-optimized,enabled=int(mode in ('ve','extended')))
+   if len(actual)!=(value['steps'] if stage=='unet' else 1) or any(r!=expected for r in actual):raise RuntimeError('actual CONT candidate/fallback count differs')
+  if [r['stage'] for r in entries]!=['clip']+['unet']*value['steps']+['vae']:raise RuntimeError('actual CONT stage ordering differs')
+  parsed.append(entries)
+ return parsed
+
+def compiler_evidence():
+ folder=ROOT/'build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir';flags_path=folder/'flags.make';make_path=folder/'build.make';flags=re.findall(r'^C_FLAGS = (.*)$',flags_path.read_text(),re.M)
+ commands=[r for r in make_path.read_text().splitlines() if '$(C_FLAGS)' in r and ' -c ' in r and 've_sd_turbo_cont_transpose.c' in r];objects=list(folder.rglob('ve_sd_turbo_cont_transpose.c.o'))
+ if len(flags)!=1 or len(commands)!=1 or len(objects)!=1:raise RuntimeError('unique actual CONT object/command required')
+ effective=flags[0]+' '+commands[0];levels=re.findall(r'(?<!\S)-O[0-3sg](?!\S)',effective)
+ if not levels or levels[-1]!='-O2' or '-fno-fast-math' not in effective or '-fno-associative-math' not in effective:raise RuntimeError('actual strict CONT O2 required')
+ proof=ROOT/'docs/results/20261009T184817Z-sd-turbo-cont-transpose.json';prior=json.loads(proof.read_text());source=ROOT/'src/ve_sd_turbo_cont_transpose.c'
+ if prior['status']!='cont_transpose_microbenchmark_verified' or prior['cpu_bit_checks']!=6 or prior['checks']!={'ownership':180,'concurrent':48,'graph':24,'invalid':14} or sha(source)!=prior['artifact_sha256']['src/ve_sd_turbo_cont_transpose.c']:raise RuntimeError('tested independent CONT source required')
+ if sha(objects[0])!=prior['artifact_sha256']['build/sd-cont-transpose-probe/candidate.o']:raise RuntimeError('actual CONT object differs from independently tested object')
+ obj=subprocess.check_output(['readelf','-Ws',str(objects[0])],text=True);binary=subprocess.check_output(['readelf','-Ws',str(ROOT/'build/sd-baseline-ve/bin/sd')],text=True)
+ pattern=r'^\s*\d+:\s+\S+\s+(\d+)\s+FUNC\s+GLOBAL\s+DEFAULT\s+\S+\s+sd_ve_cont_transpose_f32$';sizes=re.findall(pattern,obj,re.M)
+ if len(sizes)!=1 or re.findall(pattern,binary,re.M)!=sizes:raise RuntimeError('actual linked CONT symbol differs')
+ build=ROOT/'build/sd-cont-extended-model-build.log';object_build=ROOT/'build/sd-cont-model-object-build.log';diagnostics=[dict(line=int(n),message=s.strip()) for n,s in re.findall(r've_sd_turbo_cont_transpose\.c, line (\d+): ([^\n]+)',object_build.read_text())]
+ if dict(line=10,message='Vectorized loop.') not in diagnostics:raise RuntimeError('actual model vectorized copy evidence required')
+ return dict(effective_optimization='-O2',compiler_flags=flags[0],object_sha256=sha(objects[0]),source_sha256=sha(source),flags_make_sha256=sha(flags_path),build_make_sha256=sha(make_path),linked_function_size=int(sizes[0]),compiler_diagnostics=diagnostics,build_log_sha256=sha(build),object_compile_log_sha256=sha(object_build),independent_proof_sha256=sha(proof),actual_object_matches_independent=True)
+
+def softmax_dispatch(run,value):
+ bodies=re.findall(r'SD_REQUEST_BEGIN index=\d+ resident=\d+\n(.*?)SD_REQUEST_END index=\d+ seconds=[0-9.]+',(run/'native.log').read_text(),re.S)
+ if len(bodies)!=len(value['requests']):raise RuntimeError('ordered requests required')
+ parsed=[]
+ for body in bodies:
+  rows=re.findall(r'SD_SOFTMAX_SCALE_DISPATCH stage=(clip|unet|vae) optimized=(\d+) fallback=(\d+) enabled=(0|1)',body)
+  expected=[('clip','0','23','1')]+[('unet','30','2','1')]*value['steps']+[('vae','1','0','1')]
+  if rows!=expected or len(rows)!=body.count('SD_SOFTMAX_SCALE_DISPATCH '):raise RuntimeError('actual selective Softmax count differs')
+  parsed.append([dict(stage=t[0],optimized=int(t[1]),fallback=int(t[2]),enabled=int(t[3])) for t in rows])
+ return parsed
+
+def softmax_compiler_evidence():
+ folder=ROOT/'build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir';objects=list(folder.rglob('ve_sd_turbo_softmax_scale.c.o'))
+ if len(objects)!=1:raise RuntimeError('unique scale object required')
+ proof=ROOT/'docs/results/20261009T204705Z-sd-turbo-softmax-graph.json';independent=json.loads(proof.read_text())
+ if independent['status']!='actual_softmax_graph_verified' or independent['independent_cpu_cases']!=45 or independent['actual_parallel_team_records']!=530:raise RuntimeError('actual graph proof required')
+ if sha(ROOT/'src/ve_sd_turbo_softmax_scale.c')!=independent['artifact_sha256']['src/ve_sd_turbo_softmax_scale.c']:raise RuntimeError('tested scale source changed')
+ if sha(objects[0])!=independent['artifact_sha256']['build/sd-softmax-graph-probe/scale.o']:raise RuntimeError('actual scale object differs from tested graph object')
+ flags=folder/'flags.make';make=folder/'build.make';commands=[line for line in make.read_text().splitlines() if '$(C_FLAGS)' in line and ' -c ' in line and 've_sd_turbo_softmax_scale.c' in line]
+ effective=re.search(r'^C_FLAGS = (.*)$',flags.read_text(),re.M)[1]+' '+commands[0] if len(commands)==1 else ''
+ if re.findall(r'(?<!\S)-O[0-3sg](?!\S)',effective)[-1:]!=['-O2'] or '-fno-fast-math' not in effective or '-fno-associative-math' not in effective:raise RuntimeError('strict O2 scale flags required')
+ binary=ROOT/'build/sd-baseline-ve/bin/sd';symbols={}
+ for name in ('sd_ve_softmax_scale_f32','sd_ve_softmax_copy_scale_f32'):
+  pattern=r'^\s*\d+:\s+\S+\s+(\d+)\s+FUNC\s+GLOBAL\s+DEFAULT\s+\S+\s+'+name+'$'
+  a=re.findall(pattern,subprocess.check_output(['readelf','-Ws',str(objects[0])],text=True),re.M);b=re.findall(pattern,subprocess.check_output(['readelf','-Ws',str(binary)],text=True),re.M)
+  if len(a)!=1 or a!=b:raise RuntimeError('linked scale symbol differs')
+  symbols[name]=int(a[0])
+ return dict(object_sha256=sha(objects[0]),source_sha256=sha(ROOT/'src/ve_sd_turbo_softmax_scale.c'),independent_proof_sha256=sha(proof),flags_make_sha256=sha(flags),build_make_sha256=sha(make),symbols=symbols,actual_object_equal_tested=True)
+
+def group_norm_dispatch(run,value):
+ raw=(run/'native.log').read_text()
+ if 'SD_GROUP_NORM_SHAPE ' in raw:raise RuntimeError('unprofiled GroupNorm model validation required')
+ bodies=re.findall(r'SD_REQUEST_BEGIN index=\d+ resident=\d+\n(.*?)SD_REQUEST_END index=\d+ seconds=[0-9.]+',raw,re.S)
+ if len(bodies)!=len(value['requests']):raise RuntimeError('ordered complete model requests required')
+ parsed=[]
+ for body in bodies:
+  rows=re.findall(r'SD_GROUP_NORM_DISPATCH stage=(clip|unet|vae) scale_optimized=(\d+) scale_fallback=(\d+) center_optimized=(\d+) center_fallback=(\d+) enabled=(0|1)',body)
+  expected=[('clip','0','0','0','0','1')]+[('unet','61','0','31','30','1')]*value['steps']+[('vae','30','0','30','0','1')]
+  if rows!=expected or len(rows)!=body.count('SD_GROUP_NORM_DISPATCH '):raise RuntimeError('selective GroupNorm model counts differ')
+  parsed.append([dict(stage=t[0],scale_optimized=int(t[1]),scale_fallback=int(t[2]),center_optimized=int(t[3]),center_fallback=int(t[4]),enabled=int(t[5])) for t in rows])
+ return parsed
+
+def group_norm_compiler_evidence():
+ folder=ROOT/'build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir';objects=list(folder.rglob('ve_sd_turbo_group_norm.c.o'))
+ proof=ROOT/'docs/results/20261009T220116Z-sd-turbo-group-norm-center.json';v=json.loads(proof.read_text());source=ROOT/'src/ve_sd_turbo_group_norm.c'
+ if v['status']!='actual_group_norm_center_verified' or not v['center_only_delta_verified'] or v['candidate_output_captures']!=24 or v['independent_cpu_cases']!=24 or v['ve_bitwise_checks']!=288:raise RuntimeError('accepted full actual graph proof required')
+ if len(objects)!=1 or sha(objects[0])!=v['artifact_sha256']['build/sd-group-norm-center-probe/ve_sd_turbo_group_norm.c.o'] or sha(source)!=v['artifact_sha256']['src/ve_sd_turbo_group_norm.c']:raise RuntimeError('actual center kernel differs from tested object/source')
+ flags=folder/'flags.make';make=folder/'build.make';commands=[line for line in make.read_text().splitlines() if '$(C_FLAGS)' in line and ' -c ' in line and 've_sd_turbo_group_norm.c' in line]
+ effective=re.search(r'^C_FLAGS = (.*)$',flags.read_text(),re.M)[1]+' '+commands[0] if len(commands)==1 else ''
+ if re.findall(r'(?<!\S)-O[0-3sg](?!\S)',effective)[-1:]!=['-O2'] or '-fno-fast-math' not in effective or '-fno-associative-math' not in effective:raise RuntimeError('actual strict O2 center object required')
+ name='sd_ve_group_norm_center_square_f32';pattern=r'^\s*\d+:\s+\S+\s+(\d+)\s+FUNC\s+GLOBAL\s+DEFAULT\s+\S+\s+'+name+'$'
+ a=re.findall(pattern,subprocess.check_output(['readelf','-Ws',str(objects[0])],text=True),re.M);b=re.findall(pattern,subprocess.check_output(['readelf','-Ws',str(ROOT/'build/sd-baseline-ve/bin/sd')],text=True),re.M)
+ if len(a)!=1 or a!=b:raise RuntimeError('linked center function differs')
+ from prepare_sd_group_norm_model import CENTER_VARIANCE,GROUP_SCALE,instrument
+ accepted=ROOT/'build/accepted/group-norm-center-20261009T220116Z';previous=(accepted/'build/sd-baseline-overlay/sd-ggml-cpu.c').read_text();actual=(ROOT/'build/sd-baseline-overlay/sd-ggml-cpu.c').read_text()
+ if instrument(previous)!=actual:raise RuntimeError('model source differs beyond intended GroupNorm integration')
+ standalone=(ROOT/'build/sd-group-norm-center-probe/sd-ggml-cpu.c').read_text()
+ if sha(ROOT/'build/sd-group-norm-center-probe/sd-ggml-cpu.c')!=v['artifact_sha256']['build/sd-group-norm-center-probe/sd-ggml-cpu.c'] or CENTER_VARIANCE not in standalone or GROUP_SCALE not in standalone:raise RuntimeError('tested mathematical blocks changed')
+ build=ROOT/'build/sd-group-norm-model-build.log'
+ if not re.search(r'ncc: vec\(\s*101\): '+re.escape(str(source))+r', line 6: Vectorized loop\.',build.read_text()):raise RuntimeError('actual center model vectorization report required')
+ return dict(object_sha256=sha(objects[0]),source_sha256=sha(source),independent_proof_sha256=sha(proof),flags_make_sha256=sha(flags),build_make_sha256=sha(make),linked_function_size=int(a[0]),actual_object_equal_tested=True,actual_vectorization_report_verified=True,model_source_only_intended_delta=True,build_log_sha256=sha(build))
+
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--proof',type=Path,required=True);p.add_argument('--name',choices=('double','six','four'),required=True);p.add_argument('--run',type=Path,required=True);p.add_argument('--memory',type=Path,required=True);p.add_argument('--guard-log',type=Path,required=True);a=p.parse_args();proof=a.proof.resolve();proof.relative_to(ROOT/'docs/results');paths=[x.resolve() for x in (a.run,a.memory,a.guard_log)]
+ for path in paths:path.relative_to(ROOT/'build')
+ result,entry,manifest=audited_pixels_run(*paths,'ve');dispatch=cont_dispatch(paths[0],result,'extended');recomputed,png_count,reference_sha=recompute_cpu_reference(paths[0],result);compiler=compiler_evidence();png=png_compiler_evidence();scale_compiler=softmax_compiler_evidence();scale_dispatch=softmax_dispatch(paths[0],result);group_compiler=group_norm_compiler_evidence();group_dispatch=group_norm_dispatch(paths[0],result)
+ steps,cases={'double':(1,[0,0]),'six':(1,list(range(6))),'four':(4,[0,0])}[a.name]
+ if result['steps']!=steps or [r['reference_case'] for r in result['requests']]!=cases or len(recomputed)!=entry['cpu_checks']:raise RuntimeError('matching complete model workload required')
+ entry.update(group_norm_dispatch=group_dispatch,softmax_scale_dispatch=scale_dispatch,name=a.name,cont_kernel='extended',cont_dispatch=dispatch,cpu_recomputed_checks=recomputed,cpu_recomputed_png_checks=png_count,cpu_reference_sha256=reference_sha,packing_input_domain_verified=True)
+ v=json.loads(proof.read_text()) if proof.exists() else dict(status='model_validation_in_progress',tests=[],model_manifest_sha256=manifest,binary_sha256=result['binary_sha256'],checker_sha256=result['checker_sha256'])
+ if v['model_manifest_sha256']!=manifest or v['binary_sha256']!=result['binary_sha256'] or v['checker_sha256']!=result['checker_sha256'] or v.get('actual_cont_compiler',compiler)!=compiler or v.get('actual_png_compiler',png)!=png or v.get('actual_softmax_scale_compiler',scale_compiler)!=scale_compiler or v.get('actual_group_norm_compiler',group_compiler)!=group_compiler:raise RuntimeError('candidate model/objects/checker changed')
+ old=[e for e in v['tests'] if e['name']!=a.name]
+ for e in old:
+  for name,h in e['sha256'].items():
+   if sha(ROOT/name)!=h:raise RuntimeError('previous test evidence changed')
+ v['tests']=sorted(old+[entry],key=lambda e:('double','six','four').index(e['name']));v['completed_tests']=[e['name'] for e in v['tests']];v['independent_cpu_checks']=sum(e['cpu_checks'] for e in v['tests']);v['cpu_recomputed_checks']=sum(len(e['cpu_recomputed_checks']) for e in v['tests']);v['cpu_recomputed_png_checks']=sum(e['cpu_recomputed_png_checks'] for e in v['tests']);v['all_candidate_tests_completed']=v['completed_tests']==['double','six','four'];v['status']='model_validation_verified' if v['all_candidate_tests_completed'] else 'model_validation_in_progress';v['actual_group_norm_compiler']=group_compiler;v['actual_softmax_scale_compiler']=scale_compiler;v['actual_cont_compiler']=compiler;v['actual_png_compiler']=png;v['publisher_sha256']=sha(Path(__file__));v['audit_dependency_sha256']={name:sha(ROOT/name) for name in ('scripts/record_sd_pixels_pack_model.py','scripts/record_sd_rgb_model.py','scripts/record_sd_png_model.py','scripts/record_sd_gemm_spatial_model.py','scripts/record_sd_gelu_result.py','scripts/record_sd_im2col_rows_abba.py','scripts/prepare_sd_group_norm_model.py')};v['full_graph_speedup_measured']=False;v['configuration']=dict(cont_kernel='extended',pixel_kernel='ve',rgb_buffer='resident',png_encoder='ve',vae_spatial_tile='8192',im2col_mode='rows_256',generic_threads=8,vae_blas_threads=4,gelu='ve',binary_scalar='ve',weights='resident',tokenizer='resident');v['scope']='actual-model selective GroupNorm: UNet scale61/61 center31/61 per step, VAE scale30/30 center30/30; original path default retained; CPU/PNG independently recomputed; actual O2 center object equals accepted independent graph object; complete request incremental gain requires controlled comparison';v['configuration']['softmax_scale']='seven_shape_whitelist';v['configuration']['group_norm']='24_scale_16_center_whitelist'
+ expanded_proof=ROOT/'docs/results/20261009T194513Z-sd-turbo-cont-expanded.json';expanded=json.loads(expanded_proof.read_text())
+ if expanded['cpu_bit_checks']!=18 or expanded['timed_graphs']!=216 or expanded['artifact_sha256']['build/sd-cont-expanded-probe/candidate.o']!=compiler['object_sha256']:raise RuntimeError('independently verified expanded object required')
+ v['expanded_independent_proof_sha256']=sha(expanded_proof)
+ safe(v);proof.write_text(json.dumps(v,indent=2)+'\n');print('GroupNorm model tests audited:',v['completed_tests'],'CPU checks:',v['independent_cpu_checks'])
+if __name__=='__main__':main()

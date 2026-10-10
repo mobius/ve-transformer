@@ -1,0 +1,496 @@
+{
+  "status": "native_operator_profile_verified",
+  "model_repo": "stabilityai/sd-turbo",
+  "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "runtime_slot": 1,
+  "precision": "FP32",
+  "threads": 8,
+  "threadpool_mode": "persistent",
+  "size": 512,
+  "steps": 1,
+  "artifacts": "build/results/20261008T110605Z-sd-ve",
+  "binary_sha256": "4c07e151937dfec9dad4762e248df589333a911c72d2884591f11ac2e88ab554",
+  "checker_sha256": "3543e94b31c65e52e75d64bcfb06caf06a8e1b08920e5c45ebeb9698c129df53",
+  "scope": "single fixed prompt; primary-thread node wall time through ending barrier; native generic backend only, NLC graphs accounted separately; diagnostic profiling overhead not quantified; not an ABBA speed comparison",
+  "operator_profile": [
+    {
+      "stage": "clip",
+      "op": "ADD",
+      "seconds": 0.120546,
+      "nodes": 232
+    },
+    {
+      "stage": "clip",
+      "op": "MUL",
+      "seconds": 0.00149,
+      "nodes": 47
+    },
+    {
+      "stage": "clip",
+      "op": "NORM",
+      "seconds": 0.002173,
+      "nodes": 47
+    },
+    {
+      "stage": "clip",
+      "op": "SCALE",
+      "seconds": 0.018563,
+      "nodes": 23
+    },
+    {
+      "stage": "clip",
+      "op": "CONT",
+      "seconds": 0.034348,
+      "nodes": 92
+    },
+    {
+      "stage": "clip",
+      "op": "RESHAPE",
+      "seconds": 0.003673,
+      "nodes": 163
+    },
+    {
+      "stage": "clip",
+      "op": "PERMUTE",
+      "seconds": 0.000144,
+      "nodes": 69
+    },
+    {
+      "stage": "clip",
+      "op": "GET_ROWS",
+      "seconds": 2.4e-05,
+      "nodes": 1
+    },
+    {
+      "stage": "clip",
+      "op": "DIAG_MASK_INF",
+      "seconds": 0.001638,
+      "nodes": 23
+    },
+    {
+      "stage": "clip",
+      "op": "SOFT_MAX",
+      "seconds": 0.114937,
+      "nodes": 23
+    },
+    {
+      "stage": "clip",
+      "op": "UNARY_GELU",
+      "seconds": 0.739081,
+      "nodes": 23
+    },
+    {
+      "stage": "unet",
+      "op": "ADD",
+      "seconds": 0.509566,
+      "nodes": 419
+    },
+    {
+      "stage": "unet",
+      "op": "MUL",
+      "seconds": 0.149677,
+      "nodes": 125
+    },
+    {
+      "stage": "unet",
+      "op": "CONCAT",
+      "seconds": 0.018969,
+      "nodes": 12
+    },
+    {
+      "stage": "unet",
+      "op": "NORM",
+      "seconds": 0.02415,
+      "nodes": 48
+    },
+    {
+      "stage": "unet",
+      "op": "GROUP_NORM",
+      "seconds": 0.036321,
+      "nodes": 61
+    },
+    {
+      "stage": "unet",
+      "op": "MUL_MAT",
+      "seconds": 0.002013,
+      "nodes": 25
+    },
+    {
+      "stage": "unet",
+      "op": "SCALE",
+      "seconds": 0.032348,
+      "nodes": 33
+    },
+    {
+      "stage": "unet",
+      "op": "CONT",
+      "seconds": 0.533198,
+      "nodes": 258
+    },
+    {
+      "stage": "unet",
+      "op": "RESHAPE",
+      "seconds": 0.001158,
+      "nodes": 599
+    },
+    {
+      "stage": "unet",
+      "op": "VIEW",
+      "seconds": 6.8e-05,
+      "nodes": 31
+    },
+    {
+      "stage": "unet",
+      "op": "PERMUTE",
+      "seconds": 7.1e-05,
+      "nodes": 33
+    },
+    {
+      "stage": "unet",
+      "op": "SOFT_MAX",
+      "seconds": 44.403745,
+      "nodes": 32
+    },
+    {
+      "stage": "unet",
+      "op": "IM2COL",
+      "seconds": 1.703836,
+      "nodes": 98
+    },
+    {
+      "stage": "unet",
+      "op": "UPSCALE",
+      "seconds": 0.00663,
+      "nodes": 3
+    },
+    {
+      "stage": "unet",
+      "op": "TIMESTEP_EMBEDDING",
+      "seconds": 7.6e-05,
+      "nodes": 1
+    },
+    {
+      "stage": "unet",
+      "op": "UNARY_GELU",
+      "seconds": 0.726593,
+      "nodes": 16
+    },
+    {
+      "stage": "unet",
+      "op": "UNARY_SILU",
+      "seconds": 3.025095,
+      "nodes": 68
+    },
+    {
+      "stage": "vae",
+      "op": "ADD",
+      "seconds": 2.61858,
+      "nodes": 85
+    },
+    {
+      "stage": "vae",
+      "op": "MUL",
+      "seconds": 1.21086,
+      "nodes": 30
+    },
+    {
+      "stage": "vae",
+      "op": "GROUP_NORM",
+      "seconds": 0.223258,
+      "nodes": 30
+    },
+    {
+      "stage": "vae",
+      "op": "MUL_MAT",
+      "seconds": 0.027364,
+      "nodes": 2
+    },
+    {
+      "stage": "vae",
+      "op": "SCALE",
+      "seconds": 0.002125,
+      "nodes": 1
+    },
+    {
+      "stage": "vae",
+      "op": "CONT",
+      "seconds": 0.151132,
+      "nodes": 43
+    },
+    {
+      "stage": "vae",
+      "op": "RESHAPE",
+      "seconds": 0.000403,
+      "nodes": 186
+    },
+    {
+      "stage": "vae",
+      "op": "PERMUTE",
+      "seconds": 8e-06,
+      "nodes": 4
+    },
+    {
+      "stage": "vae",
+      "op": "SOFT_MAX",
+      "seconds": 1.511674,
+      "nodes": 1
+    },
+    {
+      "stage": "vae",
+      "op": "IM2COL",
+      "seconds": 38.267858,
+      "nodes": 40
+    },
+    {
+      "stage": "vae",
+      "op": "UPSCALE",
+      "seconds": 0.125757,
+      "nodes": 3
+    },
+    {
+      "stage": "vae",
+      "op": "UNARY_SILU",
+      "seconds": 40.94567,
+      "nodes": 29
+    }
+  ],
+  "stage_profile": [
+    {
+      "stage": "clip",
+      "part": "weights_load",
+      "seconds": 15.782666,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "graph_build",
+      "seconds": 0.010146,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "graph_alloc",
+      "seconds": 0.169944,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "backend_BLAS",
+      "seconds": 0.371366,
+      "calls": 184
+    },
+    {
+      "stage": "clip",
+      "part": "backend_CPU",
+      "seconds": 1.18539,
+      "calls": 185
+    },
+    {
+      "stage": "clip",
+      "part": "graph_compute",
+      "seconds": 1.557493,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "stage_total",
+      "seconds": 27.516592,
+      "calls": 1
+    },
+    {
+      "stage": "trace",
+      "part": "write",
+      "seconds": 0.012501,
+      "calls": 1
+    },
+    {
+      "stage": "trace",
+      "part": "write",
+      "seconds": 0.011152,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "weights_load",
+      "seconds": 38.501453,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "load_total",
+      "seconds": 39.007286,
+      "calls": 1
+    },
+    {
+      "stage": "trace",
+      "part": "write",
+      "seconds": 0.000655,
+      "calls": 1
+    },
+    {
+      "stage": "trace",
+      "part": "write",
+      "seconds": 0.000267,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "graph_build",
+      "seconds": 0.024641,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "graph_alloc",
+      "seconds": 0.369476,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "backend_BLAS",
+      "seconds": 2.280247,
+      "calls": 337
+    },
+    {
+      "stage": "unet",
+      "part": "backend_CPU",
+      "seconds": 51.430769,
+      "calls": 337
+    },
+    {
+      "stage": "unet",
+      "part": "graph_compute",
+      "seconds": 53.713645,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "step_total",
+      "seconds": 54.11091,
+      "calls": 1
+    },
+    {
+      "stage": "trace",
+      "part": "write",
+      "seconds": 0.000655,
+      "calls": 1
+    },
+    {
+      "stage": "trace",
+      "part": "write",
+      "seconds": 0.012107,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "weights_load",
+      "seconds": 3.407594,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "graph_build",
+      "seconds": 0.005263,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "graph_alloc",
+      "seconds": 0.067963,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "backend_BLAS",
+      "seconds": 8.260557,
+      "calls": 40
+    },
+    {
+      "stage": "vae",
+      "part": "backend_CPU",
+      "seconds": 85.110516,
+      "calls": 41
+    },
+    {
+      "stage": "vae",
+      "part": "graph_compute",
+      "seconds": 93.371784,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "stage_total",
+      "seconds": 97.408214,
+      "calls": 1
+    },
+    {
+      "stage": "trace",
+      "part": "write",
+      "seconds": 0.002726,
+      "calls": 1
+    },
+    {
+      "stage": "pipeline",
+      "part": "image_output",
+      "seconds": 1.197446,
+      "calls": 1
+    },
+    {
+      "stage": "pipeline",
+      "part": "total",
+      "seconds": 219.479741,
+      "calls": 1
+    }
+  ],
+  "numerical_checks": [
+    {
+      "name": "native-embeddings",
+      "relative_l2": 2.141076273621046e-06,
+      "max_abs_error": 1.239776611328125e-05,
+      "tolerance": 0.0001,
+      "passed": true
+    },
+    {
+      "name": "native-step0-input",
+      "relative_l2": 5.317233236367802e-08,
+      "max_abs_error": 4.76837158203125e-07,
+      "tolerance": 0.0001,
+      "passed": true
+    },
+    {
+      "name": "native-step0-epsilon",
+      "relative_l2": 2.1650632681083773e-07,
+      "max_abs_error": 2.7120113372802734e-06,
+      "tolerance": 0.001,
+      "passed": true
+    },
+    {
+      "name": "native-latent",
+      "relative_l2": 3.4080327971138544e-06,
+      "max_abs_error": 3.9577484130859375e-05,
+      "tolerance": 0.01,
+      "passed": true
+    },
+    {
+      "name": "native-decoded",
+      "relative_l2": 1.4287131277989747e-06,
+      "max_abs_error": 2.950429916381836e-05,
+      "tolerance": 0.01,
+      "passed": true
+    }
+  ],
+  "temperature": {
+    "peaks_c": {
+      "cpu": 70.0,
+      "ve0": 50.75,
+      "ve1": 39.5,
+      "ve2": 41.75
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  }
+}

@@ -1,0 +1,348 @@
+{
+  "scope": "model correctness round; double request only so far, no controlled speedup claim",
+  "completed_tests": [
+    "double",
+    "six",
+    "four"
+  ],
+  "request_seconds": [
+    86.083285,
+    11.452849
+  ],
+  "independent_cpu_checks": 62,
+  "im2col_row_dispatch": [
+    [
+      {
+        "stage": "clip",
+        "rows": 0,
+        "channels": 0,
+        "enabled": 1
+      },
+      {
+        "stage": "unet",
+        "rows": 0,
+        "channels": 98,
+        "enabled": 1
+      },
+      {
+        "stage": "vae",
+        "rows": 8,
+        "channels": 32,
+        "enabled": 1
+      }
+    ],
+    [
+      {
+        "stage": "clip",
+        "rows": 0,
+        "channels": 0,
+        "enabled": 1
+      },
+      {
+        "stage": "unet",
+        "rows": 0,
+        "channels": 98,
+        "enabled": 1
+      },
+      {
+        "stage": "vae",
+        "rows": 8,
+        "channels": 32,
+        "enabled": 1
+      }
+    ]
+  ],
+  "cpu_peak_c": 77,
+  "ve_peak_c": 53.25,
+  "fan_channels": 97,
+  "fan_changes": 0,
+  "final_memory_kib": 131072,
+  "sha256": {
+    "build/results/20261009T130339Z-sd-resident/summary.json": "784b1061debc5682b18bdee1a10a8c247d3725482d725518f697f7ad4992f21d",
+    "build/results/20261009T130339Z-sd-resident/native.log": "7498e41704b8ded26b4f614e7bfc9a79e2a14b24452150c13ef5632ea2a2c69a",
+    "build/sd-baseline-ve/manifest.json": "5f47fe59af64f0512fe660c4591bdb87e45b8adc85d39db0412200421c881958",
+    "build/sd-im2col-rows-model-double.log": "aa236a33beb24614312e12a5c26f3d2775ecb5f36f5ce8ab6bc0bbd7b699ee5a"
+  },
+  "six": {
+    "request_seconds": [
+      85.230985,
+      11.372645,
+      11.244857,
+      11.370154,
+      11.32978,
+      11.411364
+    ],
+    "independent_cpu_checks": 30,
+    "summary_sha256": "92b638388b02357219d1e2130bd366ec7b441ce001ab8ee9e1f7a53320cd9e0c",
+    "native_log_sha256": "8f4ae94f593be014e5906c3a538d1c5aa881c7f82f8669c42b27749e105b63fd",
+    "im2col_row_dispatch": [
+      [
+        {
+          "stage": "clip",
+          "rows": 0,
+          "channels": 0,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "vae",
+          "rows": 8,
+          "channels": 32,
+          "enabled": 1
+        }
+      ],
+      [
+        {
+          "stage": "clip",
+          "rows": 0,
+          "channels": 0,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "vae",
+          "rows": 8,
+          "channels": 32,
+          "enabled": 1
+        }
+      ],
+      [
+        {
+          "stage": "clip",
+          "rows": 0,
+          "channels": 0,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "vae",
+          "rows": 8,
+          "channels": 32,
+          "enabled": 1
+        }
+      ],
+      [
+        {
+          "stage": "clip",
+          "rows": 0,
+          "channels": 0,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "vae",
+          "rows": 8,
+          "channels": 32,
+          "enabled": 1
+        }
+      ],
+      [
+        {
+          "stage": "clip",
+          "rows": 0,
+          "channels": 0,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "vae",
+          "rows": 8,
+          "channels": 32,
+          "enabled": 1
+        }
+      ],
+      [
+        {
+          "stage": "clip",
+          "rows": 0,
+          "channels": 0,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "vae",
+          "rows": 8,
+          "channels": 32,
+          "enabled": 1
+        }
+      ]
+    ]
+  },
+  "four": {
+    "request_seconds": [
+      94.497736,
+      19.941431
+    ],
+    "independent_cpu_checks": 22,
+    "summary_sha256": "66bf88ef89fbb675ce5d2b9a1cdb90503ecc7d63ac1dc61a4a69d4c8b57dde4a",
+    "native_log_sha256": "3c7cb4377501045e0162c4b97a24960c0aee9cf847ff6ceaeac6e8c5b4f3c727",
+    "im2col_row_dispatch": [
+      [
+        {
+          "stage": "clip",
+          "rows": 0,
+          "channels": 0,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "vae",
+          "rows": 8,
+          "channels": 32,
+          "enabled": 1
+        }
+      ],
+      [
+        {
+          "stage": "clip",
+          "rows": 0,
+          "channels": 0,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "unet",
+          "rows": 0,
+          "channels": 98,
+          "enabled": 1
+        },
+        {
+          "stage": "vae",
+          "rows": 8,
+          "channels": 32,
+          "enabled": 1
+        }
+      ]
+    ]
+  },
+  "tests": [
+    {
+      "name": "double",
+      "artifacts": "build/results/20261009T130339Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T130327Z-ve-memory-sampled",
+      "guard_log": "build/sd-im2col-rows-model-double.log",
+      "sha256": {
+        "build/results/20261009T130339Z-sd-resident/summary.json": "784b1061debc5682b18bdee1a10a8c247d3725482d725518f697f7ad4992f21d",
+        "build/results/20261009T130339Z-sd-resident/native.log": "7498e41704b8ded26b4f614e7bfc9a79e2a14b24452150c13ef5632ea2a2c69a",
+        "build/results/20261009T130327Z-ve-memory-sampled/summary.json": "6426824ae7d75392890f633b43fc145dd86aa6bc59e08df9c53c1eff8514e677",
+        "build/results/20261009T130327Z-ve-memory-sampled/memory.csv": "93521c39c48b081e302c57b394d9f583ee5deb6c554b14f84d339510bec5fede",
+        "build/sd-im2col-rows-model-double.log": "aa236a33beb24614312e12a5c26f3d2775ecb5f36f5ce8ab6bc0bbd7b699ee5a"
+      },
+      "request_seconds": [
+        86.083285,
+        11.452849
+      ],
+      "cpu_checks": 10
+    },
+    {
+      "name": "six",
+      "artifacts": "build/results/20261009T130631Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T130619Z-ve-memory-sampled",
+      "guard_log": "build/sd-im2col-rows-model-six.log",
+      "sha256": {
+        "build/results/20261009T130631Z-sd-resident/summary.json": "92b638388b02357219d1e2130bd366ec7b441ce001ab8ee9e1f7a53320cd9e0c",
+        "build/results/20261009T130631Z-sd-resident/native.log": "8f4ae94f593be014e5906c3a538d1c5aa881c7f82f8669c42b27749e105b63fd",
+        "build/results/20261009T130619Z-ve-memory-sampled/summary.json": "1c8476be49f0630ede9fde13bf1b3eba7e744803aa2e5f2329ddc752b7562459",
+        "build/results/20261009T130619Z-ve-memory-sampled/memory.csv": "95c07cd00a4e6d7645754dd3e96d6cb33c592c8817b2197d36ef726d85afbee4",
+        "build/sd-im2col-rows-model-six.log": "59cc4d7c563b976194f1547919ca36a0944fdd08d71d711700700488eb6806ab"
+      },
+      "request_seconds": [
+        85.230985,
+        11.372645,
+        11.244857,
+        11.370154,
+        11.32978,
+        11.411364
+      ],
+      "cpu_checks": 30
+    },
+    {
+      "name": "four",
+      "artifacts": "build/results/20261009T131002Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T130949Z-ve-memory-sampled",
+      "guard_log": "build/sd-im2col-rows-model-four.log",
+      "sha256": {
+        "build/results/20261009T131002Z-sd-resident/summary.json": "66bf88ef89fbb675ce5d2b9a1cdb90503ecc7d63ac1dc61a4a69d4c8b57dde4a",
+        "build/results/20261009T131002Z-sd-resident/native.log": "3c7cb4377501045e0162c4b97a24960c0aee9cf847ff6ceaeac6e8c5b4f3c727",
+        "build/results/20261009T130949Z-ve-memory-sampled/summary.json": "5e776d0f64ab5c75669065962a67e61034f69eca4c628e641f9906ee33d1b178",
+        "build/results/20261009T130949Z-ve-memory-sampled/memory.csv": "4381c07a2b4321224217657aa44d4c2a2929ab3a9e92e382ffe124d99074760a",
+        "build/sd-im2col-rows-model-four.log": "47d7309cb7451ccfab3eec48839844aa76a3513b22d902fac2e9610e171adc9f"
+      },
+      "request_seconds": [
+        94.497736,
+        19.941431
+      ],
+      "cpu_checks": 22
+    }
+  ]
+}

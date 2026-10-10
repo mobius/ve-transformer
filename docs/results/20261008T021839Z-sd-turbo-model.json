@@ -1,0 +1,69 @@
+{
+  "model_repo": "stabilityai/sd-turbo",
+  "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "components": {
+    "text_encoder/model.safetensors": {
+      "tensors": 372,
+      "parameters": 340387840,
+      "payload_bytes": 1361551360,
+      "dtypes_by_parameter_count": {
+        "F32": 340387840
+      },
+      "file_sha256": "67e013543d4fac905c882e2993d86a2d454ee69dc9e8f37c0c23d33a48959d15"
+    },
+    "unet/diffusion_pytorch_model.safetensors": {
+      "tensors": 686,
+      "parameters": 865910724,
+      "payload_bytes": 3463642896,
+      "dtypes_by_parameter_count": {
+        "F32": 865910724
+      },
+      "file_sha256": "438da6db739c8651ec4152341b8133d6896db452ea27afdb6b9b0344f0c40532"
+    },
+    "vae/diffusion_pytorch_model.safetensors": {
+      "tensors": 248,
+      "parameters": 83653863,
+      "payload_bytes": 334615452,
+      "dtypes_by_parameter_count": {
+        "F32": 83653863
+      },
+      "file_sha256": "2aa1f43011b553a4cba7f37456465cdbd48aab7b54b9348b890e8058ea7683ec"
+    }
+  },
+  "total_parameters": 1289952427,
+  "weight_payload_bytes": 5159809708,
+  "memory_scope": "weights only; graph intermediates, working buffers, allocators and runtime excluded",
+  "configuration": {
+    "unet": {
+      "sample_size": 64,
+      "in_channels": 4,
+      "out_channels": 4,
+      "cross_attention_dim": 1024,
+      "block_out_channels": [
+        320,
+        640,
+        1280,
+        1280
+      ]
+    },
+    "text_encoder": {
+      "hidden_size": 1024,
+      "num_hidden_layers": 23,
+      "max_position_embeddings": 77
+    },
+    "vae": {
+      "scaling_factor": 0.18215,
+      "in_channels": 3,
+      "out_channels": 3,
+      "latent_channels": 4
+    },
+    "scheduler": {
+      "prediction_type": "epsilon",
+      "timestep_spacing": "trailing",
+      "num_train_timesteps": 1000,
+      "beta_start": 0.00085,
+      "beta_end": 0.012,
+      "beta_schedule": "scaled_linear"
+    }
+  }
+}

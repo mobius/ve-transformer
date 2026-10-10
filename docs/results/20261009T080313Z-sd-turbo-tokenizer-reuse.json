@@ -1,0 +1,4797 @@
+{
+  "status": "tokenizer_reuse_verified",
+  "recommended_for_validated_workload": true,
+  "default_enabled": false,
+  "scope": "official SD-Turbo FP32 512, single VE, serialized 1/4-step requests; ABBA two processes per arm, diagnostic outputs included, filesystem cache uncontrolled; no production or arbitrary-model claim",
+  "build": {
+    "backend": "ve",
+    "framework_variant": "compact",
+    "framework_revision": "5eb15ef4d022bef4a391de4f5f6556e81fbb5024",
+    "ggml_revision": "6fcbd60bc72ac3f7ad43f78c87e535f2e6206f58",
+    "compiler_standard": "C++11 image library; existing C++17 ggml backend",
+    "precision": "FP32 weights, convolution packing and erf GELU",
+    "compiler_optimization": "numerical kernels O1; optional isolated SiLU and Softmax exp O2 with checked vector math; Softmax sum O1 without vectorization/reassociation; optional data-only im2col O2; model metadata and graph orchestration O0 without inlining; no fast-math",
+    "compiler_duty_percent": 50,
+    "header_dependency_tracking": "explicit CMake object dependencies; component freshness checked",
+    "blas": "NEC NLC sequential, graph scheduler with native VE generic fallback",
+    "validation_scope": "official SD-Turbo only; split CLIP/UNet/VAE with native EPS Euler and trailing timesteps; exported sigmas supplied by checker",
+    "sha256": {
+      "scripts/build_sd_baseline.sh": "4ec574571296ffe2e92e2c2bc87d8ddc4abd924657f5ce1ccea1d392395ac18f",
+      "scripts/record_sd_baseline_build.py": "9629716d2e60e5d93fa02149b1fa44035475467ec741fa5f1f70dd1301731042",
+      "scripts/prepare_sd_baseline_source.sh": "a3cadbe58fd54e38eb89032e673efca10ac4866535d3d709e0a090f866f3891c",
+      "scripts/prepare_sd_baseline_overlay.py": "e56e568abdf2009a2ec7e86d74abeb19f6ee20de0398c4742ed493d1da26483b",
+      "scripts/prepare_sd_weight_index.py": "ac8410a86da5a0e10fa77f70101b1df08abdb13977d5f3de90028b7d2ca765a4",
+      "cmake/nec-sd-baseline-overrides.cmake": "66af5d8c5c2c8230134194d3e901a670ba5aa86741338ed81606f770bbc629f6",
+      "cmake/nec-sd-baseline-toolchain.cmake": "c9366c0f2523092fe4ca2203c3165f75c06ccac50f3dfbc2a8a88f4c34b061e3",
+      "cmake/nec-ve.cmake": "3b9e3132dc2865e1a881c75c049d1141b31d2badaff8a5fb45113e7ece48069e",
+      "build/sd-baseline-ve/bin/sd": "79830c691160ac55fc76445aecc550e29570d85717d91a0c74b7ac832c67b86f",
+      "build/sd-baseline-overlay/check_sd_ops.cpp": "ebc5dfe2f4a2c90204becd5dfe44b80add4fb4ccdd9f0910ddcd9674f2227834",
+      "build/sd-baseline-overlay/clip.hpp": "01e414d521f31c688cc1644b1246fadbc0cf804330735c5b77ef6c55b17de126",
+      "build/sd-baseline-overlay/common.hpp": "5c91bdc88f095211a62ff14d9716bbd9cee4cdbacc8bf1be3f72cf4e975c91a8",
+      "build/sd-baseline-overlay/conditioner.hpp": "45b8fbdf3ef2bfc64a10217532a1d3ebbe2ec1f06f467a7b4c867b1772048ab7",
+      "build/sd-baseline-overlay/control.hpp": "61c37fc4a92237da8e2b1a86998746f77a88e3e404214000e67b79858b371ca4",
+      "build/sd-baseline-overlay/denoiser.hpp": "d35e2ca93039c053b9eb77c1bb81bcddb37d9150edfd2a7b7812b62f163d0777",
+      "build/sd-baseline-overlay/diffusion_model.hpp": "8edc94368e264accf17fbfaa7720a1ebaf2a3a187f760798338c87a061664ef9",
+      "build/sd-baseline-overlay/esrgan.hpp": "e3d2f8307affbb1b337aafe0f27bc2a8314192081a8ef4ee77cef7b54d35fc93",
+      "build/sd-baseline-overlay/flux.hpp": "2c32a1bb153460aa820dcebaeba234799dc426a02628f16c33ba6261f016eb41",
+      "build/sd-baseline-overlay/ggml_extend.hpp": "eed9e648f94e89a105dc6c72ef70f138be1578d2a70ba2f6000a00f0cfd6e987",
+      "build/sd-baseline-overlay/lora.hpp": "933edfca00f8ff9f31f92409eecbcbba213692300d14fbe4c2a539fe27419aa2",
+      "build/sd-baseline-overlay/mmdit.hpp": "9dde70d415de51a77236469a12f6714bc67d6e3526fbb4e7379e5daac347b6bf",
+      "build/sd-baseline-overlay/model.cpp": "e0faddee694f120145cbf9e7b1827ace41bc0d301cf96e1ff0a3bd20cf1ea41d",
+      "build/sd-baseline-overlay/model.h": "0cc5c2fe98914763a33acadf5495dc1a670905406f15288ad0b4e54e003b77e7",
+      "build/sd-baseline-overlay/pmid.hpp": "68c4e793c62d3da02a8905bb2be8d387fe89329c5af8e7302eab6e97ea2604b5",
+      "build/sd-baseline-overlay/preprocessing.hpp": "05f3422db8971402aa18a42b28c0d965a05d4533e3a537f670844099727a4273",
+      "build/sd-baseline-overlay/rng.hpp": "6fb2bb30234a672fedb820923597bb01803ad4f600d4b5861af78aeaaec96df3",
+      "build/sd-baseline-overlay/rng_philox.hpp": "b5dbfb17c480081018cb5f7d8331aeb88e4caa76e515b602e8da6fad0c496da9",
+      "build/sd-baseline-overlay/sd-ggml-backend.cpp": "8a52508a46408e45faeadcc1f87bd9b1a7a07d7b4e38ca43e8de6847508bc2b5",
+      "build/sd-baseline-overlay/sd-ggml-cpu.c": "f6036a6b9c5f5c3a92c02e567f2e1ab97c95a1a570d69db36218a7264d44ec94",
+      "build/sd-baseline-overlay/sd_baseline_validation.h": "8f5c162684926a2d4f7af7457d6b777360dadc8e5c922817fcd515852da14425",
+      "build/sd-baseline-overlay/sd_clip_vocab.c": "b39eab88ce24a0d95d87c815fdaad2bfdb6474599936aafac816cf1278b97efc",
+      "build/sd-baseline-overlay/sd_clip_vocab.h": "4efe839044e109850146d274cb7536b13739eac955ff498c7b54c706287facf5",
+      "build/sd-baseline-overlay/sd_profile.h": "125081d706f90ebc86eb6bc5b96fe851e9b0badf332e286fde4ed328e7ba25b3",
+      "build/sd-baseline-overlay/stable-diffusion.cpp": "d2c27b7e5b32d0c2f9f97bae1d2a8ecafa084669c803f39ca322b6a86eacbb25",
+      "build/sd-baseline-overlay/stable-diffusion.h": "dffbdacf8c114570373e8d0fe0abcf0d5279fef7db85db0239dec957d4e76d99",
+      "build/sd-baseline-overlay/t5.hpp": "62fa641c243e328225297bb9e41efb9c55f9a70c23f3ca472483cc340d9a2eee",
+      "build/sd-baseline-overlay/tae.hpp": "57ee75cf6b964923499426a7ed84a5c07cd763de79e3b9f57d55265f675893a6",
+      "build/sd-baseline-overlay/unet.hpp": "9982e48a04f68393d887d990803d4e89c44489339ca890abbe187fdb40e0b158",
+      "build/sd-baseline-overlay/upscaler.cpp": "032f35b7d8b766ee6b24999383848d3321e7e39fd978f70e910245086c8f07b4",
+      "build/sd-baseline-overlay/util.cpp": "c2f91b2ad1129121ab1ecf8147a2bbf322b8f33ce055392002a5c997b64c2a85",
+      "build/sd-baseline-overlay/util.h": "18f14d141b9de2734e959552e719fddaa27ddcb76fabece2c3704f38a2db776f",
+      "build/sd-baseline-overlay/vae.hpp": "9e044e9f9095b260ca724bf0a51b7b2dc7fda787629d44de0357c7cb87ffbca8",
+      "src/ve_sd_turbo_clip.cpp": "df298e6512eab1e22f7d9599b0103eab0e88f6f5eb354c3233c8986ce2008254",
+      "src/ve_sd_turbo_im2col.c": "f9e4187424880df7a44ef23b08f6043438bd0c150020e4fc1e661701507da2c6",
+      "src/ve_sd_turbo_main.cpp": "b6d0b1cfe1c121debf6991f1fd7f08a534969ba96161a64d271aa7b022d8ce5e",
+      "src/ve_sd_turbo_profile.h": "125081d706f90ebc86eb6bc5b96fe851e9b0badf332e286fde4ed328e7ba25b3",
+      "src/ve_sd_turbo_silu.c": "d69bba5b4e7a920927c9b673a3de17be21e587e6e8ddc049ba0a07e094521b09",
+      "src/ve_sd_turbo_softmax.c": "adf82771b1b83bf3e889defe7d18298125add9b68ba8203597941b3f9bee9d1f",
+      "src/ve_sd_turbo_softmax_sum.c": "e3343d66fb45ec90f571e5b06c0754492eb5c7dfeccbea680e21690be428d97e",
+      "src/ve_sd_turbo_stages.h": "f10f735d4af19c3452d8c7face7d4e7e87a9634a00caf32caa3a7ab8278c07ef",
+      "src/ve_sd_turbo_support.h": "37a67f1c7e366e3e99f6ff1cb4b7b389c62ced620f138dcd2f3f29816dc4f1c1",
+      "src/ve_sd_turbo_unet.cpp": "65bd9096cfcd9279c37afefa75e84ae700c933ec38762bd5b3fc5993d50b9440",
+      "src/ve_sd_turbo_vae.cpp": "ff3cf65fd5a71c8024e7ea6f9df3d05eea91c20cecd634efeaefad12a3c64794",
+      "build/models/sd-turbo/text_encoder/model.safetensors.ve-index": "22cf2e735485a5ec96549c3357f12e79dcdc4f9103964139dcd2b04e961a0a57",
+      "build/models/sd-turbo/unet/diffusion_pytorch_model.safetensors.ve-index": "21f5219d0c17766e59284f0ba6dfa42d353804da42c8c98cdfc7e14939f37000",
+      "build/models/sd-turbo/vae/diffusion_pytorch_model.safetensors.ve-index": "3eec0b99b96bdcdbba37ecc75b41e2fdaf2f4c4dbcff9669f22a5816dca4a9fb"
+    }
+  },
+  "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "metrics": {
+    "process": {
+      "request_seconds": 126.04645383218303,
+      "resident_seconds": 115.86124670924619,
+      "latency_reduction_percent": 8.080518581266338
+    },
+    "request0": {
+      "request_seconds": 92.9807715,
+      "resident_seconds": 92.6785995,
+      "latency_reduction_percent": 0.3249833219549081
+    },
+    "request1": {
+      "request_seconds": 32.539365000000004,
+      "resident_seconds": 22.4073075,
+      "latency_reduction_percent": 31.137846420789096
+    }
+  },
+  "abba": {
+    "completed": true,
+    "kind": "sd_turbo_tokenizer_abba",
+    "comparison": "tokenizer",
+    "binary_sha256": "79830c691160ac55fc76445aecc550e29570d85717d91a0c74b7ac832c67b86f",
+    "checker_sha256": "66805ca424233717f4f2be12a2a383d9c3305e4d447d88cb93ff2edd84f38fbe",
+    "benchmark_sha256": "a91276535ff9e6f9c1505bce9918570326bae8096f22cf6be8f386009a5741d4",
+    "case_sequence": "0,0",
+    "reference_artifacts": "build/results/20261008T081800Z-sd-reference",
+    "runs": [
+      {
+        "mode": "request",
+        "weight_mode": "resident",
+        "tokenizer_mode": "request",
+        "artifacts": "build/results/20261009T074451Z-sd-resident",
+        "memory_artifacts": "build/results/20261009T074439Z-ve-memory-sampled",
+        "process_seconds": 125.94766336865723,
+        "requests": [
+          {
+            "request": 0,
+            "reference_case": 0,
+            "checks": [
+              {
+                "name": "native-embeddings",
+                "relative_l2": 2.11446635331537e-06,
+                "max_abs_error": 1.33514404296875e-05,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-input",
+                "relative_l2": 5.3172332363678044e-08,
+                "max_abs_error": 4.76837158203125e-07,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-epsilon",
+                "relative_l2": 2.4604889267715076e-07,
+                "max_abs_error": 3.337860107421875e-06,
+                "tolerance": 0.001,
+                "passed": true
+              },
+              {
+                "name": "native-latent",
+                "relative_l2": 3.87150777741411e-06,
+                "max_abs_error": 4.863739013671875e-05,
+                "tolerance": 0.01,
+                "passed": true
+              },
+              {
+                "name": "native-decoded",
+                "relative_l2": 1.677692192334832e-06,
+                "max_abs_error": 2.962350845336914e-05,
+                "tolerance": 0.01,
+                "passed": true
+              }
+            ],
+            "request_seconds": 92.874769,
+            "weight_load_stages": [
+              "clip",
+              "unet",
+              "vae"
+            ],
+            "profile": [
+              {
+                "stage": "clip",
+                "part": "weights_load",
+                "seconds": 16.130388,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_init",
+                "seconds": 9.902981,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_encode",
+                "seconds": 0.022586,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_tensor",
+                "seconds": 6e-06,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_build",
+                "seconds": 0.010324,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_alloc",
+                "seconds": 0.172834,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "backend_BLAS",
+                "seconds": 0.38113,
+                "calls": 184
+              },
+              {
+                "stage": "clip",
+                "part": "backend_CPU",
+                "seconds": 1.107611,
+                "calls": 185
+              },
+              {
+                "stage": "clip",
+                "part": "graph_compute",
+                "seconds": 1.489576,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "stage_total",
+                "seconds": 28.286908,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "weights_load",
+                "seconds": 39.731781,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "load_total",
+                "seconds": 40.242535,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_build",
+                "seconds": 0.025085,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_alloc",
+                "seconds": 0.363003,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "backend_BLAS",
+                "seconds": 2.288221,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "backend_CPU",
+                "seconds": 3.01554,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "graph_compute",
+                "seconds": 5.305195,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "step_total",
+                "seconds": 5.695488,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "weights_load",
+                "seconds": 3.51979,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_build",
+                "seconds": 0.005288,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_alloc",
+                "seconds": 0.067142,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "backend_BLAS",
+                "seconds": 8.249844,
+                "calls": 40
+              },
+              {
+                "stage": "vae",
+                "part": "backend_CPU",
+                "seconds": 5.484697,
+                "calls": 41
+              },
+              {
+                "stage": "vae",
+                "part": "graph_compute",
+                "seconds": 13.735375,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "stage_total",
+                "seconds": 17.473866,
+                "calls": 1
+              }
+            ],
+            "im2col_graphs": [
+              {
+                "stage": "clip",
+                "optimized_nodes": 0,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "unet",
+                "optimized_nodes": 98,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "vae",
+                "optimized_nodes": 40,
+                "fallback_nodes": 0
+              }
+            ],
+            "trace_sha256": {
+              "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+              "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+              "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+              "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+              "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+              "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+              "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+            },
+            "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+          },
+          {
+            "request": 1,
+            "reference_case": 0,
+            "checks": [
+              {
+                "name": "native-embeddings",
+                "relative_l2": 2.11446635331537e-06,
+                "max_abs_error": 1.33514404296875e-05,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-input",
+                "relative_l2": 5.3172332363678044e-08,
+                "max_abs_error": 4.76837158203125e-07,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-epsilon",
+                "relative_l2": 2.4604889267715076e-07,
+                "max_abs_error": 3.337860107421875e-06,
+                "tolerance": 0.001,
+                "passed": true
+              },
+              {
+                "name": "native-latent",
+                "relative_l2": 3.87150777741411e-06,
+                "max_abs_error": 4.863739013671875e-05,
+                "tolerance": 0.01,
+                "passed": true
+              },
+              {
+                "name": "native-decoded",
+                "relative_l2": 1.677692192334832e-06,
+                "max_abs_error": 2.962350845336914e-05,
+                "tolerance": 0.01,
+                "passed": true
+              }
+            ],
+            "request_seconds": 32.563883,
+            "weight_load_stages": [],
+            "profile": [
+              {
+                "stage": "clip",
+                "part": "tokenizer_init",
+                "seconds": 9.888397,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_encode",
+                "seconds": 0.022783,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_tensor",
+                "seconds": 6e-06,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_build",
+                "seconds": 0.010053,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_alloc",
+                "seconds": 0.170428,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "backend_BLAS",
+                "seconds": 0.380809,
+                "calls": 184
+              },
+              {
+                "stage": "clip",
+                "part": "backend_CPU",
+                "seconds": 1.108574,
+                "calls": 185
+              },
+              {
+                "stage": "clip",
+                "part": "graph_compute",
+                "seconds": 1.490134,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "stage_total",
+                "seconds": 11.799421,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "load_total",
+                "seconds": 3e-06,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_build",
+                "seconds": 0.024499,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_alloc",
+                "seconds": 0.364678,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "backend_BLAS",
+                "seconds": 2.288389,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "backend_CPU",
+                "seconds": 3.018648,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "graph_compute",
+                "seconds": 5.308464,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "step_total",
+                "seconds": 5.699612,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_build",
+                "seconds": 0.005177,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_alloc",
+                "seconds": 0.06678,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "backend_BLAS",
+                "seconds": 8.276964,
+                "calls": 40
+              },
+              {
+                "stage": "vae",
+                "part": "backend_CPU",
+                "seconds": 5.506006,
+                "calls": 41
+              },
+              {
+                "stage": "vae",
+                "part": "graph_compute",
+                "seconds": 13.78371,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "stage_total",
+                "seconds": 13.857964,
+                "calls": 1
+              }
+            ],
+            "im2col_graphs": [
+              {
+                "stage": "clip",
+                "optimized_nodes": 0,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "unet",
+                "optimized_nodes": 98,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "vae",
+                "optimized_nodes": 40,
+                "fallback_nodes": 0
+              }
+            ],
+            "trace_sha256": {
+              "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+              "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+              "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+              "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+              "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+              "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+              "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+            },
+            "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+          }
+        ],
+        "memory": {
+          "completed": true,
+          "runtime_slot": 1,
+          "library_version": "3.6.0",
+          "requested_interval_seconds": 0.2,
+          "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage",
+          "sampler_sha256": "9f2afb89d35cffd47a3f701227a26275a22db2024b0b9d6882dd9e029f4b8e5a",
+          "adapter_sha256": "bcc843d7501719345384cec24a6da04469e268983eb2b4ef6304b3ddd6e423b4",
+          "returncode": 0,
+          "sample_count": 703,
+          "baseline_used_kib": 131072,
+          "final_used_kib": 131072,
+          "sampled_highest_used_kib": 10299392,
+          "sampled_highest_elapsed_seconds": 122.73903453722596,
+          "max_sample_gap_seconds": 0.23006387241184711
+        }
+      },
+      {
+        "mode": "resident",
+        "weight_mode": "resident",
+        "tokenizer_mode": "resident",
+        "artifacts": "build/results/20261009T074712Z-sd-resident",
+        "memory_artifacts": "build/results/20261009T074700Z-ve-memory-sampled",
+        "process_seconds": 115.80718382634223,
+        "requests": [
+          {
+            "request": 0,
+            "reference_case": 0,
+            "checks": [
+              {
+                "name": "native-embeddings",
+                "relative_l2": 2.11446635331537e-06,
+                "max_abs_error": 1.33514404296875e-05,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-input",
+                "relative_l2": 5.3172332363678044e-08,
+                "max_abs_error": 4.76837158203125e-07,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-epsilon",
+                "relative_l2": 2.4604889267715076e-07,
+                "max_abs_error": 3.337860107421875e-06,
+                "tolerance": 0.001,
+                "passed": true
+              },
+              {
+                "name": "native-latent",
+                "relative_l2": 3.87150777741411e-06,
+                "max_abs_error": 4.863739013671875e-05,
+                "tolerance": 0.01,
+                "passed": true
+              },
+              {
+                "name": "native-decoded",
+                "relative_l2": 1.677692192334832e-06,
+                "max_abs_error": 2.962350845336914e-05,
+                "tolerance": 0.01,
+                "passed": true
+              }
+            ],
+            "request_seconds": 92.597479,
+            "weight_load_stages": [
+              "clip",
+              "unet",
+              "vae"
+            ],
+            "profile": [
+              {
+                "stage": "clip",
+                "part": "weights_load",
+                "seconds": 16.134944,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_init",
+                "seconds": 9.880562,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_encode",
+                "seconds": 0.02259,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_tensor",
+                "seconds": 6e-06,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_build",
+                "seconds": 0.010359,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_alloc",
+                "seconds": 0.174466,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "backend_BLAS",
+                "seconds": 0.381124,
+                "calls": 184
+              },
+              {
+                "stage": "clip",
+                "part": "backend_CPU",
+                "seconds": 1.109899,
+                "calls": 185
+              },
+              {
+                "stage": "clip",
+                "part": "graph_compute",
+                "seconds": 1.491768,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "stage_total",
+                "seconds": 28.025479,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "weights_load",
+                "seconds": 39.654103,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "load_total",
+                "seconds": 40.163858,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_build",
+                "seconds": 0.025121,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_alloc",
+                "seconds": 0.361879,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "backend_BLAS",
+                "seconds": 2.288075,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "backend_CPU",
+                "seconds": 3.055235,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "graph_compute",
+                "seconds": 5.345205,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "step_total",
+                "seconds": 5.734415,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "weights_load",
+                "seconds": 3.519245,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_build",
+                "seconds": 0.005359,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_alloc",
+                "seconds": 0.066708,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "backend_BLAS",
+                "seconds": 8.270509,
+                "calls": 40
+              },
+              {
+                "stage": "vae",
+                "part": "backend_CPU",
+                "seconds": 5.489066,
+                "calls": 41
+              },
+              {
+                "stage": "vae",
+                "part": "graph_compute",
+                "seconds": 13.760422,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "stage_total",
+                "seconds": 17.498147,
+                "calls": 1
+              }
+            ],
+            "im2col_graphs": [
+              {
+                "stage": "clip",
+                "optimized_nodes": 0,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "unet",
+                "optimized_nodes": 98,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "vae",
+                "optimized_nodes": 40,
+                "fallback_nodes": 0
+              }
+            ],
+            "trace_sha256": {
+              "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+              "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+              "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+              "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+              "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+              "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+              "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+            },
+            "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+          },
+          {
+            "request": 1,
+            "reference_case": 0,
+            "checks": [
+              {
+                "name": "native-embeddings",
+                "relative_l2": 2.11446635331537e-06,
+                "max_abs_error": 1.33514404296875e-05,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-input",
+                "relative_l2": 5.3172332363678044e-08,
+                "max_abs_error": 4.76837158203125e-07,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-epsilon",
+                "relative_l2": 2.4604889267715076e-07,
+                "max_abs_error": 3.337860107421875e-06,
+                "tolerance": 0.001,
+                "passed": true
+              },
+              {
+                "name": "native-latent",
+                "relative_l2": 3.87150777741411e-06,
+                "max_abs_error": 4.863739013671875e-05,
+                "tolerance": 0.01,
+                "passed": true
+              },
+              {
+                "name": "native-decoded",
+                "relative_l2": 1.677692192334832e-06,
+                "max_abs_error": 2.962350845336914e-05,
+                "tolerance": 0.01,
+                "passed": true
+              }
+            ],
+            "request_seconds": 22.424216,
+            "weight_load_stages": [],
+            "profile": [
+              {
+                "stage": "clip",
+                "part": "tokenizer_init",
+                "seconds": 0.000104,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_encode",
+                "seconds": 0.022968,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_tensor",
+                "seconds": 5e-06,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_build",
+                "seconds": 0.010006,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_alloc",
+                "seconds": 0.171039,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "backend_BLAS",
+                "seconds": 0.381032,
+                "calls": 184
+              },
+              {
+                "stage": "clip",
+                "part": "backend_CPU",
+                "seconds": 1.097621,
+                "calls": 185
+              },
+              {
+                "stage": "clip",
+                "part": "graph_compute",
+                "seconds": 1.479536,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "stage_total",
+                "seconds": 1.686203,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "load_total",
+                "seconds": 2e-06,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_build",
+                "seconds": 0.024255,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_alloc",
+                "seconds": 0.366536,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "backend_BLAS",
+                "seconds": 2.28748,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "backend_CPU",
+                "seconds": 3.023542,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "graph_compute",
+                "seconds": 5.31265,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "step_total",
+                "seconds": 5.705448,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_build",
+                "seconds": 0.00509,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_alloc",
+                "seconds": 0.067611,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "backend_BLAS",
+                "seconds": 8.28184,
+                "calls": 40
+              },
+              {
+                "stage": "vae",
+                "part": "backend_CPU",
+                "seconds": 5.504773,
+                "calls": 41
+              },
+              {
+                "stage": "vae",
+                "part": "graph_compute",
+                "seconds": 13.787366,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "stage_total",
+                "seconds": 13.861793,
+                "calls": 1
+              }
+            ],
+            "im2col_graphs": [
+              {
+                "stage": "clip",
+                "optimized_nodes": 0,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "unet",
+                "optimized_nodes": 98,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "vae",
+                "optimized_nodes": 40,
+                "fallback_nodes": 0
+              }
+            ],
+            "trace_sha256": {
+              "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+              "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+              "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+              "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+              "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+              "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+              "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+            },
+            "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+          }
+        ],
+        "memory": {
+          "completed": true,
+          "runtime_slot": 1,
+          "library_version": "3.6.0",
+          "requested_interval_seconds": 0.2,
+          "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage",
+          "sampler_sha256": "9f2afb89d35cffd47a3f701227a26275a22db2024b0b9d6882dd9e029f4b8e5a",
+          "adapter_sha256": "bcc843d7501719345384cec24a6da04469e268983eb2b4ef6304b3ddd6e423b4",
+          "returncode": 0,
+          "sample_count": 650,
+          "baseline_used_kib": 131072,
+          "final_used_kib": 131072,
+          "sampled_highest_used_kib": 10299392,
+          "sampled_highest_elapsed_seconds": 112.25995504669845,
+          "max_sample_gap_seconds": 0.20700765680521727
+        }
+      },
+      {
+        "mode": "resident",
+        "weight_mode": "resident",
+        "tokenizer_mode": "resident",
+        "artifacts": "build/results/20261009T074922Z-sd-resident",
+        "memory_artifacts": "build/results/20261009T074910Z-ve-memory-sampled",
+        "process_seconds": 115.91530959215015,
+        "requests": [
+          {
+            "request": 0,
+            "reference_case": 0,
+            "checks": [
+              {
+                "name": "native-embeddings",
+                "relative_l2": 2.11446635331537e-06,
+                "max_abs_error": 1.33514404296875e-05,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-input",
+                "relative_l2": 5.3172332363678044e-08,
+                "max_abs_error": 4.76837158203125e-07,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-epsilon",
+                "relative_l2": 2.4604889267715076e-07,
+                "max_abs_error": 3.337860107421875e-06,
+                "tolerance": 0.001,
+                "passed": true
+              },
+              {
+                "name": "native-latent",
+                "relative_l2": 3.87150777741411e-06,
+                "max_abs_error": 4.863739013671875e-05,
+                "tolerance": 0.01,
+                "passed": true
+              },
+              {
+                "name": "native-decoded",
+                "relative_l2": 1.677692192334832e-06,
+                "max_abs_error": 2.962350845336914e-05,
+                "tolerance": 0.01,
+                "passed": true
+              }
+            ],
+            "request_seconds": 92.75972,
+            "weight_load_stages": [
+              "clip",
+              "unet",
+              "vae"
+            ],
+            "profile": [
+              {
+                "stage": "clip",
+                "part": "weights_load",
+                "seconds": 16.162398,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_init",
+                "seconds": 9.865139,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_encode",
+                "seconds": 0.022542,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_tensor",
+                "seconds": 6e-06,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_build",
+                "seconds": 0.01036,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_alloc",
+                "seconds": 0.178661,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "backend_BLAS",
+                "seconds": 0.381123,
+                "calls": 184
+              },
+              {
+                "stage": "clip",
+                "part": "backend_CPU",
+                "seconds": 1.094377,
+                "calls": 185
+              },
+              {
+                "stage": "clip",
+                "part": "graph_compute",
+                "seconds": 1.476299,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "stage_total",
+                "seconds": 28.02647,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "weights_load",
+                "seconds": 39.799055,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "load_total",
+                "seconds": 40.3081,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_build",
+                "seconds": 0.025134,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_alloc",
+                "seconds": 0.36803,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "backend_BLAS",
+                "seconds": 2.287998,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "backend_CPU",
+                "seconds": 3.063049,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "graph_compute",
+                "seconds": 5.352993,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "step_total",
+                "seconds": 5.748073,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "weights_load",
+                "seconds": 3.522272,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_build",
+                "seconds": 0.00527,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_alloc",
+                "seconds": 0.066951,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "backend_BLAS",
+                "seconds": 8.270007,
+                "calls": 40
+              },
+              {
+                "stage": "vae",
+                "part": "backend_CPU",
+                "seconds": 5.491628,
+                "calls": 41
+              },
+              {
+                "stage": "vae",
+                "part": "graph_compute",
+                "seconds": 13.762451,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "stage_total",
+                "seconds": 17.503507,
+                "calls": 1
+              }
+            ],
+            "im2col_graphs": [
+              {
+                "stage": "clip",
+                "optimized_nodes": 0,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "unet",
+                "optimized_nodes": 98,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "vae",
+                "optimized_nodes": 40,
+                "fallback_nodes": 0
+              }
+            ],
+            "trace_sha256": {
+              "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+              "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+              "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+              "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+              "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+              "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+              "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+            },
+            "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+          },
+          {
+            "request": 1,
+            "reference_case": 0,
+            "checks": [
+              {
+                "name": "native-embeddings",
+                "relative_l2": 2.11446635331537e-06,
+                "max_abs_error": 1.33514404296875e-05,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-input",
+                "relative_l2": 5.3172332363678044e-08,
+                "max_abs_error": 4.76837158203125e-07,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-epsilon",
+                "relative_l2": 2.4604889267715076e-07,
+                "max_abs_error": 3.337860107421875e-06,
+                "tolerance": 0.001,
+                "passed": true
+              },
+              {
+                "name": "native-latent",
+                "relative_l2": 3.87150777741411e-06,
+                "max_abs_error": 4.863739013671875e-05,
+                "tolerance": 0.01,
+                "passed": true
+              },
+              {
+                "name": "native-decoded",
+                "relative_l2": 1.677692192334832e-06,
+                "max_abs_error": 2.962350845336914e-05,
+                "tolerance": 0.01,
+                "passed": true
+              }
+            ],
+            "request_seconds": 22.390399,
+            "weight_load_stages": [],
+            "profile": [
+              {
+                "stage": "clip",
+                "part": "tokenizer_init",
+                "seconds": 0.000101,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_encode",
+                "seconds": 0.022918,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_tensor",
+                "seconds": 5e-06,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_build",
+                "seconds": 0.010007,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_alloc",
+                "seconds": 0.171456,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "backend_BLAS",
+                "seconds": 0.381022,
+                "calls": 184
+              },
+              {
+                "stage": "clip",
+                "part": "backend_CPU",
+                "seconds": 1.090735,
+                "calls": 185
+              },
+              {
+                "stage": "clip",
+                "part": "graph_compute",
+                "seconds": 1.472497,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "stage_total",
+                "seconds": 1.679029,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "load_total",
+                "seconds": 3e-06,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_build",
+                "seconds": 0.024258,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_alloc",
+                "seconds": 0.365845,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "backend_BLAS",
+                "seconds": 2.287784,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "backend_CPU",
+                "seconds": 2.995421,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "graph_compute",
+                "seconds": 5.284635,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "step_total",
+                "seconds": 5.676925,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_build",
+                "seconds": 0.005132,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_alloc",
+                "seconds": 0.067842,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "backend_BLAS",
+                "seconds": 8.279365,
+                "calls": 40
+              },
+              {
+                "stage": "vae",
+                "part": "backend_CPU",
+                "seconds": 5.50603,
+                "calls": 41
+              },
+              {
+                "stage": "vae",
+                "part": "graph_compute",
+                "seconds": 13.78615,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "stage_total",
+                "seconds": 13.861412,
+                "calls": 1
+              }
+            ],
+            "im2col_graphs": [
+              {
+                "stage": "clip",
+                "optimized_nodes": 0,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "unet",
+                "optimized_nodes": 98,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "vae",
+                "optimized_nodes": 40,
+                "fallback_nodes": 0
+              }
+            ],
+            "trace_sha256": {
+              "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+              "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+              "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+              "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+              "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+              "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+              "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+            },
+            "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+          }
+        ],
+        "memory": {
+          "completed": true,
+          "runtime_slot": 1,
+          "library_version": "3.6.0",
+          "requested_interval_seconds": 0.2,
+          "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage",
+          "sampler_sha256": "9f2afb89d35cffd47a3f701227a26275a22db2024b0b9d6882dd9e029f4b8e5a",
+          "adapter_sha256": "bcc843d7501719345384cec24a6da04469e268983eb2b4ef6304b3ddd6e423b4",
+          "returncode": 0,
+          "sample_count": 651,
+          "baseline_used_kib": 131072,
+          "final_used_kib": 131072,
+          "sampled_highest_used_kib": 10299392,
+          "sampled_highest_elapsed_seconds": 112.46392024960369,
+          "max_sample_gap_seconds": 0.20166391972452402
+        }
+      },
+      {
+        "mode": "request",
+        "weight_mode": "resident",
+        "tokenizer_mode": "request",
+        "artifacts": "build/results/20261009T075132Z-sd-resident",
+        "memory_artifacts": "build/results/20261009T075120Z-ve-memory-sampled",
+        "process_seconds": 126.14524429570884,
+        "requests": [
+          {
+            "request": 0,
+            "reference_case": 0,
+            "checks": [
+              {
+                "name": "native-embeddings",
+                "relative_l2": 2.11446635331537e-06,
+                "max_abs_error": 1.33514404296875e-05,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-input",
+                "relative_l2": 5.3172332363678044e-08,
+                "max_abs_error": 4.76837158203125e-07,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-epsilon",
+                "relative_l2": 2.4604889267715076e-07,
+                "max_abs_error": 3.337860107421875e-06,
+                "tolerance": 0.001,
+                "passed": true
+              },
+              {
+                "name": "native-latent",
+                "relative_l2": 3.87150777741411e-06,
+                "max_abs_error": 4.863739013671875e-05,
+                "tolerance": 0.01,
+                "passed": true
+              },
+              {
+                "name": "native-decoded",
+                "relative_l2": 1.677692192334832e-06,
+                "max_abs_error": 2.962350845336914e-05,
+                "tolerance": 0.01,
+                "passed": true
+              }
+            ],
+            "request_seconds": 93.086774,
+            "weight_load_stages": [
+              "clip",
+              "unet",
+              "vae"
+            ],
+            "profile": [
+              {
+                "stage": "clip",
+                "part": "weights_load",
+                "seconds": 16.155916,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_init",
+                "seconds": 9.892798,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_encode",
+                "seconds": 0.022621,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_tensor",
+                "seconds": 5e-06,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_build",
+                "seconds": 0.010388,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_alloc",
+                "seconds": 0.173425,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "backend_BLAS",
+                "seconds": 0.38112,
+                "calls": 184
+              },
+              {
+                "stage": "clip",
+                "part": "backend_CPU",
+                "seconds": 1.097798,
+                "calls": 185
+              },
+              {
+                "stage": "clip",
+                "part": "graph_compute",
+                "seconds": 1.47974,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "stage_total",
+                "seconds": 28.293691,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "weights_load",
+                "seconds": 39.890968,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "load_total",
+                "seconds": 40.40087,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_build",
+                "seconds": 0.02527,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_alloc",
+                "seconds": 0.365552,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "backend_BLAS",
+                "seconds": 2.288039,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "backend_CPU",
+                "seconds": 3.032351,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "graph_compute",
+                "seconds": 5.321947,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "step_total",
+                "seconds": 5.714745,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "weights_load",
+                "seconds": 3.514113,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_build",
+                "seconds": 0.005296,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_alloc",
+                "seconds": 0.067186,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "backend_BLAS",
+                "seconds": 8.249793,
+                "calls": 40
+              },
+              {
+                "stage": "vae",
+                "part": "backend_CPU",
+                "seconds": 5.514827,
+                "calls": 41
+              },
+              {
+                "stage": "vae",
+                "part": "graph_compute",
+                "seconds": 13.76585,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "stage_total",
+                "seconds": 17.498394,
+                "calls": 1
+              }
+            ],
+            "im2col_graphs": [
+              {
+                "stage": "clip",
+                "optimized_nodes": 0,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "unet",
+                "optimized_nodes": 98,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "vae",
+                "optimized_nodes": 40,
+                "fallback_nodes": 0
+              }
+            ],
+            "trace_sha256": {
+              "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+              "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+              "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+              "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+              "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+              "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+              "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+            },
+            "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+          },
+          {
+            "request": 1,
+            "reference_case": 0,
+            "checks": [
+              {
+                "name": "native-embeddings",
+                "relative_l2": 2.11446635331537e-06,
+                "max_abs_error": 1.33514404296875e-05,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-input",
+                "relative_l2": 5.3172332363678044e-08,
+                "max_abs_error": 4.76837158203125e-07,
+                "tolerance": 0.0001,
+                "passed": true
+              },
+              {
+                "name": "native-step0-epsilon",
+                "relative_l2": 2.4604889267715076e-07,
+                "max_abs_error": 3.337860107421875e-06,
+                "tolerance": 0.001,
+                "passed": true
+              },
+              {
+                "name": "native-latent",
+                "relative_l2": 3.87150777741411e-06,
+                "max_abs_error": 4.863739013671875e-05,
+                "tolerance": 0.01,
+                "passed": true
+              },
+              {
+                "name": "native-decoded",
+                "relative_l2": 1.677692192334832e-06,
+                "max_abs_error": 2.962350845336914e-05,
+                "tolerance": 0.01,
+                "passed": true
+              }
+            ],
+            "request_seconds": 32.514847,
+            "weight_load_stages": [],
+            "profile": [
+              {
+                "stage": "clip",
+                "part": "tokenizer_init",
+                "seconds": 9.887806,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_encode",
+                "seconds": 0.022851,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "tokenizer_tensor",
+                "seconds": 6e-06,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_build",
+                "seconds": 0.010077,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "graph_alloc",
+                "seconds": 0.173335,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "backend_BLAS",
+                "seconds": 0.380755,
+                "calls": 184
+              },
+              {
+                "stage": "clip",
+                "part": "backend_CPU",
+                "seconds": 1.098127,
+                "calls": 185
+              },
+              {
+                "stage": "clip",
+                "part": "graph_compute",
+                "seconds": 1.479905,
+                "calls": 1
+              },
+              {
+                "stage": "clip",
+                "part": "stage_total",
+                "seconds": 11.791497,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "load_total",
+                "seconds": 3e-06,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_build",
+                "seconds": 0.024502,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "graph_alloc",
+                "seconds": 0.365415,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "backend_BLAS",
+                "seconds": 2.288538,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "backend_CPU",
+                "seconds": 3.003728,
+                "calls": 337
+              },
+              {
+                "stage": "unet",
+                "part": "graph_compute",
+                "seconds": 5.293809,
+                "calls": 1
+              },
+              {
+                "stage": "unet",
+                "part": "step_total",
+                "seconds": 5.685981,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_build",
+                "seconds": 0.005145,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "graph_alloc",
+                "seconds": 0.067647,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "backend_BLAS",
+                "seconds": 8.278248,
+                "calls": 40
+              },
+              {
+                "stage": "vae",
+                "part": "backend_CPU",
+                "seconds": 5.477153,
+                "calls": 41
+              },
+              {
+                "stage": "vae",
+                "part": "graph_compute",
+                "seconds": 13.756412,
+                "calls": 1
+              },
+              {
+                "stage": "vae",
+                "part": "stage_total",
+                "seconds": 13.831186,
+                "calls": 1
+              }
+            ],
+            "im2col_graphs": [
+              {
+                "stage": "clip",
+                "optimized_nodes": 0,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "unet",
+                "optimized_nodes": 98,
+                "fallback_nodes": 0
+              },
+              {
+                "stage": "vae",
+                "optimized_nodes": 40,
+                "fallback_nodes": 0
+              }
+            ],
+            "trace_sha256": {
+              "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+              "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+              "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+              "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+              "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+              "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+              "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+            },
+            "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+          }
+        ],
+        "memory": {
+          "completed": true,
+          "runtime_slot": 1,
+          "library_version": "3.6.0",
+          "requested_interval_seconds": 0.2,
+          "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage",
+          "sampler_sha256": "9f2afb89d35cffd47a3f701227a26275a22db2024b0b9d6882dd9e029f4b8e5a",
+          "adapter_sha256": "bcc843d7501719345384cec24a6da04469e268983eb2b4ef6304b3ddd6e423b4",
+          "returncode": 0,
+          "sample_count": 702,
+          "baseline_used_kib": 131072,
+          "final_used_kib": 131072,
+          "sampled_highest_used_kib": 10299392,
+          "sampled_highest_elapsed_seconds": 122.89203400816768,
+          "max_sample_gap_seconds": 0.20119984168559313
+        }
+      }
+    ],
+    "metrics": {
+      "process": {
+        "request_seconds": 126.04645383218303,
+        "resident_seconds": 115.86124670924619,
+        "latency_reduction_percent": 8.080518581266338
+      },
+      "request0": {
+        "request_seconds": 92.9807715,
+        "resident_seconds": 92.6785995,
+        "latency_reduction_percent": 0.3249833219549081
+      },
+      "request1": {
+        "request_seconds": 32.539365000000004,
+        "resident_seconds": 22.4073075,
+        "latency_reduction_percent": 31.137846420789096
+      }
+    },
+    "all_trace_and_png_bytes_identical": true,
+    "decision": "faster_pending_multi_prompt_validation",
+    "scope": "two same-process requests, two runs per arm, diagnostics included, filesystem cache uncontrolled",
+    "aggregation_recovery": {
+      "reason": "tuple assignment omitted second mean; hardware runs completed before failure",
+      "original_summary_sha256": "b5a204373928cac2b2e2d21b59efeb29133b2e28150b92148f4fec739625bd41",
+      "recovery_sha256": "56f394bfad90fd94467a9999013d7ab322ec6b740fda14dcbe6c4267ac14be4a"
+    }
+  },
+  "probe": {
+    "completed": true,
+    "mode": "resident",
+    "steps": 1,
+    "threads": 8,
+    "settings": "one shared persistent pool, SiLU/Softmax/im2col ve, stage profiling, no operator profiling",
+    "shared_threadpool": true,
+    "tokenizer_mode": "resident",
+    "binary_sha256": "79830c691160ac55fc76445aecc550e29570d85717d91a0c74b7ac832c67b86f",
+    "checker_sha256": "66805ca424233717f4f2be12a2a383d9c3305e4d447d88cb93ff2edd84f38fbe",
+    "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+    "reference_artifacts": "build/results/20261008T081800Z-sd-reference",
+    "requests": [
+      {
+        "request": 0,
+        "reference_case": 0,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.11446635331537e-06,
+            "max_abs_error": 1.33514404296875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.3172332363678044e-08,
+            "max_abs_error": 4.76837158203125e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 2.4604889267715076e-07,
+            "max_abs_error": 3.337860107421875e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 3.87150777741411e-06,
+            "max_abs_error": 4.863739013671875e-05,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 1.677692192334832e-06,
+            "max_abs_error": 2.962350845336914e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 92.599433,
+        "weight_load_stages": [
+          "clip",
+          "unet",
+          "vae"
+        ],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "weights_load",
+            "seconds": 16.09286,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 9.92249,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.022704,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 6e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.01037,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.170059,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.380974,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.140571,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.522522,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 28.052037,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "weights_load",
+            "seconds": 39.685306,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 40.193982,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.025317,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.363991,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.287947,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 2.998669,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.288522,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.679617,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "weights_load",
+            "seconds": 3.523019,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005267,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.067075,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.266775,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.487758,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.755565,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 17.496851,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+          "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+          "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+          "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+          "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+          "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+        },
+        "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+      },
+      {
+        "request": 1,
+        "reference_case": 1,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.1953853263744857e-06,
+            "max_abs_error": 1.4781951904296875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.290747780016011e-08,
+            "max_abs_error": 2.384185791015625e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 5.507633221824257e-07,
+            "max_abs_error": 1.3768672943115234e-05,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 9.47322175354192e-06,
+            "max_abs_error": 0.00020122528076171875,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 3.5823126494584553e-06,
+            "max_abs_error": 6.139278411865234e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 22.415525,
+        "weight_load_stages": [],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 4.9e-05,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.042174,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 5e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.010067,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.170633,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.381062,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.137913,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.519869,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 1.744864,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 3e-06,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.02419,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.365108,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.288056,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.020941,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.310684,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.702324,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005111,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.067299,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.277179,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.487767,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.76585,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 13.840435,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "b2a81768c08f62722b2e34e87091b0684aff2caf8f8d7a13405247b4881024ef",
+          "native-embeddings.f32": "a2ba7df4a3545016bc98c80253435316b63dd1704ef34f53d532abd474d14ef3",
+          "native-latent.f32": "53a99ad143418ed2f5ed68d05e2d2fe7944b8349c6e28e26ae66028ab726c045",
+          "native-noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+          "native-step0-epsilon.f32": "3cdf0c24da5467bd798a8373e7403ce2e403068442ab5193de77c30e7062db24",
+          "native-step0-input.f32": "4eabd420973794bc3fba716b0997ab5df204ece75401d7bda98df67886db6a36",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+        },
+        "png_sha256": "5cc1c5c0bf6dc714b50b1adf2917dfcefc9b419a486fbb51c7fe8c51ba35b3f8"
+      },
+      {
+        "request": 2,
+        "reference_case": 0,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.11446635331537e-06,
+            "max_abs_error": 1.33514404296875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.3172332363678044e-08,
+            "max_abs_error": 4.76837158203125e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 2.4604889267715076e-07,
+            "max_abs_error": 3.337860107421875e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 3.87150777741411e-06,
+            "max_abs_error": 4.863739013671875e-05,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 1.677692192334832e-06,
+            "max_abs_error": 2.962350845336914e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 22.384084,
+        "weight_load_stages": [],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 5e-05,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.022844,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 6e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.010019,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.170446,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.38122,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.093794,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.475905,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 1.681097,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 2e-06,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024276,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.365756,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.287899,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.005659,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.295375,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.687421,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005164,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.067375,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.275348,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.493068,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.76918,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 13.843591,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+          "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+          "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+          "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+          "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+          "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+        },
+        "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+      }
+    ],
+    "returncode": 0,
+    "process_seconds": 138.2710950654
+  },
+  "six": {
+    "completed": true,
+    "mode": "resident",
+    "steps": 1,
+    "threads": 8,
+    "settings": "one shared persistent pool, SiLU/Softmax/im2col ve, stage profiling, no operator profiling",
+    "shared_threadpool": true,
+    "tokenizer_mode": "resident",
+    "binary_sha256": "79830c691160ac55fc76445aecc550e29570d85717d91a0c74b7ac832c67b86f",
+    "checker_sha256": "66805ca424233717f4f2be12a2a383d9c3305e4d447d88cb93ff2edd84f38fbe",
+    "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+    "reference_artifacts": "build/results/20261008T081800Z-sd-reference",
+    "requests": [
+      {
+        "request": 0,
+        "reference_case": 0,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.11446635331537e-06,
+            "max_abs_error": 1.33514404296875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.3172332363678044e-08,
+            "max_abs_error": 4.76837158203125e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 2.4604889267715076e-07,
+            "max_abs_error": 3.337860107421875e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 3.87150777741411e-06,
+            "max_abs_error": 4.863739013671875e-05,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 1.677692192334832e-06,
+            "max_abs_error": 2.962350845336914e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 92.577055,
+        "weight_load_stages": [
+          "clip",
+          "unet",
+          "vae"
+        ],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "weights_load",
+            "seconds": 16.109583,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 9.864681,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.022662,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 6e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.010396,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.171434,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.380844,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.106028,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.487726,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 27.976941,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "weights_load",
+            "seconds": 39.669221,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 40.178679,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.02515,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.363685,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.288196,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.045744,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.335459,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.726403,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "weights_load",
+            "seconds": 3.522388,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005338,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.067204,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.268894,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.508976,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.778652,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 17.519271,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+          "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+          "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+          "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+          "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+          "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+        },
+        "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+      },
+      {
+        "request": 1,
+        "reference_case": 1,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.1953853263744857e-06,
+            "max_abs_error": 1.4781951904296875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.290747780016011e-08,
+            "max_abs_error": 2.384185791015625e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 5.507633221824257e-07,
+            "max_abs_error": 1.3768672943115234e-05,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 9.47322175354192e-06,
+            "max_abs_error": 0.00020122528076171875,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 3.5823126494584553e-06,
+            "max_abs_error": 6.139278411865234e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 22.434015,
+        "weight_load_stages": [],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 5e-05,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.042162,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 5e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.010089,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.171518,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.380986,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.146695,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.528556,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 1.754392,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 2e-06,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024351,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.367094,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.288245,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 2.996685,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.286534,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.679901,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005108,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.067775,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.276977,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.520806,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.798603,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 13.873245,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "b2a81768c08f62722b2e34e87091b0684aff2caf8f8d7a13405247b4881024ef",
+          "native-embeddings.f32": "a2ba7df4a3545016bc98c80253435316b63dd1704ef34f53d532abd474d14ef3",
+          "native-latent.f32": "53a99ad143418ed2f5ed68d05e2d2fe7944b8349c6e28e26ae66028ab726c045",
+          "native-noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+          "native-step0-epsilon.f32": "3cdf0c24da5467bd798a8373e7403ce2e403068442ab5193de77c30e7062db24",
+          "native-step0-input.f32": "4eabd420973794bc3fba716b0997ab5df204ece75401d7bda98df67886db6a36",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+        },
+        "png_sha256": "5cc1c5c0bf6dc714b50b1adf2917dfcefc9b419a486fbb51c7fe8c51ba35b3f8"
+      },
+      {
+        "request": 2,
+        "reference_case": 2,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.1186573865899423e-06,
+            "max_abs_error": 1.621246337890625e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.306402597903837e-08,
+            "max_abs_error": 2.384185791015625e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 3.728640282271527e-07,
+            "max_abs_error": 7.826834917068481e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 7.109201122884409e-06,
+            "max_abs_error": 0.00011438131332397461,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 6.955464398185505e-06,
+            "max_abs_error": 0.00023430585861206055,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 22.484777,
+        "weight_load_stages": [],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 5e-05,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.027967,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 5e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.010077,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.173648,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.380938,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.153509,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.535205,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 1.749076,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 2e-06,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024249,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.366565,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.28834,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.077399,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.367204,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.760013,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005102,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.066961,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.276098,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.486195,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.762882,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 13.837026,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "f4910c85e8fa34b3b4b8145c3d546e53b0a442253effc5dd31d45e260502e2b4",
+          "native-embeddings.f32": "75cd0c929e31ce6d5bfaab6d35378a76bb61ef1037ba738736916c8ead012f37",
+          "native-latent.f32": "107aa9154e29ed7e380fb06348c240b79de7757fac83563538f2d0fa4f33130a",
+          "native-noise.f32": "5c63c669f669e569c1305107aedb6a469023904873b39362db430b91c569680e",
+          "native-step0-epsilon.f32": "d3091b8150e5e2bfc05d0fb608a93eb5aea911b051f56c98e6cdf2c0ecd6dc7b",
+          "native-step0-input.f32": "8c26d02f807b3393f6b9d6326c343d0318754e5f0f21d1cb9f73369cafc63ac5",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+        },
+        "png_sha256": "0b62d9ee8d4fe391aebbda512754fd363661e1640c904bec6c1d046398f6b546"
+      },
+      {
+        "request": 3,
+        "reference_case": 3,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.2379388340798602e-06,
+            "max_abs_error": 1.811981201171875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.2292039058432315e-08,
+            "max_abs_error": 4.76837158203125e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 2.819428973817961e-07,
+            "max_abs_error": 2.8908252716064453e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 4.4077479744756945e-06,
+            "max_abs_error": 4.1961669921875e-05,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 3.394694090954048e-06,
+            "max_abs_error": 4.583597183227539e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 22.484704,
+        "weight_load_stages": [],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 5e-05,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.027034,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 6e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.010062,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.170929,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.380961,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.117957,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.499814,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 1.70993,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 2e-06,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024281,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.366535,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.288387,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.04027,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.33034,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.723178,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005133,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.067747,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.277715,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.515454,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.794228,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 13.869009,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "5702d56027096c126d2203406913de3d4e85a7ea89dd2d633f568bd2228136bc",
+          "native-embeddings.f32": "baed12a89e994b786de2d9e9ae26dadd3a19b3eafb2cd536c3c2a06fdda9ba0c",
+          "native-latent.f32": "f6b0c940677f672a6e356473de2626c6870353b0d2106d991dae8addb3f403e2",
+          "native-noise.f32": "175ae09299615d0b0eb2c655c4657275c7da11bb2bb8419e656e9aaf1e1e33aa",
+          "native-step0-epsilon.f32": "f722fee739e330159faae12a08dd1d661ef9f30da5aab21acf2df9a7910e2d25",
+          "native-step0-input.f32": "98845b1c96f84ee7db2f9bbe818ed2b43e2a9ae578f661ad489bf65c572e6f4c",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+        },
+        "png_sha256": "2d40e5d7cf5cf0d67c79b866158dca849488359722a30782a1a330876ef6a4cc"
+      },
+      {
+        "request": 4,
+        "reference_case": 4,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.1357842230379352e-06,
+            "max_abs_error": 1.9073486328125e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.297791594895035e-08,
+            "max_abs_error": 2.384185791015625e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 2.652874095212624e-07,
+            "max_abs_error": 8.165836334228516e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 4.533260081253269e-06,
+            "max_abs_error": 0.00011920928955078125,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 2.241514218153536e-06,
+            "max_abs_error": 4.2438507080078125e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 22.430151,
+        "weight_load_stages": [],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 0.000102,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.021714,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 5e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.010022,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.171266,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.380989,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.139348,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.521173,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 1.726504,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 2e-06,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024343,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.366115,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.288244,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.002051,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.291785,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.684307,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005164,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.06775,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.278679,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.517717,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.797716,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 13.872651,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "ad3b18642ae9c0e39168a63344edf388fad1859db33c2a8ec5febf1bffadbd04",
+          "native-embeddings.f32": "060107222b91f52b9fa319cbc27ef6ba3669b3ffaee6f291db3fdd81487ac6e6",
+          "native-latent.f32": "e5eb54d5a9fb137956889d1b6d7ccdea6496f14b900516d810238950aa0e3919",
+          "native-noise.f32": "0e551d9d33f4f875c4622caf0b3fe4263e66b02263179bf0424f290cb9c355fa",
+          "native-step0-epsilon.f32": "46ad229770da662a1745ecaa331cef18955ad0a8c20a3f510adae0c84441785f",
+          "native-step0-input.f32": "562327af3ac98f36eadd1f4a6f64c42c2359603bd520ba1c5df9a8e6ef4c3320",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+        },
+        "png_sha256": "eaaa6269c8a151a6661d83b37cd9453b28e9cb01a23af2180931418cea266f16"
+      },
+      {
+        "request": 5,
+        "reference_case": 5,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.114955006200127e-06,
+            "max_abs_error": 1.1682510375976562e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.233191676565092e-08,
+            "max_abs_error": 2.384185791015625e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 7.819634139109085e-07,
+            "max_abs_error": 1.3589859008789062e-05,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 1.3368098641164535e-05,
+            "max_abs_error": 0.0001983642578125,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 6.0312454733465644e-06,
+            "max_abs_error": 9.167194366455078e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 22.464492,
+        "weight_load_stages": [],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 0.000133,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.040226,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 5e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.009929,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.171582,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.380944,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.141765,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.523481,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 1.747372,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 3e-06,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024278,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.365039,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.288338,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 2.997323,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.287841,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.67895,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005128,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.067413,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.278372,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.496006,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.775401,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 13.849864,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "f8c29e462a69eaa25a27c9c78e83dde427aad7131a30b4fb01687fdc08dc9652",
+          "native-embeddings.f32": "d06b2261e37955344b9ecea38148f9a56b6579b3866d124227b595704ce022cf",
+          "native-latent.f32": "3daf21a063b854554383b7b8ba2ad07527536dbd12d74512c9e2fdb920117a0e",
+          "native-noise.f32": "b811ff3e31f764c29b105dd1868421a006f7e123ab06bed8d5a4dbf7ac7ea3ee",
+          "native-step0-epsilon.f32": "c21919b760e0dcdb47af1ee3aef67101d5d1d9255de66594edd5adffd76209f2",
+          "native-step0-input.f32": "fac8d50a3808ff72cbd0b47baf7498a6fbc80d0f9726ccf2043c04dd3816d756",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+        },
+        "png_sha256": "145fddf76c3b364c7597cb50a0ce21cfe3b0db759c4467597875467996e20258"
+      }
+    ],
+    "returncode": 0,
+    "process_seconds": 206.06771623902023
+  },
+  "four": {
+    "completed": true,
+    "mode": "resident",
+    "steps": 4,
+    "threads": 8,
+    "settings": "one shared persistent pool, SiLU/Softmax/im2col ve, stage profiling, no operator profiling",
+    "shared_threadpool": true,
+    "tokenizer_mode": "resident",
+    "binary_sha256": "79830c691160ac55fc76445aecc550e29570d85717d91a0c74b7ac832c67b86f",
+    "checker_sha256": "66805ca424233717f4f2be12a2a383d9c3305e4d447d88cb93ff2edd84f38fbe",
+    "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+    "reference_artifacts": "build/results/20261008T083810Z-sd-reference",
+    "requests": [
+      {
+        "request": 0,
+        "reference_case": 0,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.11446635331537e-06,
+            "max_abs_error": 1.33514404296875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.3172332363678044e-08,
+            "max_abs_error": 4.76837158203125e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 2.4604889267715076e-07,
+            "max_abs_error": 3.337860107421875e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-step1-input",
+            "relative_l2": 5.954298134540742e-07,
+            "max_abs_error": 8.106231689453125e-06,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step1-epsilon",
+            "relative_l2": 6.609811526666041e-07,
+            "max_abs_error": 7.897615432739258e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-step2-input",
+            "relative_l2": 1.138526115716989e-06,
+            "max_abs_error": 2.2411346435546875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step2-epsilon",
+            "relative_l2": 1.1479643848757656e-06,
+            "max_abs_error": 1.2755393981933594e-05,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-step3-input",
+            "relative_l2": 1.7483489013466742e-06,
+            "max_abs_error": 3.62396240234375e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step3-epsilon",
+            "relative_l2": 1.6688222195884834e-06,
+            "max_abs_error": 1.7151236534118652e-05,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 2.4855705564830153e-06,
+            "max_abs_error": 4.982948303222656e-05,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 1.4511624771493064e-06,
+            "max_abs_error": 1.2725591659545898e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 109.735228,
+        "weight_load_stages": [
+          "clip",
+          "unet",
+          "vae"
+        ],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "weights_load",
+            "seconds": 16.089135,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 9.94224,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.022722,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 5e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.010336,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.170351,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.381123,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.127469,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.509406,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 28.054479,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "weights_load",
+            "seconds": 39.707796,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 40.217462,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.025138,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.368186,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.28786,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 2.996518,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.285823,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.681173,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024399,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.360306,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.287663,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.006045,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.295474,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.681188,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024219,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.359409,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.287611,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.042162,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.331614,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.716307,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024375,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.361108,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.287775,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.044116,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.333641,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.72021,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "weights_load",
+            "seconds": 3.521409,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005313,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.067724,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.266894,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.48051,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.748641,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 17.488721,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "4da85745ab207fdb837609caf4c8f0f208f3ca6be552a90574154b51f1eb2fed",
+          "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+          "native-latent.f32": "4043d528e33abd6017d33da0bafda40e2a03de5104c0d31bf1d37f1d88f4f80c",
+          "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+          "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+          "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+          "native-step1-epsilon.f32": "92e39fd145cf5fa6fc08823f894c3461697a050eff5552ecf2e2e49ecd8d73ca",
+          "native-step1-input.f32": "570fe51cf0c5f7772c9198459cdbc93e22cc7ff174659cc5c7ee88cdae482c83",
+          "native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+          "native-step2-epsilon.f32": "ed31efd0c79522726bb7b8258ff528fe33f80d266d3195b502c6205660c478f1",
+          "native-step2-input.f32": "94b84a7f171767b52e17a7d216dfde1e1c338cf16e3403ba1abdc137eb6c2b83",
+          "native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+          "native-step3-epsilon.f32": "eda57e585e86b7bd650ce00fcc316c104c92ca4e2a41fc532a14b95f9dd93767",
+          "native-step3-input.f32": "275b328c9afce817f2d6ceaf2bcbbc1e36572a87e99290155fb9a1e95c564786",
+          "native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce"
+        },
+        "png_sha256": "6ce041f8150d346cc972aa67301879041dbe5081ff97cee40366a90936fff378"
+      },
+      {
+        "request": 1,
+        "reference_case": 0,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.11446635331537e-06,
+            "max_abs_error": 1.33514404296875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.3172332363678044e-08,
+            "max_abs_error": 4.76837158203125e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 2.4604889267715076e-07,
+            "max_abs_error": 3.337860107421875e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-step1-input",
+            "relative_l2": 5.954298134540742e-07,
+            "max_abs_error": 8.106231689453125e-06,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step1-epsilon",
+            "relative_l2": 6.609811526666041e-07,
+            "max_abs_error": 7.897615432739258e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-step2-input",
+            "relative_l2": 1.138526115716989e-06,
+            "max_abs_error": 2.2411346435546875e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step2-epsilon",
+            "relative_l2": 1.1479643848757656e-06,
+            "max_abs_error": 1.2755393981933594e-05,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-step3-input",
+            "relative_l2": 1.7483489013466742e-06,
+            "max_abs_error": 3.62396240234375e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step3-epsilon",
+            "relative_l2": 1.6688222195884834e-06,
+            "max_abs_error": 1.7151236534118652e-05,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 2.4855705564830153e-06,
+            "max_abs_error": 4.982948303222656e-05,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 1.4511624771493064e-06,
+            "max_abs_error": 1.2725591659545898e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "request_seconds": 39.597453,
+        "weight_load_stages": [],
+        "profile": [
+          {
+            "stage": "clip",
+            "part": "tokenizer_init",
+            "seconds": 5e-05,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_encode",
+            "seconds": 0.022873,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "tokenizer_tensor",
+            "seconds": 5e-06,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_build",
+            "seconds": 0.010063,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "graph_alloc",
+            "seconds": 0.172512,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "backend_BLAS",
+            "seconds": 0.381015,
+            "calls": 184
+          },
+          {
+            "stage": "clip",
+            "part": "backend_CPU",
+            "seconds": 1.102046,
+            "calls": 185
+          },
+          {
+            "stage": "clip",
+            "part": "graph_compute",
+            "seconds": 1.483839,
+            "calls": 1
+          },
+          {
+            "stage": "clip",
+            "part": "stage_total",
+            "seconds": 1.691472,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "load_total",
+            "seconds": 2e-06,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024286,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.366981,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.287459,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.00954,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.298708,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.692141,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024186,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.361184,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.287881,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.055185,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.344578,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.730991,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024439,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.363928,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.287723,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.044877,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.334244,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.724022,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_build",
+            "seconds": 0.024249,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "graph_alloc",
+            "seconds": 0.365558,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "backend_BLAS",
+            "seconds": 2.287802,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "backend_CPU",
+            "seconds": 3.048327,
+            "calls": 337
+          },
+          {
+            "stage": "unet",
+            "part": "graph_compute",
+            "seconds": 5.33768,
+            "calls": 1
+          },
+          {
+            "stage": "unet",
+            "part": "step_total",
+            "seconds": 5.728478,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_build",
+            "seconds": 0.005174,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "graph_alloc",
+            "seconds": 0.067178,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "backend_BLAS",
+            "seconds": 8.274871,
+            "calls": 40
+          },
+          {
+            "stage": "vae",
+            "part": "backend_CPU",
+            "seconds": 5.505742,
+            "calls": 41
+          },
+          {
+            "stage": "vae",
+            "part": "graph_compute",
+            "seconds": 13.781363,
+            "calls": 1
+          },
+          {
+            "stage": "vae",
+            "part": "stage_total",
+            "seconds": 13.855704,
+            "calls": 1
+          }
+        ],
+        "im2col_graphs": [
+          {
+            "stage": "clip",
+            "optimized_nodes": 0,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "unet",
+            "optimized_nodes": 98,
+            "fallback_nodes": 0
+          },
+          {
+            "stage": "vae",
+            "optimized_nodes": 40,
+            "fallback_nodes": 0
+          }
+        ],
+        "trace_sha256": {
+          "native-decoded.f32": "4da85745ab207fdb837609caf4c8f0f208f3ca6be552a90574154b51f1eb2fed",
+          "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+          "native-latent.f32": "4043d528e33abd6017d33da0bafda40e2a03de5104c0d31bf1d37f1d88f4f80c",
+          "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+          "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+          "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+          "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+          "native-step1-epsilon.f32": "92e39fd145cf5fa6fc08823f894c3461697a050eff5552ecf2e2e49ecd8d73ca",
+          "native-step1-input.f32": "570fe51cf0c5f7772c9198459cdbc93e22cc7ff174659cc5c7ee88cdae482c83",
+          "native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+          "native-step2-epsilon.f32": "ed31efd0c79522726bb7b8258ff528fe33f80d266d3195b502c6205660c478f1",
+          "native-step2-input.f32": "94b84a7f171767b52e17a7d216dfde1e1c338cf16e3403ba1abdc137eb6c2b83",
+          "native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+          "native-step3-epsilon.f32": "eda57e585e86b7bd650ce00fcc316c104c92ca4e2a41fc532a14b95f9dd93767",
+          "native-step3-input.f32": "275b328c9afce817f2d6ceaf2bcbbc1e36572a87e99290155fb9a1e95c564786",
+          "native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce"
+        },
+        "png_sha256": "6ce041f8150d346cc972aa67301879041dbe5081ff97cee40366a90936fff378"
+      }
+    ],
+    "returncode": 0,
+    "process_seconds": 150.090305916965
+  },
+  "extra_memory": {
+    "probe_log": {
+      "completed": true,
+      "runtime_slot": 1,
+      "library_version": "3.6.0",
+      "requested_interval_seconds": 0.2,
+      "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage",
+      "sampler_sha256": "9f2afb89d35cffd47a3f701227a26275a22db2024b0b9d6882dd9e029f4b8e5a",
+      "adapter_sha256": "bcc843d7501719345384cec24a6da04469e268983eb2b4ef6304b3ddd6e423b4",
+      "returncode": 0,
+      "sample_count": 763,
+      "baseline_used_kib": 131072,
+      "final_used_kib": 131072,
+      "sampled_highest_used_kib": 10299392,
+      "sampled_highest_elapsed_seconds": 112.45941714011133,
+      "max_sample_gap_seconds": 0.2009305227547884
+    },
+    "six_log": {
+      "completed": true,
+      "runtime_slot": 1,
+      "library_version": "3.6.0",
+      "requested_interval_seconds": 0.2,
+      "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage",
+      "sampler_sha256": "9f2afb89d35cffd47a3f701227a26275a22db2024b0b9d6882dd9e029f4b8e5a",
+      "adapter_sha256": "bcc843d7501719345384cec24a6da04469e268983eb2b4ef6304b3ddd6e423b4",
+      "returncode": 0,
+      "sample_count": 1102,
+      "baseline_used_kib": 131072,
+      "final_used_kib": 131072,
+      "sampled_highest_used_kib": 10299392,
+      "sampled_highest_elapsed_seconds": 112.45173435099423,
+      "max_sample_gap_seconds": 0.20175101794302464
+    },
+    "four_log": {
+      "completed": true,
+      "runtime_slot": 1,
+      "library_version": "3.6.0",
+      "requested_interval_seconds": 0.2,
+      "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage",
+      "sampler_sha256": "9f2afb89d35cffd47a3f701227a26275a22db2024b0b9d6882dd9e029f4b8e5a",
+      "adapter_sha256": "bcc843d7501719345384cec24a6da04469e268983eb2b4ef6304b3ddd6e423b4",
+      "returncode": 0,
+      "sample_count": 822,
+      "baseline_used_kib": 131072,
+      "final_used_kib": 131072,
+      "sampled_highest_used_kib": 10299392,
+      "sampled_highest_elapsed_seconds": 146.74929115641862,
+      "max_sample_gap_seconds": 0.20098684076219797
+    }
+  },
+  "temperatures": {
+    "benchmark_log": {
+      "peaks_c": {
+        "cpu": 77.0,
+        "ve0": 51.88,
+        "ve1": 40.88,
+        "ve2": 43.25
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "probe_log": {
+      "peaks_c": {
+        "cpu": 78.0,
+        "ve0": 51.5,
+        "ve1": 40.88,
+        "ve2": 43.25
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "six_log": {
+      "peaks_c": {
+        "cpu": 74.0,
+        "ve0": 53.25,
+        "ve1": 40.88,
+        "ve2": 43.25
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "four_log": {
+      "peaks_c": {
+        "cpu": 75.0,
+        "ve0": 53.0,
+        "ve1": 40.88,
+        "ve2": 43.25
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "build_log": {
+      "peaks_c": {
+        "cpu": 79.0,
+        "ve0": 44.5,
+        "ve1": 40.88,
+        "ve2": 43.25
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    }
+  },
+  "fan_observation": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  }
+}

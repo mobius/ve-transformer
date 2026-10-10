@@ -1,0 +1,2618 @@
+{
+  "status": "model_validation_verified",
+  "tests": [
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261010T004423Z-sd-resident",
+      "memory_artifacts": "build/results/20261010T004410Z-ve-memory-sampled",
+      "request_seconds": [
+        83.438128,
+        9.292305
+      ],
+      "process_seconds": 93.25361687410623,
+      "image_output_seconds": [
+        0.559421,
+        0.381974
+      ],
+      "cpu_checks": 10,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 2,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 72.0,
+          "ve0": 57.5,
+          "ve1": 45.38,
+          "ve2": 47.75
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.572265625,
+      "sha256": {
+        "build/results/20261010T004423Z-sd-resident/summary.json": "b23dae3bb216d34e3ac091e09f8787228a6cbe0065153d2cfe7fcdbcecf788a0",
+        "build/results/20261010T004423Z-sd-resident/native.log": "033ae4daeb1a06563d5a4a6684f1b5547eeb8b843c7f97551e25fc7d8851e077",
+        "build/results/20261010T004423Z-sd-resident/check_sd_resident.py": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+        "build/results/20261010T004410Z-ve-memory-sampled/summary.json": "0d6992b5d185ebf35d8630c25650a90862e9e6edbc62df2b537970117599d998",
+        "build/results/20261010T004410Z-ve-memory-sampled/memory.csv": "f2f361c2fb0298a02177aea12919b5b8f6598de4c5619168c04c6d111ecf0be9",
+        "build/sd-current-vae-threads-double.log": "fdea4e8bb7422cb1065d5ecce07c19cdc00775d44273488585a4bfe8848dd0e8",
+        "build/results/20261010T004400Z-temperature-lgajkge7.csv": "64284c53a1d06baaff04177be03bc71abc9cc9cae7646f0e66183863ab90d7e1",
+        "build/results/20261010T004400Z-temperature-lgajkge7-fans.csv": "eb269a6be7d79f73869ba0de88b42dfdbea29c5ad712cb0fc37e7fe0ae949000",
+        "build/results/20261010T004423Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261010T004423Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261010T004423Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261010T004423Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261010T004423Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261010T004423Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261010T004423Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004423Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261010T004423Z-sd-resident/request1/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261010T004423Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261010T004423Z-sd-resident/request1/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261010T004423Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261010T004423Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261010T004423Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261010T004423Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004423Z-sd-resident/request1/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6"
+      },
+      "name": "double",
+      "cont_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ]
+      ],
+      "softmax_scale_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ]
+      ],
+      "group_norm_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ]
+      ]
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261010T004632Z-sd-resident",
+      "memory_artifacts": "build/results/20261010T004620Z-ve-memory-sampled",
+      "request_seconds": [
+        83.779112,
+        9.354695,
+        9.25644,
+        9.252302,
+        9.305541,
+        9.348158
+      ],
+      "process_seconds": 130.84364535007626,
+      "image_output_seconds": [
+        0.559518,
+        0.365379,
+        0.392616,
+        0.417228,
+        0.366532,
+        0.407428
+      ],
+      "cpu_checks": 30,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 3.7131082952420246e-06,
+          "max_abs_error": 5.0067901611328125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.779740637448653e-06,
+          "max_abs_error": 3.9517879486083984e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.1898290821743867e-06,
+          "max_abs_error": 1.564621925354004e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.290747780016011e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 6.477097031066101e-07,
+          "max_abs_error": 1.4722347259521484e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 1.1132134673218557e-05,
+          "max_abs_error": 0.0002155303955078125,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 4.2885169876482195e-06,
+          "max_abs_error": 8.907914161682129e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-embeddings",
+          "relative_l2": 2.089861323931437e-06,
+          "max_abs_error": 1.621246337890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-input",
+          "relative_l2": 5.306402597903837e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-step0-epsilon",
+          "relative_l2": 3.330302716593069e-07,
+          "max_abs_error": 5.077570676803589e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-latent",
+          "relative_l2": 6.358750563279956e-06,
+          "max_abs_error": 7.420778274536133e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 2,
+          "name": "native-decoded",
+          "relative_l2": 6.075360837354076e-06,
+          "max_abs_error": 0.00014445185661315918,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-embeddings",
+          "relative_l2": 2.2218675038449105e-06,
+          "max_abs_error": 1.52587890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-input",
+          "relative_l2": 5.2292039058432315e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.8213987461358027e-07,
+          "max_abs_error": 2.9802322387695312e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-latent",
+          "relative_l2": 4.417294206926504e-06,
+          "max_abs_error": 4.291534423828125e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 3,
+          "name": "native-decoded",
+          "relative_l2": 3.4348961836633265e-06,
+          "max_abs_error": 3.2007694244384766e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-embeddings",
+          "relative_l2": 2.124017609969239e-06,
+          "max_abs_error": 1.621246337890625e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-step0-input",
+          "relative_l2": 5.297791594895035e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.4313823603933436e-07,
+          "max_abs_error": 5.0961971282958984e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-latent",
+          "relative_l2": 4.155942092429359e-06,
+          "max_abs_error": 7.43865966796875e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 4,
+          "name": "native-decoded",
+          "relative_l2": 2.1959593466317273e-06,
+          "max_abs_error": 3.1828880310058594e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-embeddings",
+          "relative_l2": 2.0765264854820284e-06,
+          "max_abs_error": 1.329183578491211e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-step0-input",
+          "relative_l2": 5.233191676565092e-08,
+          "max_abs_error": 2.384185791015625e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-step0-epsilon",
+          "relative_l2": 8.669273129174466e-07,
+          "max_abs_error": 1.7881393432617188e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-latent",
+          "relative_l2": 1.4816683189021762e-05,
+          "max_abs_error": 0.0002613067626953125,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 5,
+          "name": "native-decoded",
+          "relative_l2": 6.52590625322525e-06,
+          "max_abs_error": 0.00010159611701965332,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 6,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 75.0,
+          "ve0": 59.38,
+          "ve1": 45.25,
+          "ve2": 47.62
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.759765625,
+      "sha256": {
+        "build/results/20261010T004632Z-sd-resident/summary.json": "f6c3ac765df69e16672b625cf8d7b821ddafcb540198131ef39061495795f1ec",
+        "build/results/20261010T004632Z-sd-resident/native.log": "b2f5b4acddae9b57cce1ebda03b6a341badcfc171d09528405d28de44ef8e005",
+        "build/results/20261010T004632Z-sd-resident/check_sd_resident.py": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+        "build/results/20261010T004620Z-ve-memory-sampled/summary.json": "235726333b909457ebd217cfbc76d1ca26dea3513c24c5eb2a4711bf7b519436",
+        "build/results/20261010T004620Z-ve-memory-sampled/memory.csv": "514030aee2c1bc4c3d510313d1209dd619d7317ffb13e43e60531293d7f61d64",
+        "build/sd-current-vae-threads-six.log": "217e450d51a7c9b05b03db98f6e1106a14eaad5d23e166083b9e771faf7a464f",
+        "build/results/20261010T004610Z-temperature-sqvvo79u.csv": "52ea36da5562137363ca92d606c5fa9d8d985203346825fd3d295437595ab690",
+        "build/results/20261010T004610Z-temperature-sqvvo79u-fans.csv": "79fc6b129a0c54fa519a14ebd70a6f34c6105a4fbb32d9e850ad1f428c42a99d",
+        "build/results/20261010T004632Z-sd-resident/request0/native-decoded.f32": "07b12161730e3a5128cd135460e4cfc4833114d31afbcb7221aa652778ac1461",
+        "build/results/20261010T004632Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261010T004632Z-sd-resident/request0/native-latent.f32": "75d60354ede1838fad520d80996a29f155869e30f972708a30b05f07a5eba8ac",
+        "build/results/20261010T004632Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261010T004632Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261010T004632Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261010T004632Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004632Z-sd-resident/request0/image.png": "938a3f6acf846f641e8caf6f1207c986609fd099d5462bcf881b1b506afba905",
+        "build/results/20261010T004632Z-sd-resident/request1/native-decoded.f32": "770d5d29f74ffe8547350a8ecd25ffb910ae8e3405f99a299750657f1c360e7d",
+        "build/results/20261010T004632Z-sd-resident/request1/native-embeddings.f32": "181289d593714c08d63d1710f0473cda78ca0a35675d8afeb66230b048f8aef6",
+        "build/results/20261010T004632Z-sd-resident/request1/native-latent.f32": "6d1963c69c1a3b1e049a29e7e66982781f91f042e1caa46bed73063c3f19e83c",
+        "build/results/20261010T004632Z-sd-resident/request1/native-noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+        "build/results/20261010T004632Z-sd-resident/request1/native-step0-epsilon.f32": "a93625649dacecc734188bde2e76f87e2b3fec05ed0b7088ed7293f09ac9a7c8",
+        "build/results/20261010T004632Z-sd-resident/request1/native-step0-input.f32": "4eabd420973794bc3fba716b0997ab5df204ece75401d7bda98df67886db6a36",
+        "build/results/20261010T004632Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004632Z-sd-resident/request1/image.png": "eec2e99cf02e5ebcf74e3bd907e5b6a2f556a526a3bf80d6dd38b1e8ae56ccec",
+        "build/results/20261010T004632Z-sd-resident/request2/native-decoded.f32": "44249bde81f2908e46bbfd68f061b209b23f3ce38be56d8dee5d9950fd337406",
+        "build/results/20261010T004632Z-sd-resident/request2/native-embeddings.f32": "9621acea46421359da5c5170616b0f3fb32aecc02a4feb0e302ad414c6c2a481",
+        "build/results/20261010T004632Z-sd-resident/request2/native-latent.f32": "b5f3ebcc8e1dfa2c487421f18344a89b86e7fc925e78f2ed4df7984beb89931c",
+        "build/results/20261010T004632Z-sd-resident/request2/native-noise.f32": "5c63c669f669e569c1305107aedb6a469023904873b39362db430b91c569680e",
+        "build/results/20261010T004632Z-sd-resident/request2/native-step0-epsilon.f32": "99f7ef10f6edf9ca249b166389e2758d102ef64dbd89ccdb9b184958f61eb275",
+        "build/results/20261010T004632Z-sd-resident/request2/native-step0-input.f32": "8c26d02f807b3393f6b9d6326c343d0318754e5f0f21d1cb9f73369cafc63ac5",
+        "build/results/20261010T004632Z-sd-resident/request2/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004632Z-sd-resident/request2/image.png": "19b93473cac5405e3c20bdb8738874c8a17985f38e02ed70e9003084b3a1bc84",
+        "build/results/20261010T004632Z-sd-resident/request3/native-decoded.f32": "221ef0d2d34712106c2270b05c206209eb397e06f1a867bd56b442b4e26a07d3",
+        "build/results/20261010T004632Z-sd-resident/request3/native-embeddings.f32": "bc676fc707e8de468fe444185a3950812361f5d71caef5a12686a85ceb3ba8d2",
+        "build/results/20261010T004632Z-sd-resident/request3/native-latent.f32": "21a8092fa60a36693335d67d641307cf9aafbe07958b2ab08330a25c8f7a1dcd",
+        "build/results/20261010T004632Z-sd-resident/request3/native-noise.f32": "175ae09299615d0b0eb2c655c4657275c7da11bb2bb8419e656e9aaf1e1e33aa",
+        "build/results/20261010T004632Z-sd-resident/request3/native-step0-epsilon.f32": "b27ef5177d2612da01fe803f6a894b4e04ea0d49a9d1b78d1f40b9959ea03ec1",
+        "build/results/20261010T004632Z-sd-resident/request3/native-step0-input.f32": "98845b1c96f84ee7db2f9bbe818ed2b43e2a9ae578f661ad489bf65c572e6f4c",
+        "build/results/20261010T004632Z-sd-resident/request3/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004632Z-sd-resident/request3/image.png": "d16df52c85aff2960bc2d8efb4a402269c1a8d25bbb67fcbcc9dbc176f7a2e4c",
+        "build/results/20261010T004632Z-sd-resident/request4/native-decoded.f32": "3fc6720b288108fd6a830b6e8bfc15d3e90f0eaad330511e482b01a9d5261835",
+        "build/results/20261010T004632Z-sd-resident/request4/native-embeddings.f32": "9d56aabe2acb45586845eb841037e42d1e28adc2bacbc91b6f2ea08182fbf44d",
+        "build/results/20261010T004632Z-sd-resident/request4/native-latent.f32": "47784ac6f57b99f35bf74cf0cdeab29be8858a0e1a0ea142a08b1f03cc3b9418",
+        "build/results/20261010T004632Z-sd-resident/request4/native-noise.f32": "0e551d9d33f4f875c4622caf0b3fe4263e66b02263179bf0424f290cb9c355fa",
+        "build/results/20261010T004632Z-sd-resident/request4/native-step0-epsilon.f32": "b2885465b5faa9693d8ce6ef8f89d949720640ee6dd919849000208a8c673566",
+        "build/results/20261010T004632Z-sd-resident/request4/native-step0-input.f32": "562327af3ac98f36eadd1f4a6f64c42c2359603bd520ba1c5df9a8e6ef4c3320",
+        "build/results/20261010T004632Z-sd-resident/request4/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004632Z-sd-resident/request4/image.png": "c2058fa615b155395d1bfe6396b6b1ee4e70a8500fcb661d701e94200fab7302",
+        "build/results/20261010T004632Z-sd-resident/request5/native-decoded.f32": "39ffb2a69f2bea8d2c6bfc9297811061ef73530777ea5b0cf2d336d9b2cc1e73",
+        "build/results/20261010T004632Z-sd-resident/request5/native-embeddings.f32": "b7470d7417bd66baaffd010a0a102bba20a9751fbd99b1a6137bfdd537a17a28",
+        "build/results/20261010T004632Z-sd-resident/request5/native-latent.f32": "eb0f6f3213f00a3fd9b4964870c90607c79d8883e9947d22349a6ea20cdd7441",
+        "build/results/20261010T004632Z-sd-resident/request5/native-noise.f32": "b811ff3e31f764c29b105dd1868421a006f7e123ab06bed8d5a4dbf7ac7ea3ee",
+        "build/results/20261010T004632Z-sd-resident/request5/native-step0-epsilon.f32": "c590b1cca1684211b5cb2813d7043506cbcd94ee9c7d1b930c2b788f3891de86",
+        "build/results/20261010T004632Z-sd-resident/request5/native-step0-input.f32": "fac8d50a3808ff72cbd0b47baf7498a6fbc80d0f9726ccf2043c04dd3816d756",
+        "build/results/20261010T004632Z-sd-resident/request5/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004632Z-sd-resident/request5/image.png": "08f84c0551cbf7f0d0dbe737f7c444e10ed691733a41bb9e6e4458d473522895"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T081800Z-sd-reference/case3/step0-latent.f32": "d664bc51e4cc2ed0f063edcfa4305eba5609215a7bec2ec1c5e2edd8f621faf9",
+        "build/results/20261008T081800Z-sd-reference/case1/noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-epsilon.f32": "7ec11a96b7a9cae670e1d02cbc1252efbe1c427c08464a66e069b3190ef57ec4",
+        "build/results/20261008T081800Z-sd-reference/case4/embeddings.f32": "dd4ab68c371eb00318da5e139e446e24750acd181ee3c1307f22d8d096edbda7",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-input.f32": "9a6d7ef5e2d67bce8d09d62abaa13ad8a58d4b847a060c4fcf4da27b93bab509",
+        "build/results/20261008T081800Z-sd-reference/case1/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T081800Z-sd-reference/case2/embeddings.f32": "6772865f1b96a643d73e9310dd9dee9d2d7787bda35a68fee6e7251ae495414b",
+        "build/results/20261008T081800Z-sd-reference/case5/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case0/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case3/decoded.f32": "bd6e994ba8c93ba3eaba87fe7b8272bd8c56a0cc03602a48bf12a2127dd23e72",
+        "build/results/20261008T081800Z-sd-reference/case1/embeddings.f32": "6b0f6762b7408badeb730b425da327cf2b650db959ba27be9c907b350229b572",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-latent.f32": "66f9e354cc9be933763f4375236dd4f9cda2464c4ac82d1733daf0058435fd26",
+        "build/results/20261008T081800Z-sd-reference/case5/noise.f32": "b811ff3e31f764c29b105dd1868421a006f7e123ab06bed8d5a4dbf7ac7ea3ee",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-epsilon.f32": "b3ba591252fbcc3b6bf2fff69730e767ad7e84a85f97d83f7496336149e0a810",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-input.f32": "bf5ffae6e8895797905425e0e7bd3ce7c7a19ef03f396c02e5327d0eeb42dbb4",
+        "build/results/20261008T081800Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T081800Z-sd-reference/case5/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case3/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-latent.f32": "d144943224f6e1ab3e4919b29a7022dc68fec1235eae9df6a4d4acbf23fa8550",
+        "build/results/20261008T081800Z-sd-reference/case4/decoded.f32": "238988d8768db206f8c2f6b33b162f684aa62c73fe20dc56174c59600bb74235",
+        "build/results/20261008T081800Z-sd-reference/case5/embeddings.f32": "97ded69b790137c88a02aa3daa70594e25f7c89dcdf7009f29af9368138224b9",
+        "build/results/20261008T081800Z-sd-reference/case1/step0-latent.f32": "3e6828c6dc171d03908c1250271ea8a8a57667736388de6802dc3abeddea8247",
+        "build/results/20261008T081800Z-sd-reference/case3/noise.f32": "175ae09299615d0b0eb2c655c4657275c7da11bb2bb8419e656e9aaf1e1e33aa",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-epsilon.f32": "6fb8e32b97bce53fffeb934f216349c87cdbc3b340cb7b521cb2bb66f7cbafaa",
+        "build/results/20261008T081800Z-sd-reference/case3/step0-input.f32": "bad31ffed2fd7eb882b5400306ad49bc91c5332f7489c2948726dc24c6e68d0a",
+        "build/results/20261008T081800Z-sd-reference/case3/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case2/decoded.f32": "a6a90481d339f27167832fbd5e8308ec8f6c4e6a2b4c2b1b3d80c0fa51dd5ca2",
+        "build/results/20261008T081800Z-sd-reference/case0/step0-latent.f32": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+        "build/results/20261008T081800Z-sd-reference/case1/decoded.f32": "9ec33668028a498b633dfc953d16f06a8b2fcaec60e84aa5f21d8970277ec009",
+        "build/results/20261008T081800Z-sd-reference/case4/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case3/embeddings.f32": "9f63c41517dc1742a91cff8097c92a41806a98e6a0bc95616d38a60468019be6",
+        "build/results/20261008T081800Z-sd-reference/case4/noise.f32": "0e551d9d33f4f875c4622caf0b3fe4263e66b02263179bf0424f290cb9c355fa",
+        "build/results/20261008T081800Z-sd-reference/case5/step0-latent.f32": "56c23a1e9b85c767a6ea948d21cd348c7e514265fe4aa3326cc85382a9f4592e",
+        "build/results/20261008T081800Z-sd-reference/case0/decoded.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-input.f32": "62fd0d82ad1a28642902bed7a789987aff26ef9c504e6e94558d0a20cdfc489f",
+        "build/results/20261008T081800Z-sd-reference/case2/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case4/step0-epsilon.f32": "edd640c1a6013ff82d18e4a47b4cca176383173edef959ae858f7ca35f8a930a",
+        "build/results/20261008T081800Z-sd-reference/summary.json": "ff795ae857c4448cccfdd0ca95fd417d99dee1a9649701cfb50ff43cc3ff3c7c",
+        "build/results/20261008T081800Z-sd-reference/case4/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-input.f32": "f9b1ac9ec0739a5dab24af95a10a6b44234402d5dbcec412e22ca46d90450962",
+        "build/results/20261008T081800Z-sd-reference/case1/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+        "build/results/20261008T081800Z-sd-reference/case2/noise.f32": "5c63c669f669e569c1305107aedb6a469023904873b39362db430b91c569680e",
+        "build/results/20261008T081800Z-sd-reference/case2/step0-epsilon.f32": "a92367fa7419ad248038ff8b0b403a4405f502a0c5e928ed5cbd50eaa95ffba3",
+        "build/results/20261008T081800Z-sd-reference/case5/decoded.f32": "a15115f5cb17ec20f501a89d468a6bc28b59703ac38d99dcb78da6253969ad09",
+        "build/results/20261008T081800Z-sd-reference/case2/timesteps.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261008T081800Z-sd-reference/case0/sigmas.f32": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809"
+      },
+      "name": "six",
+      "cont_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ]
+      ],
+      "softmax_scale_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ]
+      ],
+      "group_norm_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ]
+      ]
+    },
+    {
+      "packing_input_domain_verified": true,
+      "artifacts": "build/results/20261010T004923Z-sd-resident",
+      "memory_artifacts": "build/results/20261010T004910Z-ve-memory-sampled",
+      "request_seconds": [
+        90.824904,
+        16.469385
+      ],
+      "process_seconds": 107.83693715836853,
+      "image_output_seconds": [
+        0.595887,
+        0.414643
+      ],
+      "cpu_checks": 22,
+      "cpu_recomputed_checks": [
+        {
+          "request": 0,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step1-input",
+          "relative_l2": 5.713952141742209e-07,
+          "max_abs_error": 8.595176041126251e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step1-epsilon",
+          "relative_l2": 6.547238099051782e-07,
+          "max_abs_error": 7.495284080505371e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step2-input",
+          "relative_l2": 8.741469285361333e-07,
+          "max_abs_error": 9.775161743164062e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step2-epsilon",
+          "relative_l2": 1.5715198555942695e-06,
+          "max_abs_error": 2.2172927856445312e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step3-input",
+          "relative_l2": 1.6936714316347339e-06,
+          "max_abs_error": 1.6033649444580078e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-step3-epsilon",
+          "relative_l2": 1.7767453986665628e-06,
+          "max_abs_error": 1.946091651916504e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-latent",
+          "relative_l2": 2.5416333135354637e-06,
+          "max_abs_error": 2.5510787963867188e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 0,
+          "name": "native-decoded",
+          "relative_l2": 1.586960949654215e-06,
+          "max_abs_error": 1.4483928680419922e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-embeddings",
+          "relative_l2": 2.0952078235935215e-06,
+          "max_abs_error": 1.5020370483398438e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-input",
+          "relative_l2": 5.3172332363678044e-08,
+          "max_abs_error": 4.76837158203125e-07,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step0-epsilon",
+          "relative_l2": 2.358258906464214e-07,
+          "max_abs_error": 3.427267074584961e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step1-input",
+          "relative_l2": 5.713952141742209e-07,
+          "max_abs_error": 8.595176041126251e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step1-epsilon",
+          "relative_l2": 6.547238099051782e-07,
+          "max_abs_error": 7.495284080505371e-06,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step2-input",
+          "relative_l2": 8.741469285361333e-07,
+          "max_abs_error": 9.775161743164062e-06,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step2-epsilon",
+          "relative_l2": 1.5715198555942695e-06,
+          "max_abs_error": 2.2172927856445312e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step3-input",
+          "relative_l2": 1.6936714316347339e-06,
+          "max_abs_error": 1.6033649444580078e-05,
+          "tolerance": 0.0001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-step3-epsilon",
+          "relative_l2": 1.7767453986665628e-06,
+          "max_abs_error": 1.946091651916504e-05,
+          "tolerance": 0.001,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-latent",
+          "relative_l2": 2.5416333135354637e-06,
+          "max_abs_error": 2.5510787963867188e-05,
+          "tolerance": 0.01,
+          "passed": true
+        },
+        {
+          "request": 1,
+          "name": "native-decoded",
+          "relative_l2": 1.586960949654215e-06,
+          "max_abs_error": 1.4483928680419922e-05,
+          "tolerance": 0.01,
+          "passed": true
+        }
+      ],
+      "cpu_recomputed_png_checks": 2,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 75.0,
+          "ve0": 59.12,
+          "ve1": 45.12,
+          "ve2": 47.38
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.634765625,
+      "sha256": {
+        "build/results/20261010T004923Z-sd-resident/summary.json": "ae795e9dafda327155068d1886e28807c223492cd9c21933cb60684a0622136a",
+        "build/results/20261010T004923Z-sd-resident/native.log": "af7d4e7726beb48b98308623607d9e8547d1c9168f299db09902d7af1013a6cd",
+        "build/results/20261010T004923Z-sd-resident/check_sd_resident.py": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+        "build/results/20261010T004910Z-ve-memory-sampled/summary.json": "ae81864a87fdaae33f86b41a9763e1ac28328c1e3c5af7dea69f2de9c3a6bf9e",
+        "build/results/20261010T004910Z-ve-memory-sampled/memory.csv": "a58cf45bc7863914a26009e46bfa31b5fb384a51a55647117f235159c3dd9183",
+        "build/sd-current-vae-threads-four.log": "a3757b3ca0301e061da2373c3e126187681865117a21d73fb559aa5b2896375c",
+        "build/results/20261010T004900Z-temperature-a1sf37ar.csv": "fe23213dadb04bf006fd246ca108cd05d3d5ba4587fcf84f66f66e8e78a51e1e",
+        "build/results/20261010T004900Z-temperature-a1sf37ar-fans.csv": "07a36a588ce0a3002c1328855a9adbee8b2ecbb739a1e3276deef90c108e59d8",
+        "build/results/20261010T004923Z-sd-resident/request0/native-decoded.f32": "76602b6d2ac04e14f9ba83091a8026bd43a17bd99313031c75e579301981183f",
+        "build/results/20261010T004923Z-sd-resident/request0/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261010T004923Z-sd-resident/request0/native-latent.f32": "e97fd398fb7dd8659041f405c5ab7e8c6f59a183ef3d03944959582474c41885",
+        "build/results/20261010T004923Z-sd-resident/request0/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step1-epsilon.f32": "3f52d54de138da6e5c6928f1e442e163d76c7b003ece9bf08d5fe85d8cac06ee",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step1-input.f32": "631b6ad137990c1cb21b6d423898506db7ff707ee65d8b99fd976077998bf647",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step2-epsilon.f32": "607d29f32c3d4929be9796451a9f54c3c33183db5b6ba75f012d2c410b10d316",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step2-input.f32": "0c9c069a966345b8e9408e2159165a194042d1bca19515873672be0e554c3c1d",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step3-epsilon.f32": "82984221aa1148d64cd5975aa3c2e299b031d100df65a77b978b3e1dca7e78b6",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step3-input.f32": "b64055c90ce89cfd0c403010ce0b95529f563471e4e4702ff1574f4f9a40c33a",
+        "build/results/20261010T004923Z-sd-resident/request0/native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce",
+        "build/results/20261010T004923Z-sd-resident/request0/image.png": "5366a3d8e83f5bb38a8ecdef5c8d70937e376026944f28e505b24a277bd659ca",
+        "build/results/20261010T004923Z-sd-resident/request1/native-decoded.f32": "76602b6d2ac04e14f9ba83091a8026bd43a17bd99313031c75e579301981183f",
+        "build/results/20261010T004923Z-sd-resident/request1/native-embeddings.f32": "9e227a6bc9d714d075028295fb91cea08048727676018296c7ef2520dbc614f6",
+        "build/results/20261010T004923Z-sd-resident/request1/native-latent.f32": "e97fd398fb7dd8659041f405c5ab7e8c6f59a183ef3d03944959582474c41885",
+        "build/results/20261010T004923Z-sd-resident/request1/native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step0-epsilon.f32": "f12b04b06447da7408c4f231b32f4beb6a7df1468b0a1d9f0e5d7eb56464fe6e",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step1-epsilon.f32": "3f52d54de138da6e5c6928f1e442e163d76c7b003ece9bf08d5fe85d8cac06ee",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step1-input.f32": "631b6ad137990c1cb21b6d423898506db7ff707ee65d8b99fd976077998bf647",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step2-epsilon.f32": "607d29f32c3d4929be9796451a9f54c3c33183db5b6ba75f012d2c410b10d316",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step2-input.f32": "0c9c069a966345b8e9408e2159165a194042d1bca19515873672be0e554c3c1d",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step3-epsilon.f32": "82984221aa1148d64cd5975aa3c2e299b031d100df65a77b978b3e1dca7e78b6",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step3-input.f32": "b64055c90ce89cfd0c403010ce0b95529f563471e4e4702ff1574f4f9a40c33a",
+        "build/results/20261010T004923Z-sd-resident/request1/native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce",
+        "build/results/20261010T004923Z-sd-resident/request1/image.png": "5366a3d8e83f5bb38a8ecdef5c8d70937e376026944f28e505b24a277bd659ca"
+      },
+      "cpu_reference_sha256": {
+        "build/results/20261008T083810Z-sd-reference/case0/step1-input.f32": "9faf9ed658d358068bfa0e8ae3ac103e9f152d8e3bf7235aa8c062e64f9d2633",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-latent.f32": "5c739a9e1d6bbdd38f52538c9e4a82508137b3795300a3d60153cc342875eac6",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-epsilon.f32": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-input.f32": "6bfeb82a41e590570daf346e4da2be4e96823856b818876e0645f669e11cbe9d",
+        "build/results/20261008T083810Z-sd-reference/case0/step3-epsilon.f32": "8468b716848a7011866f3f689cc6561cc91e7656a6097571683f6832040f5017",
+        "build/results/20261008T083810Z-sd-reference/summary.json": "b7752f46795a896faf8099fa44821d51a5be7d64a85f0892eba508f67189aefb",
+        "build/results/20261008T083810Z-sd-reference/case0/step1-latent.f32": "41f62bc5fda6c01a447823ab6bb7c2b3d8178637e167cfd6863ea415460bdee8",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-input.f32": "ffbd676274fad33b895b9d1e1aae64b9f6de58587b6d7eee5428e062bf114d60",
+        "build/results/20261008T083810Z-sd-reference/case0/timesteps.f32": "cc5d5b039489b1f352926c878e2943c6bb49f47df9a50ea1abd80f332cabe8f4",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-input.f32": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+        "build/results/20261008T083810Z-sd-reference/case0/step0-latent.f32": "c0e15239b55f0874ffad33b168d1403423c488318df8b9290f728a317ba24fdd",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-latent.f32": "0c21dcb60aa80a0bb0e010b3098de04dc4622d7b5a5019c3177277056694288e",
+        "build/results/20261008T083810Z-sd-reference/case0/noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+        "build/results/20261008T083810Z-sd-reference/case0/decoded.f32": "367a6a341ab344df91ad81e80b19f2d2cca2407838e4dc6ae8044628165e65cc",
+        "build/results/20261008T083810Z-sd-reference/case0/sigmas.f32": "40dcecbf8e3d9eb502b2036e77407673c22ad6a6aec6fcbb3065127d65991c53",
+        "build/results/20261008T083810Z-sd-reference/case0/step1-epsilon.f32": "78943d56cabe7200bdd5f0d11bfdaeff49f12a381da8b1d1303bca89bebd379b",
+        "build/results/20261008T083810Z-sd-reference/case0/embeddings.f32": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+        "build/results/20261008T083810Z-sd-reference/case0/step2-epsilon.f32": "1c786a59e04ba06efb23f6000495beb98e29ea1ab185cef0ed981cc78e3974c0"
+      },
+      "name": "four",
+      "cont_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 23,
+            "fallback": 69,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 45,
+            "fallback": 213,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 3,
+            "fallback": 40,
+            "enabled": 1
+          }
+        ]
+      ],
+      "softmax_scale_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "optimized": 0,
+            "fallback": 23,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "optimized": 30,
+            "fallback": 2,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "optimized": 1,
+            "fallback": 0,
+            "enabled": 1
+          }
+        ]
+      ],
+      "group_norm_dispatch": [
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ],
+        [
+          {
+            "stage": "clip",
+            "scale_optimized": 0,
+            "scale_fallback": 0,
+            "center_optimized": 0,
+            "center_fallback": 0,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "unet",
+            "scale_optimized": 61,
+            "scale_fallback": 0,
+            "center_optimized": 31,
+            "center_fallback": 30,
+            "enabled": 1
+          },
+          {
+            "stage": "vae",
+            "scale_optimized": 30,
+            "scale_fallback": 0,
+            "center_optimized": 30,
+            "center_fallback": 0,
+            "enabled": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "model_manifest_sha256": "304ddf79828373d30a1d434db9635c069432f59242c3981e14db5b6fd0bfa460",
+  "binary_sha256": "a3537680ccda0b372f0cedc289811b839820504263a32c8749a34dbd86525303",
+  "checker_sha256": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+  "actual_spatial_compiler": {
+    "scope": "historical compiler and independent mathematics proof, retained via exact current dispatch-only source and object audit",
+    "historical_proof_sha256": "46acd9013e72f8592b58930cb3cf38986b15305d462932085c7e9c078ee652bc",
+    "historical_evidence": {
+      "accepted_before_proof_sha256": "d933b89bee590d2507aa93f5c2bf970f80fa6ffaf5d4f442c9a443f4f6c7c136",
+      "accepted_before_manifest_sha256": "e12031c1a868d2ce34a7c1e16a70a19f4386e3e3b4b0e82aab115835b31b9878",
+      "object_sha256": "862ebe83627c0e9a1205601d44c1a243dddb5b39c57e5b90e54a73aa2ba344e5",
+      "archive_sha256": "14d67f650ce760045389796eaf3b062972ead1584dc3eeb2bf88a029ea5dd752",
+      "source_sha256": "6724aa05aebd4ebf803b90ce94d419d93eeb8736fe5b33e45415536d0ba86841",
+      "flags_make_sha256": "df6aaad4caa43b82644f9cdf6531725f50451ff23d93459e3adfc8708af5e37a",
+      "build_make_sha256": "49e9546c92fd6b33c44ccabcc21f0893f65eedc903bfd2cf4b0951e315007dd1",
+      "link_sha256": "d297a16d0c994e79ca4df09cbc26c135ac91d56c8cd7e94ce09d5756fb0c9fdf",
+      "linked_function_size": 3336,
+      "only_intended_source_delta": true,
+      "changed_objects": [
+        "libggml-blas.a",
+        "sd-ggml-blas.cpp.o"
+      ],
+      "unchanged_objects": 42,
+      "added_model_inputs": [
+        "scripts/prepare_sd_gemm_untiled_model.py"
+      ],
+      "changed_model_inputs": [
+        "build/sd-baseline-overlay/sd-ggml-blas.cpp",
+        "build/sd-baseline-ve/bin/sd",
+        "scripts/prepare_sd_baseline_overlay.py",
+        "scripts/record_sd_baseline_build.py"
+      ],
+      "before_snapshot_index_sha256": "8986666fd7edf194ad7e4bb7b01476d90e52ca6995cf291cbcd049586ce0cdad",
+      "independent_proof_sha256": "f546e0d19a9f55880daf8c0c992f65d340b0f7826e4da1dd3f0abdf246978db1",
+      "nlc_library_sha256": {
+        "libcblas.so": "9a12c2e92e296664083267c002d37f05d44738ccb49b947ff69bbc24403e04eb",
+        "libblas_openmp.so": "c27f957052ee18263dfd47bcde5606b9dc592e2b07294a886fd599a89ebd8f28"
+      }
+    },
+    "current_build_delta": {
+      "scope": "exact four-or-eight thread dispatch gate; mathematical objects unchanged; complete model validation still required",
+      "before_index_sha256": "f383bca98384f3f3b4cc48bcdb36d966a98868338fd539d725b86e38dd47d05b",
+      "manifest_sha256": "304ddf79828373d30a1d434db9635c069432f59242c3981e14db5b6fd0bfa460",
+      "binary_sha256": "a3537680ccda0b372f0cedc289811b839820504263a32c8749a34dbd86525303",
+      "checker_sha256": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+      "changed_manifest_inputs": [
+        "build/sd-baseline-overlay/sd-ggml-cpu.c",
+        "build/sd-baseline-ve/bin/sd",
+        "scripts/prepare_sd_baseline_overlay.py",
+        "scripts/record_sd_baseline_build.py"
+      ],
+      "changed_objects": [
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o"
+      ],
+      "unchanged_object_count": 42,
+      "object_sha256": {
+        "build/sd-baseline-ve/libsd-pixels-ve.a": "fdb823dd208483d3d6e3d058d2976fc0d3c7c4013027d8e86a043a2f1ceaa865",
+        "build/sd-baseline-ve/libsd-png-ve.a": "8ca5701db97d624c1d6eab1ff0a1f5f593b5733a63004922424a3d30955d890c",
+        "build/sd-baseline-ve/libstable-diffusion.a": "d2be0bbe4a6a0182f8ac3cfffba0563b071398c1cd7f966aa9e0214f1ead7edd",
+        "build/sd-baseline-ve/thirdparty/CMakeFiles/zip.dir/zip.c.o": "5e8a7e70e67581bc98f3d7d6fe41edb74a919ee28fbeef42948757b253ae0731",
+        "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+        "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/libggml-blas.a": "14d67f650ce760045389796eaf3b062972ead1584dc3eeb2bf88a029ea5dd752",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/ggml-blas.cpp.o": "35786e5d475b8d52598822f73863c2ad9a37d701b5cc882536176bdc406ca9d2",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/project/build/sd-baseline-overlay/sd-ggml-blas.cpp.o": "862ebe83627c0e9a1205601d44c1a243dddb5b39c57e5b90e54a73aa2ba344e5",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "ea92ef1336fb1ea92090b5d49a7eb1b6664349d7fd51bcd7d6e19bc32aea54c0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-aarch64.c.o": "a218040de95b2fadfa359102364785cbb7e2e22ca6f4b297204c496c2ac8f4a0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu.cpp.o": "d034c9e5dc72fdba7fff9e7e807e1756c12e7a096832f7f8303bebb67a30d757",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-quants.c.o": "dda5957046621f99b783f3c22b6a3e260b1859d04b8acf62165824609d469862",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_binary.c.o": "a02c9bed9943e026df9236052074447054b3e7e2d8a6c0e301c72cb641d37489",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax.c.o": "01fcc7fa258160bb9fb303fe62c7975994d878f81dc865fed216f01f8c4d2c82",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_gelu.c.o": "dd3f23b1e1d83a421d2ea3c1bb83c0a4ca86f5270036d1f4deffa823a4d5db38",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_sum.c.o": "1950fc878b797109d0e3e681d71087bb08ceffe63c97791a5c2bbf2ff71d1a64",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_cont_transpose.c.o": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_group_norm.c.o": "bbee1a302d8f18a22d98176ab8a93f911dd6e8fbc117b480ea224384b8919397",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_scale.c.o": "4f176ef34a0f06e89b85f1ce5c36f8cf55e5e9f0b370c2b6b6ecd175c729e35f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_silu.c.o": "64ecc0521a43056a9c0f81aa5c8c3bf23a56e12160f3b8e1bfbbfc7828123b6f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o": "6a5ffbaf02529fa7a5ebf89836d8ee7da8f8d196b3c27de930da4723a056b964",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o": "b89eb9770b53df36203b334725ecd9d5f3fa11ff8a3250307363da39bb5544ae",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o": "8495ffd7c2cec000e5299b97fa11623f04bafab4140b514cea50736fc143745c",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o": "eb2cc1d040837e06b972530c3217c540293fe1f8ccc2790234e7364b0e1ccaea",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o": "8b2fd06b35a0026117e8c80fc3ef3a4624c3f77ef4d9666b1a16ee09efa77396",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o": "3508bb90f55ed93c2fafcd8a933c9f101cbdd8cc895f14fd16c5c90d7221e4c0",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o": "b98a8984f1746ed860c105d6d220f11038bb0478e08f2349dc3c38d2fd38a627",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-aarch64.c.o": "030b40a5996521cc2c348affe9d33432efd434cbe4e7e7832a4eeb38c859d9a9",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o": "5c575127d8cf536c37321294dabbf83af991838d00a94cd3c07e097da7065ff1",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/project/build/sd-baseline-overlay/sd-ggml-backend.cpp.o": "dfff1030431cb9104df8703ddafecf52fc3f2d67f6310d78240701c725ec5741",
+        "build/sd-baseline-ve/examples/cli/CMakeFiles/sd.dir/project/src/ve_sd_turbo_main.cpp.o": "1504c5f2d07224b875b03106c2b87e20d0c1417dca6720788b9004e342843522",
+        "build/sd-baseline-ve/CMakeFiles/sd-png-ve.dir/project/src/ve_sd_turbo_png.cpp.o": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_clip.cpp.o": "6f8b644cfcfc675005adeb1124a9e950eda4183212a8fc9ee67efb597c22dd1d",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_vae.cpp.o": "82485ec50eee9d301b9eb4c039b47be4161e8a3736d09adee643a09b7155c916",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_unet.cpp.o": "c1b8d0521f7ab23418a6e04554ad9e91b122dd562d75fe520a0096efa6ac530f",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/util.cpp.o": "7773ba9b1901a0e761b23cbb0642cf2cbf8073bc6cb332c638d4fea62488f0f7",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/model.cpp.o": "b4286658fca4ac59f36d9d874f078be689adbd08b1710c4b03447af4168fbb2e",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/sd_clip_vocab.c.o": "850c2ed4fcd9f4f6ded54ba57988dc22fc604b8975e1d94a7abc1a304287e9ce",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_pack.cpp.o": "5f41861f61893505b94d233b53e000c476c6809cb83f92aca6f7d89fc648acd7",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_bits.cpp.o": "30d05ca5643a5103eaa4e4ccb7073bfcb88f675ed3fbe4cfa385900102286b96",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels.cpp.o": "b410fc7c9234724675cec8fdf59d99ee4448473572a891c4479fa8fe82c4f323"
+      },
+      "probe_artifact_sha256": {
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.sh": "a4920ebeecf186122183bdf6d37b4a03ef098d8a111a86f55e86a2946376e651",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/results/20261010T003711Z-im2col-current4/manifest.json": "ce33ac84c313d6155c674a18a63fac4445dc903a51e52130bb9cdb1492376523",
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.c": "667f11721fe12e67dabde102d9d4a196d312bf5f4fc540b6c2885b9cab0dd14b",
+        "build/results/20261010T003711Z-im2col-current4/check": "0e3d362fb7c87e7c28b7e3ae36cb8eece820701de6173c5d1b801b6c418377c1"
+      },
+      "probe_log_sha256": "f1485d62cee06ddda7cfcb41712e3689b7b0e2fcc12d26ab5a8999ac60dcd46a",
+      "probe_checked_elements": 2717908992,
+      "probe_temperature": {
+        "peaks_c": {
+          "cpu": 66.0,
+          "ve0": 52.0,
+          "ve1": 45.88,
+          "ve2": 48.25
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "probe_fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "verifier_sha256": "ad438c93ed5e2970af704ac3278b08dcf9c427d306da4e5c80c750ba5c870e6a"
+    }
+  },
+  "actual_cont_compiler": {
+    "scope": "historical compiler and independent mathematics proof, retained via exact current dispatch-only source and object audit",
+    "historical_proof_sha256": "46acd9013e72f8592b58930cb3cf38986b15305d462932085c7e9c078ee652bc",
+    "historical_evidence": {
+      "effective_optimization": "-O2",
+      "compiler_flags": "-O2 -std=c11 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=gnu11 -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -fopenmp",
+      "object_sha256": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+      "source_sha256": "4cd140451c05b2fa14284efbc1a9e1022ec11c3a05aca4bdbaed5657d47eef39",
+      "flags_make_sha256": "9449e1d15286a802ecb00fbed9c482330a69520860a302d262c8b77b625c60d7",
+      "build_make_sha256": "7932fa1577a828306162ae703a491bca42b4dfd3e27e4920c4ae8a3827a3432c",
+      "linked_function_size": 800,
+      "compiler_diagnostics": [
+        {
+          "line": 10,
+          "message": "Potential dependency due to pointer -- use restrict qualifier if ok: column"
+        },
+        {
+          "line": 10,
+          "message": "Vectorized loop."
+        }
+      ],
+      "build_log_sha256": "e6462e41112b26274f7c8c6da07882facc64c11c3f1ec9594a0e236370a65582",
+      "object_compile_log_sha256": "ea2eb88b6abccf793fecea4bb6c90e6de665d35b11f9ea69e9262fb18061bc8c",
+      "independent_proof_sha256": "ff2b0e7f5f1ee60c4dedb5a2afd51ed6e159018e1b0052452a9fde673a256905",
+      "actual_object_matches_independent": true
+    },
+    "current_build_delta": {
+      "scope": "exact four-or-eight thread dispatch gate; mathematical objects unchanged; complete model validation still required",
+      "before_index_sha256": "f383bca98384f3f3b4cc48bcdb36d966a98868338fd539d725b86e38dd47d05b",
+      "manifest_sha256": "304ddf79828373d30a1d434db9635c069432f59242c3981e14db5b6fd0bfa460",
+      "binary_sha256": "a3537680ccda0b372f0cedc289811b839820504263a32c8749a34dbd86525303",
+      "checker_sha256": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+      "changed_manifest_inputs": [
+        "build/sd-baseline-overlay/sd-ggml-cpu.c",
+        "build/sd-baseline-ve/bin/sd",
+        "scripts/prepare_sd_baseline_overlay.py",
+        "scripts/record_sd_baseline_build.py"
+      ],
+      "changed_objects": [
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o"
+      ],
+      "unchanged_object_count": 42,
+      "object_sha256": {
+        "build/sd-baseline-ve/libsd-pixels-ve.a": "fdb823dd208483d3d6e3d058d2976fc0d3c7c4013027d8e86a043a2f1ceaa865",
+        "build/sd-baseline-ve/libsd-png-ve.a": "8ca5701db97d624c1d6eab1ff0a1f5f593b5733a63004922424a3d30955d890c",
+        "build/sd-baseline-ve/libstable-diffusion.a": "d2be0bbe4a6a0182f8ac3cfffba0563b071398c1cd7f966aa9e0214f1ead7edd",
+        "build/sd-baseline-ve/thirdparty/CMakeFiles/zip.dir/zip.c.o": "5e8a7e70e67581bc98f3d7d6fe41edb74a919ee28fbeef42948757b253ae0731",
+        "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+        "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/libggml-blas.a": "14d67f650ce760045389796eaf3b062972ead1584dc3eeb2bf88a029ea5dd752",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/ggml-blas.cpp.o": "35786e5d475b8d52598822f73863c2ad9a37d701b5cc882536176bdc406ca9d2",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/project/build/sd-baseline-overlay/sd-ggml-blas.cpp.o": "862ebe83627c0e9a1205601d44c1a243dddb5b39c57e5b90e54a73aa2ba344e5",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "ea92ef1336fb1ea92090b5d49a7eb1b6664349d7fd51bcd7d6e19bc32aea54c0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-aarch64.c.o": "a218040de95b2fadfa359102364785cbb7e2e22ca6f4b297204c496c2ac8f4a0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu.cpp.o": "d034c9e5dc72fdba7fff9e7e807e1756c12e7a096832f7f8303bebb67a30d757",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-quants.c.o": "dda5957046621f99b783f3c22b6a3e260b1859d04b8acf62165824609d469862",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_binary.c.o": "a02c9bed9943e026df9236052074447054b3e7e2d8a6c0e301c72cb641d37489",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax.c.o": "01fcc7fa258160bb9fb303fe62c7975994d878f81dc865fed216f01f8c4d2c82",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_gelu.c.o": "dd3f23b1e1d83a421d2ea3c1bb83c0a4ca86f5270036d1f4deffa823a4d5db38",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_sum.c.o": "1950fc878b797109d0e3e681d71087bb08ceffe63c97791a5c2bbf2ff71d1a64",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_cont_transpose.c.o": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_group_norm.c.o": "bbee1a302d8f18a22d98176ab8a93f911dd6e8fbc117b480ea224384b8919397",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_scale.c.o": "4f176ef34a0f06e89b85f1ce5c36f8cf55e5e9f0b370c2b6b6ecd175c729e35f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_silu.c.o": "64ecc0521a43056a9c0f81aa5c8c3bf23a56e12160f3b8e1bfbbfc7828123b6f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o": "6a5ffbaf02529fa7a5ebf89836d8ee7da8f8d196b3c27de930da4723a056b964",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o": "b89eb9770b53df36203b334725ecd9d5f3fa11ff8a3250307363da39bb5544ae",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o": "8495ffd7c2cec000e5299b97fa11623f04bafab4140b514cea50736fc143745c",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o": "eb2cc1d040837e06b972530c3217c540293fe1f8ccc2790234e7364b0e1ccaea",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o": "8b2fd06b35a0026117e8c80fc3ef3a4624c3f77ef4d9666b1a16ee09efa77396",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o": "3508bb90f55ed93c2fafcd8a933c9f101cbdd8cc895f14fd16c5c90d7221e4c0",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o": "b98a8984f1746ed860c105d6d220f11038bb0478e08f2349dc3c38d2fd38a627",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-aarch64.c.o": "030b40a5996521cc2c348affe9d33432efd434cbe4e7e7832a4eeb38c859d9a9",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o": "5c575127d8cf536c37321294dabbf83af991838d00a94cd3c07e097da7065ff1",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/project/build/sd-baseline-overlay/sd-ggml-backend.cpp.o": "dfff1030431cb9104df8703ddafecf52fc3f2d67f6310d78240701c725ec5741",
+        "build/sd-baseline-ve/examples/cli/CMakeFiles/sd.dir/project/src/ve_sd_turbo_main.cpp.o": "1504c5f2d07224b875b03106c2b87e20d0c1417dca6720788b9004e342843522",
+        "build/sd-baseline-ve/CMakeFiles/sd-png-ve.dir/project/src/ve_sd_turbo_png.cpp.o": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_clip.cpp.o": "6f8b644cfcfc675005adeb1124a9e950eda4183212a8fc9ee67efb597c22dd1d",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_vae.cpp.o": "82485ec50eee9d301b9eb4c039b47be4161e8a3736d09adee643a09b7155c916",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_unet.cpp.o": "c1b8d0521f7ab23418a6e04554ad9e91b122dd562d75fe520a0096efa6ac530f",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/util.cpp.o": "7773ba9b1901a0e761b23cbb0642cf2cbf8073bc6cb332c638d4fea62488f0f7",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/model.cpp.o": "b4286658fca4ac59f36d9d874f078be689adbd08b1710c4b03447af4168fbb2e",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/sd_clip_vocab.c.o": "850c2ed4fcd9f4f6ded54ba57988dc22fc604b8975e1d94a7abc1a304287e9ce",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_pack.cpp.o": "5f41861f61893505b94d233b53e000c476c6809cb83f92aca6f7d89fc648acd7",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_bits.cpp.o": "30d05ca5643a5103eaa4e4ccb7073bfcb88f675ed3fbe4cfa385900102286b96",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels.cpp.o": "b410fc7c9234724675cec8fdf59d99ee4448473572a891c4479fa8fe82c4f323"
+      },
+      "probe_artifact_sha256": {
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.sh": "a4920ebeecf186122183bdf6d37b4a03ef098d8a111a86f55e86a2946376e651",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/results/20261010T003711Z-im2col-current4/manifest.json": "ce33ac84c313d6155c674a18a63fac4445dc903a51e52130bb9cdb1492376523",
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.c": "667f11721fe12e67dabde102d9d4a196d312bf5f4fc540b6c2885b9cab0dd14b",
+        "build/results/20261010T003711Z-im2col-current4/check": "0e3d362fb7c87e7c28b7e3ae36cb8eece820701de6173c5d1b801b6c418377c1"
+      },
+      "probe_log_sha256": "f1485d62cee06ddda7cfcb41712e3689b7b0e2fcc12d26ab5a8999ac60dcd46a",
+      "probe_checked_elements": 2717908992,
+      "probe_temperature": {
+        "peaks_c": {
+          "cpu": 66.0,
+          "ve0": 52.0,
+          "ve1": 45.88,
+          "ve2": 48.25
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "probe_fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "verifier_sha256": "ad438c93ed5e2970af704ac3278b08dcf9c427d306da4e5c80c750ba5c870e6a"
+    }
+  },
+  "actual_png_compiler": {
+    "scope": "historical compiler and independent mathematics proof, retained via exact current dispatch-only source and object audit",
+    "historical_proof_sha256": "46acd9013e72f8592b58930cb3cf38986b15305d462932085c7e9c078ee652bc",
+    "historical_evidence": {
+      "effective_png_optimization": "-O2",
+      "png_flags": "-O2 -std=c++17 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=c++11 -O2 -fno-fast-math -fno-associative-math -fdiag-vector=2",
+      "png_object_sha256": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+      "png_flags_make_sha256": "223e9008d3f9047f57583be530789e43c316ea6747a94bb0474a25f8a3967ec8",
+      "png_build_make_sha256": "79eb24aa663d1dc69a82d4c68d1c0bae90f1aaa95f8a542df404fa706f5b87ac",
+      "main_flags": "-O2 -std=c++17 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=c++11 -O0 -fno-inline",
+      "main_optimization": "-O0",
+      "main_flags_make_sha256": "929e7458ea809429f541462adc1de1139e9d18e9775aa2571481c6a23e570547"
+    },
+    "current_build_delta": {
+      "scope": "exact four-or-eight thread dispatch gate; mathematical objects unchanged; complete model validation still required",
+      "before_index_sha256": "f383bca98384f3f3b4cc48bcdb36d966a98868338fd539d725b86e38dd47d05b",
+      "manifest_sha256": "304ddf79828373d30a1d434db9635c069432f59242c3981e14db5b6fd0bfa460",
+      "binary_sha256": "a3537680ccda0b372f0cedc289811b839820504263a32c8749a34dbd86525303",
+      "checker_sha256": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+      "changed_manifest_inputs": [
+        "build/sd-baseline-overlay/sd-ggml-cpu.c",
+        "build/sd-baseline-ve/bin/sd",
+        "scripts/prepare_sd_baseline_overlay.py",
+        "scripts/record_sd_baseline_build.py"
+      ],
+      "changed_objects": [
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o"
+      ],
+      "unchanged_object_count": 42,
+      "object_sha256": {
+        "build/sd-baseline-ve/libsd-pixels-ve.a": "fdb823dd208483d3d6e3d058d2976fc0d3c7c4013027d8e86a043a2f1ceaa865",
+        "build/sd-baseline-ve/libsd-png-ve.a": "8ca5701db97d624c1d6eab1ff0a1f5f593b5733a63004922424a3d30955d890c",
+        "build/sd-baseline-ve/libstable-diffusion.a": "d2be0bbe4a6a0182f8ac3cfffba0563b071398c1cd7f966aa9e0214f1ead7edd",
+        "build/sd-baseline-ve/thirdparty/CMakeFiles/zip.dir/zip.c.o": "5e8a7e70e67581bc98f3d7d6fe41edb74a919ee28fbeef42948757b253ae0731",
+        "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+        "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/libggml-blas.a": "14d67f650ce760045389796eaf3b062972ead1584dc3eeb2bf88a029ea5dd752",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/ggml-blas.cpp.o": "35786e5d475b8d52598822f73863c2ad9a37d701b5cc882536176bdc406ca9d2",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/project/build/sd-baseline-overlay/sd-ggml-blas.cpp.o": "862ebe83627c0e9a1205601d44c1a243dddb5b39c57e5b90e54a73aa2ba344e5",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "ea92ef1336fb1ea92090b5d49a7eb1b6664349d7fd51bcd7d6e19bc32aea54c0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-aarch64.c.o": "a218040de95b2fadfa359102364785cbb7e2e22ca6f4b297204c496c2ac8f4a0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu.cpp.o": "d034c9e5dc72fdba7fff9e7e807e1756c12e7a096832f7f8303bebb67a30d757",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-quants.c.o": "dda5957046621f99b783f3c22b6a3e260b1859d04b8acf62165824609d469862",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_binary.c.o": "a02c9bed9943e026df9236052074447054b3e7e2d8a6c0e301c72cb641d37489",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax.c.o": "01fcc7fa258160bb9fb303fe62c7975994d878f81dc865fed216f01f8c4d2c82",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_gelu.c.o": "dd3f23b1e1d83a421d2ea3c1bb83c0a4ca86f5270036d1f4deffa823a4d5db38",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_sum.c.o": "1950fc878b797109d0e3e681d71087bb08ceffe63c97791a5c2bbf2ff71d1a64",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_cont_transpose.c.o": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_group_norm.c.o": "bbee1a302d8f18a22d98176ab8a93f911dd6e8fbc117b480ea224384b8919397",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_scale.c.o": "4f176ef34a0f06e89b85f1ce5c36f8cf55e5e9f0b370c2b6b6ecd175c729e35f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_silu.c.o": "64ecc0521a43056a9c0f81aa5c8c3bf23a56e12160f3b8e1bfbbfc7828123b6f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o": "6a5ffbaf02529fa7a5ebf89836d8ee7da8f8d196b3c27de930da4723a056b964",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o": "b89eb9770b53df36203b334725ecd9d5f3fa11ff8a3250307363da39bb5544ae",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o": "8495ffd7c2cec000e5299b97fa11623f04bafab4140b514cea50736fc143745c",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o": "eb2cc1d040837e06b972530c3217c540293fe1f8ccc2790234e7364b0e1ccaea",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o": "8b2fd06b35a0026117e8c80fc3ef3a4624c3f77ef4d9666b1a16ee09efa77396",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o": "3508bb90f55ed93c2fafcd8a933c9f101cbdd8cc895f14fd16c5c90d7221e4c0",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o": "b98a8984f1746ed860c105d6d220f11038bb0478e08f2349dc3c38d2fd38a627",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-aarch64.c.o": "030b40a5996521cc2c348affe9d33432efd434cbe4e7e7832a4eeb38c859d9a9",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o": "5c575127d8cf536c37321294dabbf83af991838d00a94cd3c07e097da7065ff1",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/project/build/sd-baseline-overlay/sd-ggml-backend.cpp.o": "dfff1030431cb9104df8703ddafecf52fc3f2d67f6310d78240701c725ec5741",
+        "build/sd-baseline-ve/examples/cli/CMakeFiles/sd.dir/project/src/ve_sd_turbo_main.cpp.o": "1504c5f2d07224b875b03106c2b87e20d0c1417dca6720788b9004e342843522",
+        "build/sd-baseline-ve/CMakeFiles/sd-png-ve.dir/project/src/ve_sd_turbo_png.cpp.o": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_clip.cpp.o": "6f8b644cfcfc675005adeb1124a9e950eda4183212a8fc9ee67efb597c22dd1d",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_vae.cpp.o": "82485ec50eee9d301b9eb4c039b47be4161e8a3736d09adee643a09b7155c916",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_unet.cpp.o": "c1b8d0521f7ab23418a6e04554ad9e91b122dd562d75fe520a0096efa6ac530f",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/util.cpp.o": "7773ba9b1901a0e761b23cbb0642cf2cbf8073bc6cb332c638d4fea62488f0f7",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/model.cpp.o": "b4286658fca4ac59f36d9d874f078be689adbd08b1710c4b03447af4168fbb2e",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/sd_clip_vocab.c.o": "850c2ed4fcd9f4f6ded54ba57988dc22fc604b8975e1d94a7abc1a304287e9ce",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_pack.cpp.o": "5f41861f61893505b94d233b53e000c476c6809cb83f92aca6f7d89fc648acd7",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_bits.cpp.o": "30d05ca5643a5103eaa4e4ccb7073bfcb88f675ed3fbe4cfa385900102286b96",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels.cpp.o": "b410fc7c9234724675cec8fdf59d99ee4448473572a891c4479fa8fe82c4f323"
+      },
+      "probe_artifact_sha256": {
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.sh": "a4920ebeecf186122183bdf6d37b4a03ef098d8a111a86f55e86a2946376e651",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/results/20261010T003711Z-im2col-current4/manifest.json": "ce33ac84c313d6155c674a18a63fac4445dc903a51e52130bb9cdb1492376523",
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.c": "667f11721fe12e67dabde102d9d4a196d312bf5f4fc540b6c2885b9cab0dd14b",
+        "build/results/20261010T003711Z-im2col-current4/check": "0e3d362fb7c87e7c28b7e3ae36cb8eece820701de6173c5d1b801b6c418377c1"
+      },
+      "probe_log_sha256": "f1485d62cee06ddda7cfcb41712e3689b7b0e2fcc12d26ab5a8999ac60dcd46a",
+      "probe_checked_elements": 2717908992,
+      "probe_temperature": {
+        "peaks_c": {
+          "cpu": 66.0,
+          "ve0": 52.0,
+          "ve1": 45.88,
+          "ve2": 48.25
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "probe_fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "verifier_sha256": "ad438c93ed5e2970af704ac3278b08dcf9c427d306da4e5c80c750ba5c870e6a"
+    }
+  },
+  "actual_softmax_scale_compiler": {
+    "scope": "historical compiler and independent mathematics proof, retained via exact current dispatch-only source and object audit",
+    "historical_proof_sha256": "46acd9013e72f8592b58930cb3cf38986b15305d462932085c7e9c078ee652bc",
+    "historical_evidence": {
+      "object_sha256": "4f176ef34a0f06e89b85f1ce5c36f8cf55e5e9f0b370c2b6b6ecd175c729e35f",
+      "source_sha256": "5096049b1f5665358be331728a97bc3d110d06bcf60e2c5b1b32847bb73f297d",
+      "independent_proof_sha256": "e64d82e5d0730d38e7e73dd49bbb9180132f3f955150888856d59a703f302830",
+      "flags_make_sha256": "9449e1d15286a802ecb00fbed9c482330a69520860a302d262c8b77b625c60d7",
+      "build_make_sha256": "7932fa1577a828306162ae703a491bca42b4dfd3e27e4920c4ae8a3827a3432c",
+      "symbols": {
+        "sd_ve_softmax_scale_f32": 200,
+        "sd_ve_softmax_copy_scale_f32": 232
+      },
+      "actual_object_equal_tested": true
+    },
+    "current_build_delta": {
+      "scope": "exact four-or-eight thread dispatch gate; mathematical objects unchanged; complete model validation still required",
+      "before_index_sha256": "f383bca98384f3f3b4cc48bcdb36d966a98868338fd539d725b86e38dd47d05b",
+      "manifest_sha256": "304ddf79828373d30a1d434db9635c069432f59242c3981e14db5b6fd0bfa460",
+      "binary_sha256": "a3537680ccda0b372f0cedc289811b839820504263a32c8749a34dbd86525303",
+      "checker_sha256": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+      "changed_manifest_inputs": [
+        "build/sd-baseline-overlay/sd-ggml-cpu.c",
+        "build/sd-baseline-ve/bin/sd",
+        "scripts/prepare_sd_baseline_overlay.py",
+        "scripts/record_sd_baseline_build.py"
+      ],
+      "changed_objects": [
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o"
+      ],
+      "unchanged_object_count": 42,
+      "object_sha256": {
+        "build/sd-baseline-ve/libsd-pixels-ve.a": "fdb823dd208483d3d6e3d058d2976fc0d3c7c4013027d8e86a043a2f1ceaa865",
+        "build/sd-baseline-ve/libsd-png-ve.a": "8ca5701db97d624c1d6eab1ff0a1f5f593b5733a63004922424a3d30955d890c",
+        "build/sd-baseline-ve/libstable-diffusion.a": "d2be0bbe4a6a0182f8ac3cfffba0563b071398c1cd7f966aa9e0214f1ead7edd",
+        "build/sd-baseline-ve/thirdparty/CMakeFiles/zip.dir/zip.c.o": "5e8a7e70e67581bc98f3d7d6fe41edb74a919ee28fbeef42948757b253ae0731",
+        "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+        "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/libggml-blas.a": "14d67f650ce760045389796eaf3b062972ead1584dc3eeb2bf88a029ea5dd752",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/ggml-blas.cpp.o": "35786e5d475b8d52598822f73863c2ad9a37d701b5cc882536176bdc406ca9d2",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/project/build/sd-baseline-overlay/sd-ggml-blas.cpp.o": "862ebe83627c0e9a1205601d44c1a243dddb5b39c57e5b90e54a73aa2ba344e5",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "ea92ef1336fb1ea92090b5d49a7eb1b6664349d7fd51bcd7d6e19bc32aea54c0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-aarch64.c.o": "a218040de95b2fadfa359102364785cbb7e2e22ca6f4b297204c496c2ac8f4a0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu.cpp.o": "d034c9e5dc72fdba7fff9e7e807e1756c12e7a096832f7f8303bebb67a30d757",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-quants.c.o": "dda5957046621f99b783f3c22b6a3e260b1859d04b8acf62165824609d469862",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_binary.c.o": "a02c9bed9943e026df9236052074447054b3e7e2d8a6c0e301c72cb641d37489",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax.c.o": "01fcc7fa258160bb9fb303fe62c7975994d878f81dc865fed216f01f8c4d2c82",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_gelu.c.o": "dd3f23b1e1d83a421d2ea3c1bb83c0a4ca86f5270036d1f4deffa823a4d5db38",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_sum.c.o": "1950fc878b797109d0e3e681d71087bb08ceffe63c97791a5c2bbf2ff71d1a64",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_cont_transpose.c.o": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_group_norm.c.o": "bbee1a302d8f18a22d98176ab8a93f911dd6e8fbc117b480ea224384b8919397",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_scale.c.o": "4f176ef34a0f06e89b85f1ce5c36f8cf55e5e9f0b370c2b6b6ecd175c729e35f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_silu.c.o": "64ecc0521a43056a9c0f81aa5c8c3bf23a56e12160f3b8e1bfbbfc7828123b6f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o": "6a5ffbaf02529fa7a5ebf89836d8ee7da8f8d196b3c27de930da4723a056b964",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o": "b89eb9770b53df36203b334725ecd9d5f3fa11ff8a3250307363da39bb5544ae",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o": "8495ffd7c2cec000e5299b97fa11623f04bafab4140b514cea50736fc143745c",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o": "eb2cc1d040837e06b972530c3217c540293fe1f8ccc2790234e7364b0e1ccaea",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o": "8b2fd06b35a0026117e8c80fc3ef3a4624c3f77ef4d9666b1a16ee09efa77396",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o": "3508bb90f55ed93c2fafcd8a933c9f101cbdd8cc895f14fd16c5c90d7221e4c0",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o": "b98a8984f1746ed860c105d6d220f11038bb0478e08f2349dc3c38d2fd38a627",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-aarch64.c.o": "030b40a5996521cc2c348affe9d33432efd434cbe4e7e7832a4eeb38c859d9a9",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o": "5c575127d8cf536c37321294dabbf83af991838d00a94cd3c07e097da7065ff1",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/project/build/sd-baseline-overlay/sd-ggml-backend.cpp.o": "dfff1030431cb9104df8703ddafecf52fc3f2d67f6310d78240701c725ec5741",
+        "build/sd-baseline-ve/examples/cli/CMakeFiles/sd.dir/project/src/ve_sd_turbo_main.cpp.o": "1504c5f2d07224b875b03106c2b87e20d0c1417dca6720788b9004e342843522",
+        "build/sd-baseline-ve/CMakeFiles/sd-png-ve.dir/project/src/ve_sd_turbo_png.cpp.o": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_clip.cpp.o": "6f8b644cfcfc675005adeb1124a9e950eda4183212a8fc9ee67efb597c22dd1d",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_vae.cpp.o": "82485ec50eee9d301b9eb4c039b47be4161e8a3736d09adee643a09b7155c916",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_unet.cpp.o": "c1b8d0521f7ab23418a6e04554ad9e91b122dd562d75fe520a0096efa6ac530f",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/util.cpp.o": "7773ba9b1901a0e761b23cbb0642cf2cbf8073bc6cb332c638d4fea62488f0f7",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/model.cpp.o": "b4286658fca4ac59f36d9d874f078be689adbd08b1710c4b03447af4168fbb2e",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/sd_clip_vocab.c.o": "850c2ed4fcd9f4f6ded54ba57988dc22fc604b8975e1d94a7abc1a304287e9ce",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_pack.cpp.o": "5f41861f61893505b94d233b53e000c476c6809cb83f92aca6f7d89fc648acd7",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_bits.cpp.o": "30d05ca5643a5103eaa4e4ccb7073bfcb88f675ed3fbe4cfa385900102286b96",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels.cpp.o": "b410fc7c9234724675cec8fdf59d99ee4448473572a891c4479fa8fe82c4f323"
+      },
+      "probe_artifact_sha256": {
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.sh": "a4920ebeecf186122183bdf6d37b4a03ef098d8a111a86f55e86a2946376e651",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/results/20261010T003711Z-im2col-current4/manifest.json": "ce33ac84c313d6155c674a18a63fac4445dc903a51e52130bb9cdb1492376523",
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.c": "667f11721fe12e67dabde102d9d4a196d312bf5f4fc540b6c2885b9cab0dd14b",
+        "build/results/20261010T003711Z-im2col-current4/check": "0e3d362fb7c87e7c28b7e3ae36cb8eece820701de6173c5d1b801b6c418377c1"
+      },
+      "probe_log_sha256": "f1485d62cee06ddda7cfcb41712e3689b7b0e2fcc12d26ab5a8999ac60dcd46a",
+      "probe_checked_elements": 2717908992,
+      "probe_temperature": {
+        "peaks_c": {
+          "cpu": 66.0,
+          "ve0": 52.0,
+          "ve1": 45.88,
+          "ve2": 48.25
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "probe_fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "verifier_sha256": "ad438c93ed5e2970af704ac3278b08dcf9c427d306da4e5c80c750ba5c870e6a"
+    }
+  },
+  "actual_group_norm_compiler": {
+    "scope": "historical compiler and independent mathematics proof, retained via exact current dispatch-only source and object audit",
+    "historical_proof_sha256": "46acd9013e72f8592b58930cb3cf38986b15305d462932085c7e9c078ee652bc",
+    "historical_evidence": {
+      "object_sha256": "bbee1a302d8f18a22d98176ab8a93f911dd6e8fbc117b480ea224384b8919397",
+      "source_sha256": "b0025b759ad8874e383ab8206233a1b19f8569ead603de63a7a8cda580fc6962",
+      "independent_proof_sha256": "ab83f1b753fa030ef2ad00ce0978ee1d23eb430865cf0ee1eeb9c0db13ecff5e",
+      "flags_make_sha256": "9449e1d15286a802ecb00fbed9c482330a69520860a302d262c8b77b625c60d7",
+      "build_make_sha256": "7932fa1577a828306162ae703a491bca42b4dfd3e27e4920c4ae8a3827a3432c",
+      "linked_function_size": 280,
+      "actual_object_equal_tested": true,
+      "actual_vectorization_report_verified": true,
+      "model_source_only_intended_delta": true,
+      "build_log_sha256": "bdf1e2f5ae0b67f89f9392e7162c5fa7cd99c150fef18a3c3ea4a6f1977cec4f"
+    },
+    "current_build_delta": {
+      "scope": "exact four-or-eight thread dispatch gate; mathematical objects unchanged; complete model validation still required",
+      "before_index_sha256": "f383bca98384f3f3b4cc48bcdb36d966a98868338fd539d725b86e38dd47d05b",
+      "manifest_sha256": "304ddf79828373d30a1d434db9635c069432f59242c3981e14db5b6fd0bfa460",
+      "binary_sha256": "a3537680ccda0b372f0cedc289811b839820504263a32c8749a34dbd86525303",
+      "checker_sha256": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+      "changed_manifest_inputs": [
+        "build/sd-baseline-overlay/sd-ggml-cpu.c",
+        "build/sd-baseline-ve/bin/sd",
+        "scripts/prepare_sd_baseline_overlay.py",
+        "scripts/record_sd_baseline_build.py"
+      ],
+      "changed_objects": [
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o"
+      ],
+      "unchanged_object_count": 42,
+      "object_sha256": {
+        "build/sd-baseline-ve/libsd-pixels-ve.a": "fdb823dd208483d3d6e3d058d2976fc0d3c7c4013027d8e86a043a2f1ceaa865",
+        "build/sd-baseline-ve/libsd-png-ve.a": "8ca5701db97d624c1d6eab1ff0a1f5f593b5733a63004922424a3d30955d890c",
+        "build/sd-baseline-ve/libstable-diffusion.a": "d2be0bbe4a6a0182f8ac3cfffba0563b071398c1cd7f966aa9e0214f1ead7edd",
+        "build/sd-baseline-ve/thirdparty/CMakeFiles/zip.dir/zip.c.o": "5e8a7e70e67581bc98f3d7d6fe41edb74a919ee28fbeef42948757b253ae0731",
+        "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+        "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/libggml-blas.a": "14d67f650ce760045389796eaf3b062972ead1584dc3eeb2bf88a029ea5dd752",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/ggml-blas.cpp.o": "35786e5d475b8d52598822f73863c2ad9a37d701b5cc882536176bdc406ca9d2",
+        "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/project/build/sd-baseline-overlay/sd-ggml-blas.cpp.o": "862ebe83627c0e9a1205601d44c1a243dddb5b39c57e5b90e54a73aa2ba344e5",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "ea92ef1336fb1ea92090b5d49a7eb1b6664349d7fd51bcd7d6e19bc32aea54c0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-aarch64.c.o": "a218040de95b2fadfa359102364785cbb7e2e22ca6f4b297204c496c2ac8f4a0",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu.cpp.o": "d034c9e5dc72fdba7fff9e7e807e1756c12e7a096832f7f8303bebb67a30d757",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-quants.c.o": "dda5957046621f99b783f3c22b6a3e260b1859d04b8acf62165824609d469862",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_binary.c.o": "a02c9bed9943e026df9236052074447054b3e7e2d8a6c0e301c72cb641d37489",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax.c.o": "01fcc7fa258160bb9fb303fe62c7975994d878f81dc865fed216f01f8c4d2c82",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_gelu.c.o": "dd3f23b1e1d83a421d2ea3c1bb83c0a4ca86f5270036d1f4deffa823a4d5db38",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_sum.c.o": "1950fc878b797109d0e3e681d71087bb08ceffe63c97791a5c2bbf2ff71d1a64",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_cont_transpose.c.o": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_group_norm.c.o": "bbee1a302d8f18a22d98176ab8a93f911dd6e8fbc117b480ea224384b8919397",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_scale.c.o": "4f176ef34a0f06e89b85f1ce5c36f8cf55e5e9f0b370c2b6b6ecd175c729e35f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_silu.c.o": "64ecc0521a43056a9c0f81aa5c8c3bf23a56e12160f3b8e1bfbbfc7828123b6f",
+        "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o": "6a5ffbaf02529fa7a5ebf89836d8ee7da8f8d196b3c27de930da4723a056b964",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o": "b89eb9770b53df36203b334725ecd9d5f3fa11ff8a3250307363da39bb5544ae",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o": "8495ffd7c2cec000e5299b97fa11623f04bafab4140b514cea50736fc143745c",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o": "eb2cc1d040837e06b972530c3217c540293fe1f8ccc2790234e7364b0e1ccaea",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o": "8b2fd06b35a0026117e8c80fc3ef3a4624c3f77ef4d9666b1a16ee09efa77396",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o": "3508bb90f55ed93c2fafcd8a933c9f101cbdd8cc895f14fd16c5c90d7221e4c0",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o": "b98a8984f1746ed860c105d6d220f11038bb0478e08f2349dc3c38d2fd38a627",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-aarch64.c.o": "030b40a5996521cc2c348affe9d33432efd434cbe4e7e7832a4eeb38c859d9a9",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o": "5c575127d8cf536c37321294dabbf83af991838d00a94cd3c07e097da7065ff1",
+        "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/project/build/sd-baseline-overlay/sd-ggml-backend.cpp.o": "dfff1030431cb9104df8703ddafecf52fc3f2d67f6310d78240701c725ec5741",
+        "build/sd-baseline-ve/examples/cli/CMakeFiles/sd.dir/project/src/ve_sd_turbo_main.cpp.o": "1504c5f2d07224b875b03106c2b87e20d0c1417dca6720788b9004e342843522",
+        "build/sd-baseline-ve/CMakeFiles/sd-png-ve.dir/project/src/ve_sd_turbo_png.cpp.o": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_clip.cpp.o": "6f8b644cfcfc675005adeb1124a9e950eda4183212a8fc9ee67efb597c22dd1d",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_vae.cpp.o": "82485ec50eee9d301b9eb4c039b47be4161e8a3736d09adee643a09b7155c916",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_unet.cpp.o": "c1b8d0521f7ab23418a6e04554ad9e91b122dd562d75fe520a0096efa6ac530f",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/util.cpp.o": "7773ba9b1901a0e761b23cbb0642cf2cbf8073bc6cb332c638d4fea62488f0f7",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/model.cpp.o": "b4286658fca4ac59f36d9d874f078be689adbd08b1710c4b03447af4168fbb2e",
+        "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/sd_clip_vocab.c.o": "850c2ed4fcd9f4f6ded54ba57988dc22fc604b8975e1d94a7abc1a304287e9ce",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_pack.cpp.o": "5f41861f61893505b94d233b53e000c476c6809cb83f92aca6f7d89fc648acd7",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_bits.cpp.o": "30d05ca5643a5103eaa4e4ccb7073bfcb88f675ed3fbe4cfa385900102286b96",
+        "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels.cpp.o": "b410fc7c9234724675cec8fdf59d99ee4448473572a891c4479fa8fe82c4f323"
+      },
+      "probe_artifact_sha256": {
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.sh": "a4920ebeecf186122183bdf6d37b4a03ef098d8a111a86f55e86a2946376e651",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+        "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+        "build/results/20261010T003711Z-im2col-current4/manifest.json": "ce33ac84c313d6155c674a18a63fac4445dc903a51e52130bb9cdb1492376523",
+        "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.c": "667f11721fe12e67dabde102d9d4a196d312bf5f4fc540b6c2885b9cab0dd14b",
+        "build/results/20261010T003711Z-im2col-current4/check": "0e3d362fb7c87e7c28b7e3ae36cb8eece820701de6173c5d1b801b6c418377c1"
+      },
+      "probe_log_sha256": "f1485d62cee06ddda7cfcb41712e3689b7b0e2fcc12d26ab5a8999ac60dcd46a",
+      "probe_checked_elements": 2717908992,
+      "probe_temperature": {
+        "peaks_c": {
+          "cpu": 66.0,
+          "ve0": 52.0,
+          "ve1": 45.88,
+          "ve2": 48.25
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "probe_fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "verifier_sha256": "ad438c93ed5e2970af704ac3278b08dcf9c427d306da4e5c80c750ba5c870e6a"
+    }
+  },
+  "completed_tests": [
+    "double",
+    "six",
+    "four"
+  ],
+  "all_candidate_tests_completed": true,
+  "independent_cpu_checks": 62,
+  "cpu_recomputed_checks": 62,
+  "cpu_recomputed_png_checks": 10,
+  "full_graph_speedup_measured": false,
+  "publisher_sha256": "11c3ca2a2cccfc2b667a9dbf54bc25fa7c9b1c95b83c2acc83662b884992877e",
+  "audit_dependency_sha256": {
+    "scripts/record_sd_gemm_untiled_model.py": "e9d1e5b204ade2ba5cdd504ae6a13d3c24f9cf61be8d2452d66c361a3f8d4ddd",
+    "scripts/record_sd_group_norm_model.py": "13cdfa687bc0236556f675616fd7be241718c8ff86087df73a5501b848cf0284",
+    "scripts/record_sd_pixels_pack_model.py": "39fed96d72cc160c5a0d61c9b7a1cd4d2297fe2a114215fc9145c2f08e6c6de3",
+    "scripts/record_sd_pixels_pack_abba.py": "9f584710111235bc6d3a23f96a4f4c6af0c5685f98911ef09ec86d9c527914c2",
+    "scripts/record_sd_gelu_result.py": "efdbc4a91454f154f42c0af6d8307e565e58109ed2b4a9a99f7f9c14871ce351",
+    "scripts/record_sd_im2col_rows_abba.py": "5e193b0d4301ee7f4d16621b216c14da0258f7124f1f7c9f6693c442b502d903",
+    "scripts/record_sd_png_model.py": "ea4ae3b1f2e1949152cd2abb78f4c10ad7316ef803fa213e58c16511bcce7d6d",
+    "scripts/record_qwen36_mtp.py": "951872f035a99a8394dfeef852b97dcc08a5120951356c8a67ea7e1e0c43e47b",
+    "scripts/record_sd_im2col_result.py": "b71ba007623644aaf4ae2fb667996c990aa133834429d2cc3a26c54b164363c6",
+    "scripts/prepare_sd_group_norm_model.py": "2729d118de0e528f3af822fea11cc73f769ae31bab425cd338c56fb4a2c84a62",
+    "scripts/prepare_sd_gemm_spatial_small_model.py": "1fc86957805802c60a982720954448468514f5820cdb77ebbd530ca8978424d6",
+    "scripts/prepare_sd_gemm_untiled_model.py": "8882f99e4e53d966c5183b9620e61ec240074262c9084f2ae7b7637b26352cc4",
+    "scripts/benchmark_sd_runtime.py": "8a69d1198691a23381c61ff0640da2d94a069fa4928c4431520d51be8f1850ed",
+    "scripts/record_sd_current_vae_build.py": "ad438c93ed5e2970af704ac3278b08dcf9c427d306da4e5c80c750ba5c870e6a",
+    "scripts/prepare_sd_current_vae_gate.py": "c9438de2260eef5e4c7ae12a24a630af0dc66135768bb5ffd592a22568643781"
+  },
+  "model_code_unchanged": false,
+  "mathematical_kernel_objects_unchanged": true,
+  "actual_thread_dispatch_compiler": {
+    "scope": "exact four-or-eight thread dispatch gate; mathematical objects unchanged; complete model validation still required",
+    "before_index_sha256": "f383bca98384f3f3b4cc48bcdb36d966a98868338fd539d725b86e38dd47d05b",
+    "manifest_sha256": "304ddf79828373d30a1d434db9635c069432f59242c3981e14db5b6fd0bfa460",
+    "binary_sha256": "a3537680ccda0b372f0cedc289811b839820504263a32c8749a34dbd86525303",
+    "checker_sha256": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+    "changed_manifest_inputs": [
+      "build/sd-baseline-overlay/sd-ggml-cpu.c",
+      "build/sd-baseline-ve/bin/sd",
+      "scripts/prepare_sd_baseline_overlay.py",
+      "scripts/record_sd_baseline_build.py"
+    ],
+    "changed_objects": [
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o"
+    ],
+    "unchanged_object_count": 42,
+    "object_sha256": {
+      "build/sd-baseline-ve/libsd-pixels-ve.a": "fdb823dd208483d3d6e3d058d2976fc0d3c7c4013027d8e86a043a2f1ceaa865",
+      "build/sd-baseline-ve/libsd-png-ve.a": "8ca5701db97d624c1d6eab1ff0a1f5f593b5733a63004922424a3d30955d890c",
+      "build/sd-baseline-ve/libstable-diffusion.a": "d2be0bbe4a6a0182f8ac3cfffba0563b071398c1cd7f966aa9e0214f1ead7edd",
+      "build/sd-baseline-ve/thirdparty/CMakeFiles/zip.dir/zip.c.o": "5e8a7e70e67581bc98f3d7d6fe41edb74a919ee28fbeef42948757b253ae0731",
+      "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+      "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a",
+      "build/sd-baseline-ve/ggml/src/ggml-blas/libggml-blas.a": "14d67f650ce760045389796eaf3b062972ead1584dc3eeb2bf88a029ea5dd752",
+      "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/ggml-blas.cpp.o": "35786e5d475b8d52598822f73863c2ad9a37d701b5cc882536176bdc406ca9d2",
+      "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/project/build/sd-baseline-overlay/sd-ggml-blas.cpp.o": "862ebe83627c0e9a1205601d44c1a243dddb5b39c57e5b90e54a73aa2ba344e5",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "ea92ef1336fb1ea92090b5d49a7eb1b6664349d7fd51bcd7d6e19bc32aea54c0",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-aarch64.c.o": "a218040de95b2fadfa359102364785cbb7e2e22ca6f4b297204c496c2ac8f4a0",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu.cpp.o": "d034c9e5dc72fdba7fff9e7e807e1756c12e7a096832f7f8303bebb67a30d757",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-quants.c.o": "dda5957046621f99b783f3c22b6a3e260b1859d04b8acf62165824609d469862",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_binary.c.o": "a02c9bed9943e026df9236052074447054b3e7e2d8a6c0e301c72cb641d37489",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax.c.o": "01fcc7fa258160bb9fb303fe62c7975994d878f81dc865fed216f01f8c4d2c82",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_gelu.c.o": "dd3f23b1e1d83a421d2ea3c1bb83c0a4ca86f5270036d1f4deffa823a4d5db38",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_sum.c.o": "1950fc878b797109d0e3e681d71087bb08ceffe63c97791a5c2bbf2ff71d1a64",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_cont_transpose.c.o": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_group_norm.c.o": "bbee1a302d8f18a22d98176ab8a93f911dd6e8fbc117b480ea224384b8919397",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_scale.c.o": "4f176ef34a0f06e89b85f1ce5c36f8cf55e5e9f0b370c2b6b6ecd175c729e35f",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_silu.c.o": "64ecc0521a43056a9c0f81aa5c8c3bf23a56e12160f3b8e1bfbbfc7828123b6f",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o": "6a5ffbaf02529fa7a5ebf89836d8ee7da8f8d196b3c27de930da4723a056b964",
+      "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o": "b89eb9770b53df36203b334725ecd9d5f3fa11ff8a3250307363da39bb5544ae",
+      "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o": "8495ffd7c2cec000e5299b97fa11623f04bafab4140b514cea50736fc143745c",
+      "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o": "eb2cc1d040837e06b972530c3217c540293fe1f8ccc2790234e7364b0e1ccaea",
+      "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o": "8b2fd06b35a0026117e8c80fc3ef3a4624c3f77ef4d9666b1a16ee09efa77396",
+      "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o": "3508bb90f55ed93c2fafcd8a933c9f101cbdd8cc895f14fd16c5c90d7221e4c0",
+      "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o": "b98a8984f1746ed860c105d6d220f11038bb0478e08f2349dc3c38d2fd38a627",
+      "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-aarch64.c.o": "030b40a5996521cc2c348affe9d33432efd434cbe4e7e7832a4eeb38c859d9a9",
+      "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o": "5c575127d8cf536c37321294dabbf83af991838d00a94cd3c07e097da7065ff1",
+      "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/project/build/sd-baseline-overlay/sd-ggml-backend.cpp.o": "dfff1030431cb9104df8703ddafecf52fc3f2d67f6310d78240701c725ec5741",
+      "build/sd-baseline-ve/examples/cli/CMakeFiles/sd.dir/project/src/ve_sd_turbo_main.cpp.o": "1504c5f2d07224b875b03106c2b87e20d0c1417dca6720788b9004e342843522",
+      "build/sd-baseline-ve/CMakeFiles/sd-png-ve.dir/project/src/ve_sd_turbo_png.cpp.o": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+      "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_clip.cpp.o": "6f8b644cfcfc675005adeb1124a9e950eda4183212a8fc9ee67efb597c22dd1d",
+      "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_vae.cpp.o": "82485ec50eee9d301b9eb4c039b47be4161e8a3736d09adee643a09b7155c916",
+      "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_unet.cpp.o": "c1b8d0521f7ab23418a6e04554ad9e91b122dd562d75fe520a0096efa6ac530f",
+      "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/util.cpp.o": "7773ba9b1901a0e761b23cbb0642cf2cbf8073bc6cb332c638d4fea62488f0f7",
+      "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/model.cpp.o": "b4286658fca4ac59f36d9d874f078be689adbd08b1710c4b03447af4168fbb2e",
+      "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/sd_clip_vocab.c.o": "850c2ed4fcd9f4f6ded54ba57988dc22fc604b8975e1d94a7abc1a304287e9ce",
+      "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_pack.cpp.o": "5f41861f61893505b94d233b53e000c476c6809cb83f92aca6f7d89fc648acd7",
+      "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_bits.cpp.o": "30d05ca5643a5103eaa4e4ccb7073bfcb88f675ed3fbe4cfa385900102286b96",
+      "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels.cpp.o": "b410fc7c9234724675cec8fdf59d99ee4448473572a891c4479fa8fe82c4f323"
+    },
+    "probe_artifact_sha256": {
+      "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.sh": "a4920ebeecf186122183bdf6d37b4a03ef098d8a111a86f55e86a2946376e651",
+      "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+      "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+      "build/results/20261010T003711Z-im2col-current4/manifest.json": "ce33ac84c313d6155c674a18a63fac4445dc903a51e52130bb9cdb1492376523",
+      "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.c": "667f11721fe12e67dabde102d9d4a196d312bf5f4fc540b6c2885b9cab0dd14b",
+      "build/results/20261010T003711Z-im2col-current4/check": "0e3d362fb7c87e7c28b7e3ae36cb8eece820701de6173c5d1b801b6c418377c1"
+    },
+    "probe_log_sha256": "f1485d62cee06ddda7cfcb41712e3689b7b0e2fcc12d26ab5a8999ac60dcd46a",
+    "probe_checked_elements": 2717908992,
+    "probe_temperature": {
+      "peaks_c": {
+        "cpu": 66.0,
+        "ve0": 52.0,
+        "ve1": 45.88,
+        "ve2": 48.25
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "probe_fan_detail": {
+      "sysfs_rpm_channels": 6,
+      "sysfs_rpm_channels_with_changes": 0,
+      "sysfs_rpm_aggregate_range": [
+        0.0,
+        0.0
+      ],
+      "all_observed_rpm_values_zero": true,
+      "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+    },
+    "verifier_sha256": "ad438c93ed5e2970af704ac3278b08dcf9c427d306da4e5c80c750ba5c870e6a"
+  },
+  "accepted_current_proof_sha256": "46acd9013e72f8592b58930cb3cf38986b15305d462932085c7e9c078ee652bc",
+  "configuration": {
+    "vae_spatial_tile": "mixed2048",
+    "generic_threads": 8,
+    "vae_generic_threads": 4,
+    "vae_blas_threads": 4,
+    "thread_strategy": "all4",
+    "im2col_mode": "rows_256",
+    "group_norm": "selective",
+    "softmax_scale": "selective",
+    "cont_kernel": "extended",
+    "pixel_kernel": "ve",
+    "rgb_buffer": "resident",
+    "png_encoder": "ve",
+    "gelu": "ve",
+    "binary_scalar": "ve",
+    "weights": "resident",
+    "tokenizer": "resident"
+  },
+  "scope": "current mixed2048 model with exact output-row dispatch gate extension to four or eight threads, VAE all-four-thread strategy; CLIP/UNet eight, VAE generic/BLAS four and idle remains four until next CLIP; 16 nodes/224 tiled calls; only backend orchestration object and archive rebuilt; 42 mathematical objects/archives unchanged; default unchanged; full graph incremental speedup unmeasured",
+  "previous_model_byte_comparison": {
+    "proof": "docs/results/20261009T235254Z-sd-turbo-gemm-untiled-model.json",
+    "proof_sha256": "78fa7fa9fccf5a47b31a0ac5d5e5df42191ab23742902b9a5ae08a91e7d0c3ae",
+    "requests": 10,
+    "all_trace_and_png_bytes_identical": true
+  },
+  "cpu_validation_temperature": {
+    "double": {
+      "peaks_c": {
+        "cpu": 73.0,
+        "ve0": 52.25,
+        "ve1": 45.25,
+        "ve2": 47.62
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "six": {
+      "peaks_c": {
+        "cpu": 74.0,
+        "ve0": 54.38,
+        "ve1": 45.12,
+        "ve2": 47.5
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "four": {
+      "peaks_c": {
+        "cpu": 73.0,
+        "ve0": 54.12,
+        "ve1": 45.0,
+        "ve2": 47.38
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    }
+  },
+  "cpu_validation_fan_detail": {
+    "double": {
+      "sysfs_rpm_channels": 6,
+      "sysfs_rpm_channels_with_changes": 0,
+      "sysfs_rpm_aggregate_range": [
+        0.0,
+        0.0
+      ],
+      "all_observed_rpm_values_zero": true,
+      "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+    },
+    "six": {
+      "sysfs_rpm_channels": 6,
+      "sysfs_rpm_channels_with_changes": 0,
+      "sysfs_rpm_aggregate_range": [
+        0.0,
+        0.0
+      ],
+      "all_observed_rpm_values_zero": true,
+      "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+    },
+    "four": {
+      "sysfs_rpm_channels": 6,
+      "sysfs_rpm_channels_with_changes": 0,
+      "sysfs_rpm_aggregate_range": [
+        0.0,
+        0.0
+      ],
+      "all_observed_rpm_values_zero": true,
+      "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+    }
+  },
+  "cpu_validation_artifact_sha256": {
+    "build/sd-current-vae-threads-double-audit.log": "5f13979ae934f978e59f04e8c2254074a9e3f31fab792c649fc7a34b2bfc147d",
+    "build/results/20261010T004601Z-temperature-5smatm0x.csv": "d01e585b2a5f5cdf36aa46f64318e366748134d01c22171a92504d6e4a451ebe",
+    "build/results/20261010T004601Z-temperature-5smatm0x-fans.csv": "40a59904c6b01090eb061f08578b4c060b36d341683372ed4eb0156934631e91",
+    "build/sd-current-vae-threads-six-audit.log": "06c5d6443af88e37ece73150253f7f46ef70eb12d2667852f7fab60a98c82863",
+    "build/results/20261010T004849Z-temperature-jt_ztl_1.csv": "90a05ffeb1f28f0e4eb58d9c8366c1f8b5856d0c32a8276952e22c2c2228b0e9",
+    "build/results/20261010T004849Z-temperature-jt_ztl_1-fans.csv": "2749d14b3ad0efdf32db2afaf682fa46e46e1427c5e1d8aaa3bb043534873dc9",
+    "build/sd-current-vae-threads-four-audit.log": "68f4c0ba244f4ca8692a84931ed162f3e5ce4e48ea15fc6c5439d3131fdd2959",
+    "build/results/20261010T005116Z-temperature-c__cz319.csv": "48aa196b5415ed55ef6272824c2169a065cd36374d1fc377d991175702481ac0",
+    "build/results/20261010T005116Z-temperature-c__cz319-fans.csv": "1306d4a5bbe5fd27b41711a188b479b74651296ee881348f10dc9cbf17ff123a"
+  },
+  "runtime_artifact_sha256": {
+    "build/current-vae-threads-precheck.log": "665de60a7495d4b1c39e3ee55c7d12cf46425431dc0e60829c5374038d0cea56",
+    "build/sd-baseline-ve/manifest.json": "304ddf79828373d30a1d434db9635c069432f59242c3981e14db5b6fd0bfa460",
+    "build/sd-baseline-ve/bin/sd": "a3537680ccda0b372f0cedc289811b839820504263a32c8749a34dbd86525303",
+    "scripts/validate_sd_current_vae_threads.sh": "9c6ba09787b9912306636b20dbc2911cc8172c70be99c40285c612ca89ab367e",
+    "scripts/run_sd_current_vae_after_cooling.sh": "6f1a573e2d26703d6281b53bfbdc333b16fe1d0b7d6d4816ff200dac4d62a193",
+    "scripts/record_sd_current_vae_threads.py": "11c3ca2a2cccfc2b667a9dbf54bc25fa7c9b1c95b83c2acc83662b884992877e",
+    "tests/check_sd_resident.py": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+    "docs/results/20261010T000834Z-sd-turbo-gemm-untiled-abba.json": "46acd9013e72f8592b58930cb3cf38986b15305d462932085c7e9c078ee652bc"
+  },
+  "failed_initial_prototype": {
+    "reason": "old eight-thread dispatch gate gave VAE rows=0/channels=40; checker rejected coverage; independent CPU audit not run",
+    "native_returncode": 0,
+    "checker_returncode": 1,
+    "request_seconds": [
+      83.99585,
+      9.889924
+    ],
+    "frozen_archive": "build/diagnostics/current-vae-first-stop-20261010T002648Z",
+    "index_sha256": "f022f4216944dcbec86a84fe9913e7eb36dca540dba9ffea0efea70586a2a49c",
+    "temperature": {
+      "peaks_c": {
+        "cpu": 74.0,
+        "ve0": 58.88,
+        "ve1": 46.62,
+        "ve2": 49.12
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    },
+    "fan_detail": {
+      "sysfs_rpm_channels": 6,
+      "sysfs_rpm_channels_with_changes": 0,
+      "sysfs_rpm_aggregate_range": [
+        0.0,
+        0.0
+      ],
+      "all_observed_rpm_values_zero": true,
+      "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+    }
+  },
+  "build_temperature": {
+    "peaks_c": {
+      "cpu": 73.0,
+      "ve0": 48.12,
+      "ve1": 45.62,
+      "ve2": 48.0
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "build_fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "build_and_file_audit_logs_sha256": {
+    "build/sd-current-vae-gate-build.log": "ea3818751a4cc4c832ec1b67346d206797a73fca38d141bc13a4fb99757d4e7e",
+    "build/sd-current-vae-build-audit.log": "ba0455ca440406c81c50b6f90aca8d6e6396d73ffe4d41979fb22fcc2b6e3a74",
+    "build/sd-current-vae-build-audit-retry.log": "e0d10fa9f6a1fb04e04f9a05dbb877bca38dbcf5a18999b6e63b43aa1824190a",
+    "build/sd-current-vae-build-final-audit.log": "3d6d1c93ea19e72ecb58d937f5ca98951328de6bed17151723c2cd045f3dbbdc"
+  },
+  "finalizer_sha256": "1cb3c4136c0e9edb46d2913833dc9b44659b50c13e0774047dfc169d11e1de5e",
+  "pre_run_cooling": {
+    "double": {
+      "ready": true,
+      "cpu_max_c": 68,
+      "ve_max_c": 56,
+      "stable_seconds": 10,
+      "timeout_seconds": 300,
+      "elapsed_seconds": 10.054553888738155,
+      "cpu_c": 64.0,
+      "ve_c": 47.875
+    },
+    "six": {
+      "ready": true,
+      "cpu_max_c": 68,
+      "ve_max_c": 56,
+      "stable_seconds": 10,
+      "timeout_seconds": 300,
+      "elapsed_seconds": 10.038529867306352,
+      "cpu_c": 65.0,
+      "ve_c": 51.125
+    },
+    "four": {
+      "ready": true,
+      "cpu_max_c": 68,
+      "ve_max_c": 56,
+      "stable_seconds": 10,
+      "timeout_seconds": 300,
+      "elapsed_seconds": 10.05577767919749,
+      "cpu_c": 65.0,
+      "ve_c": 52.625
+    }
+  },
+  "cooling_artifact_sha256": {
+    "build/current-vae-threads-double-cooling.json": "df55c5eb828122c8ca9dc9d48e53729a4cad013163c35c85b7a62e3d68b84d4a",
+    "build/sd-current-vae-threads-double.log": "fdea4e8bb7422cb1065d5ecce07c19cdc00775d44273488585a4bfe8848dd0e8",
+    "build/current-vae-threads-six-cooling.json": "80d80f76d80c598d25351fc1548e74ac137781052fcd5d97b1440d73bc448bd4",
+    "build/sd-current-vae-threads-six.log": "217e450d51a7c9b05b03db98f6e1106a14eaad5d23e166083b9e771faf7a464f",
+    "build/current-vae-threads-four-cooling.json": "848d3aa0fe6cd4833058cb83f3b67a1b260a36c7db3018e682d56ea1ba67b340",
+    "build/sd-current-vae-threads-four.log": "a3757b3ca0301e061da2373c3e126187681865117a21d73fb559aa5b2896375c",
+    "scripts/wait_thermal_ready.py": "85408cdcaf73a8e935ca1ff6c46b0ee21aef040995af88f0278e961311989d94",
+    "scripts/run_sd_current_vae_after_cooling.sh": "6f1a573e2d26703d6281b53bfbdc333b16fe1d0b7d6d4816ff200dac4d62a193",
+    "scripts/validate_sd_current_vae_threads.sh": "9c6ba09787b9912306636b20dbc2911cc8172c70be99c40285c612ca89ab367e",
+    "scripts/finalize_sd_current_vae_cooling.py": "54ac706877f209b90bbd46c53365ba261ff625d2186716c3b1cd5ae37e837364"
+  }
+}

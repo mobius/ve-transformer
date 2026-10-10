@@ -1,0 +1,99 @@
+{
+  "scope": "exact four-or-eight thread dispatch gate; mathematical objects unchanged; complete model validation still required",
+  "before_index_sha256": "f383bca98384f3f3b4cc48bcdb36d966a98868338fd539d725b86e38dd47d05b",
+  "manifest_sha256": "304ddf79828373d30a1d434db9635c069432f59242c3981e14db5b6fd0bfa460",
+  "binary_sha256": "a3537680ccda0b372f0cedc289811b839820504263a32c8749a34dbd86525303",
+  "checker_sha256": "4588cff99a6656b8b057ac084c5f6cc5d2c5255020ec56eb3d49aa1afaf2a082",
+  "changed_manifest_inputs": [
+    "build/sd-baseline-overlay/sd-ggml-cpu.c",
+    "build/sd-baseline-ve/bin/sd",
+    "scripts/prepare_sd_baseline_overlay.py",
+    "scripts/record_sd_baseline_build.py"
+  ],
+  "changed_objects": [
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o"
+  ],
+  "unchanged_object_count": 42,
+  "object_sha256": {
+    "build/sd-baseline-ve/libsd-pixels-ve.a": "fdb823dd208483d3d6e3d058d2976fc0d3c7c4013027d8e86a043a2f1ceaa865",
+    "build/sd-baseline-ve/libsd-png-ve.a": "8ca5701db97d624c1d6eab1ff0a1f5f593b5733a63004922424a3d30955d890c",
+    "build/sd-baseline-ve/libstable-diffusion.a": "d2be0bbe4a6a0182f8ac3cfffba0563b071398c1cd7f966aa9e0214f1ead7edd",
+    "build/sd-baseline-ve/thirdparty/CMakeFiles/zip.dir/zip.c.o": "5e8a7e70e67581bc98f3d7d6fe41edb74a919ee28fbeef42948757b253ae0731",
+    "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+    "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a",
+    "build/sd-baseline-ve/ggml/src/ggml-blas/libggml-blas.a": "14d67f650ce760045389796eaf3b062972ead1584dc3eeb2bf88a029ea5dd752",
+    "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/ggml-blas.cpp.o": "35786e5d475b8d52598822f73863c2ad9a37d701b5cc882536176bdc406ca9d2",
+    "build/sd-baseline-ve/ggml/src/ggml-blas/CMakeFiles/ggml-blas.dir/project/build/sd-baseline-overlay/sd-ggml-blas.cpp.o": "862ebe83627c0e9a1205601d44c1a243dddb5b39c57e5b90e54a73aa2ba344e5",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "ea92ef1336fb1ea92090b5d49a7eb1b6664349d7fd51bcd7d6e19bc32aea54c0",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-aarch64.c.o": "a218040de95b2fadfa359102364785cbb7e2e22ca6f4b297204c496c2ac8f4a0",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu.cpp.o": "d034c9e5dc72fdba7fff9e7e807e1756c12e7a096832f7f8303bebb67a30d757",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/ggml-cpu-quants.c.o": "dda5957046621f99b783f3c22b6a3e260b1859d04b8acf62165824609d469862",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_binary.c.o": "a02c9bed9943e026df9236052074447054b3e7e2d8a6c0e301c72cb641d37489",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax.c.o": "01fcc7fa258160bb9fb303fe62c7975994d878f81dc865fed216f01f8c4d2c82",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_gelu.c.o": "dd3f23b1e1d83a421d2ea3c1bb83c0a4ca86f5270036d1f4deffa823a4d5db38",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_sum.c.o": "1950fc878b797109d0e3e681d71087bb08ceffe63c97791a5c2bbf2ff71d1a64",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_cont_transpose.c.o": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_group_norm.c.o": "bbee1a302d8f18a22d98176ab8a93f911dd6e8fbc117b480ea224384b8919397",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_softmax_scale.c.o": "4f176ef34a0f06e89b85f1ce5c36f8cf55e5e9f0b370c2b6b6ecd175c729e35f",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/src/ve_sd_turbo_silu.c.o": "64ecc0521a43056a9c0f81aa5c8c3bf23a56e12160f3b8e1bfbbfc7828123b6f",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/CMakeFiles/ggml-cpu.dir/project/build/sd-baseline-overlay/sd-ggml-cpu.c.o": "6a5ffbaf02529fa7a5ebf89836d8ee7da8f8d196b3c27de930da4723a056b964",
+    "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o": "b89eb9770b53df36203b334725ecd9d5f3fa11ff8a3250307363da39bb5544ae",
+    "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o": "8495ffd7c2cec000e5299b97fa11623f04bafab4140b514cea50736fc143745c",
+    "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o": "eb2cc1d040837e06b972530c3217c540293fe1f8ccc2790234e7364b0e1ccaea",
+    "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o": "8b2fd06b35a0026117e8c80fc3ef3a4624c3f77ef4d9666b1a16ee09efa77396",
+    "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o": "3508bb90f55ed93c2fafcd8a933c9f101cbdd8cc895f14fd16c5c90d7221e4c0",
+    "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o": "b98a8984f1746ed860c105d6d220f11038bb0478e08f2349dc3c38d2fd38a627",
+    "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-aarch64.c.o": "030b40a5996521cc2c348affe9d33432efd434cbe4e7e7832a4eeb38c859d9a9",
+    "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o": "5c575127d8cf536c37321294dabbf83af991838d00a94cd3c07e097da7065ff1",
+    "build/sd-baseline-ve/ggml/src/CMakeFiles/ggml-base.dir/project/build/sd-baseline-overlay/sd-ggml-backend.cpp.o": "dfff1030431cb9104df8703ddafecf52fc3f2d67f6310d78240701c725ec5741",
+    "build/sd-baseline-ve/examples/cli/CMakeFiles/sd.dir/project/src/ve_sd_turbo_main.cpp.o": "1504c5f2d07224b875b03106c2b87e20d0c1417dca6720788b9004e342843522",
+    "build/sd-baseline-ve/CMakeFiles/sd-png-ve.dir/project/src/ve_sd_turbo_png.cpp.o": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+    "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_clip.cpp.o": "6f8b644cfcfc675005adeb1124a9e950eda4183212a8fc9ee67efb597c22dd1d",
+    "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_vae.cpp.o": "82485ec50eee9d301b9eb4c039b47be4161e8a3736d09adee643a09b7155c916",
+    "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/src/ve_sd_turbo_unet.cpp.o": "c1b8d0521f7ab23418a6e04554ad9e91b122dd562d75fe520a0096efa6ac530f",
+    "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/util.cpp.o": "7773ba9b1901a0e761b23cbb0642cf2cbf8073bc6cb332c638d4fea62488f0f7",
+    "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/model.cpp.o": "b4286658fca4ac59f36d9d874f078be689adbd08b1710c4b03447af4168fbb2e",
+    "build/sd-baseline-ve/CMakeFiles/stable-diffusion.dir/project/build/sd-baseline-overlay/sd_clip_vocab.c.o": "850c2ed4fcd9f4f6ded54ba57988dc22fc604b8975e1d94a7abc1a304287e9ce",
+    "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_pack.cpp.o": "5f41861f61893505b94d233b53e000c476c6809cb83f92aca6f7d89fc648acd7",
+    "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels_bits.cpp.o": "30d05ca5643a5103eaa4e4ccb7073bfcb88f675ed3fbe4cfa385900102286b96",
+    "build/sd-baseline-ve/CMakeFiles/sd-pixels-ve.dir/project/src/ve_sd_turbo_pixels.cpp.o": "b410fc7c9234724675cec8fdf59d99ee4448473572a891c4479fa8fe82c4f323"
+  },
+  "probe_artifact_sha256": {
+    "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.sh": "a4920ebeecf186122183bdf6d37b4a03ef098d8a111a86f55e86a2946376e651",
+    "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col.c.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+    "build/results/20261010T003711Z-im2col-current4/ve_sd_turbo_im2col_rows.c.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+    "build/results/20261010T003711Z-im2col-current4/manifest.json": "ce33ac84c313d6155c674a18a63fac4445dc903a51e52130bb9cdb1492376523",
+    "build/results/20261010T003711Z-im2col-current4/check_sd_im2col_current4.c": "667f11721fe12e67dabde102d9d4a196d312bf5f4fc540b6c2885b9cab0dd14b",
+    "build/results/20261010T003711Z-im2col-current4/check": "0e3d362fb7c87e7c28b7e3ae36cb8eece820701de6173c5d1b801b6c418377c1"
+  },
+  "probe_log_sha256": "f1485d62cee06ddda7cfcb41712e3689b7b0e2fcc12d26ab5a8999ac60dcd46a",
+  "probe_checked_elements": 2717908992,
+  "probe_temperature": {
+    "peaks_c": {
+      "cpu": 66.0,
+      "ve0": 52.0,
+      "ve1": 45.88,
+      "ve2": 48.25
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "probe_fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "verifier_sha256": "ad438c93ed5e2970af704ac3278b08dcf9c427d306da4e5c80c750ba5c870e6a"
+}

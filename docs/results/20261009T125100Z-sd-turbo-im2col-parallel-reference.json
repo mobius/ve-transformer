@@ -1,0 +1,324 @@
+{
+  "scope": "standalone 8-thread OpenMP kernel timing; reset/oracle excluded; no whole-model gain claim",
+  "rows": [
+    {
+      "ic": 128,
+      "arm": 0,
+      "mode": "channels",
+      "repeat": -1,
+      "seconds": 0.026144242,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 0,
+      "mode": "channels",
+      "repeat": 0,
+      "seconds": 0.029205601,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 0,
+      "mode": "channels",
+      "repeat": 1,
+      "seconds": 0.026355782,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 0,
+      "mode": "channels",
+      "repeat": 2,
+      "seconds": 0.027613741,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 1,
+      "mode": "rows",
+      "repeat": -1,
+      "seconds": 0.010100916,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 1,
+      "mode": "rows",
+      "repeat": 0,
+      "seconds": 0.01002936,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 1,
+      "mode": "rows",
+      "repeat": 1,
+      "seconds": 0.010199166,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 1,
+      "mode": "rows",
+      "repeat": 2,
+      "seconds": 0.0103604,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 2,
+      "mode": "rows",
+      "repeat": -1,
+      "seconds": 0.010293454,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 2,
+      "mode": "rows",
+      "repeat": 0,
+      "seconds": 0.010216545,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 2,
+      "mode": "rows",
+      "repeat": 1,
+      "seconds": 0.010134574,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 2,
+      "mode": "rows",
+      "repeat": 2,
+      "seconds": 0.01002145,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 3,
+      "mode": "channels",
+      "repeat": -1,
+      "seconds": 0.026580867,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 3,
+      "mode": "channels",
+      "repeat": 0,
+      "seconds": 0.027923253,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 3,
+      "mode": "channels",
+      "repeat": 1,
+      "seconds": 0.026052619,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 128,
+      "arm": 3,
+      "mode": "channels",
+      "repeat": 2,
+      "seconds": 0.026131172,
+      "checked_elements": 301989888
+    },
+    {
+      "ic": 256,
+      "arm": 0,
+      "mode": "channels",
+      "repeat": -1,
+      "seconds": 0.106336655,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 0,
+      "mode": "channels",
+      "repeat": 0,
+      "seconds": 0.110832145,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 0,
+      "mode": "channels",
+      "repeat": 1,
+      "seconds": 0.105218509,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 0,
+      "mode": "channels",
+      "repeat": 2,
+      "seconds": 0.09148533,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 1,
+      "mode": "rows",
+      "repeat": -1,
+      "seconds": 0.038994639,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 1,
+      "mode": "rows",
+      "repeat": 0,
+      "seconds": 0.039572331,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 1,
+      "mode": "rows",
+      "repeat": 1,
+      "seconds": 0.038739752,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 1,
+      "mode": "rows",
+      "repeat": 2,
+      "seconds": 0.03885925,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 2,
+      "mode": "rows",
+      "repeat": -1,
+      "seconds": 0.038761699,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 2,
+      "mode": "rows",
+      "repeat": 0,
+      "seconds": 0.038696509,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 2,
+      "mode": "rows",
+      "repeat": 1,
+      "seconds": 0.038403906,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 2,
+      "mode": "rows",
+      "repeat": 2,
+      "seconds": 0.038968717,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 3,
+      "mode": "channels",
+      "repeat": -1,
+      "seconds": 0.105544761,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 3,
+      "mode": "channels",
+      "repeat": 0,
+      "seconds": 0.102716298,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 3,
+      "mode": "channels",
+      "repeat": 1,
+      "seconds": 0.102321448,
+      "checked_elements": 603979776
+    },
+    {
+      "ic": 256,
+      "arm": 3,
+      "mode": "channels",
+      "repeat": 2,
+      "seconds": 0.106502895,
+      "checked_elements": 603979776
+    }
+  ],
+  "metrics": [
+    {
+      "ic": 128,
+      "channels_mean_seconds": 0.027213694666666666,
+      "rows_mean_seconds": 0.010160249166666666,
+      "latency_reduction_percent": 62.664940240136936,
+      "channels_samples": [
+        0.029205601,
+        0.026355782,
+        0.027613741,
+        0.027923253,
+        0.026052619,
+        0.026131172
+      ],
+      "rows_samples": [
+        0.01002936,
+        0.010199166,
+        0.0103604,
+        0.010216545,
+        0.010134574,
+        0.01002145
+      ]
+    },
+    {
+      "ic": 256,
+      "channels_mean_seconds": 0.1031794375,
+      "rows_mean_seconds": 0.03887341083333333,
+      "latency_reduction_percent": 62.32445943181912,
+      "channels_samples": [
+        0.110832145,
+        0.105218509,
+        0.09148533,
+        0.102716298,
+        0.102321448,
+        0.106502895
+      ],
+      "rows_samples": [
+        0.039572331,
+        0.038739752,
+        0.03885925,
+        0.038696509,
+        0.038403906,
+        0.038968717
+      ]
+    }
+  ],
+  "full_bitwise_checks": 32,
+  "total_checked_elements": 14495514624,
+  "cpu_peak_c": 70.0,
+  "ve_peak_c": 49.88,
+  "fan_channels": 97,
+  "fan_changes": 0,
+  "sha256": {
+    "src/ve_sd_turbo_im2col.c": "f9e4187424880df7a44ef23b08f6043438bd0c150020e4fc1e661701507da2c6",
+    "src/ve_sd_turbo_im2col_rows.c": "8978fb5c729b3f472a72d3e0c03b71fcb078e56fd61af80594fe8453f985b847",
+    "tests/benchmark_sd_im2col_rows_parallel_reference.c": "663f6d3633bbeb132976f2322a0a14a17e08d8a525f9f0678148228f23ac8ac5",
+    "scripts/benchmark_sd_im2col_rows_parallel_reference.sh": "d5429d28a1e1a05724452a79c240f1c4af570c745a45d302e930c84a628ccd1d",
+    "build/im2col-rows/baseline.o": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+    "build/im2col-rows/kernel.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+    "build/im2col-rows/benchmark-parallel-reference": "18455dd2fa4b023196f7b2a7cfa0b7515e029a433e4907dd6382989422b13972"
+  },
+  "log_sha256": "dace633a0831315a2ee3eac7f62728668de8eac467ff02861f9674da48e2838d",
+  "publisher_sha256": "9e20c1c976036a9617ce93b995904772074c23ee3c5f8627e33fb4333532d89b"
+}

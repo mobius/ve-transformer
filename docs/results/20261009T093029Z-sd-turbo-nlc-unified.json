@@ -1,0 +1,706 @@
+{
+  "status": "bounded hardware correctness verified; controlled performance comparison pending",
+  "scope": "official SD-Turbo FP32 512, VE slot 1, 1/4 Euler steps, fixed 8 shared OpenMP runtime, resident weights/tokenizer",
+  "build_manifest_sha256": "b1678d894dc588a8daca149fcae17715d7c8d961ca91f05ad65e3f4f940fc311",
+  "binary_sha256": "59bbe884f742449360c0bd2ad3df93405f567fab9974328b4d45ef0c2afe37ba",
+  "checker_sha256": "9764c160b541c9187c604c77fd358b04cf56ce31f3121be0e4f7e5b45371898e",
+  "cpu_stage_checks": 62,
+  "runs": [
+    {
+      "label": "double",
+      "native_folder": "build/results/20261009T093328Z-sd-resident",
+      "summary_sha256": "d90b4d6566a28b41bd2ca309d3661a5741451e3fe2e66e31693c020caf8eaeaf",
+      "native_log_sha256": "8a48b6ac7f74679a1b30fa548da9a394e5a18a82fc43e5eb3d153e5d9e098a10",
+      "memory_summary_sha256": "ebd938acd254c4ff9716827d80620b5428c72d0595df78fb7050d1cd64c6e3a8",
+      "temperature_csv_sha256": "0ca6e79d07c61fe7acf602a20b7d08e55363ed15bc29d197d080e555cd87910f",
+      "fans_csv_sha256": "a77ffa990c575ab8c6bd8dceb1ddb65b4c1996ac05b8d75fc07d1336fdd177df",
+      "steps": 1,
+      "process_seconds": 107.1342205973342,
+      "request_seconds": [
+        88.151652,
+        18.342301
+      ],
+      "cpu_stage_checks": 10,
+      "cpu_peak_c": 72.0,
+      "ve_peak_c": 51.25,
+      "fan_channels": 97,
+      "fan_channels_changed": 0,
+      "sampled_node_peak_gib": 9.947265625,
+      "final_node_used_mib": 128.0,
+      "requests": [
+        {
+          "request": 0,
+          "case": 0,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.11446635331537e-06,
+              "max_abs_error": 1.33514404296875e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.3172332363678044e-08,
+              "max_abs_error": 4.76837158203125e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 2.4604889267715076e-07,
+              "max_abs_error": 3.337860107421875e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 3.87150777741411e-06,
+              "max_abs_error": 4.863739013671875e-05,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 1.677692192334832e-06,
+              "max_abs_error": 2.962350845336914e-05,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+            "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+            "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+            "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+            "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+            "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+          },
+          "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+        },
+        {
+          "request": 1,
+          "case": 0,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.11446635331537e-06,
+              "max_abs_error": 1.33514404296875e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.3172332363678044e-08,
+              "max_abs_error": 4.76837158203125e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 2.4604889267715076e-07,
+              "max_abs_error": 3.337860107421875e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 3.87150777741411e-06,
+              "max_abs_error": 4.863739013671875e-05,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 1.677692192334832e-06,
+              "max_abs_error": 2.962350845336914e-05,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+            "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+            "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+            "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+            "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+            "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+          },
+          "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+        }
+      ]
+    },
+    {
+      "label": "six",
+      "native_folder": "build/results/20261009T093637Z-sd-resident",
+      "summary_sha256": "f42f66172dc0197d6bb74d46e5b5cdb8fd5683fed9f23d49e6d593f0dc9a0fc5",
+      "native_log_sha256": "0f2b6d535552be28ec480cc6eecd68e1b97f6dd4ee844a216d1edc53e00e80f1",
+      "memory_summary_sha256": "230f46ab9ae040158ca899cade12399cb63c4aeff506b677184620e6638efcc9",
+      "temperature_csv_sha256": "6ba9fb4b91416b8433ff8ba60ddaeea1ce0c88088af87ad1e3fbdd760b6753f1",
+      "fans_csv_sha256": "fc0bb2e98018d3e773891ee8a52a346c75818b21628a7556c781c01d8be2965d",
+      "steps": 1,
+      "process_seconds": 180.3459940366447,
+      "request_seconds": [
+        88.058212,
+        18.213418,
+        18.201664,
+        18.362279,
+        18.214592,
+        18.228666
+      ],
+      "cpu_stage_checks": 30,
+      "cpu_peak_c": 73.0,
+      "ve_peak_c": 54.625,
+      "fan_channels": 97,
+      "fan_channels_changed": 0,
+      "sampled_node_peak_gib": 9.947265625,
+      "final_node_used_mib": 128.0,
+      "requests": [
+        {
+          "request": 0,
+          "case": 0,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.11446635331537e-06,
+              "max_abs_error": 1.33514404296875e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.3172332363678044e-08,
+              "max_abs_error": 4.76837158203125e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 2.4604889267715076e-07,
+              "max_abs_error": 3.337860107421875e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 3.87150777741411e-06,
+              "max_abs_error": 4.863739013671875e-05,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 1.677692192334832e-06,
+              "max_abs_error": 2.962350845336914e-05,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "9a993767cff5889ff441587f9b77525335267fd690af0cec1576f87eaf5a926e",
+            "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+            "native-latent.f32": "f3bc7952f168b08bc891fb553d8f1a488115069da4e2a53b76f5126d25b9acf7",
+            "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+            "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+            "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+          },
+          "png_sha256": "279f75546063de8c3efee40b6faa154839a0b2ad614651901687725ff3c53fb7"
+        },
+        {
+          "request": 1,
+          "case": 1,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.1953853263744857e-06,
+              "max_abs_error": 1.4781951904296875e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.290747780016011e-08,
+              "max_abs_error": 2.384185791015625e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 5.507633221824257e-07,
+              "max_abs_error": 1.3768672943115234e-05,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 9.47322175354192e-06,
+              "max_abs_error": 0.00020122528076171875,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 3.5823126494584553e-06,
+              "max_abs_error": 6.139278411865234e-05,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "b2a81768c08f62722b2e34e87091b0684aff2caf8f8d7a13405247b4881024ef",
+            "native-embeddings.f32": "a2ba7df4a3545016bc98c80253435316b63dd1704ef34f53d532abd474d14ef3",
+            "native-latent.f32": "53a99ad143418ed2f5ed68d05e2d2fe7944b8349c6e28e26ae66028ab726c045",
+            "native-noise.f32": "126c06b46ba3cf309e26c89d7b6554df3d58d81803a0a270b859e51a935db1e9",
+            "native-step0-epsilon.f32": "3cdf0c24da5467bd798a8373e7403ce2e403068442ab5193de77c30e7062db24",
+            "native-step0-input.f32": "4eabd420973794bc3fba716b0997ab5df204ece75401d7bda98df67886db6a36",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+          },
+          "png_sha256": "5cc1c5c0bf6dc714b50b1adf2917dfcefc9b419a486fbb51c7fe8c51ba35b3f8"
+        },
+        {
+          "request": 2,
+          "case": 2,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.1186573865899423e-06,
+              "max_abs_error": 1.621246337890625e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.306402597903837e-08,
+              "max_abs_error": 2.384185791015625e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 3.728640282271527e-07,
+              "max_abs_error": 7.826834917068481e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 7.109201122884409e-06,
+              "max_abs_error": 0.00011438131332397461,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 6.955464398185505e-06,
+              "max_abs_error": 0.00023430585861206055,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "f4910c85e8fa34b3b4b8145c3d546e53b0a442253effc5dd31d45e260502e2b4",
+            "native-embeddings.f32": "75cd0c929e31ce6d5bfaab6d35378a76bb61ef1037ba738736916c8ead012f37",
+            "native-latent.f32": "107aa9154e29ed7e380fb06348c240b79de7757fac83563538f2d0fa4f33130a",
+            "native-noise.f32": "5c63c669f669e569c1305107aedb6a469023904873b39362db430b91c569680e",
+            "native-step0-epsilon.f32": "d3091b8150e5e2bfc05d0fb608a93eb5aea911b051f56c98e6cdf2c0ecd6dc7b",
+            "native-step0-input.f32": "8c26d02f807b3393f6b9d6326c343d0318754e5f0f21d1cb9f73369cafc63ac5",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+          },
+          "png_sha256": "0b62d9ee8d4fe391aebbda512754fd363661e1640c904bec6c1d046398f6b546"
+        },
+        {
+          "request": 3,
+          "case": 3,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.2379388340798602e-06,
+              "max_abs_error": 1.811981201171875e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.2292039058432315e-08,
+              "max_abs_error": 4.76837158203125e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 2.819428973817961e-07,
+              "max_abs_error": 2.8908252716064453e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 4.4077479744756945e-06,
+              "max_abs_error": 4.1961669921875e-05,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 3.394694090954048e-06,
+              "max_abs_error": 4.583597183227539e-05,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "5702d56027096c126d2203406913de3d4e85a7ea89dd2d633f568bd2228136bc",
+            "native-embeddings.f32": "baed12a89e994b786de2d9e9ae26dadd3a19b3eafb2cd536c3c2a06fdda9ba0c",
+            "native-latent.f32": "f6b0c940677f672a6e356473de2626c6870353b0d2106d991dae8addb3f403e2",
+            "native-noise.f32": "175ae09299615d0b0eb2c655c4657275c7da11bb2bb8419e656e9aaf1e1e33aa",
+            "native-step0-epsilon.f32": "f722fee739e330159faae12a08dd1d661ef9f30da5aab21acf2df9a7910e2d25",
+            "native-step0-input.f32": "98845b1c96f84ee7db2f9bbe818ed2b43e2a9ae578f661ad489bf65c572e6f4c",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+          },
+          "png_sha256": "2d40e5d7cf5cf0d67c79b866158dca849488359722a30782a1a330876ef6a4cc"
+        },
+        {
+          "request": 4,
+          "case": 4,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.1357842230379352e-06,
+              "max_abs_error": 1.9073486328125e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.297791594895035e-08,
+              "max_abs_error": 2.384185791015625e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 2.652874095212624e-07,
+              "max_abs_error": 8.165836334228516e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 4.533260081253269e-06,
+              "max_abs_error": 0.00011920928955078125,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 2.241514218153536e-06,
+              "max_abs_error": 4.2438507080078125e-05,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "ad3b18642ae9c0e39168a63344edf388fad1859db33c2a8ec5febf1bffadbd04",
+            "native-embeddings.f32": "060107222b91f52b9fa319cbc27ef6ba3669b3ffaee6f291db3fdd81487ac6e6",
+            "native-latent.f32": "e5eb54d5a9fb137956889d1b6d7ccdea6496f14b900516d810238950aa0e3919",
+            "native-noise.f32": "0e551d9d33f4f875c4622caf0b3fe4263e66b02263179bf0424f290cb9c355fa",
+            "native-step0-epsilon.f32": "46ad229770da662a1745ecaa331cef18955ad0a8c20a3f510adae0c84441785f",
+            "native-step0-input.f32": "562327af3ac98f36eadd1f4a6f64c42c2359603bd520ba1c5df9a8e6ef4c3320",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+          },
+          "png_sha256": "eaaa6269c8a151a6661d83b37cd9453b28e9cb01a23af2180931418cea266f16"
+        },
+        {
+          "request": 5,
+          "case": 5,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.114955006200127e-06,
+              "max_abs_error": 1.1682510375976562e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.233191676565092e-08,
+              "max_abs_error": 2.384185791015625e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 7.819634139109085e-07,
+              "max_abs_error": 1.3589859008789062e-05,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 1.3368098641164535e-05,
+              "max_abs_error": 0.0001983642578125,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 6.0312454733465644e-06,
+              "max_abs_error": 9.167194366455078e-05,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "f8c29e462a69eaa25a27c9c78e83dde427aad7131a30b4fb01687fdc08dc9652",
+            "native-embeddings.f32": "d06b2261e37955344b9ecea38148f9a56b6579b3866d124227b595704ce022cf",
+            "native-latent.f32": "3daf21a063b854554383b7b8ba2ad07527536dbd12d74512c9e2fdb920117a0e",
+            "native-noise.f32": "b811ff3e31f764c29b105dd1868421a006f7e123ab06bed8d5a4dbf7ac7ea3ee",
+            "native-step0-epsilon.f32": "c21919b760e0dcdb47af1ee3aef67101d5d1d9255de66594edd5adffd76209f2",
+            "native-step0-input.f32": "fac8d50a3808ff72cbd0b47baf7498a6fbc80d0f9726ccf2043c04dd3816d756",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d"
+          },
+          "png_sha256": "145fddf76c3b364c7597cb50a0ce21cfe3b0db759c4467597875467996e20258"
+        }
+      ]
+    },
+    {
+      "label": "four",
+      "native_folder": "build/results/20261009T094027Z-sd-resident",
+      "summary_sha256": "7da004176af8a421fa04ea0400370239dd8117336b604158295fca47523969e7",
+      "native_log_sha256": "236e7622b98404ffea9a837f045bcd80def6a5215c22a4bd4556ee28bde5d102",
+      "memory_summary_sha256": "37eb47e45fb1e58b2a4c46dc9091f1fabfe104b675804bb3c9925fc9bf990b6e",
+      "temperature_csv_sha256": "a46d98f08c29c1aa64258df71ba452cce4ac051a7ad8edce0e8a1f479a34affd",
+      "fans_csv_sha256": "62cca28c3952c8bc86c29f1cc2f254eb16671fe2100aa33c7704636db5edcdaf",
+      "steps": 4,
+      "process_seconds": 131.0079876454547,
+      "request_seconds": [
+        100.096742,
+        30.242947
+      ],
+      "cpu_stage_checks": 22,
+      "cpu_peak_c": 76.0,
+      "ve_peak_c": 54.125,
+      "fan_channels": 97,
+      "fan_channels_changed": 0,
+      "sampled_node_peak_gib": 9.947265625,
+      "final_node_used_mib": 128.0,
+      "requests": [
+        {
+          "request": 0,
+          "case": 0,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.11446635331537e-06,
+              "max_abs_error": 1.33514404296875e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.3172332363678044e-08,
+              "max_abs_error": 4.76837158203125e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 2.4604889267715076e-07,
+              "max_abs_error": 3.337860107421875e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-step1-input",
+              "relative_l2": 5.954298134540742e-07,
+              "max_abs_error": 8.106231689453125e-06,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step1-epsilon",
+              "relative_l2": 6.609811526666041e-07,
+              "max_abs_error": 7.897615432739258e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-step2-input",
+              "relative_l2": 1.138526115716989e-06,
+              "max_abs_error": 2.2411346435546875e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step2-epsilon",
+              "relative_l2": 1.1479643848757656e-06,
+              "max_abs_error": 1.2755393981933594e-05,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-step3-input",
+              "relative_l2": 1.7483489013466742e-06,
+              "max_abs_error": 3.62396240234375e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step3-epsilon",
+              "relative_l2": 1.6688222195884834e-06,
+              "max_abs_error": 1.7151236534118652e-05,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 2.4855705564830153e-06,
+              "max_abs_error": 4.982948303222656e-05,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 1.4511624771493064e-06,
+              "max_abs_error": 1.2725591659545898e-05,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "4da85745ab207fdb837609caf4c8f0f208f3ca6be552a90574154b51f1eb2fed",
+            "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+            "native-latent.f32": "4043d528e33abd6017d33da0bafda40e2a03de5104c0d31bf1d37f1d88f4f80c",
+            "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+            "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+            "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+            "native-step1-epsilon.f32": "92e39fd145cf5fa6fc08823f894c3461697a050eff5552ecf2e2e49ecd8d73ca",
+            "native-step1-input.f32": "570fe51cf0c5f7772c9198459cdbc93e22cc7ff174659cc5c7ee88cdae482c83",
+            "native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+            "native-step2-epsilon.f32": "ed31efd0c79522726bb7b8258ff528fe33f80d266d3195b502c6205660c478f1",
+            "native-step2-input.f32": "94b84a7f171767b52e17a7d216dfde1e1c338cf16e3403ba1abdc137eb6c2b83",
+            "native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+            "native-step3-epsilon.f32": "eda57e585e86b7bd650ce00fcc316c104c92ca4e2a41fc532a14b95f9dd93767",
+            "native-step3-input.f32": "275b328c9afce817f2d6ceaf2bcbbc1e36572a87e99290155fb9a1e95c564786",
+            "native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce"
+          },
+          "png_sha256": "6ce041f8150d346cc972aa67301879041dbe5081ff97cee40366a90936fff378"
+        },
+        {
+          "request": 1,
+          "case": 0,
+          "checks": [
+            {
+              "name": "native-embeddings",
+              "relative_l2": 2.11446635331537e-06,
+              "max_abs_error": 1.33514404296875e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-input",
+              "relative_l2": 5.3172332363678044e-08,
+              "max_abs_error": 4.76837158203125e-07,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step0-epsilon",
+              "relative_l2": 2.4604889267715076e-07,
+              "max_abs_error": 3.337860107421875e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-step1-input",
+              "relative_l2": 5.954298134540742e-07,
+              "max_abs_error": 8.106231689453125e-06,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step1-epsilon",
+              "relative_l2": 6.609811526666041e-07,
+              "max_abs_error": 7.897615432739258e-06,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-step2-input",
+              "relative_l2": 1.138526115716989e-06,
+              "max_abs_error": 2.2411346435546875e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step2-epsilon",
+              "relative_l2": 1.1479643848757656e-06,
+              "max_abs_error": 1.2755393981933594e-05,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-step3-input",
+              "relative_l2": 1.7483489013466742e-06,
+              "max_abs_error": 3.62396240234375e-05,
+              "tolerance": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "native-step3-epsilon",
+              "relative_l2": 1.6688222195884834e-06,
+              "max_abs_error": 1.7151236534118652e-05,
+              "tolerance": 0.001,
+              "passed": true
+            },
+            {
+              "name": "native-latent",
+              "relative_l2": 2.4855705564830153e-06,
+              "max_abs_error": 4.982948303222656e-05,
+              "tolerance": 0.01,
+              "passed": true
+            },
+            {
+              "name": "native-decoded",
+              "relative_l2": 1.4511624771493064e-06,
+              "max_abs_error": 1.2725591659545898e-05,
+              "tolerance": 0.01,
+              "passed": true
+            }
+          ],
+          "trace_sha256": {
+            "native-decoded.f32": "4da85745ab207fdb837609caf4c8f0f208f3ca6be552a90574154b51f1eb2fed",
+            "native-embeddings.f32": "e9e8bbc6afacce9cc2e5468d9080862ec8411bc76c9f9fddbca9f9b15affc9d4",
+            "native-latent.f32": "4043d528e33abd6017d33da0bafda40e2a03de5104c0d31bf1d37f1d88f4f80c",
+            "native-noise.f32": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+            "native-step0-epsilon.f32": "72ee488bdd4874be99a7664a72b62d3624df9dc9dcd5f5368928366517c093ec",
+            "native-step0-input.f32": "a70997c7376b81eaf07d19eeb819f677347ca26294d0712db9682e21345776c4",
+            "native-step0-timestep.f32": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+            "native-step1-epsilon.f32": "92e39fd145cf5fa6fc08823f894c3461697a050eff5552ecf2e2e49ecd8d73ca",
+            "native-step1-input.f32": "570fe51cf0c5f7772c9198459cdbc93e22cc7ff174659cc5c7ee88cdae482c83",
+            "native-step1-timestep.f32": "a81604ee2acc50ba988f19367c3527729e1f76c9b36640db11378fe197a9d8ff",
+            "native-step2-epsilon.f32": "ed31efd0c79522726bb7b8258ff528fe33f80d266d3195b502c6205660c478f1",
+            "native-step2-input.f32": "94b84a7f171767b52e17a7d216dfde1e1c338cf16e3403ba1abdc137eb6c2b83",
+            "native-step2-timestep.f32": "a404e0d1b4a94860af3e4e4fdd423bd5b8902c5b5ddb6e0a69f312a72c37071d",
+            "native-step3-epsilon.f32": "eda57e585e86b7bd650ce00fcc316c104c92ca4e2a41fc532a14b95f9dd93767",
+            "native-step3-input.f32": "275b328c9afce817f2d6ceaf2bcbbc1e36572a87e99290155fb9a1e95c564786",
+            "native-step3-timestep.f32": "1896377f42f588a44bfe7f2cc16a787fd46cf12adb9f44768738e3483f02dbce"
+          },
+          "png_sha256": "6ce041f8150d346cc972aa67301879041dbe5081ff97cee40366a90936fff378"
+        }
+      ]
+    }
+  ],
+  "formal_speedup": null,
+  "limitations": [
+    "historical timing is not matched alternating comparison",
+    "thread region size is not proof of per-kernel utilization",
+    "node memory is sampled and not model-exclusive",
+    "fan channels unchanged does not prove physical fan policy unchanged",
+    "default configuration unchanged; no final acceptance"
+  ]
+}

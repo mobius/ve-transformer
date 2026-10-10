@@ -1,0 +1,188 @@
+{
+  "metrics": {
+    "process": {
+      "channels_seconds": 96.1788349300623,
+      "rows_seconds": 96.95675694011152,
+      "latency_reduction_percent": -0.8088286894043728
+    },
+    "request0": {
+      "channels_seconds": 84.666091,
+      "rows_seconds": 84.90839399999999,
+      "latency_reduction_percent": -0.2861865915127604
+    },
+    "request1": {
+      "channels_seconds": 10.834069,
+      "rows_seconds": 11.3885715,
+      "latency_reduction_percent": -5.1181370545083205
+    }
+  },
+  "hot_stage_profile_mean_seconds": {
+    "clip": {
+      "channels": {
+        "backend_CPU": 0.0637725,
+        "backend_BLAS": 0.5264545,
+        "graph_compute": 0.5909135
+      },
+      "rows": {
+        "backend_CPU": 0.06505649999999999,
+        "backend_BLAS": 0.524966,
+        "graph_compute": 0.590755
+      }
+    },
+    "unet": {
+      "channels": {
+        "backend_CPU": 1.4134989999999998,
+        "backend_BLAS": 1.0360960000000001,
+        "graph_compute": 2.450955
+      },
+      "rows": {
+        "backend_CPU": 1.4115265,
+        "backend_BLAS": 1.026455,
+        "graph_compute": 2.4393965
+      }
+    },
+    "vae": {
+      "channels": {
+        "backend_CPU": 1.6310425,
+        "backend_BLAS": 4.30714,
+        "graph_compute": 5.938861
+      },
+      "rows": {
+        "backend_CPU": 2.1713435,
+        "backend_BLAS": 4.337821,
+        "graph_compute": 6.509781
+      }
+    }
+  },
+  "decision": "not_faster",
+  "default_enabled": false,
+  "same_binary": true,
+  "model_kernel_optimization": {
+    "ve_sd_turbo_im2col.c": "-O2",
+    "ve_sd_turbo_im2col_rows.c": "-O1"
+  },
+  "model_kernel_object_sha256": {
+    "ve_sd_turbo_im2col.c": "c6059a043b6e9a23c6cc945ee73d28c9dd9710d851cd738911a1dbf35473abcb",
+    "ve_sd_turbo_im2col_rows.c": "66eb82d5af9ab47517c80b6d4a413380298fd6bdb64271f1adfa963e5ab39f45"
+  },
+  "compile_metadata_sha256": {
+    "flags.make": "ba38bf84cf187d6b2292a522155e6adc2d088a98db629148fb72027da1267f58",
+    "build.make": "2984f9568347e4c7cc22cb27219f7b3ca39f14e4c5065c89530357946b9e0702"
+  },
+  "all_trace_and_png_bytes_identical": true,
+  "binary_sha256": "caf4a48c700e4c145883bd7e489e54fce5a97844ef6b0d44d0a8a09312636c22",
+  "checker_sha256": "9bc9ef12d640baac76c3f25e86f9c164661390ad19e2edd41f517fd5448840e2",
+  "benchmark_sha256": "4b5d59e1a03e44b57caf278cca65250a849fbb24edecc3de967c9c268d70c2e3",
+  "publisher_sha256": "c3019802c2deb8104f208b9c87f14b9339addc23b6276d81e4e9858b9fd19aaa",
+  "earlier_proof_sha256": "ea61f3829f98d751b81e6e7d2720ce0fb87ccd06f68400bb678cbb30ce52d940",
+  "earlier_cpu_stage_checks": 62,
+  "abba_cpu_stage_checks": 40,
+  "total_cpu_stage_checks": 102,
+  "temperature": {
+    "peaks_c": {
+      "cpu": 76.0,
+      "ve0": 52.12,
+      "ve1": 38.25,
+      "ve2": 40.5
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "warning_events": 0,
+  "guard_log_sha256": "a8e953ab9cd7e05e5a56bda89c2ae123abac3f6f3cdc4e8dfb6898be326336c1",
+  "thermal_artifact_sha256": {
+    "build/results/20261009T131255Z-temperature-2_8n285g.csv": "d92cda169bee34d7bb205d060ecd2d5b6e7b61bb9a84ab9048f7f41f17a3fddf",
+    "build/results/20261009T131255Z-temperature-2_8n285g-fans.csv": "36618a0ae04e52c367520d3f8c81f5cff22f271abaaea18cc1877a4d8467688e"
+  },
+  "artifact_sha256": {
+    "0": {
+      "build/results/20261009T131308Z-sd-resident/summary.json": "8f4540ceabae418362093e6e55a376ce503074dd74f23848bc8a3cc42913deb0",
+      "build/results/20261009T131308Z-sd-resident/native.log": "7b6772808c5fb5e1df9d70aa4dbe8d93e38d366f28bf923ce771255ffe0a6fbc",
+      "build/results/20261009T131308Z-sd-resident/check_sd_resident.py": "9bc9ef12d640baac76c3f25e86f9c164661390ad19e2edd41f517fd5448840e2",
+      "build/results/20261009T131256Z-ve-memory-sampled/summary.json": "2e5c290ea93a595ef29a32e9c863e57ccf0a5e0477760b1f5c8d331f522971b6",
+      "build/results/20261009T131256Z-ve-memory-sampled/memory.csv": "6cabc246d4db42108a94ac8d045d742937813c8faf39a2beb5d29235004e4823",
+      "build/results/20261009T131255Z-sd-im2col-abba/run0.log": "792fb3ee3d769fb51de440c09084272ea8e68c37aecff98cff75128868f60e0d"
+    },
+    "1": {
+      "build/results/20261009T131458Z-sd-resident/summary.json": "e22e83ee3292151aff28fb58d545213191c12e54d1f496ad61a442d420ad664e",
+      "build/results/20261009T131458Z-sd-resident/native.log": "d18145525305158bccd367d96947f43e39eac8933e493384ab93ad30711e4ddf",
+      "build/results/20261009T131458Z-sd-resident/check_sd_resident.py": "9bc9ef12d640baac76c3f25e86f9c164661390ad19e2edd41f517fd5448840e2",
+      "build/results/20261009T131446Z-ve-memory-sampled/summary.json": "1b331941ebf80ca536330a58a5474696d05ea400b158f02ca99b50165cd7073a",
+      "build/results/20261009T131446Z-ve-memory-sampled/memory.csv": "840e399dd1f7facffe5714ec7f30e97f8917b49e839e1aaa8eb5c2d29641ac97",
+      "build/results/20261009T131255Z-sd-im2col-abba/run1.log": "b45b3ea7bb9b534906ca8947d114da1e48c48b8316f190a735163a89896eb1d5"
+    },
+    "2": {
+      "build/results/20261009T131650Z-sd-resident/summary.json": "bce24bcca952ce0e2da9408879801c98718d608ec797ded500ca9ade4ad5cec8",
+      "build/results/20261009T131650Z-sd-resident/native.log": "95f200544d6b9a9270b9688b746a921fb6440f534ddd2a7b134b7af3c12a42f0",
+      "build/results/20261009T131650Z-sd-resident/check_sd_resident.py": "9bc9ef12d640baac76c3f25e86f9c164661390ad19e2edd41f517fd5448840e2",
+      "build/results/20261009T131638Z-ve-memory-sampled/summary.json": "4c8e53973011faf157bf45e7635e6500bf87279a51b01426cf06f3a1cd34f09f",
+      "build/results/20261009T131638Z-ve-memory-sampled/memory.csv": "d252668be5dffb39348429cc70d34917ed1f38e800e6ca73355a501d11e5ca7e",
+      "build/results/20261009T131255Z-sd-im2col-abba/run2.log": "e898e5e777b67425090972c96c49b02c30ede89f1acd2bb6077d0fea13cb35fc"
+    },
+    "3": {
+      "build/results/20261009T131842Z-sd-resident/summary.json": "3f24e6258210150556ab8cd3b06d61e300dc1784b8a82426d855be641a4d7466",
+      "build/results/20261009T131842Z-sd-resident/native.log": "9e54c9581ad77bcd5bdefbf65986b862aecc7cbff58cfad1cad9b36ba662ba40",
+      "build/results/20261009T131842Z-sd-resident/check_sd_resident.py": "9bc9ef12d640baac76c3f25e86f9c164661390ad19e2edd41f517fd5448840e2",
+      "build/results/20261009T131829Z-ve-memory-sampled/summary.json": "21a9b81162c47a9c59b5ca0e4b3b3f9e1dfa29533018893e63fda488209c12bf",
+      "build/results/20261009T131829Z-ve-memory-sampled/memory.csv": "bb5c3e3f1f612227c6f3a90fdb16f88234a9b34ae418987bc099a8d05dec8414",
+      "build/results/20261009T131255Z-sd-im2col-abba/run3.log": "c019fa2e65dd8c20c1ffd577a174894dc05c2ea15af80e7140a357c10ad65432"
+    }
+  },
+  "runs": [
+    {
+      "mode": "channels",
+      "process_seconds": 95.52979541290551,
+      "request_seconds": [
+        84.005749,
+        10.839723
+      ],
+      "sampled_node_peak_gib": 9.884765625,
+      "final_node_used_mib": 128
+    },
+    {
+      "mode": "rows",
+      "process_seconds": 96.83988027647138,
+      "request_seconds": [
+        84.807453,
+        11.386152
+      ],
+      "sampled_node_peak_gib": 9.947265625,
+      "final_node_used_mib": 128
+    },
+    {
+      "mode": "rows",
+      "process_seconds": 97.07363360375166,
+      "request_seconds": [
+        85.009335,
+        11.390991
+      ],
+      "sampled_node_peak_gib": 9.884765625,
+      "final_node_used_mib": 128
+    },
+    {
+      "mode": "channels",
+      "process_seconds": 96.82787444721907,
+      "request_seconds": [
+        85.326433,
+        10.828415
+      ],
+      "sampled_node_peak_gib": 9.884765625,
+      "final_node_used_mib": 128
+    }
+  ],
+  "scope": "single VE, fixed FP32 512 one-step prompt, two runs/mode; cold caches uncontrolled; discrete whole-node memory; no arbitrary production/concurrency claim"
+}

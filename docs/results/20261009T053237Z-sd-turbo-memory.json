@@ -1,0 +1,92 @@
+{
+  "status": "discrete_node_memory_sampling_verified",
+  "model_repo": "stabilityai/sd-turbo",
+  "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "binary_sha256": "198b78a9185551086082b953535e65d988e653ea91b45397b4e617d814cdaa8b",
+  "reference_artifacts": "build/results/20261008T023813Z-sd-reference",
+  "settings": {
+    "size": 512,
+    "steps": 1,
+    "threads": 8,
+    "threadpool": "persistent",
+    "silu": "ve",
+    "softmax": "ve",
+    "im2col": "ve"
+  },
+  "memory": {
+    "completed": true,
+    "runtime_slot": 1,
+    "library_version": "3.6.0",
+    "requested_interval_seconds": 0.2,
+    "scope": "discrete whole-node VEOS usage including runtime and other processes; not instantaneous peak or model-exclusive usage",
+    "sampler_sha256": "275a56cefdc4881c07f8f5831c199602ca5e50d465b4d304a634fb11d48de281",
+    "adapter_sha256": "bcc843d7501719345384cec24a6da04469e268983eb2b4ef6304b3ddd6e423b4",
+    "returncode": 0,
+    "sample_count": 528,
+    "baseline_used_kib": 131072,
+    "final_used_kib": 131072,
+    "sampled_highest_used_kib": 5580800,
+    "sampled_highest_elapsed_seconds": 78.98055758699775,
+    "max_sample_gap_seconds": 0.20105984900146723
+  },
+  "temperature": {
+    "peaks_c": {
+      "cpu": 72.0,
+      "ve0": 49.5,
+      "ve1": 40.62,
+      "ve2": 43.0
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "native_checks": [
+    {
+      "name": "native-embeddings",
+      "relative_l2": 2.114466353315372e-06,
+      "max_abs_error": 1.33514404296875e-05,
+      "tolerance": 0.0001,
+      "passed": true
+    },
+    {
+      "name": "native-step0-input",
+      "relative_l2": 5.317233236367802e-08,
+      "max_abs_error": 4.76837158203125e-07,
+      "tolerance": 0.0001,
+      "passed": true
+    },
+    {
+      "name": "native-step0-epsilon",
+      "relative_l2": 2.460488926771506e-07,
+      "max_abs_error": 3.337860107421875e-06,
+      "tolerance": 0.001,
+      "passed": true
+    },
+    {
+      "name": "native-latent",
+      "relative_l2": 3.871507777414109e-06,
+      "max_abs_error": 4.863739013671875e-05,
+      "tolerance": 0.01,
+      "passed": true
+    },
+    {
+      "name": "native-decoded",
+      "relative_l2": 1.6776921923348617e-06,
+      "max_abs_error": 2.962350845336914e-05,
+      "tolerance": 0.01,
+      "passed": true
+    }
+  ],
+  "process_seconds": 91.35663345083594,
+  "resident_weights_verified": false,
+  "performance_comparison": false,
+  "runner_parameter_buffer_mib": {
+    "clip": 1346.53,
+    "unet": 3303.19,
+    "vae_decoder": 188.79
+  },
+  "limitations": "one prompt, discrete whole-node usage including runtime and other processes, not model-exclusive or instantaneous peak; no weight-resident run yet"
+}

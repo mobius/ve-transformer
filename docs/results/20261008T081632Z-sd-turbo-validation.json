@@ -1,0 +1,360 @@
+{
+  "status": "single_ve_full_image_stages_verified",
+  "default_adopted": false,
+  "model_repo": "stabilityai/sd-turbo",
+  "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "architecture": "dense distilled SD2.1: CLIP, U-Net, VAE",
+  "reference_artifacts": "build/results/20261008T023813Z-sd-reference",
+  "reference": {
+    "completed": true,
+    "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+    "steps": 1,
+    "size": 512,
+    "precision": "CPU FP32",
+    "threads": 1,
+    "test_sha256": "9c3dfdb454769aaaabfeff00cf679ebea050e902ccda6a0a65fd522b25e8917e",
+    "cases": [
+      {
+        "case": 0,
+        "seed": 2026,
+        "text_seconds": 1.7993613295257092,
+        "unet_seconds": [
+          18.806271760724485
+        ],
+        "vae_seconds": 54.13446416147053,
+        "arrays": {
+          "embeddings": {
+            "shape": [
+              1,
+              77,
+              1024
+            ],
+            "sha256": "7165d4637023de27d5e0e3526c41b48187014bd652fd0cf6a6d9b02ffdb6cbf6",
+            "bytes": 315392
+          },
+          "noise": {
+            "shape": [
+              1,
+              4,
+              64,
+              64
+            ],
+            "sha256": "6dfdc732fc34d218e381aef9d1bce2cfa11ee664c94fa1dc88760893b365fc76",
+            "bytes": 65536
+          },
+          "timesteps": {
+            "shape": [
+              1
+            ],
+            "sha256": "b438fd3a67fa223f053f24183a08ed2b94fd3d11d304e084199fe97ca190cf3d",
+            "bytes": 4
+          },
+          "sigmas": {
+            "shape": [
+              2
+            ],
+            "sha256": "94e16fbada9cae9bd5621184a08ef239892182088b475ef91d0b3bbbe0732809",
+            "bytes": 8
+          },
+          "step0-input": {
+            "shape": [
+              1,
+              4,
+              64,
+              64
+            ],
+            "sha256": "3e9a2e544e3a631079b0a976396ba4e8d2584e5ceda70f28d511557fec85209e",
+            "bytes": 65536
+          },
+          "step0-epsilon": {
+            "shape": [
+              1,
+              4,
+              64,
+              64
+            ],
+            "sha256": "77eda323994fc1d631acef22134c1958989f998dbb5dbedb3fe184ec137c5015",
+            "bytes": 65536
+          },
+          "step0-latent": {
+            "shape": [
+              1,
+              4,
+              64,
+              64
+            ],
+            "sha256": "03369c22f91facf0113b87781a71fba06f940db38cba0160a1c3ae7cf461f5f2",
+            "bytes": 65536
+          },
+          "decoded": {
+            "shape": [
+              1,
+              3,
+              512,
+              512
+            ],
+            "sha256": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+            "bytes": 3145728
+          }
+        }
+      }
+    ],
+    "cpu_duty_percent": 25,
+    "timing_scope": "reference execution including any explicit CPU duty throttling; not an optimized CPU benchmark",
+    "load_seconds": 0.8852317444980145,
+    "torch_version": "2.8.0+cpu"
+  },
+  "reference_temperature": {
+    "peaks_c": {
+      "cpu": 79.0,
+      "ve0": 45.12,
+      "ve1": 42.88,
+      "ve2": 45.12
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "timing_scope": "correctness validation including model loading and trace export; no steady-state performance claim",
+  "physical_hbm_peak_measured": false,
+  "quality_scope": "numerical agreement and generated-image inspection; no quality benchmark",
+  "operators": {
+    "cases": 12,
+    "relative_l2_limit": 0.0001,
+    "framework_variant": "compact",
+    "checks": [
+      {
+        "name": "NLC SGEMM",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "NLC SGEMM",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "NLC external-data SGEMM",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "FP32 convolution",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "FP32 convolution",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "FP32 convolution",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      },
+      {
+        "name": "layer normalization",
+        "relative_l2": 4.68127779e-08,
+        "max_abs_error": 2.08354936e-07
+      },
+      {
+        "name": "SiLU",
+        "relative_l2": 4.13007092e-08,
+        "max_abs_error": 8.19433585e-08
+      },
+      {
+        "name": "GELU",
+        "relative_l2": 4.67965088e-08,
+        "max_abs_error": 8.95086876e-08
+      },
+      {
+        "name": "softmax",
+        "relative_l2": 4.00286955e-08,
+        "max_abs_error": 5.27588571e-09
+      },
+      {
+        "name": "group normalization",
+        "relative_l2": 4.04278643e-08,
+        "max_abs_error": 1.22221034e-07
+      },
+      {
+        "name": "nearest upscale",
+        "relative_l2": 0.0,
+        "max_abs_error": 0.0
+      }
+    ],
+    "source_sha256": "ebc5dfe2f4a2c90204becd5dfe44b80add4fb4ccdd9f0910ddcd9674f2227834",
+    "temperature": {
+      "peaks_c": {
+        "cpu": 64.0,
+        "ve0": 44.88,
+        "ve1": 40.75,
+        "ve2": 43.12
+      },
+      "fan_channels": 97,
+      "observed_fan_changes": 0,
+      "bmc_read_statuses_observed": [
+        "unavailable"
+      ],
+      "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+    }
+  },
+  "validation": {
+    "completed": true,
+    "adopted": false,
+    "runtime_slot": 1,
+    "precision": "FP32 weights and convolution input packing",
+    "framework_variant": "compact",
+    "size": 512,
+    "steps": 1,
+    "threads": 8,
+    "binary_sha256": "7a3e8dece6eccdca779558ebb167cd32c8cf9f7dd04af92119067b1c094145c1",
+    "model_revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+    "test_sha256": "a3ed90cca0dc1c61b789117fcad17b03351fd0f07065b5b64240e98bfbe67110",
+    "reference_artifacts": "build/results/20261008T023813Z-sd-reference",
+    "source_scope": "independent Diffusers CPU comparison; saved noise and custom sigma schedule",
+    "cases": [
+      {
+        "case": 0,
+        "process_seconds": 266.4935511862859,
+        "returncode": 0,
+        "checks": [
+          {
+            "name": "native-embeddings",
+            "relative_l2": 2.141076273621046e-06,
+            "max_abs_error": 1.239776611328125e-05,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-input",
+            "relative_l2": 5.317233236367802e-08,
+            "max_abs_error": 4.76837158203125e-07,
+            "tolerance": 0.0001,
+            "passed": true
+          },
+          {
+            "name": "native-step0-epsilon",
+            "relative_l2": 2.1650632681083773e-07,
+            "max_abs_error": 2.7120113372802734e-06,
+            "tolerance": 0.001,
+            "passed": true
+          },
+          {
+            "name": "native-latent",
+            "relative_l2": 3.4080327971138544e-06,
+            "max_abs_error": 3.9577484130859375e-05,
+            "tolerance": 0.01,
+            "passed": true
+          },
+          {
+            "name": "native-decoded",
+            "relative_l2": 1.4287131277989747e-06,
+            "max_abs_error": 2.950429916381836e-05,
+            "tolerance": 0.01,
+            "passed": true
+          }
+        ],
+        "nlc_graphs": [
+          {
+            "stage": "clip",
+            "nodes": 230
+          },
+          {
+            "stage": "unet",
+            "nodes": 1169
+          },
+          {
+            "stage": "vae",
+            "nodes": 257
+          }
+        ]
+      }
+    ],
+    "recheck_sha256": "1008473ee14425068a07206e8642fb64ba74d6110741aa2979cc2da856ac219c"
+  },
+  "validation_temperature": {
+    "peaks_c": {
+      "cpu": 72.0,
+      "ve0": 52.38,
+      "ve1": 40.62,
+      "ve2": 43.12
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "build": {
+    "backend": "ve",
+    "framework_variant": "compact",
+    "framework_revision": "5eb15ef4d022bef4a391de4f5f6556e81fbb5024",
+    "ggml_revision": "6fcbd60bc72ac3f7ad43f78c87e535f2e6206f58",
+    "compiler_standard": "C++11 image library; existing C++17 ggml backend",
+    "precision": "FP32 weights, convolution packing and erf GELU",
+    "compiler_optimization": "numerical kernels O1; model metadata and graph orchestration O0 without inlining; no fast-math",
+    "compiler_duty_percent": 50,
+    "blas": "NEC NLC sequential, graph scheduler with native VE generic fallback",
+    "validation_scope": "official SD-Turbo only; split CLIP/UNet/VAE with native EPS Euler and trailing timesteps; exported sigmas supplied by checker",
+    "sha256": {
+      "scripts/build_sd_baseline.sh": "4ec574571296ffe2e92e2c2bc87d8ddc4abd924657f5ce1ccea1d392395ac18f",
+      "scripts/record_sd_baseline_build.py": "d6b20c3eb6812804bd07fc35f155c7692553fe99c86856adcdbaaacfa49eda5c",
+      "scripts/prepare_sd_baseline_source.sh": "a3cadbe58fd54e38eb89032e673efca10ac4866535d3d709e0a090f866f3891c",
+      "scripts/prepare_sd_baseline_overlay.py": "610b84c8e346fb98c0a2bdd862a75aa447405e2cd2f1c0742f58d21b7d9cead4",
+      "scripts/prepare_sd_weight_index.py": "ac8410a86da5a0e10fa77f70101b1df08abdb13977d5f3de90028b7d2ca765a4",
+      "cmake/nec-sd-baseline-overrides.cmake": "358c00eaa14122ad78432f35f42fff99db714e526b7cd336dc918ff34e1a90bd",
+      "cmake/nec-sd-baseline-toolchain.cmake": "c9366c0f2523092fe4ca2203c3165f75c06ccac50f3dfbc2a8a88f4c34b061e3",
+      "cmake/nec-ve.cmake": "3b9e3132dc2865e1a881c75c049d1141b31d2badaff8a5fb45113e7ece48069e",
+      "build/sd-baseline-ve/bin/sd": "7a3e8dece6eccdca779558ebb167cd32c8cf9f7dd04af92119067b1c094145c1",
+      "build/sd-baseline-overlay/check_sd_ops.cpp": "ebc5dfe2f4a2c90204becd5dfe44b80add4fb4ccdd9f0910ddcd9674f2227834",
+      "build/sd-baseline-overlay/clip.hpp": "01e414d521f31c688cc1644b1246fadbc0cf804330735c5b77ef6c55b17de126",
+      "build/sd-baseline-overlay/common.hpp": "5c91bdc88f095211a62ff14d9716bbd9cee4cdbacc8bf1be3f72cf4e975c91a8",
+      "build/sd-baseline-overlay/conditioner.hpp": "45b8fbdf3ef2bfc64a10217532a1d3ebbe2ec1f06f467a7b4c867b1772048ab7",
+      "build/sd-baseline-overlay/control.hpp": "61c37fc4a92237da8e2b1a86998746f77a88e3e404214000e67b79858b371ca4",
+      "build/sd-baseline-overlay/denoiser.hpp": "d35e2ca93039c053b9eb77c1bb81bcddb37d9150edfd2a7b7812b62f163d0777",
+      "build/sd-baseline-overlay/diffusion_model.hpp": "8edc94368e264accf17fbfaa7720a1ebaf2a3a187f760798338c87a061664ef9",
+      "build/sd-baseline-overlay/esrgan.hpp": "e3d2f8307affbb1b337aafe0f27bc2a8314192081a8ef4ee77cef7b54d35fc93",
+      "build/sd-baseline-overlay/flux.hpp": "2c32a1bb153460aa820dcebaeba234799dc426a02628f16c33ba6261f016eb41",
+      "build/sd-baseline-overlay/ggml_extend.hpp": "c253b0c4dced8c7d59a04c1648532f273292510d9cd13da21f13f77af96a89d5",
+      "build/sd-baseline-overlay/lora.hpp": "933edfca00f8ff9f31f92409eecbcbba213692300d14fbe4c2a539fe27419aa2",
+      "build/sd-baseline-overlay/mmdit.hpp": "9dde70d415de51a77236469a12f6714bc67d6e3526fbb4e7379e5daac347b6bf",
+      "build/sd-baseline-overlay/model.cpp": "e0faddee694f120145cbf9e7b1827ace41bc0d301cf96e1ff0a3bd20cf1ea41d",
+      "build/sd-baseline-overlay/model.h": "0cc5c2fe98914763a33acadf5495dc1a670905406f15288ad0b4e54e003b77e7",
+      "build/sd-baseline-overlay/pmid.hpp": "68c4e793c62d3da02a8905bb2be8d387fe89329c5af8e7302eab6e97ea2604b5",
+      "build/sd-baseline-overlay/preprocessing.hpp": "05f3422db8971402aa18a42b28c0d965a05d4533e3a537f670844099727a4273",
+      "build/sd-baseline-overlay/rng.hpp": "6fb2bb30234a672fedb820923597bb01803ad4f600d4b5861af78aeaaec96df3",
+      "build/sd-baseline-overlay/rng_philox.hpp": "b5dbfb17c480081018cb5f7d8331aeb88e4caa76e515b602e8da6fad0c496da9",
+      "build/sd-baseline-overlay/sd-ggml-backend.cpp": "83a8910f01b16c705d395c5d6690f3e081abde632c372b9e6e524076b20dbd0f",
+      "build/sd-baseline-overlay/sd-ggml-cpu.c": "96b107a2d3362752517f36c760fd06f1d923bf85cde07e29b2272d0b448ab435",
+      "build/sd-baseline-overlay/sd_baseline_validation.h": "e8200fea8d9895435981d9d82ff0d7b7e6b2f3cf6a9a19e86a420c1669ebdd49",
+      "build/sd-baseline-overlay/sd_clip_vocab.c": "b39eab88ce24a0d95d87c815fdaad2bfdb6474599936aafac816cf1278b97efc",
+      "build/sd-baseline-overlay/sd_clip_vocab.h": "4efe839044e109850146d274cb7536b13739eac955ff498c7b54c706287facf5",
+      "build/sd-baseline-overlay/stable-diffusion.cpp": "d2c27b7e5b32d0c2f9f97bae1d2a8ecafa084669c803f39ca322b6a86eacbb25",
+      "build/sd-baseline-overlay/stable-diffusion.h": "dffbdacf8c114570373e8d0fe0abcf0d5279fef7db85db0239dec957d4e76d99",
+      "build/sd-baseline-overlay/t5.hpp": "62fa641c243e328225297bb9e41efb9c55f9a70c23f3ca472483cc340d9a2eee",
+      "build/sd-baseline-overlay/tae.hpp": "57ee75cf6b964923499426a7ed84a5c07cd763de79e3b9f57d55265f675893a6",
+      "build/sd-baseline-overlay/unet.hpp": "9982e48a04f68393d887d990803d4e89c44489339ca890abbe187fdb40e0b158",
+      "build/sd-baseline-overlay/upscaler.cpp": "032f35b7d8b766ee6b24999383848d3321e7e39fd978f70e910245086c8f07b4",
+      "build/sd-baseline-overlay/util.cpp": "c2f91b2ad1129121ab1ecf8147a2bbf322b8f33ce055392002a5c997b64c2a85",
+      "build/sd-baseline-overlay/util.h": "18f14d141b9de2734e959552e719fddaa27ddcb76fabece2c3704f38a2db776f",
+      "build/sd-baseline-overlay/vae.hpp": "9e044e9f9095b260ca724bf0a51b7b2dc7fda787629d44de0357c7cb87ffbca8",
+      "src/ve_sd_turbo_clip.cpp": "ec9c2c28eea2b9195afa19a49de2e579de47b22fb62f9b88e4f48337914ca13b",
+      "src/ve_sd_turbo_main.cpp": "5f4e0222268c3d5dc6b59ca8e374ac78c16ecf16643a6604d8f54ac8616444b1",
+      "src/ve_sd_turbo_stages.h": "afa654800040e565157ffc3de593c5c2a154d7e62da6ad65e8ab3883273ee36d",
+      "src/ve_sd_turbo_support.h": "ea8f9d4d85176c85dc2ca7088bcf8f603175096c632b5c6266c375a58b8dfcc1",
+      "src/ve_sd_turbo_unet.cpp": "f44d1c24d8b2a7df57d4b06977ca75e30218862f88c6e47f3ea21388342b154e",
+      "src/ve_sd_turbo_vae.cpp": "770386505aeeb4d962cdbe326ecf245067ef232eb5a0477f7fe8a9cc161b9c54",
+      "build/models/sd-turbo/text_encoder/model.safetensors.ve-index": "22cf2e735485a5ec96549c3357f12e79dcdc4f9103964139dcd2b04e961a0a57",
+      "build/models/sd-turbo/unet/diffusion_pytorch_model.safetensors.ve-index": "21f5219d0c17766e59284f0ba6dfa42d353804da42c8c98cdfc7e14939f37000",
+      "build/models/sd-turbo/vae/diffusion_pytorch_model.safetensors.ve-index": "3eec0b99b96bdcdbba37ecc75b41e2fdaf2f4c4dbcff9669f22a5816dca4a9fb"
+    }
+  },
+  "execution_scope": "CLIP, U-Net, VAE and scheduler in one native VE process; host launch and file validation",
+  "validation_artifacts": "build/results/20261008T080508Z-sd-ve"
+}

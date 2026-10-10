@@ -1,0 +1,163 @@
+{
+  "status": "correctness_passed_formal_performance_pending",
+  "binary_sha256": "c314f7e2410c07f7dfe3770639043849515e2210c016db771c420b86ba834dc5",
+  "checker_sha256": "be46b344ea09bbbc3cbf7d852a110bf118dc31db195cb5b24baaa38ece74bae7",
+  "gelu_mode": "ve",
+  "request_seconds": [
+    80.898571,
+    11.013154
+  ],
+  "cpu_stage_checks": 62,
+  "actual_model_object_kernel_fixtures": 102,
+  "kernel_max_abs_error": 4.45248586e-07,
+  "hot_gelu_seconds": {
+    "clip": 0.001073,
+    "unet": 0.007182,
+    "vae": 0
+  },
+  "gelu_dispatch": [
+    [
+      {
+        "stage": "clip",
+        "optimized": 23,
+        "fallback": 0,
+        "enabled": true
+      },
+      {
+        "stage": "unet",
+        "optimized": 16,
+        "fallback": 0,
+        "enabled": true
+      },
+      {
+        "stage": "vae",
+        "optimized": 0,
+        "fallback": 0,
+        "enabled": true
+      }
+    ],
+    [
+      {
+        "stage": "clip",
+        "optimized": 23,
+        "fallback": 0,
+        "enabled": true
+      },
+      {
+        "stage": "unet",
+        "optimized": 16,
+        "fallback": 0,
+        "enabled": true
+      },
+      {
+        "stage": "vae",
+        "optimized": 0,
+        "fallback": 0,
+        "enabled": true
+      }
+    ]
+  ],
+  "sampled_node_peak_gib": 9.884765625,
+  "final_node_used_mib": 128,
+  "artifact_sha256": {
+    "build/results/20261009T120107Z-sd-resident/summary.json": "b405e8a7ff89cabe0a8834466b3003e4f2d24cad124c9157c400ab60ebf3a9f2",
+    "build/results/20261009T120055Z-ve-memory-sampled/summary.json": "4add8045b335b1f18aa38cb041837544a28d213027c496456bb18268004646b2",
+    "build/results/20261009T120107Z-sd-resident/native.log": "7208f412b207d079260fbee79cecd2c682fbce6291191fdb7ab1499bc1ef16e5",
+    "build/results/20261009T120107Z-sd-resident/check_sd_resident.py": "be46b344ea09bbbc3cbf7d852a110bf118dc31db195cb5b24baaa38ece74bae7",
+    "src/ve_sd_turbo_gelu.c": "7e668a4bb9bcff7d7fb8d7be7243dbbd1df046c233f534fb4f408a0fdaeb37d1",
+    "scripts/check_sd_gelu.sh": "dfe0d53aa96d6c86cc809ae5e48501abc61f46d82aefcec5765997e0a110a07e",
+    "tests/check_sd_gelu.c": "0d4ce77e46c523bd68c9c53f74ab6cb686d9e5632be1788348e1e83262453a68",
+    "build/sd-gelu-model-test.log": "d14632c718ec2dcb09d97aec276467739e63b3be9dc4738747dd6d12307b8537",
+    "build/sd-gelu-model-build.log": "d5ad9d318cb46b654fbdaddec7564aebff744f26951b25f5ab5087e298ad7362",
+    "build/sd-gelu-model-object-check.log": "97bea1d918e571d26377185b45f565e8f2114a0a24c69dce8bb548cabb8b1fa4"
+  },
+  "formal_speedup": null,
+  "scope": "one fixed one-step prompt, includes operator timing; actual-model-object unit checks; broader validation and same-binary comparison pending",
+  "actual_model_object_sha256": "dd3f23b1e1d83a421d2ea3c1bb83c0a4ca86f5270036d1f4deffa823a4d5db38",
+  "tests": [
+    {
+      "name": "double",
+      "summary": "build/results/20261009T120107Z-sd-resident/summary.json",
+      "summary_sha256": "b405e8a7ff89cabe0a8834466b3003e4f2d24cad124c9157c400ab60ebf3a9f2",
+      "log": "build/sd-gelu-model-test.log",
+      "log_sha256": "d14632c718ec2dcb09d97aec276467739e63b3be9dc4738747dd6d12307b8537",
+      "memory_summary": "build/results/20261009T120055Z-ve-memory-sampled/summary.json",
+      "memory_summary_sha256": "4add8045b335b1f18aa38cb041837544a28d213027c496456bb18268004646b2",
+      "steps": 1,
+      "independent_cpu_checks": 10,
+      "request_seconds": [
+        80.898571,
+        11.013154
+      ],
+      "sampled_highest_used_kib": 10364928,
+      "final_used_kib": 131072
+    },
+    {
+      "name": "six",
+      "summary": "build/results/20261009T120438Z-sd-resident/summary.json",
+      "summary_sha256": "3e874acba18219d728c75ee66283e963b513a47ee7aa5dfd709e9cd1eff5fd08",
+      "log": "build/sd-gelu-model-six.log",
+      "log_sha256": "d85be5431737c081def62caa31acc06051f01e0f0315287489f30945b08aa5a6",
+      "memory_summary": "build/results/20261009T120426Z-ve-memory-sampled/summary.json",
+      "memory_summary_sha256": "e163677d7e8227494edf8798b525939b5876c5dec9ef7e1f34d1286440daa3a0",
+      "steps": 1,
+      "independent_cpu_checks": 30,
+      "request_seconds": [
+        85.552441,
+        10.959409,
+        10.78224,
+        10.942047,
+        10.869869,
+        10.903829
+      ],
+      "sampled_highest_used_kib": 10496000,
+      "final_used_kib": 131072
+    },
+    {
+      "name": "four",
+      "summary": "build/results/20261009T120946Z-sd-resident/summary.json",
+      "summary_sha256": "8d2b633bf4658ccf168860eb55b5990fca4538b422e0128090229c688257e0f9",
+      "log": "build/sd-gelu-model-four.log",
+      "log_sha256": "f1e2c685dfee8d4304c5f100d558948434209ee6c0bc0ef3dbf83f1ccb9e3080",
+      "memory_summary": "build/results/20261009T120934Z-ve-memory-sampled/summary.json",
+      "memory_summary_sha256": "ab5a040ed80511add0f6a2387192b52a07d6c1435f1ffd44c72dec1a350c9d56",
+      "steps": 4,
+      "independent_cpu_checks": 22,
+      "request_seconds": [
+        89.616896,
+        19.441322
+      ],
+      "sampled_highest_used_kib": 10364928,
+      "final_used_kib": 131072
+    }
+  ],
+  "total_independent_cpu_checks": 62,
+  "validation_temperature_peaks_c": {
+    "cpu": 74,
+    "ve": 53.38
+  },
+  "double_request_temperature": {
+    "peaks_c": {
+      "cpu": 74.0,
+      "ve0": 49.75,
+      "ve1": 38.75,
+      "ve2": 41.0
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "double_request_fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  }
+}

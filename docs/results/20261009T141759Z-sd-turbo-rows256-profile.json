@@ -1,0 +1,7261 @@
+{
+  "status": "profile_audited",
+  "binary_sha256": "ec51fe3963653a6f67f47f230ff3a759a3eede4dd549253634ad5f46562bd5c9",
+  "checker_sha256": "241c59f54e694de1c25f5ff3d0579454c61baa6bd8b74d091b2b272953a9113c",
+  "publisher_sha256": "2305c506c18632fe231b0c7986eab03452640aaca00286c548cd73895749e88d",
+  "audit_helper_sha256": {
+    "scripts/record_sd_gelu_result.py": "efdbc4a91454f154f42c0af6d8307e565e58109ed2b4a9a99f7f9c14871ce351",
+    "scripts/record_sd_im2col_rows_abba.py": "5e193b0d4301ee7f4d16621b216c14da0258f7124f1f7c9f6693c442b502d903"
+  },
+  "im2col_mode": "rows_256",
+  "gelu_mode": "ve",
+  "manifest_sha256": "48f9a9a335cf88835e20bb9f73dc91b182a258864a13e98094d8ed54c34254e1",
+  "cpu_stage_checks": 10,
+  "request_seconds": [
+    85.732524,
+    10.645501
+  ],
+  "hot_stages": {
+    "clip": {
+      "operator_sum_seconds": 0.042677,
+      "backend_cpu_seconds": 0.063179,
+      "operators": [
+        {
+          "stage": "clip",
+          "op": "CONT",
+          "seconds": 0.018764,
+          "nodes": 92,
+          "percent_of_operator_sum": 43.96747662675446,
+          "percent_of_cpu_stage": 29.699742002880704
+        },
+        {
+          "stage": "clip",
+          "op": "ADD",
+          "seconds": 0.009098,
+          "nodes": 232,
+          "percent_of_operator_sum": 21.31827448039928,
+          "percent_of_cpu_stage": 14.400354548188481
+        },
+        {
+          "stage": "clip",
+          "op": "SOFT_MAX",
+          "seconds": 0.007378,
+          "nodes": 23,
+          "percent_of_operator_sum": 17.288000562363802,
+          "percent_of_cpu_stage": 11.677930958071512
+        },
+        {
+          "stage": "clip",
+          "op": "NORM",
+          "seconds": 0.002243,
+          "nodes": 47,
+          "percent_of_operator_sum": 5.255758371019519,
+          "percent_of_cpu_stage": 3.5502302980420715
+        },
+        {
+          "stage": "clip",
+          "op": "DIAG_MASK_INF",
+          "seconds": 0.001656,
+          "nodes": 23,
+          "percent_of_operator_sum": 3.880310237364388,
+          "percent_of_cpu_stage": 2.621124107694012
+        },
+        {
+          "stage": "clip",
+          "op": "MUL",
+          "seconds": 0.001594,
+          "nodes": 47,
+          "percent_of_operator_sum": 3.7350329217142724,
+          "percent_of_cpu_stage": 2.5229902340967723
+        },
+        {
+          "stage": "clip",
+          "op": "UNARY_GELU",
+          "seconds": 0.001069,
+          "nodes": 23,
+          "percent_of_operator_sum": 2.504862103709258,
+          "percent_of_cpu_stage": 1.6920179173459535
+        },
+        {
+          "stage": "clip",
+          "op": "RESHAPE",
+          "seconds": 0.000463,
+          "nodes": 163,
+          "percent_of_operator_sum": 1.0848935023548985,
+          "percent_of_cpu_stage": 0.7328384431535795
+        },
+        {
+          "stage": "clip",
+          "op": "PERMUTE",
+          "seconds": 0.000206,
+          "nodes": 69,
+          "percent_of_operator_sum": 0.48269559716006283,
+          "percent_of_cpu_stage": 0.3260577090488928
+        },
+        {
+          "stage": "clip",
+          "op": "SCALE",
+          "seconds": 0.000182,
+          "nodes": 23,
+          "percent_of_operator_sum": 0.426459216908405,
+          "percent_of_cpu_stage": 0.2880704031402839
+        },
+        {
+          "stage": "clip",
+          "op": "GET_ROWS",
+          "seconds": 2.4e-05,
+          "nodes": 1,
+          "percent_of_operator_sum": 0.0562363802516578,
+          "percent_of_cpu_stage": 0.037987305908608875
+        }
+      ]
+    },
+    "unet": {
+      "operator_sum_seconds": 1.3823039999999998,
+      "backend_cpu_seconds": 1.42768,
+      "operators": [
+        {
+          "stage": "unet",
+          "op": "SOFT_MAX",
+          "seconds": 0.592121,
+          "nodes": 32,
+          "percent_of_operator_sum": 42.83580167604232,
+          "percent_of_cpu_stage": 41.474349994396505
+        },
+        {
+          "stage": "unet",
+          "op": "CONT",
+          "seconds": 0.374412,
+          "nodes": 258,
+          "percent_of_operator_sum": 27.08608236683104,
+          "percent_of_cpu_stage": 26.22520452762524
+        },
+        {
+          "stage": "unet",
+          "op": "UNARY_SILU",
+          "seconds": 0.124714,
+          "nodes": 68,
+          "percent_of_operator_sum": 9.022183253466679,
+          "percent_of_cpu_stage": 8.735430908887146
+        },
+        {
+          "stage": "unet",
+          "op": "ADD",
+          "seconds": 0.085293,
+          "nodes": 419,
+          "percent_of_operator_sum": 6.170350371553581,
+          "percent_of_cpu_stage": 5.974237924464865
+        },
+        {
+          "stage": "unet",
+          "op": "IM2COL",
+          "seconds": 0.073377,
+          "nodes": 98,
+          "percent_of_operator_sum": 5.308311341065353,
+          "percent_of_cpu_stage": 5.139597108595764
+        },
+        {
+          "stage": "unet",
+          "op": "GROUP_NORM",
+          "seconds": 0.03619,
+          "nodes": 61,
+          "percent_of_operator_sum": 2.6180926916221035,
+          "percent_of_cpu_stage": 2.5348817662221226
+        },
+        {
+          "stage": "unet",
+          "op": "MUL",
+          "seconds": 0.030951,
+          "nodes": 125,
+          "percent_of_operator_sum": 2.2390877838738805,
+          "percent_of_cpu_stage": 2.167922783817102
+        },
+        {
+          "stage": "unet",
+          "op": "NORM",
+          "seconds": 0.02434,
+          "nodes": 48,
+          "percent_of_operator_sum": 1.7608282982614538,
+          "percent_of_cpu_stage": 1.7048638350330607
+        },
+        {
+          "stage": "unet",
+          "op": "CONCAT",
+          "seconds": 0.018799,
+          "nodes": 12,
+          "percent_of_operator_sum": 1.3599758085052205,
+          "percent_of_cpu_stage": 1.3167516530314916
+        },
+        {
+          "stage": "unet",
+          "op": "UNARY_GELU",
+          "seconds": 0.007213,
+          "nodes": 16,
+          "percent_of_operator_sum": 0.5218099636548835,
+          "percent_of_cpu_stage": 0.505225260562591
+        },
+        {
+          "stage": "unet",
+          "op": "UPSCALE",
+          "seconds": 0.006705,
+          "nodes": 3,
+          "percent_of_operator_sum": 0.4850597263698869,
+          "percent_of_cpu_stage": 0.46964305726773503
+        },
+        {
+          "stage": "unet",
+          "op": "SCALE",
+          "seconds": 0.004192,
+          "nodes": 33,
+          "percent_of_operator_sum": 0.30326180058800384,
+          "percent_of_cpu_stage": 0.2936232208898353
+        },
+        {
+          "stage": "unet",
+          "op": "MUL_MAT",
+          "seconds": 0.002046,
+          "nodes": 25,
+          "percent_of_operator_sum": 0.14801375095492747,
+          "percent_of_cpu_stage": 0.1433094250812507
+        },
+        {
+          "stage": "unet",
+          "op": "RESHAPE",
+          "seconds": 0.001695,
+          "nodes": 599,
+          "percent_of_operator_sum": 0.12262136259462462,
+          "percent_of_cpu_stage": 0.11872408382830886
+        },
+        {
+          "stage": "unet",
+          "op": "PERMUTE",
+          "seconds": 0.000101,
+          "nodes": 33,
+          "percent_of_operator_sum": 0.007306641664930437,
+          "percent_of_cpu_stage": 0.007074414434607194
+        },
+        {
+          "stage": "unet",
+          "op": "VIEW",
+          "seconds": 9.2e-05,
+          "nodes": 31,
+          "percent_of_operator_sum": 0.006655554783897032,
+          "percent_of_cpu_stage": 0.0064440210691471475
+        },
+        {
+          "stage": "unet",
+          "op": "TIMESTEP_EMBEDDING",
+          "seconds": 6.3e-05,
+          "nodes": 1,
+          "percent_of_operator_sum": 0.0045576081672338365,
+          "percent_of_cpu_stage": 0.0044127535582203295
+        }
+      ]
+    },
+    "vae": {
+      "operator_sum_seconds": 1.291052,
+      "backend_cpu_seconds": 1.295217,
+      "operators": [
+        {
+          "stage": "vae",
+          "op": "IM2COL",
+          "seconds": 0.481693,
+          "nodes": 40,
+          "percent_of_operator_sum": 37.310116091373544,
+          "percent_of_cpu_stage": 37.19013879527523
+        },
+        {
+          "stage": "vae",
+          "op": "UNARY_SILU",
+          "seconds": 0.259011,
+          "nodes": 29,
+          "percent_of_operator_sum": 20.062011444930178,
+          "percent_of_cpu_stage": 19.99749848867024
+        },
+        {
+          "stage": "vae",
+          "op": "GROUP_NORM",
+          "seconds": 0.220315,
+          "nodes": 30,
+          "percent_of_operator_sum": 17.0647657879001,
+          "percent_of_cpu_stage": 17.009891006680732
+        },
+        {
+          "stage": "vae",
+          "op": "UPSCALE",
+          "seconds": 0.125364,
+          "nodes": 3,
+          "percent_of_operator_sum": 9.710220812174878,
+          "percent_of_cpu_stage": 9.67899587482252
+        },
+        {
+          "stage": "vae",
+          "op": "ADD",
+          "seconds": 0.079047,
+          "nodes": 85,
+          "percent_of_operator_sum": 6.122681348233844,
+          "percent_of_cpu_stage": 6.102992780360357
+        },
+        {
+          "stage": "vae",
+          "op": "CONT",
+          "seconds": 0.075392,
+          "nodes": 43,
+          "percent_of_operator_sum": 5.839578886055712,
+          "percent_of_cpu_stage": 5.820800684364087
+        },
+        {
+          "stage": "vae",
+          "op": "MUL_MAT",
+          "seconds": 0.027273,
+          "nodes": 2,
+          "percent_of_operator_sum": 2.1124633244826696,
+          "percent_of_cpu_stage": 2.105670323968879
+        },
+        {
+          "stage": "vae",
+          "op": "SOFT_MAX",
+          "seconds": 0.018692,
+          "nodes": 1,
+          "percent_of_operator_sum": 1.447811552129581,
+          "percent_of_cpu_stage": 1.4431558572810579
+        },
+        {
+          "stage": "vae",
+          "op": "MUL",
+          "seconds": 0.003511,
+          "nodes": 30,
+          "percent_of_operator_sum": 0.27194876736181034,
+          "percent_of_cpu_stage": 0.27107426786399497
+        },
+        {
+          "stage": "vae",
+          "op": "RESHAPE",
+          "seconds": 0.000615,
+          "nodes": 186,
+          "percent_of_operator_sum": 0.04763557161136809,
+          "percent_of_cpu_stage": 0.047482390981588414
+        },
+        {
+          "stage": "vae",
+          "op": "SCALE",
+          "seconds": 0.000127,
+          "nodes": 1,
+          "percent_of_operator_sum": 0.009836939178282515,
+          "percent_of_cpu_stage": 0.009805306755547525
+        },
+        {
+          "stage": "vae",
+          "op": "PERMUTE",
+          "seconds": 1.2e-05,
+          "nodes": 4,
+          "percent_of_operator_sum": 0.0009294745680266945,
+          "percent_of_cpu_stage": 0.00092648567768953
+        }
+      ]
+    }
+  },
+  "hot_component_profile": [
+    {
+      "stage": "clip",
+      "part": "tokenizer_init",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "tokenizer_encode",
+      "seconds": 0.022878,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "tokenizer_tensor",
+      "seconds": 6e-06,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "graph_build",
+      "seconds": 0.010025,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "graph_alloc",
+      "seconds": 0.184626,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000283,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000266,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000102,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000213,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000183,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000278,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000224,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00036,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000109,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000364,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000172,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000372,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000262,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000274,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000264,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00022,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000204,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000382,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000275,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000368,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000189,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000107,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000121,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000305,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000265,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000362,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000107,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 9.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000117,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000267,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000298,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000261,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000361,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000108,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000189,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000325,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000266,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000261,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00027,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000259,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000193,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000279,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000264,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000364,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00011,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.0002,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000194,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000372,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000272,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000171,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00027,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000364,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000278,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000359,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000259,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000104,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000186,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000201,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000374,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000271,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000225,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000187,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000188,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 9e-06,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000272,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000113,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000371,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000266,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000387,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000184,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 9.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000267,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000195,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000375,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000267,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00036,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000264,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 9e-06,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000269,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000224,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000376,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00026,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000373,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000271,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 9.9e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000364,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00019,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000262,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000361,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000191,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000188,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000195,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000388,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000363,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000283,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000212,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000115,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000195,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000377,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00026,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00019,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000266,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000195,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000366,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000108,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000366,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000267,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000266,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000196,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000368,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000366,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000295,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000273,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000376,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000317,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000352,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000263,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000411,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000271,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00024,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000202,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000368,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000115,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000277,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000196,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000387,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.00026,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000376,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000309,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000198,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000377,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000304,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000369,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000259,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000101,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000272,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000198,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "nlc_thread_release",
+      "seconds": 0.000372,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "backend_BLAS",
+      "seconds": 0.535903,
+      "calls": 184
+    },
+    {
+      "stage": "clip",
+      "part": "backend_CPU",
+      "seconds": 0.063179,
+      "calls": 185
+    },
+    {
+      "stage": "clip",
+      "part": "graph_compute",
+      "seconds": 0.599894,
+      "calls": 1
+    },
+    {
+      "stage": "clip",
+      "part": "stage_total",
+      "seconds": 0.820065,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "load_total",
+      "seconds": 3e-06,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "graph_build",
+      "seconds": 0.02384,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "graph_alloc",
+      "seconds": 0.393592,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.8e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00027,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00018,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000186,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000185,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000186,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000261,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000272,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000294,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000292,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000297,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000365,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000287,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000376,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000306,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000361,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000108,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000339,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000169,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000193,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000113,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000112,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000166,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000369,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000386,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000108,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000122,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000117,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000101,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000195,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000371,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000167,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.8e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000116,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000174,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000281,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000113,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000372,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00037,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000109,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000116,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000115,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.8e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000272,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000369,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000102,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000174,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000168,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000181,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000373,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000117,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000363,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00037,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000277,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000111,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00017,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000172,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000125,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000368,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000113,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000111,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000371,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000268,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000373,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000113,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000366,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000366,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000105,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000116,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000169,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 7.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000382,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 9.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000104,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00011,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00029,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000268,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000384,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000152,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000373,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000365,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000379,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000361,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000363,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.0002,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000111,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000259,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000257,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000202,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00028,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000373,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000297,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000112,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000356,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000273,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000119,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000363,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000385,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000189,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00011,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00011,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000276,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000107,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000279,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000379,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.001079,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000375,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00011,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000389,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000401,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000272,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000298,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000369,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000265,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000277,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.9e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000198,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000109,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000364,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000201,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000308,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00029,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000374,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000375,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000374,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000292,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000371,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000199,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000314,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00037,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000368,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000371,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000115,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000265,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00036,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000262,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000103,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000109,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000278,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000191,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000261,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000318,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00037,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000365,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000109,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000375,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000249,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000266,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000112,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000265,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000275,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000274,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 7.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000112,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000261,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000269,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000107,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00026,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000285,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000308,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000281,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.9e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000373,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000392,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.9e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.8e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000381,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000118,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000113,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000113,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000199,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000223,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000192,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000277,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000368,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00038,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000111,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000371,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000372,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000359,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000363,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000107,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000168,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000102,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000378,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00029,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000367,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000372,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000109,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000278,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000313,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000157,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00017,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000178,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000116,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000385,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000111,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000124,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000111,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000388,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000273,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000371,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000117,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000382,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000371,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000116,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000325,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000107,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 7.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000116,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000373,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000366,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000383,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000172,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000365,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000336,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000279,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000223,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000166,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000113,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.8e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000211,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000381,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000113,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000128,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.7e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000176,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.00038,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000116,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000375,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000351,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000285,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000111,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000115,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000313,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000361,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000106,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000104,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000109,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.5e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000114,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000115,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000147,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000249,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000233,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000181,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.4e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 6.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000245,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000334,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 5.3e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000112,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000107,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000109,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000104,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.2e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000118,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000119,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000253,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_prepare",
+      "seconds": 1.1e-05,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "nlc_thread_release",
+      "seconds": 0.000318,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "backend_BLAS",
+      "seconds": 1.029137,
+      "calls": 337
+    },
+    {
+      "stage": "unet",
+      "part": "backend_CPU",
+      "seconds": 1.42768,
+      "calls": 337
+    },
+    {
+      "stage": "unet",
+      "part": "graph_compute",
+      "seconds": 2.458194,
+      "calls": 1
+    },
+    {
+      "stage": "unet",
+      "part": "step_total",
+      "seconds": 2.879019,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "graph_build",
+      "seconds": 0.005087,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "graph_alloc",
+      "seconds": 0.069335,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000318,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009882,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000974,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.022476,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000639,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009825,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000335,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.030445,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000156,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.017806,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.00049,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.054976,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.001071,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.033368,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.0005,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.008586,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000734,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.019303,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000756,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009148,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000549,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010263,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000755,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009357,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000423,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010244,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000973,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010636,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000448,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.00968,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000557,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.0095,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000648,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.011277,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000627,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.011196,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000697,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009621,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000628,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009671,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000655,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009541,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.00087,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010715,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000525,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009694,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000672,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.00963,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000862,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009817,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000561,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.011587,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000612,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009926,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000402,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010124,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000591,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009076,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000674,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010294,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000881,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010431,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000885,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009703,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000819,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009416,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000695,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010184,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000461,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009258,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000774,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009498,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000791,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009387,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000745,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010406,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000572,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.009865,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_prepare",
+      "seconds": 0.000711,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "nlc_thread_release",
+      "seconds": 0.010254,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "backend_BLAS",
+      "seconds": 4.401637,
+      "calls": 40
+    },
+    {
+      "stage": "vae",
+      "part": "backend_CPU",
+      "seconds": 1.295217,
+      "calls": 41
+    },
+    {
+      "stage": "vae",
+      "part": "graph_compute",
+      "seconds": 5.697443,
+      "calls": 1
+    },
+    {
+      "stage": "vae",
+      "part": "stage_total",
+      "seconds": 5.7754,
+      "calls": 1
+    }
+  ],
+  "temperature": {
+    "peaks_c": {
+      "cpu": 69.0,
+      "ve0": 50.12,
+      "ve1": 38.25,
+      "ve2": 40.5
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "sampled_node_peak_gib": 10.009765625,
+  "final_node_used_mib": 128,
+  "artifact_sha256": {
+    "build/results/20261009T141839Z-sd-resident/summary.json": "7a6beabc689fb3f438602f1f0a49e9db52e08d29575aee8a57c9e3c01c5d50a9",
+    "build/results/20261009T141839Z-sd-resident/native.log": "040088ef547424dd1a8d09d3330d775f6a378818a915add2c2fe2d3a22ac98ee",
+    "build/results/20261009T141839Z-sd-resident/check_sd_resident.py": "241c59f54e694de1c25f5ff3d0579454c61baa6bd8b74d091b2b272953a9113c",
+    "build/results/20261009T141827Z-ve-memory-sampled/summary.json": "52b3c3679bef5a35e34f95308755f3a3072cc900e4d268fd6c334b5f9c391cc2",
+    "build/results/20261009T141827Z-ve-memory-sampled/memory.csv": "1786af308dbaa093a35704e17076316940f578b5431fc0b1b1bc6c1077e15ac1",
+    "build/sd-rows256-profile.log": "2bbf5673082724330694e93a09cc7510329f0a81ff4413b9fa20933f5889daac",
+    "build/results/20261009T141827Z-temperature-wltrval6.csv": "f6e686e7d7c09177eb3b4a228619aeee394ed101e0fc1769b858a00d3b6c201f",
+    "build/results/20261009T141827Z-temperature-wltrval6-fans.csv": "ddc1cfa4bc50e03ff12fecf45f82f0467e279ac35a3584f69f551b84254b6ab8"
+  },
+  "scope": "one fixed one-step prompt, cold and hot request; includes operator timing and barriers; diagnostic only, no speedup claim"
+}

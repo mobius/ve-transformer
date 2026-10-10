@@ -1,0 +1,201 @@
+{
+  "status": "faster_for_validated_workload",
+  "default_enabled": false,
+  "same_binary": true,
+  "model": "stabilityai/sd-turbo",
+  "precision": "FP32",
+  "size": 512,
+  "runtime_slot": 1,
+  "binary_sha256": "e8e33bd8a52150259767a7c5f540ca3a1be7b57e1c85f0805eeeff1728cf6cdc",
+  "checker_sha256": "39a34c920557673a6a4055864aef16cb52d1617a2dfae682b1e861ad12ea137d",
+  "benchmark_sha256": "4e7cd79a820587f2bee47a87ac3a112be9b88c0069dcfe9809eea245250dafaa",
+  "publisher_sha256": "76ab3ce023483c7434052ec7e369fe870020c3fef1215d0e52f5428cd119ac45",
+  "build_manifest_sha256": "e5107534190e8a08bcb7227a08634be571a115bd983d14c7ca8622844e69ab10",
+  "metrics": {
+    "process": {
+      "eight_seconds": 98.52333799097687,
+      "four_seconds": 96.69030183274299,
+      "latency_reduction_percent": 1.860509596621418
+    },
+    "request0": {
+      "eight_seconds": 83.8921915,
+      "four_seconds": 83.014738,
+      "latency_reduction_percent": 1.045929882520713
+    },
+    "request1": {
+      "eight_seconds": 13.9755795,
+      "four_seconds": 13.0591575,
+      "latency_reduction_percent": 6.557309484018181
+    }
+  },
+  "hot_stage_profile_mean_seconds": {
+    "clip": {
+      "8": {
+        "backend_CPU": 0.82429,
+        "backend_BLAS": 0.528091,
+        "graph_compute": 1.3531155
+      },
+      "4": {
+        "backend_CPU": 0.8246145,
+        "backend_BLAS": 0.5268785,
+        "graph_compute": 1.3606090000000002
+      }
+    },
+    "unet": {
+      "8": {
+        "backend_CPU": 2.118612,
+        "backend_BLAS": 1.0156589999999999,
+        "graph_compute": 3.135759
+      },
+      "4": {
+        "backend_CPU": 2.1190350000000002,
+        "backend_BLAS": 1.007007,
+        "graph_compute": 3.1277085
+      }
+    },
+    "vae": {
+      "8": {
+        "backend_CPU": 1.627074,
+        "backend_BLAS": 6.0100475,
+        "graph_compute": 7.637843
+      },
+      "4": {
+        "backend_CPU": 2.8372960000000003,
+        "backend_BLAS": 3.887078,
+        "graph_compute": 6.725536
+      }
+    }
+  },
+  "all_trace_and_png_bytes_identical": true,
+  "abba_cpu_stage_checks": 40,
+  "earlier_cpu_stage_checks": 62,
+  "total_cpu_stage_checks": 102,
+  "vae_threads_abba": [
+    8,
+    4,
+    4,
+    8
+  ],
+  "earlier_proof": {
+    "path": "docs/results/20261009T110302Z-sd-turbo-vae-threads.json",
+    "sha256": "8ef1875c2dd83ebe82a4b05611284fe646c306a6fa2c4f7200e84cd0c9c6086b"
+  },
+  "runs": [
+    {
+      "mode": "8",
+      "process_seconds": 98.78617453482002,
+      "request_seconds": [
+        84.068561,
+        14.046628
+      ],
+      "cold_weights_load_seconds": 59.234436,
+      "sampled_node_peak_gib": 9.884765625,
+      "final_node_used_mib": 128
+    },
+    {
+      "mode": "4",
+      "process_seconds": 96.32572746556252,
+      "request_seconds": [
+        82.666071,
+        13.041801
+      ],
+      "cold_weights_load_seconds": 58.677756,
+      "sampled_node_peak_gib": 9.759765625,
+      "final_node_used_mib": 128
+    },
+    {
+      "mode": "4",
+      "process_seconds": 97.05487619992346,
+      "request_seconds": [
+        83.363405,
+        13.076514
+      ],
+      "cold_weights_load_seconds": 59.432506000000004,
+      "sampled_node_peak_gib": 9.759765625,
+      "final_node_used_mib": 128
+    },
+    {
+      "mode": "8",
+      "process_seconds": 98.26050144713372,
+      "request_seconds": [
+        83.715822,
+        13.904531
+      ],
+      "cold_weights_load_seconds": 58.860276999999996,
+      "sampled_node_peak_gib": 9.884765625,
+      "final_node_used_mib": 128
+    }
+  ],
+  "temperature": {
+    "peaks_c": {
+      "cpu": 81.0,
+      "ve0": 53.0,
+      "ve1": 39.38,
+      "ve2": 41.75
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "warning_events": 4,
+  "artifact_sha256": {
+    "0": {
+      "build/results/20261009T111712Z-sd-vae-abba/run0.log": "9c4cc569cdbc3c64d7e05037f0431b1a0831250c69cea0a7f74405dc71f24261",
+      "build/results/20261009T111724Z-sd-resident/summary.json": "9e6ce4d49d160a294091f5ef00bf6f2ab408f7f7b4f39cd7ab248ad129f3f54d",
+      "build/results/20261009T111724Z-sd-resident/native.log": "8862230d076e3fd97df64891340a36cfdc693a25e7d062e3d8c3729cfa1d0316",
+      "build/results/20261009T111724Z-sd-resident/check_sd_resident.py": "39a34c920557673a6a4055864aef16cb52d1617a2dfae682b1e861ad12ea137d",
+      "build/results/20261009T111712Z-ve-memory-sampled/summary.json": "81ea44e15a081010b967225c5ca7f3ddd0c74b96250783bae03e07a82b5c438b",
+      "build/results/20261009T111712Z-ve-memory-sampled/memory.csv": "bfc5721077c8d9c42356ddb72c951dfb0cb24193092f2a7a44bc509cb138bb29"
+    },
+    "1": {
+      "build/results/20261009T111712Z-sd-vae-abba/run1.log": "d69dd092c9eb32496763cb11839c47b538ea4686aca398326bd03edf85eecb09",
+      "build/results/20261009T111918Z-sd-resident/summary.json": "431b761911289b369ce14cff341e7b4d9126c9e6e4c89ca800dcc71daa2a33ab",
+      "build/results/20261009T111918Z-sd-resident/native.log": "30b047a88d36ab0ba10f2dcc1a6ee0031cacdc6ba4acedfb4c62a1ea8e190c91",
+      "build/results/20261009T111918Z-sd-resident/check_sd_resident.py": "39a34c920557673a6a4055864aef16cb52d1617a2dfae682b1e861ad12ea137d",
+      "build/results/20261009T111906Z-ve-memory-sampled/summary.json": "d58435d979a5ddb33d1a3542ec1f1562861932c32b03a78f7d0bef2bbfec9316",
+      "build/results/20261009T111906Z-ve-memory-sampled/memory.csv": "d5fc6aff29954576f92edbf2f6fba091fa254dfb6c11ed55af933f6ddd78b41c"
+    },
+    "2": {
+      "build/results/20261009T111712Z-sd-vae-abba/run2.log": "e0ab8684c03e41293aa7396180e8cc04ee39fe26534a2cb1f3117b271da41c33",
+      "build/results/20261009T112109Z-sd-resident/summary.json": "3e33c6f98aa0d8a14e2746ead76dd5d2e1be1647be8460592c2fede113f0006c",
+      "build/results/20261009T112109Z-sd-resident/native.log": "b42d6fff73e1fc6c15837563499e6e59d4ee43f7de411aa365e10a0079fe8b91",
+      "build/results/20261009T112109Z-sd-resident/check_sd_resident.py": "39a34c920557673a6a4055864aef16cb52d1617a2dfae682b1e861ad12ea137d",
+      "build/results/20261009T112057Z-ve-memory-sampled/summary.json": "e1928cb70aee7eddc1ed35fb6ebaffd84894702f610c2e5306f1ffcab59c5385",
+      "build/results/20261009T112057Z-ve-memory-sampled/memory.csv": "51f72382f04847e0c8febf95c82238b28e21aa90f3f82b824a9fcbae61bf938e"
+    },
+    "3": {
+      "build/results/20261009T111712Z-sd-vae-abba/run3.log": "23bf7cc4cce42a34b0d951bc89c558c63080d7bc6ceea4ea82f8b81b1271cf31",
+      "build/results/20261009T112300Z-sd-resident/summary.json": "fed8a538e526953b62e34d3009fef4a6c8042a75dedafdfde43f548010535787",
+      "build/results/20261009T112300Z-sd-resident/native.log": "dd0ef523e56ce7dcedfd7b9b6c162fecf53507ac9a23771a2d185f615b3c413a",
+      "build/results/20261009T112300Z-sd-resident/check_sd_resident.py": "39a34c920557673a6a4055864aef16cb52d1617a2dfae682b1e861ad12ea137d",
+      "build/results/20261009T112248Z-ve-memory-sampled/summary.json": "c2154819a9abb17598f325ce2ce457e58598ffe40f0f6258b7600beea6b44cb9",
+      "build/results/20261009T112248Z-ve-memory-sampled/memory.csv": "abbc29b7af2a72d06b6dffadb0a16e899db5b157c82a5458b84c00cbe633f551"
+    }
+  },
+  "thermal_artifact_sha256": {
+    "build/sd-vae-abba-test.log": "16f0db8b5c5e7b090b451d551a7579d27c0353d8b1116ffe2ff2e9c0f8070775",
+    "build/results/20261009T111712Z-temperature-b1g8briv.csv": "5749e8cffbc46f416be06e0561bd10b73f3fadd218a1637a2c21ce30fea73871",
+    "build/results/20261009T111712Z-temperature-b1g8briv-fans.csv": "4777332f5c3361f34067a1e64e3815f8967dc6ed680e7b0e602a0ecd4846cf18"
+  },
+  "scope": "two runs per mode, two same-process requests, one fixed one-step prompt; six-prompt/four-step candidate correctness separately verified",
+  "limitations": [
+    "includes stage/thread/dispatch diagnostics and native output IO; not a production service benchmark",
+    "thread count changes may alter library rounding; independent reference tolerances remain required",
+    "cold loading caches not controlled; two repeats do not characterize tails or long-run variance",
+    "other sizes, models, precisions and concurrent requests not covered",
+    "memory is discrete whole-node usage; readable fan states do not establish actual physical fan policy"
+  ]
+}

@@ -1,0 +1,980 @@
+{
+  "status": "cont_transpose_microbenchmark_verified",
+  "baseline": {
+    "proof_sha256": "6b89ed3c173facc081fcc48fee7f574e0423e25854428e1fa25046fd59df09be",
+    "shape_proof_sha256": "69e444bb1b238877acebb99a8d1aaaccc59d4e90eed6d54292254c5c6b4b8989",
+    "manifest_sha256": "bed62ec0f5ac4048a5047dde8c157750285fb1c00d366a0604bf54f36a45a837",
+    "binary_sha256": "59e9e1886583e07da08bb72e49128a1c2b94680092de53afc5b7ff1af0b8adbb",
+    "actual_cpu_object_sha256": "dfd4396c5f524145f17a70aa6a197d5e30e2d2840819fbd557c6847e846899c6",
+    "libraries_sha256": {
+      "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+      "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "5d495e8ebe44cedfed28466fcebc29052ff4e6298f508bdf104dd2c88676e0e6",
+      "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a"
+    },
+    "shapes": [
+      {
+        "stage": "vae",
+        "shape": [
+          512,
+          64,
+          64,
+          1
+        ],
+        "strides": [
+          16384,
+          4,
+          256,
+          8388608
+        ],
+        "m": 512,
+        "n": 4096,
+        "nodes": 2,
+        "diagnostic_seconds": 0.047913
+      },
+      {
+        "stage": "unet",
+        "shape": [
+          640,
+          32,
+          32,
+          1
+        ],
+        "strides": [
+          4096,
+          4,
+          128,
+          2621440
+        ],
+        "m": 640,
+        "n": 1024,
+        "nodes": 5,
+        "diagnostic_seconds": 0.036421
+      },
+      {
+        "stage": "unet",
+        "shape": [
+          1024,
+          640,
+          1,
+          1
+        ],
+        "strides": [
+          2560,
+          4,
+          2621440,
+          2621440
+        ],
+        "m": 1024,
+        "n": 640,
+        "nodes": 5,
+        "diagnostic_seconds": 0.036269
+      },
+      {
+        "stage": "unet",
+        "shape": [
+          1024,
+          64,
+          10,
+          1
+        ],
+        "strides": [
+          2560,
+          4,
+          256,
+          2621440
+        ],
+        "m": 1024,
+        "n": 640,
+        "nodes": 5,
+        "diagnostic_seconds": 0.036161
+      },
+      {
+        "stage": "vae",
+        "shape": [
+          4096,
+          512,
+          1,
+          1
+        ],
+        "strides": [
+          2048,
+          4,
+          8388608,
+          8388608
+        ],
+        "m": 4096,
+        "n": 512,
+        "nodes": 1,
+        "diagnostic_seconds": 0.023157
+      },
+      {
+        "stage": "clip",
+        "shape": [
+          77,
+          64,
+          16,
+          1
+        ],
+        "strides": [
+          4096,
+          4,
+          256,
+          315392
+        ],
+        "m": 77,
+        "n": 1024,
+        "nodes": 23,
+        "diagnostic_seconds": 0.018334999999999997
+      },
+      {
+        "stage": "unet",
+        "shape": [
+          1280,
+          16,
+          16,
+          1
+        ],
+        "strides": [
+          1024,
+          4,
+          64,
+          1310720
+        ],
+        "m": 1280,
+        "n": 256,
+        "nodes": 5,
+        "diagnostic_seconds": 0.017762
+      },
+      {
+        "stage": "unet",
+        "shape": [
+          256,
+          1280,
+          1,
+          1
+        ],
+        "strides": [
+          5120,
+          4,
+          1310720,
+          1310720
+        ],
+        "m": 256,
+        "n": 1280,
+        "nodes": 5,
+        "diagnostic_seconds": 0.008886
+      },
+      {
+        "stage": "unet",
+        "shape": [
+          256,
+          64,
+          20,
+          1
+        ],
+        "strides": [
+          5120,
+          4,
+          256,
+          1310720
+        ],
+        "m": 256,
+        "n": 1280,
+        "nodes": 5,
+        "diagnostic_seconds": 0.008501000000000002
+      }
+    ]
+  },
+  "results": [
+    {
+      "stage": "vae",
+      "shape": [
+        512,
+        64,
+        64,
+        1
+      ],
+      "strides": [
+        16384,
+        4,
+        256,
+        8388608
+      ],
+      "m": 512,
+      "n": 4096,
+      "nodes": 2,
+      "diagnostic_seconds": 0.047913,
+      "baseline_seconds": 0.024067166666666667,
+      "candidate_seconds": 0.00102775,
+      "latency_reduction_percent": 95.72965935610756,
+      "samples_seconds": {
+        "baseline": [
+          0.024068,
+          0.024063,
+          0.024047,
+          0.024086,
+          0.024097,
+          0.024077,
+          0.024067,
+          0.02408,
+          0.024081,
+          0.024086,
+          0.024081,
+          0.023973
+        ],
+        "candidate": [
+          0.000774,
+          0.001038,
+          0.000948,
+          0.001005,
+          0.00102,
+          0.001004,
+          0.000993,
+          0.000998,
+          0.00163,
+          0.001003,
+          0.000923,
+          0.000997
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.0240735,
+          "candidate_seconds": 0.001048,
+          "latency_reduction_percent": 95.6466654204831
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.024060833333333333,
+          "candidate_seconds": 0.0010075,
+          "latency_reduction_percent": 95.81269698334084
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "stage": "unet",
+      "shape": [
+        640,
+        32,
+        32,
+        1
+      ],
+      "strides": [
+        4096,
+        4,
+        128,
+        2621440
+      ],
+      "m": 640,
+      "n": 1024,
+      "nodes": 5,
+      "diagnostic_seconds": 0.036421,
+      "baseline_seconds": 0.008213833333333332,
+      "candidate_seconds": 0.00081425,
+      "latency_reduction_percent": 90.08684536249822,
+      "samples_seconds": {
+        "baseline": [
+          0.007688,
+          0.011231,
+          0.0077,
+          0.007694,
+          0.007615,
+          0.007587,
+          0.007688,
+          0.007611,
+          0.010779,
+          0.007587,
+          0.007695,
+          0.007691
+        ],
+        "candidate": [
+          0.000558,
+          0.000573,
+          0.000563,
+          0.000561,
+          0.000561,
+          0.000519,
+          0.000523,
+          0.000526,
+          0.000575,
+          0.003813,
+          0.000504,
+          0.000495
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.008194166666666667,
+          "candidate_seconds": 0.0005473333333333334,
+          "latency_reduction_percent": 93.3204515407302
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.0082335,
+          "candidate_seconds": 0.0010811666666666667,
+          "latency_reduction_percent": 86.86868686868688
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "stage": "unet",
+      "shape": [
+        1024,
+        640,
+        1,
+        1
+      ],
+      "strides": [
+        2560,
+        4,
+        2621440,
+        2621440
+      ],
+      "m": 1024,
+      "n": 640,
+      "nodes": 5,
+      "diagnostic_seconds": 0.036269,
+      "baseline_seconds": 0.007629916666666668,
+      "candidate_seconds": 0.0007303333333333334,
+      "latency_reduction_percent": 90.42803001343395,
+      "samples_seconds": {
+        "baseline": [
+          0.007627,
+          0.007625,
+          0.007622,
+          0.00764,
+          0.007636,
+          0.007657,
+          0.007634,
+          0.007531,
+          0.007639,
+          0.007651,
+          0.007663,
+          0.007634
+        ],
+        "candidate": [
+          0.00043,
+          0.000415,
+          0.000456,
+          0.004132,
+          0.000349,
+          0.000429,
+          0.000427,
+          0.000426,
+          0.000384,
+          0.000421,
+          0.000447,
+          0.000448
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.007636833333333333,
+          "candidate_seconds": 0.0004155,
+          "latency_reduction_percent": 94.559263219921
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.0076230000000000004,
+          "candidate_seconds": 0.0010451666666666667,
+          "latency_reduction_percent": 86.28929992566357
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "stage": "unet",
+      "shape": [
+        1024,
+        64,
+        10,
+        1
+      ],
+      "strides": [
+        2560,
+        4,
+        256,
+        2621440
+      ],
+      "m": 1024,
+      "n": 640,
+      "nodes": 5,
+      "diagnostic_seconds": 0.036161,
+      "baseline_seconds": 0.008230833333333333,
+      "candidate_seconds": 0.00047916666666666675,
+      "latency_reduction_percent": 94.17839424926598,
+      "samples_seconds": {
+        "baseline": [
+          0.007635,
+          0.007636,
+          0.007652,
+          0.01092,
+          0.007587,
+          0.011621,
+          0.00764,
+          0.007594,
+          0.007561,
+          0.007651,
+          0.007639,
+          0.007634
+        ],
+        "candidate": [
+          0.000482,
+          0.000427,
+          0.000442,
+          0.000353,
+          0.000359,
+          0.000426,
+          0.000442,
+          0.000431,
+          0.000456,
+          0.001054,
+          0.000439,
+          0.000439
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.007619,
+          "candidate_seconds": 0.00043666666666666664,
+          "latency_reduction_percent": 94.26871417946361
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.008842666666666667,
+          "candidate_seconds": 0.0005216666666666667,
+          "latency_reduction_percent": 94.10057297949336
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "stage": "vae",
+      "shape": [
+        4096,
+        512,
+        1,
+        1
+      ],
+      "strides": [
+        2048,
+        4,
+        8388608,
+        8388608
+      ],
+      "m": 4096,
+      "n": 512,
+      "nodes": 1,
+      "diagnostic_seconds": 0.023157,
+      "baseline_seconds": 0.023659,
+      "candidate_seconds": 0.00096625,
+      "latency_reduction_percent": 95.9159305127013,
+      "samples_seconds": {
+        "baseline": [
+          0.023605,
+          0.023664,
+          0.023675,
+          0.023675,
+          0.023586,
+          0.023682,
+          0.023687,
+          0.023684,
+          0.023663,
+          0.02369,
+          0.023678,
+          0.023619
+        ],
+        "candidate": [
+          0.000934,
+          0.000846,
+          0.000917,
+          0.000917,
+          0.00093,
+          0.000922,
+          0.000924,
+          0.000918,
+          0.000848,
+          0.001564,
+          0.000939,
+          0.000936
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.023649,
+          "candidate_seconds": 0.0009153333333333332,
+          "latency_reduction_percent": 96.12950512354293
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.023669,
+          "candidate_seconds": 0.0010171666666666667,
+          "latency_reduction_percent": 95.70253636965369
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "stage": "clip",
+      "shape": [
+        77,
+        64,
+        16,
+        1
+      ],
+      "strides": [
+        4096,
+        4,
+        256,
+        315392
+      ],
+      "m": 77,
+      "n": 1024,
+      "nodes": 23,
+      "diagnostic_seconds": 0.018334999999999997,
+      "baseline_seconds": 0.0009441666666666666,
+      "candidate_seconds": 0.00047,
+      "latency_reduction_percent": 50.22065313327448,
+      "samples_seconds": {
+        "baseline": [
+          0.000879,
+          0.000876,
+          0.00097,
+          0.000936,
+          0.000884,
+          0.000942,
+          0.000881,
+          0.000875,
+          0.001081,
+          0.000933,
+          0.001133,
+          0.00094
+        ],
+        "candidate": [
+          0.000181,
+          0.000102,
+          0.000181,
+          0.003478,
+          0.000186,
+          0.000104,
+          0.000356,
+          0.000161,
+          0.00037,
+          0.000104,
+          0.000257,
+          0.00016
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.0009713333333333333,
+          "candidate_seconds": 0.00025516666666666667,
+          "latency_reduction_percent": 73.73026767330131
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.000917,
+          "candidate_seconds": 0.0006848333333333334,
+          "latency_reduction_percent": 25.3180661577608
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "stage": "unet",
+      "shape": [
+        1280,
+        16,
+        16,
+        1
+      ],
+      "strides": [
+        1024,
+        4,
+        64,
+        1310720
+      ],
+      "m": 1280,
+      "n": 256,
+      "nodes": 5,
+      "diagnostic_seconds": 0.017762,
+      "baseline_seconds": 0.004212916666666667,
+      "candidate_seconds": 0.00040716666666666673,
+      "latency_reduction_percent": 90.33527840965286,
+      "samples_seconds": {
+        "baseline": [
+          0.003908,
+          0.004032,
+          0.004011,
+          0.00376,
+          0.004021,
+          0.003898,
+          0.003969,
+          0.003879,
+          0.003993,
+          0.004011,
+          0.00401,
+          0.007063
+        ],
+        "candidate": [
+          0.000428,
+          0.00047,
+          0.000452,
+          0.000356,
+          0.000424,
+          0.000432,
+          0.000349,
+          0.000439,
+          0.000426,
+          0.000424,
+          0.000363,
+          0.000323
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.003985333333333333,
+          "candidate_seconds": 0.000407,
+          "latency_reduction_percent": 89.78755436600869
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.0044405,
+          "candidate_seconds": 0.00040733333333333333,
+          "latency_reduction_percent": 90.82685883721803
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "stage": "unet",
+      "shape": [
+        256,
+        1280,
+        1,
+        1
+      ],
+      "strides": [
+        5120,
+        4,
+        1310720,
+        1310720
+      ],
+      "m": 256,
+      "n": 1280,
+      "nodes": 5,
+      "diagnostic_seconds": 0.008886,
+      "baseline_seconds": 0.0021288333333333337,
+      "candidate_seconds": 0.0006431666666666667,
+      "latency_reduction_percent": 69.78783371173569,
+      "samples_seconds": {
+        "baseline": [
+          0.002186,
+          0.002113,
+          0.002106,
+          0.002132,
+          0.002132,
+          0.002093,
+          0.002164,
+          0.002079,
+          0.002158,
+          0.002083,
+          0.002141,
+          0.002159
+        ],
+        "candidate": [
+          0.000367,
+          0.000364,
+          0.000354,
+          0.000426,
+          0.000442,
+          0.000345,
+          0.000426,
+          0.000437,
+          0.000434,
+          0.00044,
+          0.000427,
+          0.003256
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.0021478333333333336,
+          "candidate_seconds": 0.0004083333333333333,
+          "latency_reduction_percent": 80.98859315589354
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.0021098333333333334,
+          "candidate_seconds": 0.000878,
+          "latency_reduction_percent": 58.38533849435185
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    },
+    {
+      "stage": "unet",
+      "shape": [
+        256,
+        64,
+        20,
+        1
+      ],
+      "strides": [
+        5120,
+        4,
+        256,
+        1310720
+      ],
+      "m": 256,
+      "n": 1280,
+      "nodes": 5,
+      "diagnostic_seconds": 0.008501000000000002,
+      "baseline_seconds": 0.0021038333333333334,
+      "candidate_seconds": 0.0004268333333333333,
+      "latency_reduction_percent": 79.71163748712668,
+      "samples_seconds": {
+        "baseline": [
+          0.00205,
+          0.001961,
+          0.002142,
+          0.002029,
+          0.002133,
+          0.002004,
+          0.001983,
+          0.002055,
+          0.002058,
+          0.002577,
+          0.002119,
+          0.002135
+        ],
+        "candidate": [
+          0.000434,
+          0.000428,
+          0.000466,
+          0.000425,
+          0.000468,
+          0.000422,
+          0.000445,
+          0.000363,
+          0.000353,
+          0.000435,
+          0.000427,
+          0.000456
+        ]
+      },
+      "paired_arm_means": [
+        {
+          "baseline_arm": 0,
+          "candidate_arm": 1,
+          "baseline_seconds": 0.0020808333333333334,
+          "candidate_seconds": 0.00043216666666666664,
+          "latency_reduction_percent": 79.23107729275131
+        },
+        {
+          "baseline_arm": 3,
+          "candidate_arm": 2,
+          "baseline_seconds": 0.0021268333333333334,
+          "candidate_seconds": 0.0004215,
+          "latency_reduction_percent": 80.18180393386099
+        }
+      ],
+      "all_cpu_uint32_bits_identical": true,
+      "cpu_bit_checks": 2
+    }
+  ],
+  "checks": {
+    "ownership": 270,
+    "concurrent": 72,
+    "graph": 72,
+    "invalid": 14
+  },
+  "cpu_bit_checks": 18,
+  "timed_graphs": 216,
+  "actual_graph_correctness_cases": 72,
+  "actual_thread_counts": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "compiler_diagnostics": [
+    {
+      "line": 10,
+      "message": "Potential dependency due to pointer -- use restrict qualifier if ok: column"
+    },
+    {
+      "line": 10,
+      "message": "Vectorized loop."
+    }
+  ],
+  "candidate_effective_optimization": "-O2",
+  "model_unchanged": true,
+  "temperature": {
+    "peaks_c": {
+      "cpu": 67.0,
+      "ve0": 55.25,
+      "ve1": 49.62,
+      "ve2": 51.88
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "artifact_sha256": {
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/checks.tsv": "0c3c5eb29232190e18bacab6294dc6d87481d90c1aaa8815ae02d2e4d6b2d48e",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/timings.tsv": "bd5c2af97c0d1b8669a5e9931ca64ed8caedb7e4715d8fd4952828c319ffc088",
+    "build/sd-cont-expanded.log": "ea87966897277800d2e9ed037368b403fc774f25de8ba5fed40d604992caaacb",
+    "build/sd-cont-expanded-probe/baseline.json": "53e9a52e5c9122d63b51ef680445744cfd67d4487c9d209f8b63fbe76f88bc4e",
+    "build/sd-cont-expanded-probe/shapes.tsv": "96b884b2573f4d687153f93de5426b898b7692b03a39a57c8c4d52844aaf0bb8",
+    "docs/results/20261009T191953Z-sd-turbo-cont-abba.json": "6b89ed3c173facc081fcc48fee7f574e0423e25854428e1fa25046fd59df09be",
+    "build/sd-baseline-ve/manifest.json": "bed62ec0f5ac4048a5047dde8c157750285fb1c00d366a0604bf54f36a45a837",
+    "build/sd-baseline-ve/bin/sd": "59e9e1886583e07da08bb72e49128a1c2b94680092de53afc5b7ff1af0b8adbb",
+    "build/results/20261009T194627Z-temperature-qbidp1df.csv": "efc1b0ccd0d8a12e480eda1a7a0f9919bfbcfed84f063623100e7586aa36f24a",
+    "build/results/20261009T194627Z-temperature-qbidp1df-fans.csv": "30336f24c36367b6ad344a69ec2770692d9c1cb2808273daa83c62ea18c02eb0",
+    "docs/results/20261009T183852Z-sd-turbo-cont-shapes.json": "69e444bb1b238877acebb99a8d1aaaccc59d4e90eed6d54292254c5c6b4b8989",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape0-input.f32": "829c86036461db21588ddc0be43e0a6f4f6a55edfb35ccfcd363521464e9f719",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape0-baseline.f32": "50a7c5d98f65f28124e0640f912efaca6b738c3cf20f6fcee463fa1bb879e5cc",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape0-candidate.f32": "50a7c5d98f65f28124e0640f912efaca6b738c3cf20f6fcee463fa1bb879e5cc",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape1-input.f32": "86e9a41b005f72424cfdd4c18d699678552a81bc2d48618e7a99a85a9658b093",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape1-baseline.f32": "813a8bc9bf791a0c9b7314ec2c6c124ac18d520833b77f2799085833109a2520",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape1-candidate.f32": "813a8bc9bf791a0c9b7314ec2c6c124ac18d520833b77f2799085833109a2520",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape2-input.f32": "86e9a41b005f72424cfdd4c18d699678552a81bc2d48618e7a99a85a9658b093",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape2-baseline.f32": "a135f7bd8fb5d22952c391e744b48dd7287c3726dda0d5e58d574b85bb53fa8c",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape2-candidate.f32": "a135f7bd8fb5d22952c391e744b48dd7287c3726dda0d5e58d574b85bb53fa8c",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape3-input.f32": "86e9a41b005f72424cfdd4c18d699678552a81bc2d48618e7a99a85a9658b093",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape3-baseline.f32": "a135f7bd8fb5d22952c391e744b48dd7287c3726dda0d5e58d574b85bb53fa8c",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape3-candidate.f32": "a135f7bd8fb5d22952c391e744b48dd7287c3726dda0d5e58d574b85bb53fa8c",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape4-input.f32": "829c86036461db21588ddc0be43e0a6f4f6a55edfb35ccfcd363521464e9f719",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape4-baseline.f32": "be6f3d992d38fa0ea65b968aab5ae1c98460d149f42f4c7e48c10378f8aaa718",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape4-candidate.f32": "be6f3d992d38fa0ea65b968aab5ae1c98460d149f42f4c7e48c10378f8aaa718",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape5-input.f32": "87b719fe038c19216db269345f8c4d7aeadfe975b3cdb565cf4cc0d4b8b21de0",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape5-baseline.f32": "84952606a41e9b99437a542ea4e5583b0be70641df9375d510cdee5c670ca431",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape5-candidate.f32": "84952606a41e9b99437a542ea4e5583b0be70641df9375d510cdee5c670ca431",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape6-input.f32": "5ae904e8d2cf9c6b6d0104de7001c87dd4d130a2e3accc673643edc668f44ebd",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape6-baseline.f32": "137bee4dcb740322b0399946c6404b5aff29291fb548921b558c351319a94eff",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape6-candidate.f32": "137bee4dcb740322b0399946c6404b5aff29291fb548921b558c351319a94eff",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape7-input.f32": "5ae904e8d2cf9c6b6d0104de7001c87dd4d130a2e3accc673643edc668f44ebd",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape7-baseline.f32": "9d6b47980cb730dd46ae775480934ffaeb5629f2a30fbe155886fb03000774c7",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape7-candidate.f32": "9d6b47980cb730dd46ae775480934ffaeb5629f2a30fbe155886fb03000774c7",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape8-input.f32": "5ae904e8d2cf9c6b6d0104de7001c87dd4d130a2e3accc673643edc668f44ebd",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape8-baseline.f32": "9d6b47980cb730dd46ae775480934ffaeb5629f2a30fbe155886fb03000774c7",
+    "build/results/20261009T194645Z-sd-cont-expanded-probe/shape8-candidate.f32": "9d6b47980cb730dd46ae775480934ffaeb5629f2a30fbe155886fb03000774c7",
+    "build/sd-baseline-ve/ggml/src/libggml.a": "554a9e56dcc5449af977153a420f49e42e4b5c3c1106b157c064e6d9fe0856b4",
+    "build/sd-baseline-ve/ggml/src/ggml-cpu/libggml-cpu.a": "5d495e8ebe44cedfed28466fcebc29052ff4e6298f508bdf104dd2c88676e0e6",
+    "build/sd-baseline-ve/ggml/src/libggml-base.a": "85ad728fc953fbd7cbce7110b87b798ef6725064312cb466ab4142eb0ca6702a",
+    "src/ve_sd_turbo_cont_transpose.c": "4cd140451c05b2fa14284efbc1a9e1022ec11c3a05aca4bdbaed5657d47eef39",
+    "tests/benchmark_sd_cont_expanded.cpp": "775bcaab4fcd25248c1e801a5a45dad5d8177f9087113e551ff4206c8e3185ee",
+    "scripts/benchmark_sd_cont_expanded.sh": "170bcfb87c0e13942aa18bfeacadb6ecc1225f0269dbcf4671753f08920db3a2",
+    "scripts/prepare_sd_cont_expanded_fixtures.py": "1fc3013a86f2bb43fbd051dcd992a5e54fe737cfc18901782121a2e9d8b035fb",
+    "build/sd-cont-expanded-probe/candidate.o": "2cddc89114179136644dbff235f93fe3d0024541ff20b351074db9e0a623151e",
+    "build/sd-cont-expanded-probe/probe": "0c2ab7cd112e05d987a5c5502b89423c67357f50c660955ecb486f0ffd523a28",
+    "build/sd-cont-expanded-symbols.log": "2257ab8d805a23c9642bbf531f94c0035cf7bdfac7c3f263a43df3abba09fa58",
+    "build/sd-cont-expanded-relocations.log": "aa52deda7b13bf5ce086310b72853bf5b4f4c5c946482ed52c1ddaa2bdef9e45",
+    "build/sd-cont-expanded-archive-binding-rejection.log": "907ad379c77c779245fe56e969b0fc4325dc65c50124a3560e26b0fd0bdd5234",
+    "build/sd-cont-expanded-audit.log": "542acad8e71f3ae8e2250925b5167bf8aecc47a713aa5fa39904ad51cb7a710b",
+    "build/results/20261009T194731Z-temperature-x9rzt33k.csv": "4a285058ee67117da67aef3e8329c34f7dd3e4ca83e5891343cba16e3669cc4b",
+    "build/results/20261009T194731Z-temperature-x9rzt33k-fans.csv": "9fee23e12b64cacea82ef8bfd87014c9e87e96ea9bd373e61441981f77ce1bc7",
+    "build/results/20261009T194602Z-temperature-6t2mtuc9.csv": "0048616d559edff33022b84a16617dd353988793b0267582bdd66eb0f619d83b",
+    "build/results/20261009T194602Z-temperature-6t2mtuc9-fans.csv": "0edd8df9701088f48d2078819f9139dbcc652f1cd09c89981565a803afe92093"
+  },
+  "publisher_sha256": "933fdbd993388c74ef8b19b156a34babc41536b98fcea8f2bc880bc5f89604f1",
+  "audit_dependency_sha256": {
+    "scripts/record_sd_pixels_pack_abba.py": "9f584710111235bc6d3a23f96a4f4c6af0c5685f98911ef09ec86d9c527914c2",
+    "scripts/record_qwen36_mtp.py": "951872f035a99a8394dfeef852b97dcc08a5120951356c8a67ea7e1e0c43e47b",
+    "scripts/record_sd_im2col_result.py": "b71ba007623644aaf4ae2fb667996c990aa133834429d2cc3a26c54b164363c6"
+  },
+  "scope": "independent candidate O2 pure transpose, actual model O1 ggml CONT graph baseline versus custom candidate graph, common actual runtime; nine measured layouts, 12 samples/mode/shape with ABBA; full bit-pattern/direct/concurrent checks; graph overhead included, no model integration or full-model speedup claim",
+  "cpu_validation_temperature": {
+    "peaks_c": {
+      "cpu": 65.0,
+      "ve0": 53.0,
+      "ve1": 49.62,
+      "ve2": 51.88
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "cpu_validation_fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "preserved_rejections": [
+    {
+      "log": "build/sd-cont-expanded-archive-binding-rejection.log",
+      "reason": "pre-compilation static library binding missing from the preceding audit archive; bound to complete unchanged model archive instead",
+      "temperature": {
+        "peaks_c": {
+          "cpu": 63.0,
+          "ve0": 51.5,
+          "ve1": 49.62,
+          "ve2": 51.88
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      }
+    }
+  ],
+  "finalizer_sha256": "3f677f72dd126e7421ca9ed86adeab8b42b10d1679c5cb1c9804b3441abb2d7b"
+}

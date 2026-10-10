@@ -1,0 +1,1071 @@
+{
+  "status": "pixel_vector_microbenchmark_verified",
+  "model_speedup_measured": false,
+  "compiler_diagnostics": [
+    {
+      "source": "src/ve_sd_turbo_pixels.cpp",
+      "line": 9,
+      "message": "Unvectorized loop."
+    },
+    {
+      "source": "src/ve_sd_turbo_pixels.cpp",
+      "line": 9,
+      "message": "Vectorization obstructive statement."
+    },
+    {
+      "source": "src/ve_sd_turbo_pixels.cpp",
+      "line": 10,
+      "message": "Branch out of the loop inhibits optimization."
+    },
+    {
+      "source": "src/ve_sd_turbo_pixels.cpp",
+      "line": 20,
+      "message": "Constant-length loop is expanded."
+    },
+    {
+      "source": "src/ve_sd_turbo_pixels.cpp",
+      "line": 20,
+      "message": "Unvectorized loop."
+    },
+    {
+      "source": "src/ve_sd_turbo_pixels_vector.cpp",
+      "line": 10,
+      "message": "Unvectorized loop."
+    },
+    {
+      "source": "src/ve_sd_turbo_pixels_vector.cpp",
+      "line": 10,
+      "message": "Vectorization obstructive statement."
+    },
+    {
+      "source": "src/ve_sd_turbo_pixels_vector.cpp",
+      "line": 12,
+      "message": "Vectorized loop."
+    },
+    {
+      "source": "src/ve_sd_turbo_pixels_vector.cpp",
+      "line": 19,
+      "message": "Unvectorized loop."
+    }
+  ],
+  "clamp_compute_vectorized": true,
+  "finite_scan_vectorized": false,
+  "pack_vectorized": false,
+  "accepted_baseline_proof_sha256": "3e0c8f7a3f93263ff969f3a0bf59e4ec008cdb0ee725d185598ff0cb11ea8878",
+  "comparisons": [
+    {
+      "index": 0,
+      "kind": "random_edges_1",
+      "spatial": 1,
+      "clamp": {
+        "reference_samples_seconds": [
+          1e-06,
+          2e-06,
+          9.99e-07,
+          1e-06,
+          1e-06,
+          2e-06
+        ],
+        "candidate_samples_seconds": [
+          9.99e-07,
+          1e-06,
+          9.99e-07,
+          2e-06,
+          9.99e-07,
+          2e-06
+        ],
+        "reference_mean_seconds": 1.3331666666666666e-06,
+        "candidate_mean_seconds": 1.3328333333333334e-06,
+        "latency_reduction_percent": 0.025003125390665737
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          2e-06,
+          2e-06,
+          1e-06,
+          2e-06,
+          1e-06,
+          2e-06
+        ],
+        "candidate_samples_seconds": [
+          2e-06,
+          2e-06,
+          2e-06,
+          2e-06,
+          2e-06,
+          2e-06
+        ],
+        "reference_mean_seconds": 1.6666666666666665e-06,
+        "candidate_mean_seconds": 2e-06,
+        "latency_reduction_percent": -20.000000000000018
+      }
+    },
+    {
+      "index": 1,
+      "kind": "random_edges_2",
+      "spatial": 2,
+      "clamp": {
+        "reference_samples_seconds": [
+          2e-06,
+          9.99e-07,
+          1e-06,
+          2e-06,
+          2e-06,
+          2e-06
+        ],
+        "candidate_samples_seconds": [
+          2e-06,
+          1e-06,
+          1e-06,
+          2e-06,
+          1e-06,
+          2e-06
+        ],
+        "reference_mean_seconds": 1.6664999999999998e-06,
+        "candidate_mean_seconds": 1.5e-06,
+        "latency_reduction_percent": 9.990999099909981
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          2e-06,
+          2e-06,
+          2e-06,
+          2e-06,
+          2e-06,
+          2e-06
+        ],
+        "candidate_samples_seconds": [
+          2e-06,
+          2e-06,
+          2e-06,
+          2e-06,
+          2e-06,
+          2e-06
+        ],
+        "reference_mean_seconds": 2e-06,
+        "candidate_mean_seconds": 2e-06,
+        "latency_reduction_percent": 0.0
+      }
+    },
+    {
+      "index": 2,
+      "kind": "random_edges_7",
+      "spatial": 7,
+      "clamp": {
+        "reference_samples_seconds": [
+          9.99e-07,
+          9.99e-07,
+          2e-06,
+          2e-06,
+          1e-06,
+          2e-06
+        ],
+        "candidate_samples_seconds": [
+          2e-06,
+          2e-06,
+          2e-06,
+          9.99e-07,
+          2e-06,
+          2e-06
+        ],
+        "reference_mean_seconds": 1.4996666666666666e-06,
+        "candidate_mean_seconds": 1.8331666666666665e-06,
+        "latency_reduction_percent": -22.23827517226049
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          3e-06,
+          3e-06,
+          2e-06,
+          3e-06,
+          3e-06,
+          3e-06
+        ],
+        "candidate_samples_seconds": [
+          3e-06,
+          2e-06,
+          3.001e-06,
+          3e-06,
+          2e-06,
+          2e-06
+        ],
+        "reference_mean_seconds": 2.8333333333333335e-06,
+        "candidate_mean_seconds": 2.5001666666666664e-06,
+        "latency_reduction_percent": 11.758823529411778
+      }
+    },
+    {
+      "index": 3,
+      "kind": "random_edges_255",
+      "spatial": 255,
+      "clamp": {
+        "reference_samples_seconds": [
+          1.2e-05,
+          1.3e-05,
+          1.2e-05,
+          1.3e-05,
+          1.2e-05,
+          1.3e-05
+        ],
+        "candidate_samples_seconds": [
+          1e-05,
+          9e-06,
+          8.999e-06,
+          1e-05,
+          8.999e-06,
+          1e-05
+        ],
+        "reference_mean_seconds": 1.2499999999999999e-05,
+        "candidate_mean_seconds": 9.499666666666666e-06,
+        "latency_reduction_percent": 24.002666666666663
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          3.7e-05,
+          3.5999e-05,
+          3.6e-05,
+          3.5999e-05,
+          3.5999e-05,
+          3.5e-05
+        ],
+        "candidate_samples_seconds": [
+          3.7001e-05,
+          3.5999e-05,
+          3.6e-05,
+          3.5e-05,
+          3.5e-05,
+          3.5e-05
+        ],
+        "reference_mean_seconds": 3.59995e-05,
+        "candidate_mean_seconds": 3.5666666666666655e-05,
+        "latency_reduction_percent": 0.9245498780075967
+      }
+    },
+    {
+      "index": 4,
+      "kind": "random_edges_256",
+      "spatial": 256,
+      "clamp": {
+        "reference_samples_seconds": [
+          1.2999e-05,
+          1.4e-05,
+          1.4e-05,
+          1.3e-05,
+          1.2999e-05,
+          1.3e-05
+        ],
+        "candidate_samples_seconds": [
+          1e-05,
+          9e-06,
+          1.0001e-05,
+          1e-05,
+          1.0001e-05,
+          1e-05
+        ],
+        "reference_mean_seconds": 1.3333000000000001e-05,
+        "candidate_mean_seconds": 9.833666666666667e-06,
+        "latency_reduction_percent": 26.24565614140354
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          3.6e-05,
+          3.6e-05,
+          3.7e-05,
+          3.7001e-05,
+          3.6e-05,
+          3.6e-05
+        ],
+        "candidate_samples_seconds": [
+          3.7001e-05,
+          3.7e-05,
+          3.5999e-05,
+          3.5e-05,
+          3.6e-05,
+          3.5e-05
+        ],
+        "reference_mean_seconds": 3.63335e-05,
+        "candidate_mean_seconds": 3.6e-05,
+        "latency_reduction_percent": 0.9178856977720251
+      }
+    },
+    {
+      "index": 5,
+      "kind": "random_edges_257",
+      "spatial": 257,
+      "clamp": {
+        "reference_samples_seconds": [
+          1.3e-05,
+          1.2999e-05,
+          1.3e-05,
+          1.3e-05,
+          1.2999e-05,
+          1.3e-05
+        ],
+        "candidate_samples_seconds": [
+          1.0001e-05,
+          1.0001e-05,
+          8.999e-06,
+          1e-05,
+          1.0001e-05,
+          1e-05
+        ],
+        "reference_mean_seconds": 1.2999666666666665e-05,
+        "candidate_mean_seconds": 9.833666666666667e-06,
+        "latency_reduction_percent": 24.354470627451974
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          3.7e-05,
+          3.6e-05,
+          3.6e-05,
+          3.5999e-05,
+          3.5e-05,
+          3.6e-05
+        ],
+        "candidate_samples_seconds": [
+          3.8e-05,
+          3.7001e-05,
+          3.7001e-05,
+          3.6e-05,
+          3.5999e-05,
+          3.6e-05
+        ],
+        "reference_mean_seconds": 3.599983333333333e-05,
+        "candidate_mean_seconds": 3.666683333333333e-05,
+        "latency_reduction_percent": -1.8527863554923973
+      }
+    },
+    {
+      "index": 6,
+      "kind": "random_edges_262143",
+      "spatial": 262143,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011497,
+          0.011496,
+          0.011494,
+          0.011497,
+          0.011498,
+          0.011495001
+        ],
+        "candidate_samples_seconds": [
+          0.008428999,
+          0.008429,
+          0.008429,
+          0.008428,
+          0.008429,
+          0.008428999
+        ],
+        "reference_mean_seconds": 0.011496166833333335,
+        "candidate_mean_seconds": 0.008428832999999998,
+        "latency_reduction_percent": 26.681361516427792
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.04084,
+          0.040884,
+          0.040836001,
+          0.04089,
+          0.040851,
+          0.040892
+        ],
+        "candidate_samples_seconds": [
+          0.037447,
+          0.037446,
+          0.037450001,
+          0.037425,
+          0.037451,
+          0.037451
+        ],
+        "reference_mean_seconds": 0.04086550016666666,
+        "candidate_mean_seconds": 0.037445000166666666,
+        "latency_reduction_percent": 8.370141038405887
+      }
+    },
+    {
+      "index": 7,
+      "kind": "random_edges_262144",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011494,
+          0.011497,
+          0.011495,
+          0.011495,
+          0.011498,
+          0.011495
+        ],
+        "candidate_samples_seconds": [
+          0.00843,
+          0.008429,
+          0.008428999,
+          0.008429,
+          0.008428001,
+          0.008429
+        ],
+        "reference_mean_seconds": 0.011495666666666668,
+        "candidate_mean_seconds": 0.008428999999999999,
+        "latency_reduction_percent": 26.6767187635921
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.04096,
+          0.040962,
+          0.040988,
+          0.040995,
+          0.040976,
+          0.040975
+        ],
+        "candidate_samples_seconds": [
+          0.037433,
+          0.037420999,
+          0.037424,
+          0.037443999,
+          0.03744,
+          0.037451999
+        ],
+        "reference_mean_seconds": 0.04097599999999999,
+        "candidate_mean_seconds": 0.037435666166666666,
+        "latency_reduction_percent": 8.640018140700235
+      }
+    },
+    {
+      "index": 8,
+      "kind": "round_boundaries",
+      "spatial": 256,
+      "clamp": {
+        "reference_samples_seconds": [
+          1.3e-05,
+          1.3e-05,
+          1.2999e-05,
+          1.4e-05,
+          1.3e-05,
+          1.3e-05
+        ],
+        "candidate_samples_seconds": [
+          1e-05,
+          1.0001e-05,
+          1.0001e-05,
+          1.0001e-05,
+          1e-05,
+          1.0001e-05
+        ],
+        "reference_mean_seconds": 1.3166500000000002e-05,
+        "candidate_mean_seconds": 1.0000666666666667e-05,
+        "latency_reduction_percent": 24.044608159596958
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          3.2e-05,
+          3.3e-05,
+          3.3e-05,
+          3.3e-05,
+          3.3e-05,
+          3.3e-05
+        ],
+        "candidate_samples_seconds": [
+          3.5e-05,
+          3.4e-05,
+          3.4e-05,
+          3.4001e-05,
+          3.4e-05,
+          3.4001e-05
+        ],
+        "reference_mean_seconds": 3.2833333333333336e-05,
+        "candidate_mean_seconds": 3.4167e-05,
+        "latency_reduction_percent": -4.061928934010139
+      }
+    },
+    {
+      "index": 9,
+      "kind": "zero",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011502001,
+          0.0115,
+          0.011502001,
+          0.011496,
+          0.011495,
+          0.011496
+        ],
+        "candidate_samples_seconds": [
+          0.008429,
+          0.008429,
+          0.008429,
+          0.008429,
+          0.008429,
+          0.008428999
+        ],
+        "reference_mean_seconds": 0.011498500333333333,
+        "candidate_mean_seconds": 0.008428999833333334,
+        "latency_reduction_percent": 26.694789851001143
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.034771999,
+          0.03482,
+          0.034888,
+          0.034808001,
+          0.034999,
+          0.034917
+        ],
+        "candidate_samples_seconds": [
+          0.02632,
+          0.026322,
+          0.026321,
+          0.026321,
+          0.026322,
+          0.026320999
+        ],
+        "reference_mean_seconds": 0.034867333333333334,
+        "candidate_mean_seconds": 0.026321166500000003,
+        "latency_reduction_percent": 24.510526089367314
+      }
+    },
+    {
+      "index": 10,
+      "kind": "white",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011510001,
+          0.011497,
+          0.011496999,
+          0.011494,
+          0.011497,
+          0.011496
+        ],
+        "candidate_samples_seconds": [
+          0.008428,
+          0.008427,
+          0.008428001,
+          0.008429,
+          0.008428,
+          0.008429
+        ],
+        "reference_mean_seconds": 0.0114985,
+        "candidate_mean_seconds": 0.008428166833333332,
+        "latency_reduction_percent": 26.702032149120914
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.027841,
+          0.027844001,
+          0.027814,
+          0.027809,
+          0.027824,
+          0.027836001
+        ],
+        "candidate_samples_seconds": [
+          0.025191,
+          0.025191,
+          0.025191,
+          0.02519,
+          0.025188999,
+          0.025191
+        ],
+        "reference_mean_seconds": 0.027828000333333335,
+        "candidate_mean_seconds": 0.025190499833333335,
+        "latency_reduction_percent": 9.477865705070842
+      }
+    },
+    {
+      "index": 11,
+      "kind": "alternating",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011497,
+          0.011499,
+          0.011496999,
+          0.011494,
+          0.011499,
+          0.011494
+        ],
+        "candidate_samples_seconds": [
+          0.008429,
+          0.008429,
+          0.008429,
+          0.008429,
+          0.008429,
+          0.008429999
+        ],
+        "reference_mean_seconds": 0.0114966665,
+        "candidate_mean_seconds": 0.0084291665,
+        "latency_reduction_percent": 26.68164724096329
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.030408001,
+          0.03041,
+          0.03038,
+          0.030361,
+          0.030387999,
+          0.030413
+        ],
+        "candidate_samples_seconds": [
+          0.025758,
+          0.025757999,
+          0.025757,
+          0.025757,
+          0.025755,
+          0.025756
+        ],
+        "reference_mean_seconds": 0.03039333333333333,
+        "candidate_mean_seconds": 0.02575683316666667,
+        "latency_reduction_percent": 15.2549906777802
+      }
+    },
+    {
+      "index": 12,
+      "kind": "cpu_real_0",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011501,
+          0.011499001,
+          0.011495001,
+          0.011496,
+          0.011496,
+          0.011505
+        ],
+        "candidate_samples_seconds": [
+          0.008428,
+          0.008429,
+          0.008428,
+          0.008428,
+          0.008429,
+          0.008428
+        ],
+        "reference_mean_seconds": 0.011498666999999999,
+        "candidate_mean_seconds": 0.008428333333333333,
+        "latency_reduction_percent": 26.701648692554247
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.039365,
+          0.039314,
+          0.039304,
+          0.039358,
+          0.039322,
+          0.039315999
+        ],
+        "candidate_samples_seconds": [
+          0.032821001,
+          0.032822,
+          0.032822,
+          0.032823,
+          0.032822,
+          0.032821001
+        ],
+        "reference_mean_seconds": 0.03932983316666667,
+        "candidate_mean_seconds": 0.03282183366666666,
+        "latency_reduction_percent": 16.54723393415193
+      }
+    },
+    {
+      "index": 13,
+      "kind": "cpu_real_1",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011496,
+          0.011496,
+          0.011494,
+          0.011499001,
+          0.011494,
+          0.011499001
+        ],
+        "candidate_samples_seconds": [
+          0.008429,
+          0.008429,
+          0.008429,
+          0.008429999,
+          0.008429,
+          0.008429999
+        ],
+        "reference_mean_seconds": 0.011496333666666666,
+        "candidate_mean_seconds": 0.008429333,
+        "latency_reduction_percent": 26.678076294526466
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.039628,
+          0.039643999,
+          0.03957,
+          0.039607,
+          0.039573,
+          0.039563
+        ],
+        "candidate_samples_seconds": [
+          0.033028,
+          0.033027001,
+          0.033030001,
+          0.033027,
+          0.033026,
+          0.033028999
+        ],
+        "reference_mean_seconds": 0.039597499833333334,
+        "candidate_mean_seconds": 0.0330278335,
+        "latency_reduction_percent": 16.591113986956728
+      }
+    },
+    {
+      "index": 14,
+      "kind": "cpu_real_2",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011497,
+          0.011498,
+          0.011498,
+          0.011499,
+          0.011499,
+          0.011497
+        ],
+        "candidate_samples_seconds": [
+          0.008427,
+          0.008428999,
+          0.008428,
+          0.008428,
+          0.008428,
+          0.008428
+        ],
+        "reference_mean_seconds": 0.011498000000000001,
+        "candidate_mean_seconds": 0.008427999833333333,
+        "latency_reduction_percent": 26.700297153128094
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.039612001,
+          0.039573,
+          0.039623001,
+          0.039624999,
+          0.039616999,
+          0.039624
+        ],
+        "candidate_samples_seconds": [
+          0.033061,
+          0.033059,
+          0.033061001,
+          0.033058,
+          0.033061,
+          0.033059999
+        ],
+        "reference_mean_seconds": 0.03961233333333333,
+        "candidate_mean_seconds": 0.03306,
+        "latency_reduction_percent": 16.541144593013957
+      }
+    },
+    {
+      "index": 15,
+      "kind": "cpu_real_3",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011498,
+          0.0115,
+          0.011497,
+          0.011498,
+          0.011497,
+          0.011510001
+        ],
+        "candidate_samples_seconds": [
+          0.008428,
+          0.008429,
+          0.008429,
+          0.008428999,
+          0.008429,
+          0.008429
+        ],
+        "reference_mean_seconds": 0.011500000166666668,
+        "candidate_mean_seconds": 0.008428833166666667,
+        "latency_reduction_percent": 26.705799612959435
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.039594,
+          0.039609,
+          0.039637,
+          0.039623001,
+          0.039636,
+          0.039655001
+        ],
+        "candidate_samples_seconds": [
+          0.033065001,
+          0.03307,
+          0.033068,
+          0.033067,
+          0.033073001,
+          0.033071999
+        ],
+        "reference_mean_seconds": 0.039625666999999996,
+        "candidate_mean_seconds": 0.03306916683333333,
+        "latency_reduction_percent": 16.546094143138756
+      }
+    },
+    {
+      "index": 16,
+      "kind": "cpu_real_4",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011495001,
+          0.011498,
+          0.011495001,
+          0.011496,
+          0.011498,
+          0.011496
+        ],
+        "candidate_samples_seconds": [
+          0.008428,
+          0.008429,
+          0.008429,
+          0.008429,
+          0.008428999,
+          0.008428
+        ],
+        "reference_mean_seconds": 0.011496333666666666,
+        "candidate_mean_seconds": 0.0084286665,
+        "latency_reduction_percent": 26.68387379501076
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.039574,
+          0.039615,
+          0.039617,
+          0.039602,
+          0.039605,
+          0.039612
+        ],
+        "candidate_samples_seconds": [
+          0.033033,
+          0.033034001,
+          0.033033,
+          0.033033,
+          0.033032999,
+          0.033032
+        ],
+        "reference_mean_seconds": 0.03960416666666667,
+        "candidate_mean_seconds": 0.033033,
+        "latency_reduction_percent": 16.5921094160968
+      }
+    },
+    {
+      "index": 17,
+      "kind": "cpu_real_5",
+      "spatial": 262144,
+      "clamp": {
+        "reference_samples_seconds": [
+          0.011495,
+          0.011496,
+          0.011495,
+          0.011497,
+          0.011494,
+          0.011497
+        ],
+        "candidate_samples_seconds": [
+          0.008428,
+          0.008429,
+          0.008427001,
+          0.008428,
+          0.008429,
+          0.008428
+        ],
+        "reference_mean_seconds": 0.011495666666666668,
+        "candidate_mean_seconds": 0.008428166833333332,
+        "latency_reduction_percent": 26.6839664221301
+      },
+      "pack": {
+        "reference_samples_seconds": [
+          0.039617999,
+          0.039596001,
+          0.039575,
+          0.039593,
+          0.039601,
+          0.039638001
+        ],
+        "candidate_samples_seconds": [
+          0.033039,
+          0.033040999,
+          0.033039,
+          0.03304,
+          0.033039,
+          0.033039
+        ],
+        "reference_mean_seconds": 0.03960350016666667,
+        "candidate_mean_seconds": 0.033039499833333326,
+        "latency_reduction_percent": 16.57429344807788
+      }
+    }
+  ],
+  "real_six_mean": {
+    "clamp": {
+      "reference_seconds": 0.011497500194444446,
+      "candidate_seconds": 0.008428555444444444,
+      "latency_reduction_percent": 26.692278304834527
+    },
+    "pack": {
+      "reference_seconds": 0.03956216669444444,
+      "candidate_seconds": 0.03300855563888889,
+      "latency_reduction_percent": 16.565349178602627
+    }
+  },
+  "full_cpu_float_checks": 33,
+  "full_cpu_rgb_checks": 18,
+  "native_timed_pairs": 288,
+  "native_invalid_cases": 15,
+  "native_invalid_argument_checks": 7,
+  "all_native_float_and_rgb_bytes_identical": true,
+  "temperature": {
+    "peaks_c": {
+      "cpu": 65.0,
+      "ve0": 49.75,
+      "ve1": 46.0,
+      "ve2": 48.38
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "artifact_sha256": {
+    "build/sd-pixels-vector-probe.log": "cc58994e3d31361f810c5130e2b1c448f06fa53809a2e9ccff5bb60b905417a4",
+    "build/sd-pixels-vector-probe/fixtures/manifest.json": "c1752fa282fa523e72cd11c91b3a79e9a9805ebeea72829ec34bd898b35f07da",
+    "build/sd-pixels-vector-probe/fixtures/case00.f32": "5cd9fd03e7283780d7547bd593e8d38b480eed7aa08c3535c7030a6b8b5dd14f",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case00.clamped.f32": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case00.rgb": "709e80c88487a2411e1ee4dfb9f22a861492d20c4765150c0c794abd70f8147c",
+    "build/sd-pixels-vector-probe/fixtures/case01.f32": "c8508235a8567f9e244642e1a9ce2c2af59bd7c96158aedad31e64cfe5dd8083",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case01.clamped.f32": "fed520b6e581b720d172b89a740cb8a02a1062328526027d214ae9a0a2f77c7c",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case01.rgb": "c7750c53dd437f0f53a97e70b9119cda02b438dffde273cdc0e93f515c0830ec",
+    "build/sd-pixels-vector-probe/fixtures/case02.f32": "726057a12d9410a6e12e9d9bde79928c9d59ed26fd38c534a60ba01cdd1f4298",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case02.clamped.f32": "2f849bf0ac434fa2ad2e729776fb3926216b2b3d300cd5b480ff5aebc8146800",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case02.rgb": "8f63eb3daede3ee826411f41d579233a2167a369b55550abdf6d08348edfeb30",
+    "build/sd-pixels-vector-probe/fixtures/case03.f32": "6200c68707547acd0984623c1187e9574da7851d7fb57917ae2da71be39c5c23",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case03.clamped.f32": "a836489e0bd3856db5ccbddda3a11334c22c723ee67c4f7501cdc40859240d99",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case03.rgb": "985b994f5bdc6aad776730376bfed0986caf8579fafbf970ff057fd0a0bf68f1",
+    "build/sd-pixels-vector-probe/fixtures/case04.f32": "2c6aeb75df68446b766016c8b4617e8ed5a8eeb2ea1decb641604fd1c57cc1f3",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case04.clamped.f32": "f9a7bde967c8b28cfeaa1d968322f4a29373ecc974692022bb0f175c51fbf6bc",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case04.rgb": "3416da2a8234b496f4438ba6b0e43d03710795a1daa3e2750d087098771c97bc",
+    "build/sd-pixels-vector-probe/fixtures/case05.f32": "c36516debab080dc57aaa599e6b94756e1214e66d16d9419f544cec369e55750",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case05.clamped.f32": "a35887c419e0d76de79479295683007a708e2ec0924000670a7efca23ff00f72",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case05.rgb": "b386a5ffd77cf49a6d55d5a7ede4ec11044b81720a9818556156f749265c2ff0",
+    "build/sd-pixels-vector-probe/fixtures/case06.f32": "f9833484758e30eab8cdda9d39aab12f11d3b556d7d5e9a9ca30eadf2962781d",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case06.clamped.f32": "ee269b39e03a4bee089a7a624e266de277c7820efb6e8bd44e816d2e116cb40f",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case06.rgb": "ef1028db8c84e2ad0860524aed08494c701b4e9c6ba9edf1cc59b347b6b5b373",
+    "build/sd-pixels-vector-probe/fixtures/case07.f32": "353c9e0d3302f57935c39d2663333fb39f7384a40ff47a96a51afee6c7de62db",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case07.clamped.f32": "083f581a40638ac6f79e6f899d843d61b9d0bc9b3261382fdf9aa5336dd6aaa8",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case07.rgb": "d9a44c137c966864b90a54cf3b5932be6b2613db5f000d47de967b394d6f8973",
+    "build/sd-pixels-vector-probe/fixtures/case08.f32": "0e5f5b93f24e2e497394d62fbaa51f60834293c624a17eabca826fc6cb82e5f9",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case08.clamped.f32": "365caa56d6e30fe805e40ed650b170e717b394d0a568c97382fcbf35f52ffde6",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case08.rgb": "588b40e478e35d1e7351ef11deaea548e01df37d543637d862ddb8c9e04da4cf",
+    "build/sd-pixels-vector-probe/fixtures/case09.f32": "7f49430039bde85b7e2f4dbc67dee6a0421aa1b293e58d41284bb6e654773f80",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case09.clamped.f32": "bbd05cf6097ac9b1f89ea29d2542c1b7b67ee46848393895f5a9e43fa1f621e5",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case09.rgb": "599c1bb5ffd4b87229a81958f33f1060821cd01cd7aa7ccafa0d862f4522f3f6",
+    "build/sd-pixels-vector-probe/fixtures/case10.f32": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case10.clamped.f32": "c92c83257ebee207e2ca7d495cd12254513713c8b8489bd5a219d14b03d81549",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case10.rgb": "902ab44f9b6b07c34a29958b325726ba7f6d506403335cf95a2af25e0ca1ad00",
+    "build/sd-pixels-vector-probe/fixtures/case11.f32": "2876353b8fbea86787fbf142c4df458e2687a2361b1eb58503dcf2c32397d624",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case11.clamped.f32": "2cb558b2846d3d078585fddbcaf0b45f064cb41bf400a237c045cc2724b881b3",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case11.rgb": "5b29a15bf2d359289ca42b034ea9e7343ad25996b5c3f4605a3cefeef1498adf",
+    "build/sd-pixels-vector-probe/fixtures/case12.f32": "48d96482261258d6e2df39942998ab745cbc71b7c2672afe6dc97b1495397b11",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case12.clamped.f32": "dbd1f55af88cf2e3e2e4556a3b2b5bd0777043e9933e6614ab85c2861ea56ab9",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case12.rgb": "498dbcd39d6abafb361fefd3def5399d15776ca9156d32f9f8b224b40d284c1c",
+    "build/sd-pixels-vector-probe/fixtures/case13.f32": "9ec33668028a498b633dfc953d16f06a8b2fcaec60e84aa5f21d8970277ec009",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case13.clamped.f32": "fd98ae187bf45fe8dd17fbe2bbdc8fa78c37829d382988223c7657182d73bf91",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case13.rgb": "e3dbb75bf94e82fbbc5793d57c9fb8948419a1326fb84e73900bfd650a707cc0",
+    "build/sd-pixels-vector-probe/fixtures/case14.f32": "a6a90481d339f27167832fbd5e8308ec8f6c4e6a2b4c2b1b3d80c0fa51dd5ca2",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case14.clamped.f32": "96de4e73195086bb8e01a3f01a84ecdd5c17bb949e43d356f74d91cc34994b35",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case14.rgb": "c9f5ca649be70d9287917c0e4384dd2a8627b48456947f431fbbb674c0b98d00",
+    "build/sd-pixels-vector-probe/fixtures/case15.f32": "bd6e994ba8c93ba3eaba87fe7b8272bd8c56a0cc03602a48bf12a2127dd23e72",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case15.clamped.f32": "07df276560a1f6b18aaea15e36f3700f02cac433a9391bfc17f9594a9ae873e2",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case15.rgb": "6e9814cb38c32e5db5c6b7a301232aed09e26f4ce5ce8006241f546ad919ad99",
+    "build/sd-pixels-vector-probe/fixtures/case16.f32": "238988d8768db206f8c2f6b33b162f684aa62c73fe20dc56174c59600bb74235",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case16.clamped.f32": "ad38c7f5ec6ad377a5536b0f2679f032b1572cab2199f5960a79ddc65f1aba2e",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case16.rgb": "18c102ceb3b8ac67ec4b246fc7eccd9a862ce994e659b08836e234259a3ae546",
+    "build/sd-pixels-vector-probe/fixtures/case17.f32": "a15115f5cb17ec20f501a89d468a6bc28b59703ac38d99dcb78da6253969ad09",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case17.clamped.f32": "52e3dbc2b5cdfdb8827640aacef1db6a0b172909afe73d7a599872c7072becc9",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case17.rgb": "8306dec4b5a61ae6395f7ad7ebd9825f6f4ea4da83e1e58d6703654355aeb83f",
+    "build/sd-pixels-vector-probe/fixtures/case18.f32": "c9c354937a9c367218ed8d84c83b843b50bd8bcbd7158805a21e1eedc4c4fd6f",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case18.clamped.f32": "c9c354937a9c367218ed8d84c83b843b50bd8bcbd7158805a21e1eedc4c4fd6f",
+    "build/sd-pixels-vector-probe/fixtures/case19.f32": "14ace574df0001cc2cdac8a316abe8825660dd835e0fa6e6ef147293a1b39e24",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case19.clamped.f32": "5a2ee6152812f11fe28993f03bffc39dea86f1f9a321545b2b865d33dd86798d",
+    "build/sd-pixels-vector-probe/fixtures/case20.f32": "5512d6d72708cfe00a661dc2e3d8857ea874b206ab17d01cf0abd83c22d2bf64",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case20.clamped.f32": "b2cce581b8d4c236330f603b74fed9b4561d61ccbbf3e6773d82bb03a844dcfc",
+    "build/sd-pixels-vector-probe/fixtures/case21.f32": "c194ffb4f7a9be962d261b39ec6e0569b99dce112edfb47b0d2feb17f7f0f60d",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case21.clamped.f32": "c194ffb4f7a9be962d261b39ec6e0569b99dce112edfb47b0d2feb17f7f0f60d",
+    "build/sd-pixels-vector-probe/fixtures/case22.f32": "1ca8300ab8bcf6ca946fc3d9d765b83e63f6ec288169066ea1aeed9e86ae360d",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case22.clamped.f32": "409da6513cc8f269f3d9580f84e4ff25b862ea8fe89324a38d9331bf1060cfe4",
+    "build/sd-pixels-vector-probe/fixtures/case23.f32": "826668dbf9d776a8160ab3c3ad970bddcce7b39cef2a6b258639d8dbedad316a",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case23.clamped.f32": "ccc29ed2f9a8ec6acaef2007d9f2d19504f8e1dbe0f3da296665e17037e4f0e9",
+    "build/sd-pixels-vector-probe/fixtures/case24.f32": "9ec507aaee050f436da286ae4e90e182d0c407e57f10bfebb462dde12e28d50a",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case24.clamped.f32": "9ec507aaee050f436da286ae4e90e182d0c407e57f10bfebb462dde12e28d50a",
+    "build/sd-pixels-vector-probe/fixtures/case25.f32": "21d246f8f229ad2c849a4d61e9fc8052507ef32c8c4f31282f823e96f84f4d20",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case25.clamped.f32": "47ef03ea2e2a3d5a031ca387e0af894e4fbc83490252d3e2f8c367948067e993",
+    "build/sd-pixels-vector-probe/fixtures/case26.f32": "7a70d05437c06d96a462e25e80a75c65a55ddebd373bec8d7daa4592943cfecd",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case26.clamped.f32": "10534eea594352b02a13846de07e0794d779baee38de585808cb55355f98b41b",
+    "build/sd-pixels-vector-probe/fixtures/case27.f32": "acd91eb4dc082efd777064e030e4e81afab3658d0dbb5511660932b96f8e21ac",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case27.clamped.f32": "acd91eb4dc082efd777064e030e4e81afab3658d0dbb5511660932b96f8e21ac",
+    "build/sd-pixels-vector-probe/fixtures/case28.f32": "bde120b2680f769655270f9dc503766cd486b0ec50e3c2519c39bff7b01e5442",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case28.clamped.f32": "43634983401c06671cd3827456b793068d34cc7ff9eade6e8335781827ece6b6",
+    "build/sd-pixels-vector-probe/fixtures/case29.f32": "54414f77b31fab2c5958793cc3796d6b703e204daa8cc574e367a7de32f9f80f",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case29.clamped.f32": "32e1913743119afb4884339dbd12db1eabe645ac0025eb1c6ba03692179ffcd7",
+    "build/sd-pixels-vector-probe/fixtures/case30.f32": "d2e89fe942bc8ae566accbc0226eb86a3b423aa1c95791fee1ff96e0573f6dd6",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case30.clamped.f32": "801a19f22270a14dfb208ff1e5e30f0ed47b4cb9bd7bc403f98fa900dd8f74ce",
+    "build/sd-pixels-vector-probe/fixtures/case31.f32": "50d6ce37c15d897720f85540b207e37d11b1c5e0f66968d1d3499a4ba2c1beae",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case31.clamped.f32": "0996eeda2a0b92b799bba924815647faeaf451d5aba6b7ff5e226773d4604677",
+    "build/sd-pixels-vector-probe/fixtures/case32.f32": "42d9578b06d6dccf84e23686d55b4651cf25f54ad86ec097402970e0337596df",
+    "build/results/20261009T165939Z-sd-pixels-vector-probe/case32.clamped.f32": "d2063fe94abf5b9a59da18368c961610b6649fff0e82340428b869808bf461f6",
+    "build/results/20261009T165924Z-temperature-zqfknpvt.csv": "bb6c6671b75e12621819f2952ec1856bbc76973d49777c74fbbc1b29695e32a9",
+    "build/results/20261009T165924Z-temperature-zqfknpvt-fans.csv": "cd30562b8c6e729c3e87cdfaa3bd1be7e556b285fe29b30747c0bfd9332f1102",
+    "src/ve_sd_turbo_pixels.cpp": "76b746a6ac43f9ac065b7fc42a23fca7d7e32163491bbda75dade984f05f0a04",
+    "src/ve_sd_turbo_pixels_vector.cpp": "d437f86026d1ed154711de7a37c9db043d41e082a0feca0852742e7593d0f01a",
+    "tests/benchmark_sd_pixels_vector.cpp": "6a5091908220ef32e82b46613424719ec226d762eb16f63f44d706d096964b65",
+    "scripts/benchmark_sd_pixels_vector.sh": "8afcd9985087d81b6cf02a981b0d1eb0a5429263e975334a965eb6bf46512f6a",
+    "scripts/prepare_sd_pixels_vector_fixtures.py": "fbabd6ffed311071f1418300370ea6d160ac7049828c37d01e44acd7f7e4ac56",
+    "build/sd-pixels-vector-probe/reference.o": "c57a7498f62f041abc64b378e3323cfa0c5b4801729f8ae8be172dd86e067ed7",
+    "build/sd-pixels-vector-probe/candidate.o": "622ab1552a6ba62639f155805fcd201f1ecc610b787c2278a1adba0c77888fec",
+    "build/sd-pixels-vector-probe/probe": "deedefb6b648f4130dfd82f9e38009fea3ead6dd5c2bf6dc333688a444b802e9",
+    "docs/results/20261009T162308Z-sd-turbo-pixels-o2.json": "3e0c8f7a3f93263ff969f3a0bf59e4ec008cdb0ee725d185598ff0cb11ea8878",
+    "build/sd-pixels-vector-audit.log": "e1dbb240961f7b68f98f4548d756c310bd743287f65975d9dc0f1e02ea006432",
+    "build/results/20261009T170047Z-temperature-pmh29lkr.csv": "d0608c2e0fbc31036edd0f136f68ed91ae37de89d54940ccde7379f83a920c25",
+    "build/results/20261009T170047Z-temperature-pmh29lkr-fans.csv": "56f9f3902205da41481de11a9ac326d3f9963708b56ea3c36419e3453a8a5561",
+    "build/sd-baseline-ve/examples/cli/CMakeFiles/sd.dir/flags.make": "929e7458ea809429f541462adc1de1139e9d18e9775aa2571481c6a23e570547"
+  },
+  "publisher_sha256": "208de65bb0c0e3ded85b033f83da73b8bffbf54713c4cb79e42b1d6b65e36989",
+  "compiler_flags": {
+    "reference": "-O2 -std=c++11 -DNDEBUG -fno-fast-math -fno-associative-math -fdiag-vector=2 -Dve_sd_turbo_pixel_clamp=sd_pixels_reference_clamp -Dve_sd_turbo_pixel_pack=sd_pixels_reference_pack",
+    "candidate": "-O2 -std=c++11 -DNDEBUG -fno-fast-math -fno-associative-math -fdiag-vector=2"
+  },
+  "scope": "single VE independent original/reordered O2 pixel kernels, 18 finite including 6 original CPU decoded outputs and 15 nonfinite fixtures; ABBA one warmup three timings per arm; full float/RGB CPU byte checks; no full-model speedup claim",
+  "cpu_validation_temperature": {
+    "peaks_c": {
+      "cpu": 62.0,
+      "ve0": 48.0,
+      "ve1": 46.0,
+      "ve2": 48.38
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "temperature_append_publisher_sha256": "97ac96ed944e4ae634d403fc27015d4c1f511f026998213dee878e4a077493e3",
+  "current_model_main_compiler_flags": "-O2 -std=c++17 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=c++11 -O0 -fno-inline",
+  "current_model_main_optimization": "-O0"
+}

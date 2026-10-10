@@ -1,0 +1,298 @@
+{
+  "status": "operator timing and bounded correctness verified; no new optimization gain measured",
+  "binary_sha256": "59bbe884f742449360c0bd2ad3df93405f567fab9974328b4d45ef0c2afe37ba",
+  "checker_sha256": "39521a8cda9e9615c66f575672975ba7ed4dae27bd330a5a792169110d0a965a",
+  "cpu_stage_checks": 10,
+  "scope": "SD-Turbo FP32 512 one Euler step, VE slot1, two identical requests, fixed unified OpenMP8, resident weights/tokenizer",
+  "request_seconds": [
+    87.960691,
+    18.162585
+  ],
+  "hot_operator_profile": [
+    {
+      "stage": "clip",
+      "op": "ADD",
+      "seconds": 0.009037,
+      "nodes": 232
+    },
+    {
+      "stage": "clip",
+      "op": "MUL",
+      "seconds": 0.00157,
+      "nodes": 47
+    },
+    {
+      "stage": "clip",
+      "op": "NORM",
+      "seconds": 0.002262,
+      "nodes": 47
+    },
+    {
+      "stage": "clip",
+      "op": "SCALE",
+      "seconds": 0.000187,
+      "nodes": 23
+    },
+    {
+      "stage": "clip",
+      "op": "CONT",
+      "seconds": 0.018908,
+      "nodes": 92
+    },
+    {
+      "stage": "clip",
+      "op": "RESHAPE",
+      "seconds": 0.000522,
+      "nodes": 163
+    },
+    {
+      "stage": "clip",
+      "op": "PERMUTE",
+      "seconds": 0.000197,
+      "nodes": 69
+    },
+    {
+      "stage": "clip",
+      "op": "GET_ROWS",
+      "seconds": 2.4e-05,
+      "nodes": 1
+    },
+    {
+      "stage": "clip",
+      "op": "DIAG_MASK_INF",
+      "seconds": 0.001664,
+      "nodes": 23
+    },
+    {
+      "stage": "clip",
+      "op": "SOFT_MAX",
+      "seconds": 0.007222,
+      "nodes": 23
+    },
+    {
+      "stage": "clip",
+      "op": "UNARY_GELU",
+      "seconds": 0.761085,
+      "nodes": 23
+    },
+    {
+      "stage": "unet",
+      "op": "ADD",
+      "seconds": 0.398246,
+      "nodes": 419
+    },
+    {
+      "stage": "unet",
+      "op": "MUL",
+      "seconds": 0.145447,
+      "nodes": 125
+    },
+    {
+      "stage": "unet",
+      "op": "CONCAT",
+      "seconds": 0.018948,
+      "nodes": 12
+    },
+    {
+      "stage": "unet",
+      "op": "NORM",
+      "seconds": 0.024391,
+      "nodes": 48
+    },
+    {
+      "stage": "unet",
+      "op": "GROUP_NORM",
+      "seconds": 0.036653,
+      "nodes": 61
+    },
+    {
+      "stage": "unet",
+      "op": "MUL_MAT",
+      "seconds": 0.002053,
+      "nodes": 25
+    },
+    {
+      "stage": "unet",
+      "op": "SCALE",
+      "seconds": 0.004157,
+      "nodes": 33
+    },
+    {
+      "stage": "unet",
+      "op": "CONT",
+      "seconds": 0.375275,
+      "nodes": 258
+    },
+    {
+      "stage": "unet",
+      "op": "RESHAPE",
+      "seconds": 0.001909,
+      "nodes": 599
+    },
+    {
+      "stage": "unet",
+      "op": "VIEW",
+      "seconds": 9.5e-05,
+      "nodes": 31
+    },
+    {
+      "stage": "unet",
+      "op": "PERMUTE",
+      "seconds": 0.000105,
+      "nodes": 33
+    },
+    {
+      "stage": "unet",
+      "op": "SOFT_MAX",
+      "seconds": 0.586795,
+      "nodes": 32
+    },
+    {
+      "stage": "unet",
+      "op": "IM2COL",
+      "seconds": 0.073338,
+      "nodes": 98
+    },
+    {
+      "stage": "unet",
+      "op": "UPSCALE",
+      "seconds": 0.006856,
+      "nodes": 3
+    },
+    {
+      "stage": "unet",
+      "op": "TIMESTEP_EMBEDDING",
+      "seconds": 6.3e-05,
+      "nodes": 1
+    },
+    {
+      "stage": "unet",
+      "op": "UNARY_GELU",
+      "seconds": 0.790989,
+      "nodes": 16
+    },
+    {
+      "stage": "unet",
+      "op": "UNARY_SILU",
+      "seconds": 0.111035,
+      "nodes": 68
+    },
+    {
+      "stage": "vae",
+      "op": "ADD",
+      "seconds": 2.638477,
+      "nodes": 85
+    },
+    {
+      "stage": "vae",
+      "op": "MUL",
+      "seconds": 1.195583,
+      "nodes": 30
+    },
+    {
+      "stage": "vae",
+      "op": "GROUP_NORM",
+      "seconds": 0.224368,
+      "nodes": 30
+    },
+    {
+      "stage": "vae",
+      "op": "MUL_MAT",
+      "seconds": 0.027145,
+      "nodes": 2
+    },
+    {
+      "stage": "vae",
+      "op": "SCALE",
+      "seconds": 0.000124,
+      "nodes": 1
+    },
+    {
+      "stage": "vae",
+      "op": "CONT",
+      "seconds": 0.074697,
+      "nodes": 43
+    },
+    {
+      "stage": "vae",
+      "op": "RESHAPE",
+      "seconds": 0.00069,
+      "nodes": 186
+    },
+    {
+      "stage": "vae",
+      "op": "PERMUTE",
+      "seconds": 1e-05,
+      "nodes": 4
+    },
+    {
+      "stage": "vae",
+      "op": "SOFT_MAX",
+      "seconds": 0.018642,
+      "nodes": 1
+    },
+    {
+      "stage": "vae",
+      "op": "IM2COL",
+      "seconds": 0.830026,
+      "nodes": 40
+    },
+    {
+      "stage": "vae",
+      "op": "UPSCALE",
+      "seconds": 0.125649,
+      "nodes": 3
+    },
+    {
+      "stage": "vae",
+      "op": "UNARY_SILU",
+      "seconds": 0.237339,
+      "nodes": 29
+    }
+  ],
+  "vae_operator_sum_seconds": 5.372749999999999,
+  "vae_add_mul_share_percent": 71.36122097622261,
+  "temperature": {
+    "peaks_c": {
+      "cpu": 73.0,
+      "ve0": 51.88,
+      "ve1": 40.38,
+      "ve2": 42.75
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "sampled_node_peak_gib": 9.884765625,
+  "final_node_used_mib": 128.0,
+  "artifact_sha256": {
+    "build/results/20261009T100318Z-sd-resident/summary.json": "09872248b5b8047ff5569a9392ec94942ed545ceea4f47da5390553524d42375",
+    "build/results/20261009T100318Z-sd-resident/native.log": "dfa915ab00400f1343854b7b89f247478f1963a70d60d228045532f1fd9710f7",
+    "build/results/20261009T100318Z-sd-resident/check_sd_resident.py": "39521a8cda9e9615c66f575672975ba7ed4dae27bd330a5a792169110d0a965a",
+    "build/results/20261009T100306Z-ve-memory-sampled/summary.json": "76969fe69e0194cbf67e60f731cfdab2bbd6cba42da04a3c92e142040aca4c18",
+    "build/results/20261009T100306Z-ve-memory-sampled/memory.csv": "c78dcc7e1da56ad62acbefdbf5e3e0886c6ffdbc23b55eb003cf41a307a50469",
+    "build/sd-unified-op-retest.log": "b3bca8395e70f05678fa7626f6ec02ae8e059289f429cc0d55f2a77526b76db2",
+    "build/results/20261009T100306Z-temperature-s1ux5lem.csv": "c559b3752c654ab942a9fba5bb8f42fb8c156966c484964d46ebc3e0d8a071c5",
+    "build/results/20261009T100306Z-temperature-s1ux5lem-fans.csv": "8a8b10f394e06136577ef5592c54a16f343e133cb5c8b5723218351dc6b90e2f"
+  },
+  "failed_attempt_preserved": "build/results/20261009T100017Z-sd-resident",
+  "limitations": [
+    "operator instrumentation includes synchronization waiting and overhead",
+    "single diagnostic process is not a controlled performance comparison",
+    "broadcast shapes not profiled yet; vector implementation not added",
+    "first attempt failed in checker before numerical checks; corrected rerun passed"
+  ]
+}

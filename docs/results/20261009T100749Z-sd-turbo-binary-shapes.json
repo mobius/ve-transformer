@@ -1,0 +1,147 @@
+{
+  "status": "actual scalar broadcast layouts measured; kernel optimization not implemented",
+  "scope": "SD-Turbo FP32 512 one step, fixed OpenMP8, VE slot1, two identical requests",
+  "binary_sha256": "4ea0083139ec30c9d0460e800fb08837cbfe5bbbe05bba66d274d8edf4942daa",
+  "checker_sha256": "63ef6328b132a397847284042cb49b3051dcc1f2eda399d17397e04b6ec87e2b",
+  "cpu_stage_checks": 10,
+  "hot_shape_counts": [
+    {
+      "stage": "clip",
+      "op": "ADD",
+      "nodes": 232,
+      "eligible_nodes": 0,
+      "total_elements": 23733248,
+      "eligible_elements": 0,
+      "eligible_row_widths": []
+    },
+    {
+      "stage": "clip",
+      "op": "MUL",
+      "nodes": 47,
+      "eligible_nodes": 0,
+      "total_elements": 3705856,
+      "eligible_elements": 0,
+      "eligible_row_widths": []
+    },
+    {
+      "stage": "unet",
+      "op": "ADD",
+      "nodes": 419,
+      "eligible_nodes": 181,
+      "total_elements": 338532544,
+      "eligible_elements": 118554624,
+      "eligible_row_widths": [
+        8,
+        16,
+        32,
+        64
+      ]
+    },
+    {
+      "stage": "unet",
+      "op": "MUL",
+      "nodes": 125,
+      "eligible_nodes": 61,
+      "total_elements": 125911040,
+      "eligible_elements": 45056000,
+      "eligible_row_widths": [
+        8,
+        16,
+        32,
+        64
+      ]
+    },
+    {
+      "stage": "vae",
+      "op": "ADD",
+      "nodes": 85,
+      "eligible_nodes": 70,
+      "total_elements": 1191985152,
+      "eligible_elements": 1003241472,
+      "eligible_row_widths": [
+        64,
+        128,
+        256,
+        512
+      ]
+    },
+    {
+      "stage": "vae",
+      "op": "MUL",
+      "nodes": 30,
+      "eligible_nodes": 30,
+      "total_elements": 459276288,
+      "eligible_elements": 459276288,
+      "eligible_row_widths": [
+        64,
+        128,
+        256,
+        512
+      ]
+    }
+  ],
+  "eligibility": "F32, b.ne0=1, all row strides 4, b disjoint from output, a disjoint or exact with matching strides; prospective kernel only",
+  "request_seconds": [
+    88.34954,
+    18.1675
+  ],
+  "sampled_node_peak_gib": 9.947265625,
+  "final_node_used_mib": 128,
+  "build_temperature": {
+    "peaks_c": {
+      "cpu": 75.0,
+      "ve0": 42.62,
+      "ve1": 40.25,
+      "ve2": 42.62
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "test_temperature": {
+    "peaks_c": {
+      "cpu": 72.0,
+      "ve0": 51.25,
+      "ve1": 40.25,
+      "ve2": 42.62
+    },
+    "fan_channels": 97,
+    "observed_fan_changes": 0,
+    "bmc_read_statuses_observed": [
+      "unavailable"
+    ],
+    "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+  },
+  "fan_detail": {
+    "sysfs_rpm_channels": 6,
+    "sysfs_rpm_channels_with_changes": 0,
+    "sysfs_rpm_aggregate_range": [
+      0.0,
+      0.0
+    ],
+    "all_observed_rpm_values_zero": true,
+    "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+  },
+  "artifact_sha256": {
+    "build/results/20261009T101053Z-sd-resident/summary.json": "d1421d63567a55dee8829a4122b6b61e4e185d17ea6a06c7f2ff6653b6f6ea2e",
+    "build/results/20261009T101053Z-sd-resident/native.log": "983a41dbf92daf29a3e03a04bad62d1733389a3de2b4b2b70b650c9ab8825e21",
+    "build/results/20261009T101053Z-sd-resident/check_sd_resident.py": "63ef6328b132a397847284042cb49b3051dcc1f2eda399d17397e04b6ec87e2b",
+    "build/sd-baseline-ve/manifest.json": "051c6b376ece54af5a04d1c5d379e70ccac7799d9550d57eb08999ca7eb08a86",
+    "build/results/20261009T101041Z-ve-memory-sampled/summary.json": "c566c6387083453be0afdcd23defeb885e2b2cdd8bfba043f45bf9d2ff1c018d",
+    "build/results/20261009T101041Z-ve-memory-sampled/memory.csv": "da5e3fd352c140cfa52b529517a5bbc334d6d91a426343256fcb21c26a083804",
+    "build/sd-binary-shape-build.log": "6d647afdd6e307812fc0a16b0f263407972ea29c855f253b71d810d687c9a843",
+    "build/sd-binary-shape-test.log": "48d1ad5dcb517308eeead9465d881db717672f88f3e8478ba9bb84ad057b2aff",
+    "build/results/20261009T101041Z-temperature-v2lmhk4k.csv": "c821109a10dbcff8932b1493c5f63948c9f624ab8478852f61aba5370421c7a9",
+    "build/results/20261009T101041Z-temperature-v2lmhk4k-fans.csv": "869b3a63881c315f1d8da4bc2f8a4aa38c399273b101091887a068e160a54a10"
+  },
+  "formal_new_speedup": null,
+  "limitations": [
+    "node/element proportions are not time proportions",
+    "only one prompt/step size sampled",
+    "global bounding-range overlap check conservatively treats holes as overlap",
+    "shape logging affects graph timing; no new performance comparison"
+  ]
+}

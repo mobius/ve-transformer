@@ -1,0 +1,78 @@
+"""Create float input fixtures; real decoded inputs come from CPU model reference."""
+import hashlib,json
+from pathlib import Path
+import numpy as np
+ROOT=Path(__file__).resolve().parents[1]
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def main():
+ folder=ROOT/'build/sd-pixels-pack-probe/fixtures';folder.mkdir(parents=True,exist_ok=True)
+ rng=np.random.default_rng(20261009);cases=[]
+ edges=np.array([-np.finfo(np.float32).max,-1000,-2,-1,-0.,0.,1,2,1000,np.finfo(np.float32).max],dtype=np.float32)
+ for spatial in (1,2,7,255,256,257,262143,262144):
+  data=rng.uniform(-3,3,spatial*3).astype(np.float32);data[:min(len(data),len(edges))]=edges[:min(len(data),len(edges))]
+  cases.append(dict(kind='random_edges_'+str(spatial),spatial=spatial,data=data))
+ values=(np.arange(256,dtype=np.float32)+np.float32(.5))/np.float32(255)
+ original=(values*np.float32(2)-np.float32(1)).astype(np.float32)
+ data=np.concatenate([np.nextafter(original,np.float32(-np.inf)),original,np.nextafter(original,np.float32(np.inf))])
+ cases.append(dict(kind='round_boundaries',spatial=256,data=data))
+ for kind,value in (('zero',-1.),('white',1.),('alternating',0.)):
+  data=np.full(262144*3,value,dtype=np.float32)
+  if kind=='alternating':data[::2]=-1;data[1::2]=1
+  cases.append(dict(kind=kind,spatial=262144,data=data))
+ reference=ROOT/'build/results/20261008T081800Z-sd-reference';summary=reference/'summary.json';v=json.loads(summary.read_text())
+ if not v['completed'] or v['size']!=512 or v['steps']!=1:raise RuntimeError('completed one-step reference required')
+ for row in v['cases']:
+  source=reference/('case'+str(row['case']))/'decoded.f32'
+  if sha(source)!=row['arrays']['decoded']['sha256']:raise RuntimeError('real decoded input checksum differs')
+  data=np.fromfile(source,dtype=np.float32)
+  if data.size!=262144*3 or not np.isfinite(data).all():raise RuntimeError('real shape/finiteness differs')
+  cases.append(dict(kind='cpu_real_'+str(row['case']),spatial=262144,data=data,source=str(source.relative_to(ROOT)),source_sha256=sha(source)))
+ for name,value in (('nan',np.nan),('posinf',np.inf),('neginf',-np.inf)):
+  for position in (0,385,770):
+   data=np.linspace(-2,2,771,dtype=np.float32);data[position]=value
+   cases.append(dict(kind=name+'_'+str(position),spatial=257,data=data,invalid_index=position))
+ for spatial,positions in ((257,(0,385,770)),(257,(255,256,770)),(257,(256,257,770)),(257,(257,385,770)),(262144,(385,65535,786431)),(262144,(786431,))):
+  data=np.linspace(-2,2,spatial*3,dtype=np.float32)
+  for index,position in enumerate(positions):
+   if index%3==0:data.view(np.uint32)[position]=np.uint32(0x7fc12345)
+   elif index%3==1:data[position]=np.inf
+   else:data[position]=-np.inf
+  cases.append(dict(kind='nonfinite_boundaries_'+str(spatial)+'_'+str(positions[0]),spatial=spatial,data=data,invalid_index=positions[0],invalid_locations=list(positions)))
+ words=rng.integers(0,2**32,size=262144*3,dtype=np.uint32)
+ words[(words & np.uint32(0x7f800000))==np.uint32(0x7f800000)] &= np.uint32(0xff7fffff)
+ cases.append(dict(kind='finite_random_bits',spatial=262144,data=words.view(np.float32)))
+ words=np.resize(np.array([0,0x80000000,1,0x80000001,0x007fffff,0x807fffff,0x00800000,0x80800000,0x7f7fffff,0xff7fffff],dtype=np.uint32),771)
+ cases.append(dict(kind='subnormal_signed_zero_edges',spatial=257,data=words.view(np.float32)))
+ for word in (0x7f800001,0xff800001,0x7fc00001,0xffc12345):
+  for position in (255,256):
+   data=np.linspace(-2,2,771,dtype=np.float32)
+   data.view(np.uint32)[position]=np.uint32(word)
+   cases.append(dict(kind='nan_bits_%08x_%d'%(word,position),spatial=257,data=data,invalid_index=position,invalid_locations=[position],invalid_word=word))
+ direct=[]
+ def add_direct(kind,data):
+  data=np.asarray(data,dtype=np.float32)
+  if data.size%3 or not np.isfinite(data).all() or not ((data>=0)&(data<=1)).all():raise RuntimeError('direct pack input domain differs')
+  direct.append(dict(kind=kind,spatial=data.size//3,data=data))
+ midpoint=(np.arange(255,dtype=np.float32)+np.float32(.5))/np.float32(255)
+ below1=np.nextafter(midpoint,np.float32(-np.inf));below2=np.nextafter(below1,np.float32(-np.inf));above1=np.nextafter(midpoint,np.float32(np.inf));above2=np.nextafter(above1,np.float32(np.inf))
+ add_direct('half_threshold_neighbors',np.concatenate([below2,below1,midpoint,above1,above2]))
+ scaled=[x*np.float32(255) for x in (below2,midpoint,above2)];threshold=np.arange(255,dtype=np.float32)+np.float32(.5)
+ if not ((scaled[0]<threshold).all() and (scaled[1]==threshold).all() and (scaled[2]>threshold).all()):raise RuntimeError('all half threshold classes must be covered')
+ grid=np.arange(256,dtype=np.float32)/np.float32(255)
+ add_direct('byte_grid_neighbors',np.clip(np.concatenate([np.nextafter(grid,np.float32(-np.inf)),grid,np.nextafter(grid,np.float32(np.inf))]),0,1))
+ add_direct('uniform_direct',rng.uniform(0,1,262144*3).astype(np.float32))
+ words=rng.integers(0,0x3f800001,size=262144*3,dtype=np.uint32);words[0]=np.uint32(0x80000000);words[-1]=np.uint32(0x80000000)
+ add_direct('finite_unit_interval_bits',words.view(np.float32))
+ edge_words=np.array([0,0x80000000,1,0x007fffff,0x00800000,0x3f000000,0x3f7fffff,0x3f800000],dtype=np.uint32)
+ for spatial in (1,2,7,255,256,257,262143,262144):add_direct('direct_edges_'+str(spatial),np.resize(edge_words,spatial*3).view(np.float32))
+ direct_records=[];direct_lines=[]
+ for index,item in enumerate(direct):
+  data=item.pop('data');path=folder/('direct%02d.f32'%index);path.write_bytes(data.tobytes());item.update(index=index,input_path=str(path.relative_to(ROOT)),input_sha256=sha(path),count=data.size);direct_records.append(item);direct_lines.append(str(index)+' '+str(item['spatial'])+' '+str(path))
+ (folder/'direct.tsv').write_text('\n'.join(direct_lines)+'\n');(folder/'direct-manifest.json').write_text(json.dumps(dict(cases=direct_records,generator_sha256=sha(Path(__file__)),half_threshold_groups=255,neighbors_per_threshold=5),indent=2)+'\n')
+ print('Direct pack fixtures:',len(direct_records))
+ records=[];lines=[]
+ for index,item in enumerate(cases):
+  data=item.pop('data');path=folder/('case%02d.f32'%index);path.write_bytes(data.tobytes());item.update(index=index,input_path=str(path.relative_to(ROOT)),input_sha256=sha(path),count=data.size)
+  records.append(item);lines.append(str(index)+' '+str(item['spatial'])+' '+str(item.get('invalid_index',-1))+' '+str(path))
+ (folder/'fixtures.tsv').write_text('\n'.join(lines)+'\n');(folder/'manifest.json').write_text(json.dumps(dict(cases=records,reference_summary=str(summary.relative_to(ROOT)),reference_summary_sha256=sha(summary),generator_sha256=sha(Path(__file__))),indent=2)+'\n');print('Pixel fixtures:',len(records))
+if __name__=='__main__':main()

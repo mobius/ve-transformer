@@ -1,0 +1,199 @@
+{
+  "status": "model_validation_verified",
+  "tests": [
+    {
+      "artifacts": "build/results/20261009T160005Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T155953Z-ve-memory-sampled",
+      "sha256": {
+        "build/results/20261009T160005Z-sd-resident/summary.json": "2dc17490cc292faa1ac8c22bd2284533fc9b0e81e011931d91785a465979fdfe",
+        "build/results/20261009T160005Z-sd-resident/native.log": "c114bc3967b5b0aa28ae7edb9929bb4b0d9c64d40757b16fdaaf53f06a465c20",
+        "build/results/20261009T160005Z-sd-resident/check_sd_resident.py": "97a00ac4cf69655d47ecbefb24d7b773a9c2e5b745831eec5de0b7d129c8af22",
+        "build/results/20261009T155953Z-ve-memory-sampled/summary.json": "a245019d410d715e63f50ab47176749893c55dec91e4cf7feb63851c88686247",
+        "build/results/20261009T155953Z-ve-memory-sampled/memory.csv": "f064cbc8baed7dd98ee23fe19aae5bccb2c8e93dd49c34476ba3580cb1ded79e",
+        "build/sd-rgb-model-double.log": "9b13b3a21967283d76956785101bc55c71a32c3eb5db681a390b19a45edd2748",
+        "build/results/20261009T155953Z-temperature-3emmsw9n.csv": "33bb18f8fac3003c30c5ff560c039550493e15f769fc8f4b59cdd5bfe5c6d074",
+        "build/results/20261009T155953Z-temperature-3emmsw9n-fans.csv": "da93ade1a0d91369747e7ee3f11d29295f17304b5fa5957af0ad3f8879f53f14"
+      },
+      "request_seconds": [
+        83.758831,
+        9.897405
+      ],
+      "cpu_checks": 10,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 80.0,
+          "ve0": 55.12,
+          "ve1": 44.0,
+          "ve2": 46.25
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "rgb_buffer": "resident",
+      "name": "double"
+    },
+    {
+      "artifacts": "build/results/20261009T160234Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T160222Z-ve-memory-sampled",
+      "sha256": {
+        "build/results/20261009T160234Z-sd-resident/summary.json": "634b7b466262e1eaf50fc9fc6382f95aa50f31ff794cd79f36eaf1b4990c3585",
+        "build/results/20261009T160234Z-sd-resident/native.log": "f6fbd6047ca83afe86fcad4b76848732e2fae56d94fcc1383ed79f0f89b52d7b",
+        "build/results/20261009T160234Z-sd-resident/check_sd_resident.py": "97a00ac4cf69655d47ecbefb24d7b773a9c2e5b745831eec5de0b7d129c8af22",
+        "build/results/20261009T160222Z-ve-memory-sampled/summary.json": "4a917328c708a956387b85a08032a0312c1fce660d4225827650eb7c284abb42",
+        "build/results/20261009T160222Z-ve-memory-sampled/memory.csv": "b4b19516565b0bd26a29248edab8b2367cf43f89af808468d0af70076064e67a",
+        "build/sd-rgb-model-six.log": "3e920924768616fde1d8bd98bb0ef7b3f8317c1a7dd0dd6c7626977b19c9ce93",
+        "build/results/20261009T160222Z-temperature-5f8po3zd.csv": "721fbab52435c6ce2bcff27e2e095bcc2c9441bdf6887d81b783c0143e09d192",
+        "build/results/20261009T160222Z-temperature-5f8po3zd-fans.csv": "e4a59dd8347dfadabd8198d173552a0704f52b8be46e2a1e397884420591a949"
+      },
+      "request_seconds": [
+        82.779884,
+        9.951636,
+        9.895499,
+        9.922124,
+        9.869462,
+        9.898681
+      ],
+      "cpu_checks": 30,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 73.0,
+          "ve0": 58.0,
+          "ve1": 44.0,
+          "ve2": 46.38
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 10.009765625,
+      "rgb_buffer": "resident",
+      "name": "six"
+    },
+    {
+      "artifacts": "build/results/20261009T160544Z-sd-resident",
+      "memory_artifacts": "build/results/20261009T160532Z-ve-memory-sampled",
+      "sha256": {
+        "build/results/20261009T160544Z-sd-resident/summary.json": "88de4b8cfb7b977418a6f82e25182bd570f090ba479f53a9c5ffaca45b047c3c",
+        "build/results/20261009T160544Z-sd-resident/native.log": "43900457cee15d64c9953d4a8507695e91ea071d9df9ddc800169c2be3c46ff0",
+        "build/results/20261009T160544Z-sd-resident/check_sd_resident.py": "97a00ac4cf69655d47ecbefb24d7b773a9c2e5b745831eec5de0b7d129c8af22",
+        "build/results/20261009T160532Z-ve-memory-sampled/summary.json": "1d041aaea2aa6a2c2c4436b9f20ed1849debb99a2e318bd6b0183d1b758ef8a8",
+        "build/results/20261009T160532Z-ve-memory-sampled/memory.csv": "038de76d7efc62add1e374cdc62b49447d1f3729b1403fa2eb6ac13e6bd755ae",
+        "build/sd-rgb-model-four.log": "ff334fa1076e1017ab50b869014064fdc62fc658c1d6de5cbc53c8a43e2d992c",
+        "build/results/20261009T160532Z-temperature-8qeml9mm.csv": "4f7932df0f2ecea26d0094aae738fe5df9a9ab8bd6acc60b0e2a2517e84f383b",
+        "build/results/20261009T160532Z-temperature-8qeml9mm-fans.csv": "8013559b76d7ed7f6eaebe551d5e543ec42d3e90771f3a1d148970dced8cfa66"
+      },
+      "request_seconds": [
+        92.540836,
+        18.473612
+      ],
+      "cpu_checks": 22,
+      "temperature": {
+        "peaks_c": {
+          "cpu": 73.0,
+          "ve0": 57.88,
+          "ve1": 44.25,
+          "ve2": 46.5
+        },
+        "fan_channels": 97,
+        "observed_fan_changes": 0,
+        "bmc_read_statuses_observed": [
+          "unavailable"
+        ],
+        "fan_policy_conclusion": "no observed changes in readable channels; actual policy stability not established"
+      },
+      "fan_detail": {
+        "sysfs_rpm_channels": 6,
+        "sysfs_rpm_channels_with_changes": 0,
+        "sysfs_rpm_aggregate_range": [
+          0.0,
+          0.0
+        ],
+        "all_observed_rpm_values_zero": true,
+        "interpretation": "zero sysfs readings do not establish physical fan speed; BMC availability is recorded separately; actual fan policy not verified"
+      },
+      "sampled_node_peak_gib": 9.884765625,
+      "rgb_buffer": "resident",
+      "name": "four"
+    }
+  ],
+  "model_manifest_sha256": "6b3aaced800abbb01349377630435b3f36e23942dab6bdfa786c7806d012a5cb",
+  "binary_sha256": "d389f6c59337c8f0ac74a356b25981dc86fa86268c0a29aa34fac580d0858bb9",
+  "checker_sha256": "97a00ac4cf69655d47ecbefb24d7b773a9c2e5b745831eec5de0b7d129c8af22",
+  "actual_png_compiler": {
+    "effective_png_optimization": "-O2",
+    "png_flags": "-O2 -std=c++17 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=c++11 -O2 -fno-fast-math -fno-associative-math -fdiag-vector=2",
+    "png_object_sha256": "59fd920235580b1c95c60bfd36b74b7a4ee445bc2fc6ed34b9cd5927af474b25",
+    "png_flags_make_sha256": "223e9008d3f9047f57583be530789e43c316ea6747a94bb0474a25f8a3967ec8",
+    "png_build_make_sha256": "79eb24aa663d1dc69a82d4c68d1c0bae90f1aaa95f8a542df404fa706f5b87ac",
+    "main_flags": "-O2 -std=c++17 -fdiag-inline=0 -fdiag-vector=0 -O1 -DNDEBUG -fno-fast-math -std=c++11 -O0 -fno-inline",
+    "main_optimization": "-O0",
+    "main_flags_make_sha256": "929e7458ea809429f541462adc1de1139e9d18e9775aa2571481c6a23e570547"
+  },
+  "completed_tests": [
+    "double",
+    "six",
+    "four"
+  ],
+  "independent_cpu_checks": 62,
+  "all_candidate_tests_completed": true,
+  "publisher_sha256": "7662ecd956396a86aff4d48fee54dcc8f55b9fcce1e6e6bc516a634180fc43e5",
+  "audit_dependency_sha256": {
+    "scripts/record_sd_png_model.py": "ea4ae3b1f2e1949152cd2abb78f4c10ad7316ef803fa213e58c16511bcce7d6d",
+    "scripts/record_sd_gemm_spatial_model.py": "9e70b3db9f723dc945c1e7ba027fa1e78d6958e6c2f96de2b9abe1db038d1967",
+    "scripts/record_sd_gelu_result.py": "efdbc4a91454f154f42c0af6d8307e565e58109ed2b4a9a99f7f9c14871ce351",
+    "scripts/record_sd_im2col_rows_abba.py": "5e193b0d4301ee7f4d16621b216c14da0258f7124f1f7c9f6693c442b502d903"
+  },
+  "full_graph_speedup_measured": false,
+  "configuration": {
+    "rgb_buffer": "resident",
+    "png_encoder": "ve",
+    "vae_spatial_tile": "8192",
+    "im2col_mode": "rows_256",
+    "generic_threads": 8,
+    "vae_blas_threads": 4,
+    "gelu": "ve",
+    "binary_scalar": "ve",
+    "weights": "resident",
+    "tokenizer": "resident"
+  },
+  "scope": "actual-model RGB buffer reuse correctness, PNG O2/main O0, fresh CPU checks; controlled same-binary performance separate",
+  "previous_png_model_byte_comparison": {
+    "proof": "docs/results/20261009T152313Z-sd-turbo-png-model.json",
+    "proof_sha256": "3b2769e4a24908f1706e0f0fb6921d85b715d4a30a52d54c515171024dabc2f7",
+    "requests": 10,
+    "all_trace_and_png_bytes_identical": true
+  },
+  "cpu_validation_guard_sha256": {
+    "build/sd-rgb-model-double-audit.log": "88c00156a4d3df153b72c2e07ef121d7d97ca946669cea2237a73e25deeed2c4",
+    "build/sd-rgb-model-six-audit.log": "c1595da8e587071843e43189f409cfd4f8752b87a7a6a9ea499d366932f833d6",
+    "build/sd-rgb-model-four-audit.log": "164596f6ed7ffcc61e9ec268a017044307fed639c3659d6eee7ecdc6dd1d273b"
+  }
+}

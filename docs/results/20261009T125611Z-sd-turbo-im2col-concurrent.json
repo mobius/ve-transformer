@@ -1,0 +1,39 @@
+{
+  "completed": true,
+  "returncode": 0,
+  "scope": "40 shape/ownership configurations; 32 distinct shape/actual-team configurations; 16 ownership partitions checked sequentially, no 16-thread concurrency claim",
+  "ownership_groups": 40,
+  "ownership_thread_counts": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "actual_concurrent_thread_counts": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "initial_runs_returncode": [
+    6,
+    6
+  ],
+  "initial_diagnostic": "requested 16, actual 8, input_changed=0",
+  "performance_measured": false,
+  "cpu_peak_c": 65,
+  "ve_peak_c": 41.5,
+  "fan_channels": 97,
+  "fan_changes": 0,
+  "sha256": {
+    "src/ve_sd_turbo_im2col_rows.c": "8978fb5c729b3f472a72d3e0c03b71fcb078e56fd61af80594fe8453f985b847",
+    "tests/check_sd_im2col_rows_concurrent.c": "c8aaff9646c000afb0bd9613eb9a90aaa8e87e9a11d653d042f25c2272dcd916",
+    "scripts/check_sd_im2col_rows_concurrent.sh": "89e6e5180c0ff1ccd324d779a8e6668165c0a498857ef07491c82effc7c00e6d",
+    "build/im2col-rows/kernel.o": "066e5e7ca172efdd6cfc6b29ddb72ad8a45f2494097d2ec9a586eda70fd7a623",
+    "build/im2col-rows/check-concurrent": "c8df4d8707b2ea25047c74b243ea47f342bb07c25970f50dabb6b72c2e8ec88a",
+    "build/sd-im2col-rows-concurrent-supported.log": "729c0df0cfe85e6e17dad7bc8bd0bc4ce0dec29a2144baacb9d7d565e62b9acd",
+    "build/sd-im2col-rows-concurrent.log": "bead7725eadbe2e53f8f1f633a91a7dd6059767da92aab32ea89f3e6fad118df",
+    "build/sd-im2col-rows-concurrent-diagnostic.log": "700a7ca5a00a3e891f868e5b31489fff09ba8ed5d22b96cd241b858d08df2492"
+  }
+}
